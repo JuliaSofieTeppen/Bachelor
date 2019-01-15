@@ -1,3 +1,15 @@
 <resources>
-    <string name="app_name">Bachelor</string>
+    <string name="app_name">Risengs Birøkt</string>
+    <string name="title_activity_main">Main</string>
+    <string name="title_section1">Forside</string>
+    <string name="title_section2">Endre Honningtype</string>
+    <string name="title_section3">Endre Honningstørrelse</string>
+    <string name="title_section4">Endre Faktura/Omsetning</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
+    <string name="action_example">Example action</string>
+
+    <string name="action_settings">Innstillinger</string>
 </resources>

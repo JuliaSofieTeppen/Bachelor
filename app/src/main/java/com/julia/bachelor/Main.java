@@ -5,18 +5,14 @@ import android.app.Activity;
 import android.app.ActionBar;
 import android.app.Fragment;
 import android.app.FragmentManager;
+import android.app.FragmentTransaction;
 import android.content.Context;
-import android.os.Build;
 import android.os.Bundle;
-import android.view.Gravity;
 import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.support.v4.widget.DrawerLayout;
-import android.widget.ArrayAdapter;
-import android.widget.TextView;
+import android.widget.Button;
 
 public class Main extends Activity
         implements NavigationDrawerFragment.NavigationDrawerCallbacks {
@@ -34,7 +30,7 @@ public class Main extends Activity
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main2);
+        setContentView(R.layout.activity_main);
 
         mNavigationDrawerFragment = (NavigationDrawerFragment)
                 getFragmentManager().findFragmentById(R.id.navigation_drawer);
@@ -62,9 +58,19 @@ public class Main extends Activity
                 break;
             case 2:
                 mTitle = getString(R.string.title_section2);
+                BeholdningFragment myf = new BeholdningFragment();
+                FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
+                fragmentTransaction.replace(R.id.container, myf);
+                fragmentTransaction.addToBackStack(null);
+                fragmentTransaction.commit();
                 break;
             case 3:
                 mTitle = getString(R.string.title_section3);
+                PriserFragment fragment = new PriserFragment();
+                FragmentTransaction fragmentt = getFragmentManager().beginTransaction();
+                fragmentt.replace(R.id.container, fragment);
+                fragmentt.addToBackStack(null);
+                fragmentt.commit();
                 break;
         }
     }
@@ -86,6 +92,8 @@ public class Main extends Activity
          */
         private static final String ARG_SECTION_NUMBER = "section_number";
 
+        Button addbutton;
+
         public PlaceholderFragment() {
         }
 
@@ -104,7 +112,9 @@ public class Main extends Activity
         @Override
         public View onCreateView(LayoutInflater inflater, ViewGroup container,
                                  Bundle savedInstanceState) {
-            View rootView = inflater.inflate(R.layout.fragment_main, container, false);
+            View rootView = inflater.inflate(R.layout.fragment_salg, container, false);
+            addbutton = rootView.findViewById(R.id.addbutton);
+
             return rootView;
         }
 
@@ -113,6 +123,58 @@ public class Main extends Activity
             super.onAttach(activity);
             ((Main) activity).onSectionAttached(
                     getArguments().getInt(ARG_SECTION_NUMBER));
+        }
+    }
+
+    public static class BeholdningFragment extends Fragment {
+        private static final String ARG_SECTION_NUMBER = "section_number";
+
+        public BeholdningFragment() {
+        }
+
+        /**
+         * Returns a new instance of this fragment for the given section
+         * number.
+         */
+        public static BeholdningFragment newInstance(int sectionNumber) {
+            BeholdningFragment fragment = new BeholdningFragment();
+            Bundle args = new Bundle();
+            args.putInt(ARG_SECTION_NUMBER, sectionNumber);
+            fragment.setArguments(args);
+            return fragment;
+        }
+
+        @Override
+        public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                                 Bundle savedInstanceState) {
+            View rootView = inflater.inflate(R.layout.fragment_beholdning, container, false);
+            return rootView;
+        }
+
+    }
+    public static class PriserFragment extends Fragment {
+        private static final String ARG_SECTION_NUMBER = "section_number";
+
+        public PriserFragment() {
+        }
+
+        /**
+         * Returns a new instance of this fragment for the given section
+         * number.
+         */
+        public static PriserFragment newInstance(int sectionNumber) {
+            PriserFragment fragment = new PriserFragment();
+            Bundle args = new Bundle();
+            args.putInt(ARG_SECTION_NUMBER, sectionNumber);
+            fragment.setArguments(args);
+            return fragment;
+        }
+
+        @Override
+        public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                                 Bundle savedInstanceState) {
+            View rootView = inflater.inflate(R.layout.fragment_priser, container, false);
+            return rootView;
         }
     }
 

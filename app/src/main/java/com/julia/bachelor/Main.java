@@ -7,12 +7,16 @@ import android.app.Fragment;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.support.v4.widget.DrawerLayout;
 import android.widget.Button;
+import android.widget.PopupMenu;
+import android.widget.Toast;
 
 public class Main extends Activity
         implements NavigationDrawerFragment.NavigationDrawerCallbacks {
@@ -110,10 +114,32 @@ public class Main extends Activity
         }
 
         @Override
-        public View onCreateView(LayoutInflater inflater, ViewGroup container,
+        public View onCreateView(final LayoutInflater inflater, ViewGroup container,
                                  Bundle savedInstanceState) {
-            View rootView = inflater.inflate(R.layout.fragment_salg, container, false);
+            final View rootView = inflater.inflate(R.layout.fragment_salg, container, false);
             addbutton = rootView.findViewById(R.id.addbutton);
+
+            addbutton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    PopupMenu popupMenu = new PopupMenu(rootView.getContext() , addbutton);
+                    popupMenu.getMenuInflater().inflate(R.menu.popup_menu, popupMenu.getMenu());
+
+                    popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
+                        @Override
+                        public boolean onMenuItemClick(MenuItem item) {
+                            Toast.makeText(rootView.getContext(), "" + item.getTitle(), Toast.LENGTH_SHORT).show();
+                            if(item.getTitle().equals("Bondens Marked")){
+                                Intent myIntent = new Intent(rootView.getContext(), HjemmeSalg.class);
+                                myIntent.putExtra("Hjemme", 1); //Optional parameters
+                                rootView.getContext().startActivity(myIntent);
+                            }
+                            return true;
+                        }
+                    });
+                    popupMenu.show();
+                }
+            });
 
             return rootView;
         }

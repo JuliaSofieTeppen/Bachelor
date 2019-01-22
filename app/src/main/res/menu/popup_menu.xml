@@ -2,14 +2,14 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
-        android:id="@+id/one"
-        android:title="one"/>
+        android:id="@+id/BondensMarked"
+        android:title="Bondens Marked"/>
     <item
-        android:id="@+id/two"
-        android:title="two"/>
+        android:id="@+id/HjemmeSalg"
+        android:title="Hjemme salg"/>
     <item
-        android:id="@+id/three"
-        android:title="three"/>
+        android:id="@+id/Faktura"
+        android:title="Faktura"/>
 
 
 </menu>

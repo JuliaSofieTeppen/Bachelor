@@ -13,17 +13,13 @@ public class HjemmeSalg extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_hjemme_salg);
 
-    getActionBar().setDisplayShowHomeEnabled(true);
     getActionBar().setDisplayHomeAsUpEnabled(true);
 
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item){
-        int id = item.getItemId();
-        if(id == android.R.id.home){
-            this.finish();
-        }
+        this.finish();
         return onOptionsItemSelected(item);
     }
 

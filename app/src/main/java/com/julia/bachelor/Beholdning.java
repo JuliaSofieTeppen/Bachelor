@@ -17,7 +17,7 @@ public class Beholdning {
     public long get_ID() {
         return _ID;
     }
-    
+
     public int getAntall() {
         return Antall;
     }

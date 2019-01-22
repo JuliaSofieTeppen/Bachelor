@@ -128,10 +128,17 @@ public class Main extends Activity
                     popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
                         @Override
                         public boolean onMenuItemClick(MenuItem item) {
-                            Toast.makeText(rootView.getContext(), "" + item.getTitle(), Toast.LENGTH_SHORT).show();
                             if(item.getTitle().equals("Bondens Marked")){
+                                Intent myIntent = new Intent(rootView.getContext(), BmSalg.class);
+                                myIntent.putExtra("BM", 1); //Optional parameters
+                                rootView.getContext().startActivity(myIntent);
+                            }else if(item.getTitle().equals("Hjemme salg")){
                                 Intent myIntent = new Intent(rootView.getContext(), HjemmeSalg.class);
                                 myIntent.putExtra("Hjemme", 1); //Optional parameters
+                                rootView.getContext().startActivity(myIntent);
+                            }else{
+                                Intent myIntent = new Intent(rootView.getContext(), FakturaSalg.class);
+                                myIntent.putExtra("Faktura", 1); //Optional parameters
                                 rootView.getContext().startActivity(myIntent);
                             }
                             return true;

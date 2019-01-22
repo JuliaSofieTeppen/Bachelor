@@ -189,11 +189,11 @@
     <TextView
         android:id="@+id/textView47"
         android:layout_width="319dp"
-        android:layout_height="110dp"
+        android:layout_height="105dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="20dp"
         android:layout_marginEnd="8dp"
-        android:layout_marginBottom="41dp"
+        android:layout_marginBottom="25dp"
         android:text="Sommerhonning 1kg \n Lynghonning 1kg"
         app:layout_constraintBottom_toTopOf="@+id/button2"
         app:layout_constraintEnd_toEndOf="parent"

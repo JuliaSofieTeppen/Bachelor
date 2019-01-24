@@ -8,8 +8,11 @@
         android:id="@+id/HjemmeSalg"
         android:title="Hjemme salg"/>
     <item
-        android:id="@+id/Faktura"
-        android:title="Faktura"/>
+        android:id="@+id/videresalg"
+        android:title="Videre salg" />
+    <item
+        android:id="@+id/annet"
+        android:title="Annet" />
 
 
 </menu>

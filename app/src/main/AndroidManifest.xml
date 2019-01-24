@@ -8,7 +8,10 @@
         android:roundIcon="@drawable/logo"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".FakturaSalg"></activity>
+        <activity android:name=".SalgAnnet"></activity>
+        <activity android:name=".AddBeholdning" />
+        <activity android:name=".Innstillinger" />
+        <activity android:name=".FakturaSalg" />
         <activity android:name=".BmSalg" />
         <activity android:name=".HjemmeSalg" />
         <activity

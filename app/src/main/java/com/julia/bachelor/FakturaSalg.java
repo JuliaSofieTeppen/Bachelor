@@ -18,6 +18,6 @@ public class FakturaSalg extends Activity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item){
             this.finish();
-        return onOptionsItemSelected(item);
+        return true;
     }
 }

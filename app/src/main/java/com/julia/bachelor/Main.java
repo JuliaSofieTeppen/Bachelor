@@ -76,6 +76,12 @@ public class Main extends Activity
                 fragmentt.addToBackStack(null);
                 fragmentt.commit();
                 break;
+            case 4:
+                mTitle = getString(R.string.title_section4);
+                Intent myIntent = new Intent(Main.this, Innstillinger.class);
+                myIntent.putExtra("Innstillinger", 1); //Optional parameters
+                Main.this.startActivity(myIntent);
+
         }
     }
 
@@ -136,9 +142,13 @@ public class Main extends Activity
                                 Intent myIntent = new Intent(rootView.getContext(), HjemmeSalg.class);
                                 myIntent.putExtra("Hjemme", 1); //Optional parameters
                                 rootView.getContext().startActivity(myIntent);
-                            }else{
+                            }else if(item.getTitle().equals("Videre salg")){
                                 Intent myIntent = new Intent(rootView.getContext(), FakturaSalg.class);
-                                myIntent.putExtra("Faktura", 1); //Optional parameters
+                                myIntent.putExtra("Videresalg", 1); //Optional parameters
+                                rootView.getContext().startActivity(myIntent);
+                            }else{
+                                Intent myIntent = new Intent(rootView.getContext(), SalgAnnet.class);
+                                myIntent.putExtra("Salgannet", 1); //Optional parameters
                                 rootView.getContext().startActivity(myIntent);
                             }
                             return true;
@@ -161,7 +171,7 @@ public class Main extends Activity
 
     public static class BeholdningFragment extends Fragment {
         private static final String ARG_SECTION_NUMBER = "section_number";
-
+        Button addbutton;
         public BeholdningFragment() {
         }
 
@@ -181,6 +191,16 @@ public class Main extends Activity
         public View onCreateView(LayoutInflater inflater, ViewGroup container,
                                  Bundle savedInstanceState) {
             View rootView = inflater.inflate(R.layout.fragment_beholdning, container, false);
+
+            addbutton = rootView.findViewById(R.id.button);
+            addbutton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent myIntent = new Intent(getContext(), Innstillinger.class);
+                    myIntent.putExtra("Innstillinger", 1); //Optional parameters
+                    getContext().startActivity(myIntent);
+                }
+            });
             return rootView;
         }
 

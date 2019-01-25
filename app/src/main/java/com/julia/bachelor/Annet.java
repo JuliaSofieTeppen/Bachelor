@@ -1,8 +1,10 @@
 package com.julia.bachelor;
 
-public class Annet {
+public class Annet implements Salg{
+
     private long _ID;
     private String Kunde;
+    private String Dato;
     private String Varer;
     private int Belop;
     private String Betaling;
@@ -11,8 +13,9 @@ public class Annet {
 
     }
 
-    public Annet(String kunde, String varer, int belop, String betaling) {
+    public Annet(String kunde, String dato, String varer, int belop, String betaling) {
         Kunde = kunde;
+        Dato = dato;
         Varer = varer;
         Belop = belop;
         Betaling = betaling;
@@ -29,6 +32,10 @@ public class Annet {
     public void setKunde(String kunde) {
         Kunde = kunde;
     }
+
+    public String getDato(){ return Dato; }
+
+    public void setDato(String dato){ Dato = dato; }
 
     public String getVarer() {
         return Varer;

@@ -1,6 +1,6 @@
 package com.julia.bachelor;
 
-public class Hjemme {
+public class Hjemme implements Salg{
     private long _ID;
     private String Kunde;
     private String Dato;

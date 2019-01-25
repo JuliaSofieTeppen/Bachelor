@@ -17,10 +17,11 @@ public class MainActivity extends Activity {
     }
     public void InsertIntoDB(){
         executeOnDB task = new executeOnDB();
+        // TODO Add correct Url here
         task.execute("");
     }
 
-    private class executeOnDB extends AsyncTask<String, Void, String> {
+    private static class executeOnDB extends AsyncTask<String, Void, String> {
         @Override
         protected String doInBackground(String... urls) {
             try {
@@ -38,7 +39,8 @@ public class MainActivity extends Activity {
         @Override
         protected void onPostExecute(String s) {
             super.onPostExecute(s);
-            Toast.makeText(MainActivity.this, "Done!", Toast.LENGTH_SHORT).show();
+            // TODO remove toast when done
+            //Toast.makeText(MainActivity.this, "Done!", Toast.LENGTH_SHORT).show();
         }
     }
 }

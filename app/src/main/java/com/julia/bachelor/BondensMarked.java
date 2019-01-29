@@ -5,12 +5,11 @@ public class BondensMarked {
     private String Dato;
     private int Belop;
     private String Varer;
-
-    public BondensMarked(){
+    BondensMarked(){
 
     }
 
-    public BondensMarked(String dato, int belop, String varer) {
+    BondensMarked(String dato, int belop, String varer) {
         Dato = dato;
         Belop = belop;
         Varer = varer;
@@ -18,6 +17,10 @@ public class BondensMarked {
 
     public long get_ID() {
         return _ID;
+    }
+
+    public void set_ID(long _ID) {
+        this._ID = _ID;
     }
 
     public String getDato() {

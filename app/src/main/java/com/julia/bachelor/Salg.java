@@ -2,6 +2,7 @@ package com.julia.bachelor;
 
 interface Salg {
     long get_ID();
+    void set_ID(long _ID);
     String getKunde();
     void setKunde(String kunde);
     String getDato();

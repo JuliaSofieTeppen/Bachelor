@@ -6,17 +6,12 @@ import android.app.ActionBar;
 import android.app.Fragment;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.support.v4.widget.DrawerLayout;
-import android.widget.Button;
-import android.widget.PopupMenu;
-import android.widget.Toast;
 
 public class Main extends Activity
         implements NavigationDrawerFragment.NavigationDrawerCallbacks {
@@ -51,7 +46,7 @@ public class Main extends Activity
         // update the main content by replacing fragments
         FragmentManager fragmentManager = getFragmentManager();
         fragmentManager.beginTransaction()
-                .replace(R.id.container, PlaceholderFragment.newInstance(position + 1))
+                .replace(R.id.container, SalgFragment.newInstance(position + 1))
                 .commit();
     }
 
@@ -95,116 +90,8 @@ public class Main extends Activity
     /**
      * A placeholder fragment containing a simple view.
      */
-    public static class PlaceholderFragment extends Fragment {
-        /**
-         * The fragment argument representing the section number for this
-         * fragment.
-         */
-        private static final String ARG_SECTION_NUMBER = "section_number";
 
-        Button addbutton;
 
-        public PlaceholderFragment() {
-        }
-
-        /**
-         * Returns a new instance of this fragment for the given section
-         * number.
-         */
-        public static PlaceholderFragment newInstance(int sectionNumber) {
-            PlaceholderFragment fragment = new PlaceholderFragment();
-            Bundle args = new Bundle();
-            args.putInt(ARG_SECTION_NUMBER, sectionNumber);
-            fragment.setArguments(args);
-            return fragment;
-        }
-
-        @Override
-        public View onCreateView(final LayoutInflater inflater, ViewGroup container,
-                                 Bundle savedInstanceState) {
-            final View rootView = inflater.inflate(R.layout.fragment_salg, container, false);
-            addbutton = rootView.findViewById(R.id.addbutton);
-
-            addbutton.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    PopupMenu popupMenu = new PopupMenu(rootView.getContext() , addbutton);
-                    popupMenu.getMenuInflater().inflate(R.menu.popup_menu, popupMenu.getMenu());
-
-                    popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
-                        @Override
-                        public boolean onMenuItemClick(MenuItem item) {
-                            if(item.getTitle().equals("Bondens Marked")){
-                                Intent myIntent = new Intent(rootView.getContext(), BmSalg.class);
-                                myIntent.putExtra("BM", 1); //Optional parameters
-                                rootView.getContext().startActivity(myIntent);
-                            }else if(item.getTitle().equals("Hjemme salg")){
-                                Intent myIntent = new Intent(rootView.getContext(), HjemmeSalg.class);
-                                myIntent.putExtra("Hjemme", 1); //Optional parameters
-                                rootView.getContext().startActivity(myIntent);
-                            }else if(item.getTitle().equals("Videre salg")){
-                                Intent myIntent = new Intent(rootView.getContext(), FakturaSalg.class);
-                                myIntent.putExtra("Videresalg", 1); //Optional parameters
-                                rootView.getContext().startActivity(myIntent);
-                            }else{
-                                Intent myIntent = new Intent(rootView.getContext(), SalgAnnet.class);
-                                myIntent.putExtra("Salgannet", 1); //Optional parameters
-                                rootView.getContext().startActivity(myIntent);
-                            }
-                            return true;
-                        }
-                    });
-                    popupMenu.show();
-                }
-            });
-
-            return rootView;
-        }
-
-        @Override
-        public void onAttach(Activity activity) {
-            super.onAttach(activity);
-            ((Main) activity).onSectionAttached(
-                    getArguments().getInt(ARG_SECTION_NUMBER));
-        }
-    }
-
-    public static class BeholdningFragment extends Fragment {
-        private static final String ARG_SECTION_NUMBER = "section_number";
-        Button addbutton;
-        public BeholdningFragment() {
-        }
-
-        /**
-         * Returns a new instance of this fragment for the given section
-         * number.
-         */
-        public static BeholdningFragment newInstance(int sectionNumber) {
-            BeholdningFragment fragment = new BeholdningFragment();
-            Bundle args = new Bundle();
-            args.putInt(ARG_SECTION_NUMBER, sectionNumber);
-            fragment.setArguments(args);
-            return fragment;
-        }
-
-        @Override
-        public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                                 Bundle savedInstanceState) {
-            View rootView = inflater.inflate(R.layout.fragment_beholdning, container, false);
-
-            addbutton = rootView.findViewById(R.id.button);
-            addbutton.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    Intent myIntent = new Intent(getContext(), Innstillinger.class);
-                    myIntent.putExtra("Innstillinger", 1); //Optional parameters
-                    getContext().startActivity(myIntent);
-                }
-            });
-            return rootView;
-        }
-
-    }
     public static class PriserFragment extends Fragment {
         private static final String ARG_SECTION_NUMBER = "section_number";
 

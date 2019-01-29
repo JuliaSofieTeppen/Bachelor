@@ -38,12 +38,12 @@
 
             <Button
                 android:id="@+id/button3"
-                android:layout_width="366dp"
+                android:layout_width="0dp"
                 android:layout_height="74dp"
-                android:layout_marginStart="8dp"
+                android:layout_marginStart="16dp"
                 android:layout_marginTop="80dp"
-                android:layout_marginEnd="8dp"
-                android:background="@color/colorPrimary"
+                android:layout_marginEnd="16dp"
+                android:background="#f4b042"
                 android:text="Lagre"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.307"
@@ -52,11 +52,11 @@
 
             <android.support.constraint.ConstraintLayout
                 android:id="@+id/constraintLayout31"
-                android:layout_width="364dp"
+                android:layout_width="0dp"
                 android:layout_height="632dp"
-                android:layout_marginStart="8dp"
+                android:layout_marginStart="16dp"
                 android:layout_marginTop="8dp"
-                android:layout_marginEnd="8dp"
+                android:layout_marginEnd="16dp"
                 android:background="#ffffff"
                 android:elevation="2dp"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -313,11 +313,11 @@
 
             <android.support.constraint.ConstraintLayout
                 android:id="@+id/constraintLayout26"
-                android:layout_width="364dp"
+                android:layout_width="0dp"
                 android:layout_height="63dp"
-                android:layout_marginStart="8dp"
+                android:layout_marginStart="16dp"
                 android:layout_marginTop="28dp"
-                android:layout_marginEnd="8dp"
+                android:layout_marginEnd="16dp"
                 android:background="#ffffff"
                 android:elevation="2dp"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -350,11 +350,11 @@
 
             <android.support.constraint.ConstraintLayout
                 android:id="@+id/constraintLayout27"
-                android:layout_width="364dp"
+                android:layout_width="0dp"
                 android:layout_height="63dp"
-                android:layout_marginStart="8dp"
+                android:layout_marginStart="16dp"
                 android:layout_marginTop="8dp"
-                android:layout_marginEnd="8dp"
+                android:layout_marginEnd="16dp"
                 android:background="#ffffff"
                 android:elevation="2dp"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -386,11 +386,11 @@
 
             <android.support.constraint.ConstraintLayout
                 android:id="@+id/constraintLayout29"
-                android:layout_width="364dp"
+                android:layout_width="0dp"
                 android:layout_height="63dp"
-                android:layout_marginStart="8dp"
+                android:layout_marginStart="16dp"
                 android:layout_marginTop="8dp"
-                android:layout_marginEnd="8dp"
+                android:layout_marginEnd="16dp"
                 android:background="#ffffff"
                 android:elevation="2dp"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -423,11 +423,11 @@
 
             <android.support.constraint.ConstraintLayout
                 android:id="@+id/constraintLayout32"
-                android:layout_width="367dp"
+                android:layout_width="0dp"
                 android:layout_height="63dp"
-                android:layout_marginStart="8dp"
+                android:layout_marginStart="16dp"
                 android:layout_marginTop="8dp"
-                android:layout_marginEnd="8dp"
+                android:layout_marginEnd="16dp"
                 android:background="#ffffff"
                 android:elevation="2dp"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -450,21 +450,25 @@
                     android:id="@+id/spinner5"
                     android:layout_width="249dp"
                     android:layout_height="46dp"
-                    android:layout_marginEnd="20dp"
-                    app:layout_constraintBaseline_toBaselineOf="@+id/textView75"
-                    app:layout_constraintEnd_toEndOf="parent" />
+                    android:layout_marginTop="8dp"
+                    android:layout_marginEnd="8dp"
+                    android:layout_marginBottom="8dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
             </android.support.constraint.ConstraintLayout>
 
             <android.support.constraint.ConstraintLayout
                 android:id="@+id/constraintLayout30"
-                android:layout_width="364dp"
+                android:layout_width="0dp"
                 android:layout_height="63dp"
-                android:layout_marginStart="8dp"
+                android:layout_marginStart="16dp"
                 android:layout_marginTop="8dp"
-                android:layout_marginEnd="8dp"
+                android:layout_marginEnd="16dp"
                 android:background="#ffffff"
                 android:elevation="2dp"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/constraintLayout29">
 
@@ -484,9 +488,12 @@
                     android:id="@+id/spinner3"
                     android:layout_width="236dp"
                     android:layout_height="45dp"
+                    android:layout_marginTop="8dp"
                     android:layout_marginEnd="10dp"
-                    app:layout_constraintBaseline_toBaselineOf="@+id/textView73"
-                    app:layout_constraintEnd_toEndOf="parent" />
+                    android:layout_marginBottom="8dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
             </android.support.constraint.ConstraintLayout>
 
             <TextView

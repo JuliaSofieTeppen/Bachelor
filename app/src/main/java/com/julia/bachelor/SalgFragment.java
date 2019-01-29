@@ -200,14 +200,14 @@ public class SalgFragment extends Fragment {
     }
 
     public void setTotalGjennomsnitt(){
-        totaltext.setText(totalsum(arraylist));
-        gjnsnitttext.setText(gjensnitt(arraylist));
+       // totaltext.setText(totalsum(arraylist));
+       // gjnsnitttext.setText(gjensnitt(arraylist));
 
     }
     public void setSommerhonning(){
-        kg1txtsom.setText(getSumArray(0));
-        kg05txtsom.setText(getSumArray(1));
-        kg025txtsom.setText(getSumArray(2));
+       // kg1txtsom.setText(getSumArray(0));
+       // kg05txtsom.setText(getSumArray(1));
+       // kg025txtsom.setText(getSumArray(2));
 
     }
     public void setLynghonning(){

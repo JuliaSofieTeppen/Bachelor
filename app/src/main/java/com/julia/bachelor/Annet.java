@@ -25,6 +25,10 @@ public class Annet implements Salg{
         return _ID;
     }
 
+    public void set_ID(long _ID){
+        this._ID = _ID;
+    }
+
     public String getKunde() {
         return Kunde;
     }

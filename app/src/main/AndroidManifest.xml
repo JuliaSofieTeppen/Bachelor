@@ -4,12 +4,19 @@
 
     <application
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
-        android:label="@string/app_name"
-        android:roundIcon="@mipmap/ic_launcher_round"
+        android:icon="@drawable/logo"
+        android:roundIcon="@drawable/logo"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".MainActivity">
+        <activity android:name=".SalgAnnet"></activity>
+        <activity android:name=".AddBeholdning" />
+        <activity android:name=".Innstillinger" />
+        <activity android:name=".FakturaSalg" />
+        <activity android:name=".BmSalg" />
+        <activity android:name=".HjemmeSalg" />
+        <activity
+            android:name=".Main"
+            android:label="@string/title_activity_main">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

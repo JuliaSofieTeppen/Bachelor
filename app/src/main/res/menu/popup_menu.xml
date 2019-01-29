@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/BondensMarked"
+        android:title="Bondens Marked"/>
+    <item
+        android:id="@+id/HjemmeSalg"
+        android:title="Hjemme salg"/>
+    <item
+        android:id="@+id/videresalg"
+        android:title="Videre salg" />
+    <item
+        android:id="@+id/annet"
+        android:title="Annet" />
+
+
+</menu>

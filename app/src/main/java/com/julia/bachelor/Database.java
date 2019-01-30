@@ -27,6 +27,11 @@ class Database {
         return BM;
     }
 
+    public List<Honning> getHonningTyper() {
+
+        return null;
+    }
+
     private static class BondensM extends AsyncTask<String, Void, String> {
         @Override
         protected String doInBackground(String... urls) {

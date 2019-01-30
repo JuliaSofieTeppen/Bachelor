@@ -43,6 +43,14 @@
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/textView105"
+                    android:layout_width="96dp"
+                    android:layout_height="18dp"
+                    android:layout_marginEnd="16dp"
+                    app:layout_constraintBaseline_toBaselineOf="@+id/textView10"
+                    app:layout_constraintEnd_toEndOf="parent" />
             </android.support.constraint.ConstraintLayout>
 
             <android.support.constraint.ConstraintLayout
@@ -69,6 +77,14 @@
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/textView106"
+                    android:layout_width="84dp"
+                    android:layout_height="18dp"
+                    android:layout_marginEnd="16dp"
+                    app:layout_constraintBaseline_toBaselineOf="@+id/textView20"
+                    app:layout_constraintEnd_toEndOf="parent" />
             </android.support.constraint.ConstraintLayout>
 
             <android.support.constraint.ConstraintLayout
@@ -96,6 +112,14 @@
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/textView108"
+                    android:layout_width="78dp"
+                    android:layout_height="21dp"
+                    android:layout_marginEnd="16dp"
+                    app:layout_constraintBaseline_toBaselineOf="@+id/textView22"
+                    app:layout_constraintEnd_toEndOf="parent" />
             </android.support.constraint.ConstraintLayout>
 
             <android.support.constraint.ConstraintLayout
@@ -122,6 +146,14 @@
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/textView109"
+                    android:layout_width="87dp"
+                    android:layout_height="24dp"
+                    android:layout_marginEnd="16dp"
+                    app:layout_constraintBaseline_toBaselineOf="@+id/textView23"
+                    app:layout_constraintEnd_toEndOf="parent" />
             </android.support.constraint.ConstraintLayout>
 
             <android.support.constraint.ConstraintLayout
@@ -148,6 +180,14 @@
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/textView110"
+                    android:layout_width="92dp"
+                    android:layout_height="27dp"
+                    android:layout_marginEnd="16dp"
+                    app:layout_constraintBaseline_toBaselineOf="@+id/textView24"
+                    app:layout_constraintEnd_toEndOf="parent" />
             </android.support.constraint.ConstraintLayout>
 
             <Spinner
@@ -200,6 +240,14 @@
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/textView107"
+                    android:layout_width="85dp"
+                    android:layout_height="22dp"
+                    android:layout_marginEnd="16dp"
+                    app:layout_constraintBaseline_toBaselineOf="@+id/textView21"
+                    app:layout_constraintEnd_toEndOf="parent" />
             </android.support.constraint.ConstraintLayout>
 
             <android.support.constraint.ConstraintLayout
@@ -227,6 +275,14 @@
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/textView112"
+                    android:layout_width="102dp"
+                    android:layout_height="24dp"
+                    android:layout_marginEnd="16dp"
+                    app:layout_constraintBaseline_toBaselineOf="@+id/textView26"
+                    app:layout_constraintEnd_toEndOf="parent" />
             </android.support.constraint.ConstraintLayout>
 
             <android.support.constraint.ConstraintLayout
@@ -254,6 +310,14 @@
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/textView111"
+                    android:layout_width="87dp"
+                    android:layout_height="22dp"
+                    android:layout_marginEnd="16dp"
+                    app:layout_constraintBaseline_toBaselineOf="@+id/textView25"
+                    app:layout_constraintEnd_toEndOf="parent" />
             </android.support.constraint.ConstraintLayout>
 
             <android.support.constraint.ConstraintLayout
@@ -281,6 +345,14 @@
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/textView113"
+                    android:layout_width="92dp"
+                    android:layout_height="30dp"
+                    android:layout_marginEnd="16dp"
+                    app:layout_constraintBaseline_toBaselineOf="@+id/textView27"
+                    app:layout_constraintEnd_toEndOf="parent" />
             </android.support.constraint.ConstraintLayout>
 
             <TextView

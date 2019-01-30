@@ -8,6 +8,7 @@ import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.sql.Time;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -24,6 +25,7 @@ class Database {
         BondensM task = new BondensM();
         // TODO set correct url
         task.execute("");
+
         return BM;
     }
 
@@ -84,10 +86,7 @@ class Database {
             }
             return "Done";
         }
-
         @Override
-        protected void onPostExecute(String s) {
-            super.onPostExecute(s);
-        }
+        protected void onPostExecute(String s) { super.onPostExecute(s);}
     }
 }

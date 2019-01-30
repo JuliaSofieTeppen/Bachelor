@@ -12,4 +12,5 @@
     <string name="action_example">Example action</string>
 
     <string name="action_settings">Innstillinger</string>
+    <string name="title_activity_deleteafter">deleteafter</string>
 </resources>

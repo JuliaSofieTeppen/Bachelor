@@ -29,7 +29,7 @@ public class HjemmeSalg extends Activity {
 
     getActionBar().setDisplayHomeAsUpEnabled(true);
 
-        honningtype = database.getHonningTyper();
+        honningtype = database.getHonningType();
         telling = new ArrayList<>();
         for(int c = 0; c < honningtype.size(); c++){
             telling.add(0);

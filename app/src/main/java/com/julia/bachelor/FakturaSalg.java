@@ -2,9 +2,13 @@ package com.julia.bachelor;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.view.Gravity;
+import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.LinearLayout;
+import android.widget.PopupWindow;
 import android.widget.Spinner;
 import android.widget.Toast;
 
@@ -15,7 +19,7 @@ import java.util.List;
 public class FakturaSalg extends Activity {
 
     Spinner Betalingmetode;
-    Spinner moms;
+    EditText moms;
     EditText dato;
     EditText som1kg;
     EditText som05kg;
@@ -36,6 +40,7 @@ public class FakturaSalg extends Activity {
 
         getActionBar().setDisplayHomeAsUpEnabled(true);
         db = new Database();
+        moms = findViewById(R.id.FSmoms);
         dato = findViewById(R.id.FSdato);
         som1kg = findViewById(R.id.FSsom1kg);
         som05kg = findViewById(R.id.FSsom05kg);
@@ -46,7 +51,7 @@ public class FakturaSalg extends Activity {
         ingf05kg = findViewById(R.id.FSingf05kg);
         ingf025kg = findViewById(R.id.FSingf025kg);
         flytende = findViewById(R.id.FSflyt);
-        verdier = new ArrayList<>(Arrays.asList(som1kg,som05kg,som025kg,lyng1kg,lyng05kg,lyng025kg,ingf05kg,ingf025kg,flytende));
+        verdier = new ArrayList<>(Arrays.asList(moms,som1kg,som05kg,som025kg,lyng1kg,lyng05kg,lyng025kg,ingf05kg,ingf025kg,flytende));
 
     }
     public void lagre(View v){
@@ -64,6 +69,28 @@ public class FakturaSalg extends Activity {
             Toast.makeText(this, "Ugyldig dato", Toast.LENGTH_SHORT).show();
         }
     }
+    @Override
+    public void onBackPressed(){
+        goback();
+    }
+    public void goback(){
+        for(EditText verdi : verdier){
+            if(!verdi.getText().toString().equals("")){
+                LayoutInflater inflater = (LayoutInflater)
+                        getSystemService(LAYOUT_INFLATER_SERVICE);
+                View popupView = inflater.inflate(R.layout.popup_window, null);
+
+                int width = LinearLayout.LayoutParams.WRAP_CONTENT;
+                int height = LinearLayout.LayoutParams.WRAP_CONTENT;
+                boolean focusable = true; // lets taps outside the popup also dismiss it
+                final PopupWindow popupWindow = new PopupWindow(popupView, width, height, focusable);
+
+                popupWindow.showAtLocation( , Gravity.CENTER, 0, 0);
+            }
+        }
+
+    }
+
 
 
     public boolean checkDate(String date){
@@ -73,7 +100,7 @@ public class FakturaSalg extends Activity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item){
-            this.finish();
+            goback();
         return true;
     }
 }

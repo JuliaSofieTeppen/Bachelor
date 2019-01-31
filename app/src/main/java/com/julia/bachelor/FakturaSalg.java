@@ -1,6 +1,8 @@
 package com.julia.bachelor;
 
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -9,6 +11,7 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.PopupWindow;
+import android.widget.ScrollView;
 import android.widget.Spinner;
 import android.widget.Toast;
 
@@ -32,6 +35,7 @@ public class FakturaSalg extends Activity {
     EditText flytende;
     List<EditText> verdier;
     Database db;
+    ScrollView layout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,6 +55,7 @@ public class FakturaSalg extends Activity {
         ingf05kg = findViewById(R.id.FSingf05kg);
         ingf025kg = findViewById(R.id.FSingf025kg);
         flytende = findViewById(R.id.FSflyt);
+        layout = findViewById(R.id.scroll);
         verdier = new ArrayList<>(Arrays.asList(moms,som1kg,som05kg,som025kg,lyng1kg,lyng05kg,lyng025kg,ingf05kg,ingf025kg,flytende));
 
     }
@@ -74,20 +79,25 @@ public class FakturaSalg extends Activity {
         goback();
     }
     public void goback(){
-        for(EditText verdi : verdier){
-            if(!verdi.getText().toString().equals("")){
-                LayoutInflater inflater = (LayoutInflater)
-                        getSystemService(LAYOUT_INFLATER_SERVICE);
-                View popupView = inflater.inflate(R.layout.popup_window, null);
-
-                int width = LinearLayout.LayoutParams.WRAP_CONTENT;
-                int height = LinearLayout.LayoutParams.WRAP_CONTENT;
-                boolean focusable = true; // lets taps outside the popup also dismiss it
-                final PopupWindow popupWindow = new PopupWindow(popupView, width, height, focusable);
-
-                popupWindow.showAtLocation( , Gravity.CENTER, 0, 0);
-            }
-        }
+        //TODO check fields before poppopen skal syntes.
+                //android.app.AlertDialog.Builder builder = new android.app.AlertDialog.Builder(FakturaSalg.this,R.style.AlertDialog);
+                final AlertDialog.Builder builder = new AlertDialog.Builder(FakturaSalg.this);
+                builder.setMessage("Vil du gå tilbake?");
+                builder.setCancelable(true);
+                builder.setNegativeButton("Yes", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        finish();
+                    }
+                });
+                builder.setPositiveButton("No", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.cancel();
+                    }
+                });
+                AlertDialog alertDialog = builder.create();
+                alertDialog.show();
 
     }
 

@@ -25,6 +25,7 @@ public class BmSalg extends Activity {
     EditText flytende;
     List<EditText> verdier;
     Database db;
+    List<Honning> honningtyper;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,7 +45,7 @@ public class BmSalg extends Activity {
         ingf025kg = findViewById(R.id.BMSingf025kg);
         flytende = findViewById(R.id.BMSflyt);
         verdier = new ArrayList<>(Arrays.asList(som1kg,som05kg,som025kg,lyng1kg,lyng05kg,lyng025kg,ingf05kg,ingf025kg,flytende));
-
+        honningtyper = db.getHonningType();
     }
 
 
@@ -56,8 +57,9 @@ public class BmSalg extends Activity {
                     verdi.setText("0");
                 }
             }
-            //TODO send alle verdier til databasen
-            //  db.executeOnDB("www.honningbier.no/PHP/Beholdning.php/?");
+
+            db.executeOnDB("www.honningbier.no/PHP/BondensMarked.php/?" +
+                    "Dato=" + dato.getText().toString() + "&Varer=" ); //  + varer string something
 
         }else{
             Toast.makeText(this, "Ugyldig dato", Toast.LENGTH_SHORT).show();
@@ -73,5 +75,13 @@ public class BmSalg extends Activity {
     public boolean checkDate(String date){
         String regex = "^\\d{4}\\.(0?[1-9]|1[012])\\.(0?[1-9]|[12][0-9]|3[01])$";
         return date.matches(regex);
+    }
+
+    public String getVarer(){
+        StringBuilder stringBuilder = new StringBuilder();
+        for(int i = 0; i < honningtyper.size(); i++) {
+            stringBuilder.append(honningtyper.get(i).get_ID() +"-"+ verdier.get(i).getText().toString()+ "_");
+        }
+        return"hei";
     }
 }

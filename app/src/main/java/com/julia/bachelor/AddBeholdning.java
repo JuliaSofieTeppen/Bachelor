@@ -65,8 +65,9 @@ public class AddBeholdning extends Activity {
                     verdi.setText("0");
                 }
             }
-            //TODO send alle verdier til databasen
-          //  db.executeOnDB("www.honningbier.no/PHP/Beholdning.php/?");
+            //TODO for løkke?
+           db.executeOnDB("www.honningbier.no/PHP/BeholdningIn.php/?" +
+                   "Antall=" + som1kg + "&H_ID=" + "1" ); //TODO skal stå noe annet en 1 her.
 
         }else{
             Toast.makeText(this, "Ugyldig dato", Toast.LENGTH_SHORT).show();

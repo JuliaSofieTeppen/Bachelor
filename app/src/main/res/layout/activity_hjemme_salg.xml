@@ -51,7 +51,7 @@
                     app:layout_gravity="left|top" />
 
                 <Button
-                    android:id="@+id/button3"
+                    android:id="@+id/FSlagre"
                     android:layout_width="100dp"
                     android:layout_height="100dp"
                     android:background="#f4c242"

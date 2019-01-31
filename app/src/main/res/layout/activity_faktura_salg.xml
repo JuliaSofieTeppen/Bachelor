@@ -32,12 +32,12 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.533"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/button3">
+                app:layout_constraintTop_toBottomOf="@+id/FSlagre">
 
             </android.support.constraint.ConstraintLayout>
 
             <Button
-                android:id="@+id/button3"
+                android:id="@+id/FSlagre"
                 android:layout_width="0dp"
                 android:layout_height="74dp"
                 android:layout_marginStart="16dp"
@@ -85,7 +85,7 @@
                     android:layout_marginTop="28dp"
                     android:layout_marginEnd="8dp"
                     android:text="1kg"
-                    app:layout_constraintEnd_toStartOf="@+id/editText16"
+                    app:layout_constraintEnd_toStartOf="@+id/FSsom1kg"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/textView76" />
 
@@ -97,7 +97,7 @@
                     android:layout_marginTop="20dp"
                     android:layout_marginEnd="8dp"
                     android:text="1/2kg"
-                    app:layout_constraintEnd_toStartOf="@+id/editText17"
+                    app:layout_constraintEnd_toStartOf="@+id/FSsom05kg"
                     app:layout_constraintHorizontal_bias="0.505"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/textView77" />
@@ -110,7 +110,7 @@
                     android:layout_marginTop="28dp"
                     android:layout_marginEnd="8dp"
                     android:text="1/4kg"
-                    app:layout_constraintEnd_toStartOf="@+id/editText18"
+                    app:layout_constraintEnd_toStartOf="@+id/FSsom025kg"
                     app:layout_constraintHorizontal_bias="0.505"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/textView78" />
@@ -137,7 +137,7 @@
                     android:layout_marginTop="20dp"
                     android:layout_marginEnd="8dp"
                     android:text="1kg"
-                    app:layout_constraintEnd_toStartOf="@+id/editText19"
+                    app:layout_constraintEnd_toStartOf="@+id/FSlyng1kg"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/textView80" />
 
@@ -149,7 +149,7 @@
                     android:layout_marginTop="32dp"
                     android:layout_marginEnd="8dp"
                     android:text="1/2kg"
-                    app:layout_constraintEnd_toStartOf="@+id/editText20"
+                    app:layout_constraintEnd_toStartOf="@+id/FSlyng05kg"
                     app:layout_constraintHorizontal_bias="0.426"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/textView81" />
@@ -162,7 +162,7 @@
                     android:layout_marginTop="36dp"
                     android:layout_marginEnd="8dp"
                     android:text="1/4 kg"
-                    app:layout_constraintEnd_toStartOf="@+id/editText21"
+                    app:layout_constraintEnd_toStartOf="@+id/FSlyng025kg"
                     app:layout_constraintHorizontal_bias="0.388"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/textView82" />
@@ -189,7 +189,7 @@
                     android:layout_marginTop="24dp"
                     android:layout_marginEnd="8dp"
                     android:text="Med ingefær 1/2 kg"
-                    app:layout_constraintEnd_toStartOf="@+id/editText22"
+                    app:layout_constraintEnd_toStartOf="@+id/FSingf05kg"
                     app:layout_constraintHorizontal_bias="0.465"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/textView84" />
@@ -202,7 +202,7 @@
                     android:layout_marginTop="36dp"
                     android:layout_marginEnd="8dp"
                     android:text="Med Ingefær 1/4kg"
-                    app:layout_constraintEnd_toStartOf="@+id/editText23"
+                    app:layout_constraintEnd_toStartOf="@+id/FSingf025kg"
                     app:layout_constraintHorizontal_bias="0.485"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/textView85" />
@@ -215,13 +215,13 @@
                     android:layout_marginTop="28dp"
                     android:layout_marginEnd="8dp"
                     android:text="Flytende"
-                    app:layout_constraintEnd_toStartOf="@+id/editText24"
+                    app:layout_constraintEnd_toStartOf="@+id/FSflyt"
                     app:layout_constraintHorizontal_bias="0.358"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/textView86" />
 
                 <EditText
-                    android:id="@+id/editText16"
+                    android:id="@+id/FSsom1kg"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="8dp"
@@ -231,7 +231,7 @@
                     app:layout_constraintEnd_toEndOf="parent" />
 
                 <EditText
-                    android:id="@+id/editText17"
+                    android:id="@+id/FSsom05kg"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="8dp"
@@ -241,7 +241,7 @@
                     app:layout_constraintEnd_toEndOf="parent" />
 
                 <EditText
-                    android:id="@+id/editText18"
+                    android:id="@+id/FSsom025kg"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="8dp"
@@ -251,7 +251,7 @@
                     app:layout_constraintEnd_toEndOf="parent" />
 
                 <EditText
-                    android:id="@+id/editText19"
+                    android:id="@+id/FSlyng1kg"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="8dp"
@@ -261,7 +261,7 @@
                     app:layout_constraintEnd_toEndOf="parent" />
 
                 <EditText
-                    android:id="@+id/editText20"
+                    android:id="@+id/FSlyng05kg"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="8dp"
@@ -271,7 +271,7 @@
                     app:layout_constraintEnd_toEndOf="parent" />
 
                 <EditText
-                    android:id="@+id/editText21"
+                    android:id="@+id/FSlyng025kg"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="8dp"
@@ -281,7 +281,7 @@
                     app:layout_constraintEnd_toEndOf="parent" />
 
                 <EditText
-                    android:id="@+id/editText22"
+                    android:id="@+id/FSingf05kg"
                     android:layout_width="146dp"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="8dp"
@@ -291,7 +291,7 @@
                     app:layout_constraintEnd_toEndOf="parent" />
 
                 <EditText
-                    android:id="@+id/editText23"
+                    android:id="@+id/FSingf025kg"
                     android:layout_width="153dp"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="8dp"
@@ -301,7 +301,7 @@
                     app:layout_constraintEnd_toEndOf="parent" />
 
                 <EditText
-                    android:id="@+id/editText24"
+                    android:id="@+id/FSflyt"
                     android:layout_width="195dp"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="8dp"
@@ -338,7 +338,7 @@
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <EditText
-                    android:id="@+id/editText12"
+                    android:id="@+id/FSnavn"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="20dp"
@@ -374,7 +374,7 @@
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <EditText
-                    android:id="@+id/editText14"
+                    android:id="@+id/FSdato"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="20dp"
@@ -411,7 +411,7 @@
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <EditText
-                    android:id="@+id/editText15"
+                    android:id="@+id/FSbeløp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="20dp"
@@ -447,7 +447,7 @@
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <Spinner
-                    android:id="@+id/spinner5"
+                    android:id="@+id/FSbetalmet"
                     android:layout_width="249dp"
                     android:layout_height="46dp"
                     android:layout_marginTop="8dp"
@@ -485,7 +485,7 @@
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <Spinner
-                    android:id="@+id/spinner3"
+                    android:id="@+id/FSmoms"
                     android:layout_width="236dp"
                     android:layout_height="45dp"
                     android:layout_marginTop="8dp"

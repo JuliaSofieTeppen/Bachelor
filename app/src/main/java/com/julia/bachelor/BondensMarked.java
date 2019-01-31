@@ -1,49 +1,33 @@
 package com.julia.bachelor;
 
-public class BondensMarked {
+class BondensMarked {
+
     private long _ID;
     private String Dato;
-    private int Belop;
     private String Varer;
-    BondensMarked(){
+    private int Belop;
 
-    }
+    BondensMarked(){}
 
-    BondensMarked(String dato, int belop, String varer) {
+    BondensMarked(String dato, String varer, int belop) {
         Dato = dato;
         Belop = belop;
         Varer = varer;
     }
 
-    public long get_ID() {
-        return _ID;
-    }
+    long get_ID() { return _ID; }
 
-    public void set_ID(long _ID) {
-        this._ID = _ID;
-    }
+    void set_ID(long _ID) { this._ID = _ID; }
 
-    public String getDato() {
-        return Dato;
-    }
+    String getDato() { return Dato; }
 
-    public void setDato(String dato) {
-        Dato = dato;
-    }
+    void setDato(String dato) { Dato = dato; }
 
-    public int getBelop() {
-        return Belop;
-    }
+    String getVarer() { return Varer; }
 
-    public void setBelop(int belop) {
-        Belop = belop;
-    }
+    void setVarer(String varer) { Varer = varer; }
 
-    public String getVarer() {
-        return Varer;
-    }
+    int getBelop() { return Belop; }
 
-    public void setVarer(String varer) {
-        Varer = varer;
-    }
+    void setBelop(int belop) { Belop = belop; }
 }

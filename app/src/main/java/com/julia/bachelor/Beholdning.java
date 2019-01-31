@@ -1,36 +1,32 @@
 package com.julia.bachelor;
 
 public class Beholdning {
+
     private long _ID;
     private int Antall;
-    // ID til en honning type.
     private long H_ID;
+    private String Dato;
 
-    public Beholdning() {
-    }
+    public Beholdning(){}
 
     public Beholdning(int antall, long h_ID) {
         Antall = antall;
         H_ID = h_ID;
     }
 
-    public long get_ID() {
-        return _ID;
-    }
+    public long get_ID() { return _ID; }
 
-    public int getAntall() {
-        return Antall;
-    }
+    public void set_ID(long _ID){ this._ID = _ID; }
 
-    public void setAntall(int antall) {
-        Antall = antall;
-    }
+    public int getAntall() { return Antall; }
 
-    public long getH_ID() {
-        return H_ID;
-    }
+    public void setAntall(int antall) { Antall = antall; }
 
-    public void setH_ID(long h_ID) {
-        H_ID = h_ID;
-    }
+    public long getH_ID() { return H_ID; }
+
+    public void setH_ID(long h_ID) { H_ID = h_ID; }
+
+    public String getDato(){ return Dato; }
+
+    public void setDato(String dato){ Dato = dato; }
 }

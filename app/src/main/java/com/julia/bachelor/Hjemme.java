@@ -1,6 +1,7 @@
 package com.julia.bachelor;
 
 public class Hjemme implements Salg{
+
     private long _ID;
     private String Kunde;
     private String Dato;
@@ -8,9 +9,7 @@ public class Hjemme implements Salg{
     private int Belop;
     private String Betaling;
 
-    public Hjemme(){
-
-    }
+    public Hjemme(){}
 
     public Hjemme(String kunde, String dato, String varer, int belop, String betaling) {
         Kunde = kunde;
@@ -20,51 +19,27 @@ public class Hjemme implements Salg{
         Betaling = betaling;
     }
 
-    public long get_ID() {
-        return _ID;
-    }
+    public long get_ID() { return _ID; }
 
-    public void set_ID(long _ID) {
-        this._ID = _ID;
-    }
+    public void set_ID(long _ID) { this._ID = _ID; }
 
-    public String getKunde() {
-        return Kunde;
-    }
+    public String getKunde() { return Kunde; }
 
-    public void setKunde(String kunde) {
-        Kunde = kunde;
-    }
+    public void setKunde(String kunde) { Kunde = kunde; }
 
-    public String getDato() {
-        return Dato;
-    }
+    public String getDato() { return Dato; }
 
-    public void setDato(String dato) {
-        Dato = dato;
-    }
+    public void setDato(String dato) { Dato = dato; }
 
-    public String getVarer() {
-        return Varer;
-    }
+    public String getVarer() { return Varer; }
 
-    public void setVarer(String varer) {
-        Varer = varer;
-    }
+    public void setVarer(String varer) { Varer = varer; }
 
-    public int getBelop() {
-        return Belop;
-    }
+    public int getBelop() { return Belop; }
 
-    public void setBelop(int belop) {
-        Belop = belop;
-    }
+    public void setBelop(int belop) { Belop = belop; }
 
-    public String getBetaling() {
-        return Betaling;
-    }
+    public String getBetaling() { return Betaling; }
 
-    public void setBetaling(String betaling) {
-        Betaling = betaling;
-    }
+    public void setBetaling(String betaling) { Betaling = betaling; }
 }

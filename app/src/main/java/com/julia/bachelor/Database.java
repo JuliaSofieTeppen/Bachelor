@@ -12,27 +12,140 @@ import java.util.ArrayList;
 import java.util.List;
 
 class Database {
+    private static List<Annet> Annet = new ArrayList<>();
+    private static List<Beholdning> Beholdning = new ArrayList<>();
     private static List<BondensMarked> BM = new ArrayList<>();
+    private static List<Hjemme> Hjemme = new ArrayList<>();
+    private static List<Honning> Honning = new ArrayList<>();
 
-
-    void executeOnDB(String url) {
+    void executeOnDB(String url){
         ExecuteOnDB task = new ExecuteOnDB();
         task.execute(url);
     }
 
-    List<BondensMarked> getBMValues() {
-        BondensM task = new BondensM();
+    List<Annet> getAnnetValues(){
+        AnnetTask task = new AnnetTask();
+        // TODO set url for annet
+        task.execute("");
+        return Annet;
+    }
+
+    List<Beholdning> getBeholdning(){
+        BeholdningTask task = new BeholdningTask();
+        // TODO set url for beholdning
+        task.execute("");
+        return Beholdning;
+    }
+
+    List<BondensMarked> getBMValues(){
+        BondensMTask task = new BondensMTask();
         // TODO set correct url
         task.execute("");
         return BM;
     }
 
-    public List<Honning> getHonningTyper() {
-
-        return null;
+    List<Hjemme> getHjemmeValues(){
+        HjemmeTask task = new HjemmeTask();
+        // TODO find url for hjemme
+        task.execute("");
+        return Hjemme;
     }
 
-    private static class BondensM extends AsyncTask<String, Void, String> {
+    List<Honning> getHonningType(){
+        HonningTask task = new HonningTask();
+        // TODO Url for Honning
+        task.execute("");
+        return Honning;
+    }
+
+    private static class AnnetTask extends AsyncTask<String, Void, String> {
+        @Override
+        protected String doInBackground(String... urls) {
+            // Get strings from bufferedReader.
+            String nextLine;
+            StringBuilder output = new StringBuilder();
+            try {
+                URL url = new URL(urls[0]);
+                HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+                conn.setRequestMethod("GET");
+                conn.setRequestProperty("Accept", "application/json");
+                if (conn.getResponseCode() != 200) {
+                    throw new RuntimeException("Failed: HTTP error code: " + conn.getResponseCode());
+                }
+                // Get the string containing values from db.
+                BufferedReader bufferedReader = new BufferedReader(new InputStreamReader((conn.getInputStream())));
+                while ((nextLine = bufferedReader.readLine()) != null) {
+                    output.append(nextLine);
+                }
+                conn.disconnect();
+                try {
+                    // Convert string to JSONArray containing JSONObjects.
+                    JSONArray jsonArray = new JSONArray(output.toString());
+                    for (int i = 0; i < jsonArray.length(); i++) {
+                        Annet annet = new Annet();
+                        JSONObject jsonobject = jsonArray.getJSONObject(i);
+                        annet.set_ID(jsonobject.getLong("_ID"));
+                        annet.setKunde(jsonobject.getString("Kunde"));
+                        annet.setDato(jsonobject.getString("Dato"));
+                        annet.setVarer(jsonobject.getString("Varer "));
+                        annet.setBelop(jsonobject.getInt("Belop"));
+                        annet.setBetaling(jsonobject.getString("Betaling")) ;
+                        Annet.add(annet);
+                    }
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+                return "Done!";
+            } catch (Exception e) {
+                return "Noe gikk feil: " + e.toString();
+            }
+        }
+    }
+
+    private static class BeholdningTask extends AsyncTask<String, Void, String> {
+        @Override
+        protected String doInBackground(String... urls) {
+            // Get strings from bufferedReader.
+            String nextLine;
+            StringBuilder output = new StringBuilder();
+            try {
+                URL url = new URL(urls[0]);
+                HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+                conn.setRequestMethod("GET");
+                conn.setRequestProperty("Accept", "application/json");
+                if (conn.getResponseCode() != 200) {
+                    throw new RuntimeException("Failed: HTTP error code: " + conn.getResponseCode());
+                }
+                // Get the string containing values from db.
+                BufferedReader bufferedReader = new BufferedReader(new InputStreamReader((conn.getInputStream())));
+                while ((nextLine = bufferedReader.readLine()) != null) {
+                    output.append(nextLine);
+                }
+                conn.disconnect();
+                try {
+                    // Convert string to JSONArray containing JSONObjects.
+                    JSONArray jsonArray = new JSONArray(output.toString());
+                    for (int i = 0; i < jsonArray.length(); i++) {
+                        Beholdning beholdning = new Beholdning();
+                        JSONObject jsonobject = jsonArray.getJSONObject(i);
+                        beholdning.set_ID(jsonobject.getLong("_ID"));
+                        beholdning.setAntall(jsonobject.getInt("Antall"));
+                        // TODO check table and coloumn names
+                        beholdning.setH_ID(jsonobject.getLong("Honning"));
+                        beholdning.setDato(jsonobject.getString("Dato"));
+                        Beholdning.add(beholdning);
+                    }
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+                return "Done!";
+            } catch (Exception e) {
+                return "Noe gikk feil: " + e.toString();
+            }
+        }
+    }
+
+    private static class BondensMTask extends AsyncTask<String, Void, String> {
         @Override
         protected String doInBackground(String... urls) {
             // Get strings from bufferedReader.
@@ -60,9 +173,97 @@ class Database {
                         JSONObject jsonobject = jsonArray.getJSONObject(i);
                         bondensMarked.set_ID(jsonobject.getLong("_ID"));
                         bondensMarked.setDato(jsonobject.getString("Dato"));
-                        bondensMarked.setBelop(jsonobject.getInt("Belop"));
                         bondensMarked.setVarer(jsonobject.getString("Varer "));
+                        bondensMarked.setBelop(jsonobject.getInt("Belop"));
                         BM.add(bondensMarked);
+                    }
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+                return "Done!";
+            } catch (Exception e) {
+                return "Noe gikk feil: " + e.toString();
+            }
+        }
+    }
+
+    private static class HjemmeTask extends AsyncTask<String, Void, String> {
+        @Override
+        protected String doInBackground(String... urls) {
+            // Get strings from bufferedReader.
+            String nextLine;
+            StringBuilder output = new StringBuilder();
+            try {
+                URL url = new URL(urls[0]);
+                HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+                conn.setRequestMethod("GET");
+                conn.setRequestProperty("Accept", "application/json");
+                if (conn.getResponseCode() != 200) {
+                    throw new RuntimeException("Failed: HTTP error code: " + conn.getResponseCode());
+                }
+                // Get the string containing values from db.
+                BufferedReader bufferedReader = new BufferedReader(new InputStreamReader((conn.getInputStream())));
+                while ((nextLine = bufferedReader.readLine()) != null) {
+                    output.append(nextLine);
+                }
+                conn.disconnect();
+                try {
+                    // Convert string to JSONArray containing JSONObjects.
+                    JSONArray jsonArray = new JSONArray(output.toString());
+                    for (int i = 0; i < jsonArray.length(); i++) {
+                        Hjemme hjemme = new Hjemme();
+                        JSONObject jsonobject = jsonArray.getJSONObject(i);
+                        hjemme.set_ID(jsonobject.getLong("_ID"));
+                        hjemme.setKunde(jsonobject.getString("Kunde"));
+                        hjemme.setDato(jsonobject.getString("Dato"));
+                        hjemme.setVarer(jsonobject.getString("Varer "));
+                        hjemme.setBelop(jsonobject.getInt("Belop"));
+                        hjemme.setBetaling(jsonobject.getString("Betaling"));
+                        Hjemme.add(hjemme);
+                    }
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+                return "Done!";
+            } catch (Exception e) {
+                return "Noe gikk feil: " + e.toString();
+            }
+        }
+    }
+
+    private static class HonningTask extends AsyncTask<String, Void, String> {
+        @Override
+        protected String doInBackground(String... urls) {
+            // Get strings from bufferedReader.
+            String nextLine;
+            StringBuilder output = new StringBuilder();
+            try {
+                URL url = new URL(urls[0]);
+                HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+                conn.setRequestMethod("GET");
+                conn.setRequestProperty("Accept", "application/json");
+                if (conn.getResponseCode() != 200) {
+                    throw new RuntimeException("Failed: HTTP error code: " + conn.getResponseCode());
+                }
+                // Get the string containing values from db.
+                BufferedReader bufferedReader = new BufferedReader(new InputStreamReader((conn.getInputStream())));
+                while ((nextLine = bufferedReader.readLine()) != null) {
+                    output.append(nextLine);
+                }
+                conn.disconnect();
+                try {
+                    // Convert string to JSONArray containing JSONObjects.
+                    JSONArray jsonArray = new JSONArray(output.toString());
+                    for (int i = 0; i < jsonArray.length(); i++) {
+                        Honning honning = new Honning();
+                        JSONObject jsonobject = jsonArray.getJSONObject(i);
+                        honning.set_ID(jsonobject.getLong("_ID"));
+                        honning.setType(jsonobject.getString("Type"));
+                        honning.setStorrelse(jsonobject.getDouble("Storrelse"));
+                        // TODO check coloumn names
+                        honning.setHjemmePris(jsonobject.getInt("HPris"));
+                        honning.setBondensMarkedPris(jsonobject.getInt("BMPris"));
+                        Honning.add(honning);
                     }
                 } catch (JSONException e) {
                     e.printStackTrace();

@@ -37,13 +37,13 @@
                 android:layout_marginTop="36dp"
                 android:layout_marginEnd="8dp"
                 android:text="Dato"
-                app:layout_constraintEnd_toStartOf="@+id/editText25"
+                app:layout_constraintEnd_toStartOf="@+id/Bdato"
                 app:layout_constraintHorizontal_bias="0.166"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textView88" />
 
             <EditText
-                android:id="@+id/editText25"
+                android:id="@+id/Bdato"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="8dp"
@@ -73,7 +73,7 @@
                 android:layout_marginTop="40dp"
                 android:layout_marginEnd="8dp"
                 android:text="1kg"
-                app:layout_constraintEnd_toStartOf="@+id/editText26"
+                app:layout_constraintEnd_toStartOf="@+id/Bsom1kg"
                 app:layout_constraintHorizontal_bias="0.433"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textView91" />
@@ -86,7 +86,7 @@
                 android:layout_marginTop="32dp"
                 android:layout_marginEnd="8dp"
                 android:text="1/2kg"
-                app:layout_constraintEnd_toStartOf="@+id/editText27"
+                app:layout_constraintEnd_toStartOf="@+id/Bsom05kg"
                 app:layout_constraintHorizontal_bias="0.394"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textView92" />
@@ -99,7 +99,7 @@
                 android:layout_marginTop="28dp"
                 android:layout_marginEnd="8dp"
                 android:text="1/4kg"
-                app:layout_constraintEnd_toStartOf="@+id/editText28"
+                app:layout_constraintEnd_toStartOf="@+id/Bsom025kg"
                 app:layout_constraintHorizontal_bias="0.394"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textView93" />
@@ -125,7 +125,7 @@
                 android:layout_marginTop="16dp"
                 android:layout_marginEnd="8dp"
                 android:text="1kg"
-                app:layout_constraintEnd_toStartOf="@+id/editText29"
+                app:layout_constraintEnd_toStartOf="@+id/Blyn1kg"
                 app:layout_constraintHorizontal_bias="0.357"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textView95" />
@@ -138,7 +138,7 @@
                 android:layout_marginTop="24dp"
                 android:layout_marginEnd="8dp"
                 android:text="1/2kg"
-                app:layout_constraintEnd_toStartOf="@+id/editText30"
+                app:layout_constraintEnd_toStartOf="@+id/Blyn05kg"
                 app:layout_constraintHorizontal_bias="0.372"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textView96" />
@@ -151,7 +151,7 @@
                 android:layout_marginTop="32dp"
                 android:layout_marginEnd="8dp"
                 android:text="1/4kg"
-                app:layout_constraintEnd_toStartOf="@+id/editText31"
+                app:layout_constraintEnd_toStartOf="@+id/Blyn025kg"
                 app:layout_constraintHorizontal_bias="0.372"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textView97" />
@@ -177,7 +177,7 @@
                 android:layout_marginTop="28dp"
                 android:layout_marginEnd="8dp"
                 android:text="Med ingefær"
-                app:layout_constraintEnd_toStartOf="@+id/editText32"
+                app:layout_constraintEnd_toStartOf="@+id/Binf05kg"
                 app:layout_constraintHorizontal_bias="0.542"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textView99" />
@@ -190,7 +190,7 @@
                 android:layout_marginTop="20dp"
                 android:layout_marginEnd="8dp"
                 android:text="Med ingefær"
-                app:layout_constraintEnd_toStartOf="@+id/editText33"
+                app:layout_constraintEnd_toStartOf="@+id/Binf025kg"
                 app:layout_constraintHorizontal_bias="0.542"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textView100" />
@@ -203,13 +203,13 @@
                 android:layout_marginTop="20dp"
                 android:layout_marginEnd="8dp"
                 android:text="Flytende"
-                app:layout_constraintEnd_toStartOf="@+id/editText34"
+                app:layout_constraintEnd_toStartOf="@+id/Bflyt"
                 app:layout_constraintHorizontal_bias="0.45"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textView101" />
 
             <EditText
-                android:id="@+id/editText26"
+                android:id="@+id/Bsom1kg"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="16dp"
@@ -219,7 +219,7 @@
                 app:layout_constraintEnd_toEndOf="parent" />
 
             <EditText
-                android:id="@+id/editText27"
+                android:id="@+id/Bsom05kg"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="16dp"
@@ -229,7 +229,7 @@
                 app:layout_constraintEnd_toEndOf="parent" />
 
             <EditText
-                android:id="@+id/editText28"
+                android:id="@+id/Bsom025kg"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="8dp"
@@ -239,7 +239,7 @@
                 app:layout_constraintEnd_toEndOf="parent" />
 
             <EditText
-                android:id="@+id/editText29"
+                android:id="@+id/Blyn1kg"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="8dp"
@@ -249,7 +249,7 @@
                 app:layout_constraintEnd_toEndOf="parent" />
 
             <EditText
-                android:id="@+id/editText30"
+                android:id="@+id/Blyn05kg"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="8dp"
@@ -259,7 +259,7 @@
                 app:layout_constraintEnd_toEndOf="parent" />
 
             <EditText
-                android:id="@+id/editText31"
+                android:id="@+id/Blyn025kg"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="8dp"
@@ -269,7 +269,7 @@
                 app:layout_constraintEnd_toEndOf="parent" />
 
             <EditText
-                android:id="@+id/editText32"
+                android:id="@+id/Binf05kg"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="8dp"
@@ -279,7 +279,7 @@
                 app:layout_constraintEnd_toEndOf="parent" />
 
             <EditText
-                android:id="@+id/editText33"
+                android:id="@+id/Binf025kg"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="8dp"
@@ -289,7 +289,7 @@
                 app:layout_constraintEnd_toEndOf="parent" />
 
             <EditText
-                android:id="@+id/editText34"
+                android:id="@+id/Bflyt"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="8dp"
@@ -299,17 +299,18 @@
                 app:layout_constraintEnd_toEndOf="parent" />
 
             <Button
-                android:id="@+id/button16"
+                android:id="@+id/BaddLagre"
                 android:layout_width="310dp"
                 android:layout_height="54dp"
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="25dp"
                 android:layout_marginEnd="8dp"
-                android:text="Button"
                 android:background="#f4b042"
+                android:text="Lagre"
+                android:onClick="lagre"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/editText34" />
+                app:layout_constraintTop_toBottomOf="@+id/Bflyt" />
 
             <android.support.constraint.ConstraintLayout
                 android:layout_width="188dp"
@@ -319,7 +320,7 @@
                 android:layout_marginEnd="8dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/button16">
+                app:layout_constraintTop_toBottomOf="@+id/BaddLagre">
 
             </android.support.constraint.ConstraintLayout>
         </android.support.constraint.ConstraintLayout>

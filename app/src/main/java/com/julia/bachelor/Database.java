@@ -18,7 +18,7 @@ class Database {
     private static List<Hjemme> Hjemme = new ArrayList<>();
     private static List<Honning> Honning = new ArrayList<>();
 
-    void executeOnDB(String url) {
+    void executeOnDB(String url){
         ExecuteOnDB task = new ExecuteOnDB();
         task.execute(url);
     }
@@ -37,7 +37,7 @@ class Database {
         return Beholdning;
     }
 
-    List<BondensMarked> getBMValues() {
+    List<BondensMarked> getBMValues(){
         BondensMTask task = new BondensMTask();
         // TODO set correct url
         task.execute("");
@@ -51,7 +51,7 @@ class Database {
         return Hjemme;
     }
 
-    List<Honning> getHonningType()    {
+    List<Honning> getHonningType(){
         HonningTask task = new HonningTask();
         // TODO Url for Honning
         task.execute("");
@@ -85,9 +85,11 @@ class Database {
                         Annet annet = new Annet();
                         JSONObject jsonobject = jsonArray.getJSONObject(i);
                         annet.set_ID(jsonobject.getLong("_ID"));
+                        annet.setKunde(jsonobject.getString("Kunde"));
                         annet.setDato(jsonobject.getString("Dato"));
-                        annet.setBelop(jsonobject.getInt("Belop"));
                         annet.setVarer(jsonobject.getString("Varer "));
+                        annet.setBelop(jsonobject.getInt("Belop"));
+                        annet.setBetaling(jsonobject.getString("Betaling")) ;
                         Annet.add(annet);
                     }
                 } catch (JSONException e) {
@@ -124,13 +126,14 @@ class Database {
                     // Convert string to JSONArray containing JSONObjects.
                     JSONArray jsonArray = new JSONArray(output.toString());
                     for (int i = 0; i < jsonArray.length(); i++) {
-                        BondensMarked bondensMarked = new BondensMarked();
+                        Beholdning beholdning = new Beholdning();
                         JSONObject jsonobject = jsonArray.getJSONObject(i);
-                        bondensMarked.set_ID(jsonobject.getLong("_ID"));
-                        bondensMarked.setDato(jsonobject.getString("Dato"));
-                        bondensMarked.setBelop(jsonobject.getInt("Belop"));
-                        bondensMarked.setVarer(jsonobject.getString("Varer "));
-                        BM.add(bondensMarked);
+                        beholdning.set_ID(jsonobject.getLong("_ID"));
+                        beholdning.setAntall(jsonobject.getInt("Antall"));
+                        // TODO check table and coloumn names
+                        beholdning.setH_ID(jsonobject.getLong("Honning"));
+                        beholdning.setDato(jsonobject.getString("Dato"));
+                        Beholdning.add(beholdning);
                     }
                 } catch (JSONException e) {
                     e.printStackTrace();
@@ -170,8 +173,8 @@ class Database {
                         JSONObject jsonobject = jsonArray.getJSONObject(i);
                         bondensMarked.set_ID(jsonobject.getLong("_ID"));
                         bondensMarked.setDato(jsonobject.getString("Dato"));
-                        bondensMarked.setBelop(jsonobject.getInt("Belop"));
                         bondensMarked.setVarer(jsonobject.getString("Varer "));
+                        bondensMarked.setBelop(jsonobject.getInt("Belop"));
                         BM.add(bondensMarked);
                     }
                 } catch (JSONException e) {
@@ -208,13 +211,15 @@ class Database {
                     // Convert string to JSONArray containing JSONObjects.
                     JSONArray jsonArray = new JSONArray(output.toString());
                     for (int i = 0; i < jsonArray.length(); i++) {
-                        BondensMarked bondensMarked = new BondensMarked();
+                        Hjemme hjemme = new Hjemme();
                         JSONObject jsonobject = jsonArray.getJSONObject(i);
-                        bondensMarked.set_ID(jsonobject.getLong("_ID"));
-                        bondensMarked.setDato(jsonobject.getString("Dato"));
-                        bondensMarked.setBelop(jsonobject.getInt("Belop"));
-                        bondensMarked.setVarer(jsonobject.getString("Varer "));
-                        BM.add(bondensMarked);
+                        hjemme.set_ID(jsonobject.getLong("_ID"));
+                        hjemme.setKunde(jsonobject.getString("Kunde"));
+                        hjemme.setDato(jsonobject.getString("Dato"));
+                        hjemme.setVarer(jsonobject.getString("Varer "));
+                        hjemme.setBelop(jsonobject.getInt("Belop"));
+                        hjemme.setBetaling(jsonobject.getString("Betaling"));
+                        Hjemme.add(hjemme);
                     }
                 } catch (JSONException e) {
                     e.printStackTrace();
@@ -250,13 +255,15 @@ class Database {
                     // Convert string to JSONArray containing JSONObjects.
                     JSONArray jsonArray = new JSONArray(output.toString());
                     for (int i = 0; i < jsonArray.length(); i++) {
-                        BondensMarked bondensMarked = new BondensMarked();
+                        Honning honning = new Honning();
                         JSONObject jsonobject = jsonArray.getJSONObject(i);
-                        bondensMarked.set_ID(jsonobject.getLong("_ID"));
-                        bondensMarked.setDato(jsonobject.getString("Dato"));
-                        bondensMarked.setBelop(jsonobject.getInt("Belop"));
-                        bondensMarked.setVarer(jsonobject.getString("Varer "));
-                        BM.add(bondensMarked);
+                        honning.set_ID(jsonobject.getLong("_ID"));
+                        honning.setType(jsonobject.getString("Type"));
+                        honning.setStorrelse(jsonobject.getDouble("Storrelse"));
+                        // TODO check coloumn names
+                        honning.setHjemmePris(jsonobject.getInt("HPris"));
+                        honning.setBondensMarkedPris(jsonobject.getInt("BMPris"));
+                        Honning.add(honning);
                     }
                 } catch (JSONException e) {
                     e.printStackTrace();

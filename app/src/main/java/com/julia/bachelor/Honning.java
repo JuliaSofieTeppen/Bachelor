@@ -19,6 +19,8 @@ public class Honning {
 
     public long get_ID() { return _ID; }
 
+    public void set_ID(long _ID) { this._ID = _ID; }
+
     public String getType() { return Type; }
 
     public void setType(String type) { Type = type; }

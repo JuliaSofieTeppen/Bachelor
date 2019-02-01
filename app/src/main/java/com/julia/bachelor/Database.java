@@ -16,7 +16,7 @@ class Database {
     private static List<Beholdning> Beholdning = new ArrayList<>();
     private static List<BondensMarked> BM = new ArrayList<>();
     private static List<Hjemme> Hjemme = new ArrayList<>();
-    private static List<Honning> Honning = new ArrayList<>();
+    private static ArrayList<Honning> Honning = new ArrayList<>();
 
     void executeOnDB(String url){
         ExecuteOnDB task = new ExecuteOnDB();
@@ -54,7 +54,7 @@ class Database {
     List<Honning> getHonningType(){
         HonningTask task = new HonningTask();
         // TODO Url for Honning
-        task.execute("");
+        task.execute("http://www.honningbier.no/PHP/HonningOut.php");
         return Honning;
     }
 
@@ -237,6 +237,7 @@ class Database {
             // Get strings from bufferedReader.
             String nextLine;
             StringBuilder output = new StringBuilder();
+            Honning = new ArrayList<>();
             try {
                 URL url = new URL(urls[0]);
                 HttpURLConnection conn = (HttpURLConnection) url.openConnection();
@@ -257,11 +258,11 @@ class Database {
                     for (int i = 0; i < jsonArray.length(); i++) {
                         Honning honning = new Honning();
                         JSONObject jsonobject = jsonArray.getJSONObject(i);
-                        honning.set_ID(jsonobject.getLong("_ID"));
+                        honning.set_ID(jsonobject.getLong("ID"));
                         honning.setType(jsonobject.getString("Type"));
                         honning.setStorrelse(jsonobject.getDouble("Storrelse"));
                         // TODO check coloumn names
-                        honning.setHjemmePris(jsonobject.getInt("HPris"));
+                        honning.setHjemmePris(jsonobject.getInt("HjemmePris"));
                         honning.setBondensMarkedPris(jsonobject.getInt("BMPris"));
                         Honning.add(honning);
                     }
@@ -272,6 +273,13 @@ class Database {
             } catch (Exception e) {
                 return "Noe gikk feil: " + e.toString();
             }
+        }
+
+        @Override
+        protected void onPostExecute(String s) {
+            super.onPostExecute(s);
+            HjemmeSalg hjemmeSalg = new HjemmeSalg();
+            hjemmeSalg.setArrays(Honning);
         }
     }
 

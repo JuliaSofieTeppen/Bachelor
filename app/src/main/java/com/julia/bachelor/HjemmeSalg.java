@@ -17,24 +17,28 @@ import java.util.List;
 public class HjemmeSalg extends Activity {
     GridLayout varer;
     String text;
-    List<Honning> honningtype;
     List<Integer> telling;
     TextView oversikt;
     Database database;
+    static List<Honning> honningtype;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_hjemme_salg);
-
-    getActionBar().setDisplayHomeAsUpEnabled(true);
-
-        honningtype = database.getHonningType();
+        database = new Database();
+        database.getHonningType();
+        getActionBar().setDisplayHomeAsUpEnabled(true);
+        oversikt = findViewById(R.id.oversikt);
         telling = new ArrayList<>();
-        for(int c = 0; c < honningtype.size(); c++){
+        setTelling();
+
+    }
+
+    void setTelling(){
+        for(int c = 0; c < 9; c++){
             telling.add(0);
         }
-
     }
 
     @Override
@@ -83,10 +87,20 @@ public class HjemmeSalg extends Activity {
 
     public void setText(){
         StringBuilder sb = new StringBuilder();
-        for( int i = 0; i < telling.size(); i ++){
+        for( int i = 0; i < honningtype.size(); i ++){
             if(!telling.get(i).equals(0)){
-                sb.append(honningtype.get(i).getType() + "            x" + telling.get(i) +"\n");
+                sb.append(honningtype.get(i).getType() + "                      x" + telling.get(i) +"\n");
             }
         }
+        oversikt.setText(sb.toString());
+    }
+    public void setArrays(ArrayList<Honning> type){
+        honningtype = type;
+    }
+    public void slettliste(View v){
+        for(int i = 0; i < telling.size(); i++){
+            telling.set(i,0);
+        }
+        setText();
     }
 }

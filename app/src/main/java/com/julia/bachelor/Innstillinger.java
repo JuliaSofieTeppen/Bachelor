@@ -19,4 +19,5 @@ public class Innstillinger extends Activity {
         this.finish();
         return true;
     }
+    //TODO skal kunne endre verdier.
 }

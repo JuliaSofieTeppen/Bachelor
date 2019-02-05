@@ -50,7 +50,6 @@ public class BmSalg extends Activity {
 
 
     public void lagre(View v){
-        Toast.makeText(this, dato.getText().toString(), Toast.LENGTH_SHORT).show();
         if(checkDate(dato.getText().toString())){
             for(EditText verdi : verdier){
                 if(verdi.getText().toString().equals("")){
@@ -58,9 +57,11 @@ public class BmSalg extends Activity {
                 }
             }
 
-            db.executeOnDB("www.honningbier.no/PHP/BondensMarked.php/?" +
-                    "Dato=" + dato.getText().toString() + "&Varer=" ); //  + varer string something
 
+            //db.executeOnDB("www.honningbier.no/PHP/BondensMarked.php/?" +
+            //        "Dato=" + dato.getText().toString() + "&Varer=" ); //  + varer string something
+            Toast.makeText(this,"Bondens marked salg lagret", Toast.LENGTH_SHORT).show();
+            finish();
         }else{
             Toast.makeText(this, "Ugyldig dato", Toast.LENGTH_SHORT).show();
         }

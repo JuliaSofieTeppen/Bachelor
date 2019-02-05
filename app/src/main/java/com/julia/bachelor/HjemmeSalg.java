@@ -28,13 +28,14 @@ public class HjemmeSalg extends Activity implements AdapterView.OnItemSelectedLi
     Database database;
     TextView total;
     Spinner betaling;
-    int kr = 0;
+    int kr;
     static List<Honning> honningtype;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_hjemme_salg);
+        kr = 0;
         database = new Database();
         database.getHonningType();
         getActionBar().setDisplayHomeAsUpEnabled(true);
@@ -154,10 +155,17 @@ public class HjemmeSalg extends Activity implements AdapterView.OnItemSelectedLi
     }
 
     public void selg(View view){
-        if(kundenavn.getText().toString() == ""){
+        if(kundenavn.getText().toString().equals("")){
             Toast.makeText(this,"Skriv inn navn på kunde", Toast.LENGTH_SHORT).show();
         }else{
-            kundenavn.getText();
+            if(!(oversikt.getText().toString().equals(""))){
+                //TODO faktisk lagre verdier her
+                Toast.makeText(this, "Hjemmesalg lagret", Toast.LENGTH_SHORT).show();
+                finish();
+            }else{
+                Toast.makeText(this,"Handlekurven er tom", Toast.LENGTH_SHORT).show();
+            }
+
         }
 
     }

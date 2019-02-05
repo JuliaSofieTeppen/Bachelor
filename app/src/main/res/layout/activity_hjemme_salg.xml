@@ -159,7 +159,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/gridLayout" />
 
             <Button
-                android:id="@+id/button2"
+                android:id="@+id/selg"
                 android:layout_width="323dp"
                 android:layout_height="56dp"
                 android:layout_marginStart="49dp"
@@ -168,6 +168,7 @@
                 android:background="@android:color/holo_orange_light"
                 android:text="Selg"
                 android:textSize="20dp"
+                android:onClick="selg"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/divider7" />
@@ -272,7 +273,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.545"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/button2"
+                app:layout_constraintTop_toBottomOf="@+id/selg"
                 app:layout_constraintVertical_bias="1.0">
 
             </android.support.constraint.ConstraintLayout>

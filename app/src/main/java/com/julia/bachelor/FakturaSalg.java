@@ -8,6 +8,8 @@ import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.PopupWindow;
@@ -19,9 +21,10 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-public class FakturaSalg extends Activity {
+public class FakturaSalg extends Activity implements AdapterView.OnItemSelectedListener {
 
-    Spinner Betalingmetode;
+    Spinner betaling;
+    String betalingsmetode;
     EditText moms;
     EditText dato;
     EditText som1kg;
@@ -56,11 +59,15 @@ public class FakturaSalg extends Activity {
         ingf025kg = findViewById(R.id.FSingf025kg);
         flytende = findViewById(R.id.FSflyt);
         layout = findViewById(R.id.scroll);
+        betaling = findViewById(R.id.FSbetalmet);
         verdier = new ArrayList<>(Arrays.asList(moms,som1kg,som05kg,som025kg,lyng1kg,lyng05kg,lyng025kg,ingf05kg,ingf025kg,flytende));
 
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.betalingsmetode, android.R.layout.simple_spinner_item);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        betaling.setAdapter(adapter);
+        betaling.setOnItemSelectedListener(this);
     }
     public void lagre(View v){
-        Toast.makeText(this, dato.getText().toString(), Toast.LENGTH_SHORT).show();
         if(checkDate(dato.getText().toString())){
             for(EditText verdi : verdier){
                 if(verdi.getText().toString().equals("")){
@@ -69,7 +76,8 @@ public class FakturaSalg extends Activity {
             }
             //TODO send alle verdier til databasen
             //  db.executeOnDB("www.honningbier.no/PHP/Beholdning.php/?");
-
+            Toast.makeText(this, "Videre salg lagret", Toast.LENGTH_SHORT).show();
+            finish();
         }else{
             Toast.makeText(this, "Ugyldig dato", Toast.LENGTH_SHORT).show();
         }
@@ -112,5 +120,15 @@ public class FakturaSalg extends Activity {
     public boolean onOptionsItemSelected(MenuItem item){
             goback();
         return true;
+    }
+
+    @Override
+    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+        betalingsmetode = parent.getItemAtPosition(position).toString();
+    }
+
+    @Override
+    public void onNothingSelected(AdapterView<?> parent) {
+
     }
 }

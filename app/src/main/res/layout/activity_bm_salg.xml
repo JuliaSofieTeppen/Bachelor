@@ -33,6 +33,7 @@
                 android:layout_marginEnd="8dp"
                 android:background="#ffbb00"
                 android:text="Lagre"
+                android:onClick="lagre"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.426"
                 app:layout_constraintStart_toStartOf="parent"
@@ -84,7 +85,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="36dp"
                 android:ems="10"
-                android:inputType="textPersonName"
+                android:inputType="date"
                 app:layout_constraintBaseline_toBaselineOf="@+id/textView50"
                 app:layout_constraintEnd_toEndOf="parent" />
 

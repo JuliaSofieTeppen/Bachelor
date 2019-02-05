@@ -149,14 +149,12 @@
 
             <TextView
                 android:id="@+id/oversikt"
-                android:layout_width="315dp"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:layout_marginTop="40dp"
+                android:layout_marginStart="45dp"
+                android:layout_marginTop="28dp"
                 android:layout_marginEnd="8dp"
-                android:text="Sommerhonning 1kg \n Lynghonning 1kg"
-                app:layout_constraintEnd_toStartOf="@+id/botte"
-                app:layout_constraintHorizontal_bias="1.0"
+                app:layout_constraintEnd_toStartOf="@+id/oversikttall"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/gridLayout" />
 
@@ -175,7 +173,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/divider7" />
 
             <Spinner
-                android:id="@+id/spinner2"
+                android:id="@+id/betalingsmetode"
                 android:layout_width="325dp"
                 android:layout_height="47dp"
                 android:layout_marginStart="8dp"
@@ -190,13 +188,13 @@
                 android:layout_width="124dp"
                 android:layout_height="26dp"
                 android:layout_marginStart="8dp"
-                android:layout_marginTop="15dp"
+                android:layout_marginTop="24dp"
                 android:layout_marginEnd="8dp"
                 android:text="Betalingsmetode"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.129"
+                app:layout_constraintHorizontal_bias="0.077"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/divider8" />
+                app:layout_constraintTop_toBottomOf="@+id/total" />
 
             <View
                 android:id="@+id/divider6"
@@ -207,7 +205,7 @@
                 android:background="?android:attr/listDivider"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/spinner2" />
+                app:layout_constraintTop_toBottomOf="@+id/betalingsmetode" />
 
             <TextView
                 android:id="@+id/textView49"
@@ -220,7 +218,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.093"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/spinner2" />
+                app:layout_constraintTop_toBottomOf="@+id/betalingsmetode" />
 
             <EditText
                 android:id="@+id/BMSlyn1kg"
@@ -284,12 +282,32 @@
                 android:layout_marginTop="8dp"
                 android:layout_marginEnd="20dp"
                 android:layout_marginBottom="8dp"
-                android:src="@drawable/botte"
                 android:onClick="slettliste"
+                android:src="@drawable/botte"
                 app:layout_constraintBottom_toBottomOf="@+id/oversikt"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/gridLayout"
-                app:layout_constraintVertical_bias="0.243" />
+                app:layout_constraintVertical_bias="0.181" />
+
+            <TextView
+                android:id="@+id/oversikttall"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="64dp"
+                app:layout_constraintBaseline_toBaselineOf="@+id/oversikt"
+                app:layout_constraintEnd_toEndOf="parent" />
+
+            <TextView
+                android:id="@+id/total"
+                android:layout_width="331dp"
+                android:layout_height="50dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="12dp"
+                android:layout_marginEnd="8dp"
+                android:textSize="30sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/divider8" />
         </android.support.constraint.ConstraintLayout>
     </ScrollView>
 

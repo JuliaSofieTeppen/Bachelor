@@ -46,6 +46,7 @@ public class HjemmeSalg extends Activity implements AdapterView.OnItemSelectedLi
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.betalingsmetode, android.R.layout.simple_spinner_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         betaling.setAdapter(adapter);
+        betaling.setOnItemSelectedListener(this);
     }
 
     void setTelling(){
@@ -56,7 +57,6 @@ public class HjemmeSalg extends Activity implements AdapterView.OnItemSelectedLi
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
         betalingsmetode = parent.getItemAtPosition(position).toString();
-        Toast.makeText(parent.getContext(),betalingsmetode,Toast.LENGTH_SHORT).show();
     }
 
     @Override

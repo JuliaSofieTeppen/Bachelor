@@ -154,6 +154,11 @@ public class HjemmeSalg extends Activity implements AdapterView.OnItemSelectedLi
     }
 
     public void selg(View view){
+        if(kundenavn.getText().toString() == ""){
+            Toast.makeText(this,"Skriv inn navn på kunde", Toast.LENGTH_SHORT).show();
+        }else{
+            kundenavn.getText();
+        }
 
     }
 

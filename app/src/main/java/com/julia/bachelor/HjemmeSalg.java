@@ -9,6 +9,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.EditText;
 import android.widget.GridLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -22,6 +23,7 @@ public class HjemmeSalg extends Activity implements AdapterView.OnItemSelectedLi
     String betalingsmetode;
     List<Integer> telling;
     TextView oversikt;
+    EditText kundenavn;
     TextView oversikttall;
     Database database;
     TextView total;
@@ -39,6 +41,7 @@ public class HjemmeSalg extends Activity implements AdapterView.OnItemSelectedLi
         oversikt = findViewById(R.id.oversikt);
         oversikttall = findViewById(R.id.oversikttall);
         betaling = findViewById(R.id.betalingsmetode);
+        kundenavn = findViewById(R.id.kundenavn);
         total = findViewById(R.id.total);
         telling = new ArrayList<>();
         setTelling();
@@ -140,5 +143,8 @@ public class HjemmeSalg extends Activity implements AdapterView.OnItemSelectedLi
         setText();
     }
 
+    public void selg(View view){
+
+    }
 
 }

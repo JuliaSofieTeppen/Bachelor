@@ -38,7 +38,7 @@ public class BmSalg extends Activity {
         som1kg = findViewById(R.id.BMSsom1kg);
         som05kg = findViewById(R.id.BMSsom05kg);
         som025kg = findViewById(R.id.BMSsom025kg);
-        lyng1kg = findViewById(R.id.BMSlyn1kg);
+        lyng1kg = findViewById(R.id.kundenavn);
         lyng05kg = findViewById(R.id.BMSlyn05kg);
         lyng025kg = findViewById(R.id.BMSlyn025kg);
         ingf05kg = findViewById(R.id.BMSingf05kg);

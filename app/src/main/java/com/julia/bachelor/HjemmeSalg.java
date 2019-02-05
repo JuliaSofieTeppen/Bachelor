@@ -52,6 +52,16 @@ public class HjemmeSalg extends Activity implements AdapterView.OnItemSelectedLi
         betaling.setOnItemSelectedListener(this);
     }
 
+    public String reverseDate(String date){
+        String[] strings = date.split("\\.");
+        date="";
+        for(int i=strings.length-1;i>=0;i--){
+            date += strings[i];
+            date += i >= 1 ? "." : "";
+        }
+        return date;
+    }
+
     void setTelling(){
         for(int c = 0; c < 9; c++){
             telling.add(0);

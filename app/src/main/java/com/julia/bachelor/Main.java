@@ -20,7 +20,7 @@ import java.util.List;
 
 public class Main extends Activity
         implements NavigationDrawerFragment.NavigationDrawerCallbacks {
-    ArrayList<Honning> honningtype;
+    static ArrayList<Honning> honningtype;
     Database database;
 
     /**

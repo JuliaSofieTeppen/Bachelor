@@ -100,7 +100,6 @@ public class Main extends Activity
     }
     public void setArrays(ArrayList<Honning> type){
         honningtype = type;
-
     }
 
 }

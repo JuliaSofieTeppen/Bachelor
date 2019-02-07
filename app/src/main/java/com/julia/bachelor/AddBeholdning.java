@@ -58,16 +58,23 @@ public class AddBeholdning extends Activity {
     }
 
     public void lagre(View v){
-        Toast.makeText(this, dato.getText().toString(), Toast.LENGTH_SHORT).show();
+        int tell = 0;
         if(checkDate(dato.getText().toString())){
             for(EditText verdi : verdier){
                 if(verdi.getText().toString().equals("")){
                     verdi.setText("0");
+                }else{
+                    tell++;
                 }
+            }if(tell == 0){
+                Toast.makeText(this,"Legg til minst et produkt", Toast.LENGTH_SHORT).show();
+            }else {
+                //TODO for løkke
+               // db.executeOnDB("www.honningbier.no/PHP/BeholdningIn.php/?" +
+                //        "Antall=" + som1kg + "&H_ID=" + "1"); //TODO skal stå noe annet en 1 her.
+                Toast.makeText(this,"Beholdning lagret", Toast.LENGTH_SHORT).show();
+                finish();
             }
-            //TODO for løkke?
-           db.executeOnDB("www.honningbier.no/PHP/BeholdningIn.php/?" +
-                   "Antall=" + som1kg + "&H_ID=" + "1" ); //TODO skal stå noe annet en 1 her.
 
         }else{
             Toast.makeText(this, "Ugyldig dato", Toast.LENGTH_SHORT).show();

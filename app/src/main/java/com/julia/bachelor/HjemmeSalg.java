@@ -151,6 +151,7 @@ public class HjemmeSalg extends Activity implements AdapterView.OnItemSelectedLi
         for(int i = 0; i < telling.size(); i++){
             telling.set(i,0);
         }
+        kr = 0;
         setText();
     }
 

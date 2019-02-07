@@ -8,13 +8,20 @@ import android.app.FragmentManager;
 import android.app.FragmentTransaction;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.support.v4.widget.DrawerLayout;
 
+import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
+
 public class Main extends Activity
         implements NavigationDrawerFragment.NavigationDrawerCallbacks {
+    ArrayList<Honning> honningtype;
+    Database database;
 
     /**
      * Fragment managing the behaviors, interactions and presentation of the navigation drawer.
@@ -30,6 +37,8 @@ public class Main extends Activity
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        database = new Database();
+        database.getHonningType();
 
         mNavigationDrawerFragment = (NavigationDrawerFragment)
                 getFragmentManager().findFragmentById(R.id.navigation_drawer);
@@ -39,6 +48,7 @@ public class Main extends Activity
         mNavigationDrawerFragment.setUp(
                 R.id.navigation_drawer,
                 (DrawerLayout) findViewById(R.id.drawer_layout));
+
     }
 
     @Override
@@ -65,6 +75,8 @@ public class Main extends Activity
                 break;
             case 3:
                 mTitle = getString(R.string.title_section3);
+                Bundle bundle = new Bundle();
+                bundle.putSerializable("params",  honningtype);
                 PriserFragment fragment = new PriserFragment();
                 FragmentTransaction fragmentt = getFragmentManager().beginTransaction();
                 fragmentt.replace(R.id.container, fragment);
@@ -86,36 +98,9 @@ public class Main extends Activity
         actionBar.setDisplayShowTitleEnabled(true);
         actionBar.setTitle(mTitle);
     }
+    public void setArrays(ArrayList<Honning> type){
+        honningtype = type;
 
-    /**
-     * A placeholder fragment containing a simple view.
-     */
-
-
-    public static class PriserFragment extends Fragment {
-        private static final String ARG_SECTION_NUMBER = "section_number";
-
-        public PriserFragment() {
-        }
-
-        /**
-         * Returns a new instance of this fragment for the given section
-         * number.
-         */
-        public static PriserFragment newInstance(int sectionNumber) {
-            PriserFragment fragment = new PriserFragment();
-            Bundle args = new Bundle();
-            args.putInt(ARG_SECTION_NUMBER, sectionNumber);
-            fragment.setArguments(args);
-            return fragment;
-        }
-
-        @Override
-        public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                                 Bundle savedInstanceState) {
-            View rootView = inflater.inflate(R.layout.fragment_priser, container, false);
-            return rootView;
-        }
     }
 
 }

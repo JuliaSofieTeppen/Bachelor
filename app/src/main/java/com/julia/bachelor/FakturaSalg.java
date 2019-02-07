@@ -68,16 +68,23 @@ public class FakturaSalg extends Activity implements AdapterView.OnItemSelectedL
         betaling.setOnItemSelectedListener(this);
     }
     public void lagre(View v){
+        int tell = 0;
         if(checkDate(dato.getText().toString())){
             for(EditText verdi : verdier){
                 if(verdi.getText().toString().equals("")){
                     verdi.setText("0");
+                }else{
+                    tell++;
                 }
             }
-            //TODO send alle verdier til databasen
-            //  db.executeOnDB("www.honningbier.no/PHP/Beholdning.php/?");
-            Toast.makeText(this, "Videre salg lagret", Toast.LENGTH_SHORT).show();
-            finish();
+            if(tell == 0){
+                Toast.makeText(this,"Legg til minst et produkt", Toast.LENGTH_SHORT).show();
+            }else {
+                //TODO send alle verdier til databasen
+                //  db.executeOnDB("www.honningbier.no/PHP/Beholdning.php/?");
+                Toast.makeText(this, "Videre salg lagret", Toast.LENGTH_SHORT).show();
+                finish();
+            }
         }else{
             Toast.makeText(this, "Ugyldig dato", Toast.LENGTH_SHORT).show();
         }

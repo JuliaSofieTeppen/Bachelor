@@ -69,18 +69,23 @@ public class SalgAnnet extends Activity implements AdapterView.OnItemSelectedLis
     }
 
     public void SAlagre(View view){
+        int tell = 0;
         if(checkDate(Dato.getText().toString())){
             if(!(Pris.getText().toString().equals("") || KundeNavn.getText().toString().equals("")) ) {
                 for (EditText verdi : verdier) {
                     if (verdi.getText().toString().equals("")) {
                         verdi.setText("0");
+                    }else{
+                        tell++;
                     }
+                }if(tell == 0){
+                    Toast.makeText(this,"Legg til minst et produkt", Toast.LENGTH_SHORT).show();
+                }else {
+                    //TODO send alle verdier til databasen
+                    //  db.executeOnDB("www.honningbier.no/PHP/Beholdning.php/?");
+                    Toast.makeText(this, "Annet salg lagret", Toast.LENGTH_SHORT).show();
+                    finish();
                 }
-
-                //TODO send alle verdier til databasen
-                //  db.executeOnDB("www.honningbier.no/PHP/Beholdning.php/?");
-                Toast.makeText(this, "Annet salg lagret", Toast.LENGTH_SHORT).show();
-                finish();
             }else{
                 Toast.makeText(this, "Kundens navn eller Pris er ikke fyllt", Toast.LENGTH_SHORT).show();
             }

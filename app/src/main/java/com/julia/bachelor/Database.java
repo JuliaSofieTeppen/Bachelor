@@ -280,6 +280,8 @@ class Database {
             super.onPostExecute(s);
             HjemmeSalg hjemmeSalg = new HjemmeSalg();
             hjemmeSalg.setArrays(Honning);
+            Main main = new Main();
+            main.setArrays(Honning);
         }
     }
 

@@ -58,10 +58,12 @@ public class PriserFragment extends Fragment {
         flyt=getActivity().findViewById(R.id.flytpris);
 
         verdier = new ArrayList<>(Arrays.asList(kg1,kg05,kg025,ingf05kg,ingf025kg,flyt));
-
-        honningtype = (ArrayList<Honning>) getArguments().getSerializable("params");
-        kg1.setText(honningtype.get(0).getHjemmePris());
-
+        try {
+            honningtype = (ArrayList<Honning>) getArguments().getSerializable("params");
+            kg1.setText(honningtype.get(0).getHjemmePris());
+        }catch (Exception e){
+            e.printStackTrace();
+        }
         return rootView;
     }
 

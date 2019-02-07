@@ -39,7 +39,7 @@ public class Main extends Activity
         setContentView(R.layout.activity_main);
         database = new Database();
         database.getHonningType();
-
+        honningtype = new ArrayList<>();
         mNavigationDrawerFragment = (NavigationDrawerFragment)
                 getFragmentManager().findFragmentById(R.id.navigation_drawer);
         mTitle = getTitle();

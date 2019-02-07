@@ -78,6 +78,7 @@ public class Main extends Activity
                 Bundle bundle = new Bundle();
                 bundle.putSerializable("params",  honningtype);
                 PriserFragment fragment = new PriserFragment();
+                fragment.setArguments(bundle);
                 FragmentTransaction fragmentt = getFragmentManager().beginTransaction();
                 fragmentt.replace(R.id.container, fragment);
                 fragmentt.addToBackStack(null);

@@ -47,20 +47,19 @@ public class PriserFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_priser, container, false);
-        database = new Database();
-        database.getHonningType();
-
-        kg1 = getActivity().findViewById(R.id.kg1pris);
-        kg05 = getActivity().findViewById(R.id.kg05pris);
-        kg025 = getActivity().findViewById(R.id.kg025pris);
-        ingf05kg=getActivity().findViewById(R.id.ingf05kgpris);
-        ingf025kg=getActivity().findViewById(R.id.ingf025kgpris);
-        flyt=getActivity().findViewById(R.id.flytpris);
-
+        kg1 = rootView.findViewById(R.id.kg1pris);
+        kg05 = rootView.findViewById(R.id.kg05pris);
+        kg025 = rootView.findViewById(R.id.kg025pris);
+        ingf05kg=rootView.findViewById(R.id.ingf05kgpris);
+        ingf025kg=rootView.findViewById(R.id.ingf025kgpris);
+        flyt=rootView.findViewById(R.id.flytpris);
         verdier = new ArrayList<>(Arrays.asList(kg1,kg05,kg025,ingf05kg,ingf025kg,flyt));
+        honningtype = new ArrayList<>();
         try {
             honningtype = (ArrayList<Honning>) getArguments().getSerializable("params");
-            kg1.setText(honningtype.get(0).getHjemmePris());
+
+            if(honningtype.get(0)!=null)
+            kg1.setText(""+honningtype.get(0).getHjemmePris());
         }catch (Exception e){
             e.printStackTrace();
         }

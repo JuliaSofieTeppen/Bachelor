@@ -57,9 +57,8 @@ public class PriserFragment extends Fragment {
         honningtype = new ArrayList<>();
         try {
             honningtype = (ArrayList<Honning>) getArguments().getSerializable("params");
-
-            if(honningtype.get(0)!=null)
-            kg1.setText(""+honningtype.get(0).getHjemmePris());
+            String s = "" + honningtype.get(0);
+            kg1.setText(s);
         }catch (Exception e){
             e.printStackTrace();
         }

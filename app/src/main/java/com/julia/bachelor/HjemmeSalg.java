@@ -15,9 +15,13 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Calendar;
 import java.util.List;
+import java.util.Locale;
 
 public class HjemmeSalg extends Activity implements AdapterView.OnItemSelectedListener {
     String betalingsmetode;
@@ -61,6 +65,28 @@ public class HjemmeSalg extends Activity implements AdapterView.OnItemSelectedLi
             date += i >= 1 ? "." : "";
         }
         return date;
+    }
+
+    String getVarer(){
+        StringBuilder varer = new StringBuilder();
+        for(int i = 0; i<honningtype.size();i++){
+            if(!telling.get(i).equals(0)) {
+                varer.append(honningtype.get(i).get_ID()).append("-").append(telling.get(i)).append(",");
+            }
+        }
+        return varer.toString();
+    }
+
+    String getDate(){
+        DateFormat dateFormat = new SimpleDateFormat("yyyy/mm/dd", Locale.US);
+        Calendar cal = Calendar.getInstance();
+        return dateFormat.format(cal);
+        //http://www.honningbier.no/PHP/BeholdningOut.php/?Antall=6&H_ID=9&Dato=%222018.09.3%22
+    }
+
+    void insertValues(){
+        database.executeOnDB("http://www.honningbier.no/PHP/HjemmeIn.php/?Kunde="+ kundenavn.getText().toString() +
+                "&Dato="+ getDate() + "&Varer="+ getVarer() +"&Belop=" + kr + "&Betaling="+ betalingsmetode);
     }
 
     void setTelling(){
@@ -160,7 +186,7 @@ public class HjemmeSalg extends Activity implements AdapterView.OnItemSelectedLi
             Toast.makeText(this,"Skriv inn navn på kunde", Toast.LENGTH_SHORT).show();
         }else{
             if(!(oversikt.getText().toString().equals(""))){
-                //TODO faktisk lagre verdier her
+                insertValues();
                 Toast.makeText(this, "Hjemmesalg lagret", Toast.LENGTH_SHORT).show();
                 finish();
             }else{

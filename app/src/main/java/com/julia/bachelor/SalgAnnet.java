@@ -1,6 +1,8 @@
 package com.julia.bachelor;
 
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
@@ -92,6 +94,35 @@ public class SalgAnnet extends Activity implements AdapterView.OnItemSelectedLis
         } else {
             Toast.makeText(this, "Ugyldig dato", Toast.LENGTH_SHORT).show();
         }
+    }
+
+
+    @Override
+    public void onBackPressed() {
+        goback();
+    }
+
+    public void goback() {
+        //TODO check fields before poppopen skal syntes.
+        //android.app.AlertDialog.Builder builder = new android.app.AlertDialog.Builder(FakturaSalg.this,R.style.AlertDialog);
+        final AlertDialog.Builder builder = new AlertDialog.Builder(SalgAnnet.this);
+        builder.setMessage("Vil du gå tilbake?");
+        builder.setCancelable(true);
+        builder.setNegativeButton("Yes", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                finish();
+            }
+        });
+        builder.setPositiveButton("No", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.cancel();
+            }
+        });
+        AlertDialog alertDialog = builder.create();
+        alertDialog.show();
+
     }
 
 }

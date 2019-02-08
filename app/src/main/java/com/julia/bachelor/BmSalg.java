@@ -1,6 +1,8 @@
 package com.julia.bachelor;
 
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
@@ -79,6 +81,34 @@ public class BmSalg extends Activity {
     public boolean checkDate(String date) {
         String regex = "^\\d{4}\\.(0?[1-9]|1[012])\\.(0?[1-9]|[12][0-9]|3[01])$";
         return date.matches(regex);
+    }
+
+    @Override
+    public void onBackPressed() {
+        goback();
+    }
+
+    public void goback() {
+        //TODO check fields before poppopen skal syntes.
+        //android.app.AlertDialog.Builder builder = new android.app.AlertDialog.Builder(FakturaSalg.this,R.style.AlertDialog);
+        final AlertDialog.Builder builder = new AlertDialog.Builder(BmSalg.this);
+        builder.setMessage("Vil du gå tilbake?");
+        builder.setCancelable(true);
+        builder.setNegativeButton("Yes", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                finish();
+            }
+        });
+        builder.setPositiveButton("No", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.cancel();
+            }
+        });
+        AlertDialog alertDialog = builder.create();
+        alertDialog.show();
+
     }
 
     public String getVarer() {

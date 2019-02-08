@@ -16,8 +16,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.support.v4.widget.DrawerLayout;
 
-import org.parceler.Parcels;
-
 import java.io.Serializable;
 import java.io.SerializablePermission;
 import java.util.ArrayList;

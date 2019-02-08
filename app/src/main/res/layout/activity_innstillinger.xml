@@ -20,6 +20,21 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
+            <android.support.constraint.ConstraintLayout
+                android:id="@+id/bunn"
+                android:layout_width="296dp"
+                android:layout_height="48dp"
+                android:layout_marginStart="29dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="29dp"
+                android:elevation="4dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="1.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/bigextend">
+
+            </android.support.constraint.ConstraintLayout>
+
             <TextView
                 android:id="@+id/textView2"
                 android:layout_width="171dp"
@@ -67,7 +82,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
                 android:layout_marginEnd="8dp"
-                android:visibility="gone"
+                android:visibility="visible"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/endreverdier">
@@ -77,11 +92,11 @@
                     android:layout_width="wrap_content"
                     android:layout_height="18dp"
                     android:layout_marginStart="8dp"
-                    android:layout_marginTop="8dp"
+                    android:layout_marginTop="16dp"
                     android:layout_marginEnd="8dp"
-                    android:text="Sommerhonning"
+                    android:text="Honning"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.076"
+                    app:layout_constraintHorizontal_bias="0.077"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
@@ -302,21 +317,6 @@
                 </android.support.constraint.ConstraintLayout>
 
                 <android.support.constraint.ConstraintLayout
-                    android:id="@+id/bunn"
-                    android:layout_width="296dp"
-                    android:layout_height="48dp"
-                    android:layout_marginStart="29dp"
-                    android:layout_marginTop="24dp"
-                    android:layout_marginEnd="29dp"
-                    android:elevation="4dp"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.6"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/extend9">
-
-                </android.support.constraint.ConstraintLayout>
-
-                <android.support.constraint.ConstraintLayout
                     android:id="@+id/extend3"
                     android:layout_width="267dp"
                     android:layout_height="198dp"
@@ -467,41 +467,6 @@
                 </android.support.constraint.ConstraintLayout>
 
                 <android.support.constraint.ConstraintLayout
-                    android:id="@+id/lyng05kg"
-                    android:layout_width="296dp"
-                    android:layout_height="52dp"
-                    android:layout_marginStart="8dp"
-                    android:layout_marginTop="2dp"
-                    android:layout_marginEnd="8dp"
-                    android:background="@android:color/white"
-                    android:elevation="4dp"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.537"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/extend4">
-
-                    <TextView
-                        android:id="@+id/textView39"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="8dp"
-                        android:layout_marginTop="8dp"
-                        android:layout_marginBottom="8dp"
-                        android:text="1/2 kg"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
-
-                    <TextView
-                        android:id="@+id/textView31"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginEnd="16dp"
-                        app:layout_constraintBaseline_toBaselineOf="@+id/textView39"
-                        app:layout_constraintEnd_toEndOf="parent" />
-                </android.support.constraint.ConstraintLayout>
-
-                <android.support.constraint.ConstraintLayout
                     android:id="@+id/som1kg"
                     android:layout_width="296dp"
                     android:layout_height="52dp"
@@ -533,79 +498,6 @@
                         android:layout_height="23dp"
                         android:layout_marginEnd="16dp"
                         app:layout_constraintBaseline_toBaselineOf="@+id/textView35"
-                        app:layout_constraintEnd_toEndOf="parent" />
-                </android.support.constraint.ConstraintLayout>
-
-                <android.support.constraint.ConstraintLayout
-                    android:id="@+id/extend5"
-                    android:layout_width="267dp"
-                    android:layout_height="198dp"
-                    android:layout_marginStart="8dp"
-                    android:layout_marginEnd="8dp"
-                    android:background="#ffe0a3"
-                    android:visibility="gone"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/lyng05kg">
-
-                    <TextView
-                        android:id="@+id/textView120"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="16dp"
-                        android:layout_marginTop="32dp"
-                        android:text="Hjemme"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
-
-                    <TextView
-                        android:id="@+id/textView121"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="16dp"
-                        android:layout_marginTop="40dp"
-                        android:text="Bondens marked"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/textView120" />
-
-                    <TextView
-                        android:id="@+id/textView122"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="16dp"
-                        android:layout_marginTop="36dp"
-                        android:text="Faktura"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/textView121" />
-
-                    <EditText
-                        android:id="@+id/editText19"
-                        android:layout_width="88dp"
-                        android:layout_height="43dp"
-                        android:layout_marginEnd="8dp"
-                        android:ems="10"
-                        android:inputType="number"
-                        app:layout_constraintBaseline_toBaselineOf="@+id/textView120"
-                        app:layout_constraintEnd_toEndOf="parent" />
-
-                    <EditText
-                        android:id="@+id/editText20"
-                        android:layout_width="88dp"
-                        android:layout_height="43dp"
-                        android:layout_marginEnd="8dp"
-                        android:ems="10"
-                        android:inputType="number"
-                        app:layout_constraintBaseline_toBaselineOf="@+id/textView121"
-                        app:layout_constraintEnd_toEndOf="parent" />
-
-                    <EditText
-                        android:id="@+id/editText21"
-                        android:layout_width="88dp"
-                        android:layout_height="43dp"
-                        android:layout_marginEnd="8dp"
-                        android:ems="10"
-                        android:inputType="number"
-                        app:layout_constraintBaseline_toBaselineOf="@+id/textView122"
                         app:layout_constraintEnd_toEndOf="parent" />
                 </android.support.constraint.ConstraintLayout>
 
@@ -645,92 +537,6 @@
                 </android.support.constraint.ConstraintLayout>
 
                 <android.support.constraint.ConstraintLayout
-                    android:id="@+id/extend6"
-                    android:layout_width="267dp"
-                    android:layout_height="198dp"
-                    android:layout_marginStart="8dp"
-                    android:layout_marginEnd="8dp"
-                    android:background="#ffe0a3"
-                    android:visibility="gone"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/lyng025kg">
-
-                    <TextView
-                        android:id="@+id/textView123"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="16dp"
-                        android:layout_marginTop="32dp"
-                        android:text="Hjemme"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
-
-                    <TextView
-                        android:id="@+id/textView124"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="16dp"
-                        android:layout_marginTop="40dp"
-                        android:text="Bondens marked"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/textView123" />
-
-                    <TextView
-                        android:id="@+id/textView125"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="20dp"
-                        android:layout_marginTop="40dp"
-                        android:text="Faktura"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/textView124" />
-
-                    <EditText
-                        android:id="@+id/editText22"
-                        android:layout_width="88dp"
-                        android:layout_height="43dp"
-                        android:layout_marginEnd="8dp"
-                        android:ems="10"
-                        android:inputType="number"
-                        app:layout_constraintBaseline_toBaselineOf="@+id/textView123"
-                        app:layout_constraintEnd_toEndOf="parent" />
-
-                    <EditText
-                        android:id="@+id/editText23"
-                        android:layout_width="88dp"
-                        android:layout_height="43dp"
-                        android:layout_marginEnd="8dp"
-                        android:ems="10"
-                        android:inputType="number"
-                        app:layout_constraintBaseline_toBaselineOf="@+id/textView124"
-                        app:layout_constraintEnd_toEndOf="parent" />
-
-                    <EditText
-                        android:id="@+id/editText24"
-                        android:layout_width="88dp"
-                        android:layout_height="43dp"
-                        android:layout_marginEnd="8dp"
-                        android:ems="10"
-                        android:inputType="number"
-                        app:layout_constraintBaseline_toBaselineOf="@+id/textView125"
-                        app:layout_constraintEnd_toEndOf="parent" />
-                </android.support.constraint.ConstraintLayout>
-
-                <TextView
-                    android:id="@+id/textView45"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="8dp"
-                    android:layout_marginTop="8dp"
-                    android:layout_marginEnd="8dp"
-                    android:text="Lynghonning"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.035"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/extend3" />
-
-                <android.support.constraint.ConstraintLayout
                     android:id="@+id/som025kg"
                     android:layout_width="296dp"
                     android:layout_height="50dp"
@@ -765,79 +571,6 @@
                         app:layout_constraintEnd_toEndOf="parent" />
                 </android.support.constraint.ConstraintLayout>
 
-                <android.support.constraint.ConstraintLayout
-                    android:id="@+id/extend4"
-                    android:layout_width="267dp"
-                    android:layout_height="198dp"
-                    android:layout_marginStart="8dp"
-                    android:layout_marginEnd="8dp"
-                    android:background="#ffe0a3"
-                    android:visibility="gone"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/lyng1kg">
-
-                    <TextView
-                        android:id="@+id/textView117"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="16dp"
-                        android:layout_marginTop="28dp"
-                        android:text="Hjemme"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
-
-                    <TextView
-                        android:id="@+id/textView118"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="16dp"
-                        android:layout_marginTop="44dp"
-                        android:text="Bondens marked"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/textView117" />
-
-                    <TextView
-                        android:id="@+id/textView119"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="16dp"
-                        android:layout_marginTop="44dp"
-                        android:text="Faktura"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/textView118" />
-
-                    <EditText
-                        android:id="@+id/editText16"
-                        android:layout_width="88dp"
-                        android:layout_height="43dp"
-                        android:layout_marginEnd="8dp"
-                        android:ems="10"
-                        android:inputType="number"
-                        app:layout_constraintBaseline_toBaselineOf="@+id/textView117"
-                        app:layout_constraintEnd_toEndOf="parent" />
-
-                    <EditText
-                        android:id="@+id/editText17"
-                        android:layout_width="88dp"
-                        android:layout_height="43dp"
-                        android:layout_marginEnd="8dp"
-                        android:ems="10"
-                        android:inputType="number"
-                        app:layout_constraintBaseline_toBaselineOf="@+id/textView118"
-                        app:layout_constraintEnd_toEndOf="parent" />
-
-                    <EditText
-                        android:id="@+id/editText18"
-                        android:layout_width="88dp"
-                        android:layout_height="43dp"
-                        android:layout_marginEnd="8dp"
-                        android:ems="10"
-                        android:inputType="number"
-                        app:layout_constraintBaseline_toBaselineOf="@+id/textView119"
-                        app:layout_constraintEnd_toEndOf="parent" />
-                </android.support.constraint.ConstraintLayout>
-
                 <TextView
                     android:id="@+id/textView46"
                     android:layout_width="wrap_content"
@@ -849,77 +582,7 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.068"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/extend6" />
-
-                <android.support.constraint.ConstraintLayout
-                    android:id="@+id/lyng1kg"
-                    android:layout_width="296dp"
-                    android:layout_height="52dp"
-                    android:layout_marginStart="27dp"
-                    android:layout_marginTop="8dp"
-                    android:layout_marginEnd="27dp"
-                    android:background="@android:color/white"
-                    android:elevation="4dp"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.448"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/textView45">
-
-                    <TextView
-                        android:id="@+id/textView38"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="8dp"
-                        android:layout_marginTop="8dp"
-                        android:layout_marginBottom="8dp"
-                        android:text="1 kg"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
-
-                    <TextView
-                        android:id="@+id/kg1txtlyng"
-                        android:layout_width="73dp"
-                        android:layout_height="20dp"
-                        android:layout_marginEnd="16dp"
-                        app:layout_constraintBaseline_toBaselineOf="@+id/textView38"
-                        app:layout_constraintEnd_toEndOf="parent" />
-                </android.support.constraint.ConstraintLayout>
-
-                <android.support.constraint.ConstraintLayout
-                    android:id="@+id/lyng025kg"
-                    android:layout_width="296dp"
-                    android:layout_height="50dp"
-                    android:layout_marginStart="29dp"
-                    android:layout_marginTop="2dp"
-                    android:layout_marginEnd="29dp"
-                    android:background="@android:color/white"
-                    android:elevation="4dp"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.6"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/extend5">
-
-                    <TextView
-                        android:id="@+id/textView40"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="8dp"
-                        android:layout_marginTop="8dp"
-                        android:layout_marginBottom="8dp"
-                        android:text="1/4 kg"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
-
-                    <TextView
-                        android:id="@+id/textView34"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginEnd="16dp"
-                        app:layout_constraintBaseline_toBaselineOf="@+id/textView40"
-                        app:layout_constraintEnd_toEndOf="parent" />
-                </android.support.constraint.ConstraintLayout>
+                    app:layout_constraintTop_toBottomOf="@+id/extend3" />
 
                 <android.support.constraint.ConstraintLayout
                     android:id="@+id/extend7"
@@ -1102,6 +765,20 @@
                         app:layout_constraintEnd_toEndOf="parent" />
 
                 </android.support.constraint.ConstraintLayout>
+
+                <Button
+                    android:id="@+id/lagre"
+                    android:layout_width="112dp"
+                    android:layout_height="53dp"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="24dp"
+                    android:layout_marginEnd="32dp"
+                    android:background="#f9bb4f"
+                    android:text="Lagre"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="1.0"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/extend9" />
             </android.support.constraint.ConstraintLayout>
 
 

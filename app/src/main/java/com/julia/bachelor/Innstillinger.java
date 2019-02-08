@@ -66,27 +66,7 @@ public class Innstillinger extends Activity {
             }
         });
 
-        lyng1kg.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                ConstraintLayout exe = findViewById(R.id.extend4);
-                extend(exe);
-            }
-        });
-        lyng05kg.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                ConstraintLayout exe = findViewById(R.id.extend5);
-                extend(exe);
-            }
-        });
-        lyng025kg.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                ConstraintLayout exe = findViewById(R.id.extend6);
-                extend(exe);
-            }
-        });
+
         Ingf05kg.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

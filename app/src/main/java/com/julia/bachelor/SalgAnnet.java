@@ -1,7 +1,6 @@
 package com.julia.bachelor;
 
 import android.app.Activity;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
@@ -30,7 +29,6 @@ public class SalgAnnet extends Activity implements AdapterView.OnItemSelectedLis
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_salg_annet);
-
         getActionBar().setDisplayHomeAsUpEnabled(true);
         betaling = findViewById(R.id.sabetalingsmetode);
         AntBifolk = findViewById(R.id.antbifolk);
@@ -41,7 +39,7 @@ public class SalgAnnet extends Activity implements AdapterView.OnItemSelectedLis
         Dato = findViewById(R.id.sadato);
         Pris = findViewById(R.id.sapris);
 
-        verdier = new ArrayList<>(Arrays.asList(AntBifolk,AntVoks,AntPollenering,AntDronninger));
+        verdier = new ArrayList<>(Arrays.asList(AntBifolk, AntVoks, AntPollenering, AntDronninger));
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.betalingsmetode, android.R.layout.simple_spinner_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         betaling.setAdapter(adapter);
@@ -49,7 +47,7 @@ public class SalgAnnet extends Activity implements AdapterView.OnItemSelectedLis
     }
 
     @Override
-    public boolean onOptionsItemSelected(MenuItem item){
+    public boolean onOptionsItemSelected(MenuItem item) {
         this.finish();
         return true;
     }
@@ -63,35 +61,37 @@ public class SalgAnnet extends Activity implements AdapterView.OnItemSelectedLis
     public void onNothingSelected(AdapterView<?> parent) {
 
     }
-    public boolean checkDate(String date){
+
+    public boolean checkDate(String date) {
         String regex = "^\\d{4}\\.(0?[1-9]|1[012])\\.(0?[1-9]|[12][0-9]|3[01])$";
         return date.matches(regex);
     }
 
-    public void SAlagre(View view){
+    public void SAlagre(View view) {
         int tell = 0;
-        if(checkDate(Dato.getText().toString())){
-            if(!(Pris.getText().toString().equals("") || KundeNavn.getText().toString().equals("")) ) {
+        if (checkDate(Dato.getText().toString())) {
+            if (!(Pris.getText().toString().equals("") || KundeNavn.getText().toString().equals(""))) {
                 for (EditText verdi : verdier) {
                     if (verdi.getText().toString().equals("")) {
                         verdi.setText("0");
-                    }else{
+                    } else {
                         tell++;
                     }
-                }if(tell == 0){
-                    Toast.makeText(this,"Legg til minst et produkt", Toast.LENGTH_SHORT).show();
-                }else {
+                }
+                if (tell == 0) {
+                    Toast.makeText(this, "Legg til minst et produkt", Toast.LENGTH_SHORT).show();
+                } else {
                     //TODO send alle verdier til databasen
                     //  db.executeOnDB("www.honningbier.no/PHP/Beholdning.php/?");
                     Toast.makeText(this, "Annet salg lagret", Toast.LENGTH_SHORT).show();
                     finish();
                 }
-            }else{
+            } else {
                 Toast.makeText(this, "Kundens navn eller Pris er ikke fyllt", Toast.LENGTH_SHORT).show();
             }
-    }else{
-        Toast.makeText(this, "Ugyldig dato", Toast.LENGTH_SHORT).show();
-    }
+        } else {
+            Toast.makeText(this, "Ugyldig dato", Toast.LENGTH_SHORT).show();
+        }
     }
 
 }

@@ -1,11 +1,9 @@
 package com.julia.bachelor;
 
 import android.os.AsyncTask;
-
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
@@ -20,40 +18,40 @@ class Database {
     private static List<Hjemme> Hjemme = new ArrayList<>();
     private static ArrayList<Honning> Honning = new ArrayList<>();
 
-    void executeOnDB(String url){
+    void executeOnDB(String url) {
         ExecuteOnDB task = new ExecuteOnDB();
         task.execute(url);
     }
 
-    List<Annet> getAnnetValues(){
+    List<Annet> getAnnetValues() {
         AnnetTask task = new AnnetTask();
         // TODO set url for annet
         task.execute("");
         return Annet;
     }
 
-    List<Beholdning> getBeholdning(){
+    List<Beholdning> getBeholdning() {
         BeholdningTask task = new BeholdningTask();
         // TODO set url for beholdning
         task.execute("");
         return Beholdning;
     }
 
-    List<BondensMarked> getBMValues(){
+    List<BondensMarked> getBMValues() {
         BondensMTask task = new BondensMTask();
         // TODO set correct url
         task.execute("");
         return BM;
     }
 
-    List<Hjemme> getHjemmeValues(){
+    List<Hjemme> getHjemmeValues() {
         HjemmeTask task = new HjemmeTask();
         // TODO find url for hjemme
         task.execute("");
         return Hjemme;
     }
 
-    List<Honning> getHonningType(){
+    List<Honning> getHonningType() {
         HonningTask task = new HonningTask();
         // TODO Url for Honning
         task.execute("http://www.honningbier.no/PHP/HonningOut.php");
@@ -91,7 +89,7 @@ class Database {
                         annet.setDato(jsonobject.getString("Dato"));
                         annet.setVarer(jsonobject.getString("Varer "));
                         annet.setBelop(jsonobject.getInt("Belop"));
-                        annet.setBetaling(jsonobject.getString("Betaling")) ;
+                        annet.setBetaling(jsonobject.getString("Betaling"));
                         Annet.add(annet);
                     }
                 } catch (JSONException e) {

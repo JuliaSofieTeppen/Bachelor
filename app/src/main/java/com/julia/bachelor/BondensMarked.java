@@ -7,7 +7,8 @@ class BondensMarked {
     private String Varer;
     private int Belop;
 
-    BondensMarked(){}
+    BondensMarked() {
+    }
 
     BondensMarked(String dato, String varer, int belop) {
         Dato = dato;
@@ -15,19 +16,35 @@ class BondensMarked {
         Varer = varer;
     }
 
-    long get_ID() { return _ID; }
+    long get_ID() {
+        return _ID;
+    }
 
-    void set_ID(long _ID) { this._ID = _ID; }
+    void set_ID(long _ID) {
+        this._ID = _ID;
+    }
 
-    String getDato() { return Dato; }
+    String getDato() {
+        return Dato;
+    }
 
-    void setDato(String dato) { Dato = dato; }
+    void setDato(String dato) {
+        Dato = dato;
+    }
 
-    String getVarer() { return Varer; }
+    String getVarer() {
+        return Varer;
+    }
 
-    void setVarer(String varer) { Varer = varer; }
+    void setVarer(String varer) {
+        Varer = varer;
+    }
 
-    int getBelop() { return Belop; }
+    int getBelop() {
+        return Belop;
+    }
 
-    void setBelop(int belop) { Belop = belop; }
+    void setBelop(int belop) {
+        Belop = belop;
+    }
 }

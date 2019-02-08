@@ -12,7 +12,6 @@ class Beregninger {
     Beregninger() {
     }
 
-    @org.jetbrains.annotations.Contract(pure = true)
     public static int belop_0(@NonNull int[] tabell) {
         int total = 0;
         for (int i : tabell) {

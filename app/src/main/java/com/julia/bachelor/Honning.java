@@ -1,44 +1,45 @@
 package com.julia.bachelor;
 
-import android.os.Parcel;
-import android.os.Parcelable;
-
-public class Honning{
+class Honning{
 
     private long _ID;
     private String Type;
     private double Storrelse;
     private int HjemmePris;
     private int BondensMarkedPris;
+    private int FakturaPris;
 
-    public Honning() {}
+    Honning() {}
 
-    public Honning(String type, double storrelse, int hjemmePris, int bondensMarkedPris) {
+    Honning(String type, double storrelse, int hjemmePris, int bondensMarkedPris, int fakturaPris) {
         Type = type;
         Storrelse = storrelse;
         HjemmePris = hjemmePris;
         BondensMarkedPris = bondensMarkedPris;
+        FakturaPris = fakturaPris;
     }
 
-    public long get_ID() { return _ID; }
+    long get_ID() { return _ID; }
 
-    public void set_ID(long _ID) { this._ID = _ID; }
+    void set_ID(long _ID) { this._ID = _ID; }
 
-    public String getType() { return Type; }
+    String getType() { return Type; }
 
-    public void setType(String type) { Type = type; }
+    void setType(String type) { Type = type; }
 
-    public double getStorrelse() { return Storrelse; }
+    double getStorrelse() { return Storrelse; }
 
-    public void setStorrelse(double storrelse) { Storrelse = storrelse; }
+    void setStorrelse(double storrelse) { Storrelse = storrelse; }
 
-    public int getHjemmePris() { return HjemmePris; }
+    int getHjemmePris() { return HjemmePris; }
 
-    public void setHjemmePris(int hjemmePris) { HjemmePris = hjemmePris; }
+    void setHjemmePris(int hjemmePris) { HjemmePris = hjemmePris; }
 
-    public int getBondensMarkedPris() { return BondensMarkedPris; }
+    int getBondensMarkedPris() { return BondensMarkedPris; }
 
-    public void setBondensMarkedPris(int bondensMarkedPris) { BondensMarkedPris = bondensMarkedPris; }
+    void setBondensMarkedPris(int bondensMarkedPris) { BondensMarkedPris = bondensMarkedPris; }
 
+    int getFakturaPris() { return FakturaPris; }
 
+    void setFakturaPris(int fakturaPris) { FakturaPris = fakturaPris; }
 }

@@ -1,9 +1,11 @@
 package com.julia.bachelor;
 
 import android.os.AsyncTask;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
@@ -129,9 +131,15 @@ class Database {
                         Beholdning beholdning = new Beholdning();
                         JSONObject jsonobject = jsonArray.getJSONObject(i);
                         beholdning.set_ID(jsonobject.getLong("_ID"));
-                        beholdning.setAntall(jsonobject.getInt("Antall"));
-                        // TODO check table and coloumn names
-                        beholdning.setH_ID(jsonobject.getLong("Honning"));
+                        beholdning.setSommer(jsonobject.getInt("Sommer"));
+                        beholdning.setSommerH(jsonobject.getInt("SommerHalv"));
+                        beholdning.setSommerK(jsonobject.getInt("SommerKvart"));
+                        beholdning.setLyng(jsonobject.getInt("Lyng"));
+                        beholdning.setLyngH(jsonobject.getInt("LyngHalv"));
+                        beholdning.setLyngK(jsonobject.getInt("LyngKvart"));
+                        beholdning.setIngeferH(jsonobject.getInt("IngeferHalv"));
+                        beholdning.setIngeferK(jsonobject.getInt("IngeferKvart"));
+                        beholdning.setFlytende(jsonobject.getInt("Flytende"));
                         beholdning.setDato(jsonobject.getString("Dato"));
                         Beholdning.add(beholdning);
                     }
@@ -261,9 +269,9 @@ class Database {
                         honning.set_ID(jsonobject.getLong("ID"));
                         honning.setType(jsonobject.getString("Type"));
                         honning.setStorrelse(jsonobject.getDouble("Storrelse"));
-                        // TODO check coloumn names
                         honning.setHjemmePris(jsonobject.getInt("HjemmePris"));
                         honning.setBondensMarkedPris(jsonobject.getInt("BMPris"));
+                        honning.setFakturaPris(jsonobject.getInt("FakturaPris"));
                         Honning.add(honning);
                     }
                 } catch (JSONException e) {

@@ -8,20 +8,25 @@ import android.app.FragmentManager;
 import android.app.FragmentTransaction;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Parcel;
 import android.os.Parcelable;
+import android.support.design.internal.ParcelableSparseArray;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.support.v4.widget.DrawerLayout;
 
+import org.parceler.Parcels;
+
 import java.io.Serializable;
+import java.io.SerializablePermission;
 import java.util.ArrayList;
 import java.util.List;
 
 public class Main extends Activity
-        implements NavigationDrawerFragment.NavigationDrawerCallbacks {
+        implements NavigationDrawerFragment.NavigationDrawerCallbacks{
     static ArrayList<Honning> honningtype;
-    Database database;
+    static Database database;
 
     /**
      * Fragment managing the behaviors, interactions and presentation of the navigation drawer.
@@ -76,7 +81,7 @@ public class Main extends Activity
             case 3:
                 mTitle = getString(R.string.title_section3);
                 Bundle bundle = new Bundle();
-                bundle.putSerializable("params",  honningtype);
+                bundle.putParcelable("params", Parcels.wrap(honningtype));
                 PriserFragment fragment = new PriserFragment();
                 fragment.setArguments(bundle);
                 FragmentTransaction fragmentt = getFragmentManager().beginTransaction();

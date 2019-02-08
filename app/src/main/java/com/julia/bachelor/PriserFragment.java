@@ -2,6 +2,7 @@ package com.julia.bachelor;
 
 import android.app.Fragment;
 import android.os.Bundle;
+import android.os.Parcel;
 import android.provider.ContactsContract;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -9,6 +10,7 @@ import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import org.parceler.Parcels;
 import org.w3c.dom.Text;
 
 import java.io.Serializable;
@@ -16,7 +18,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-public class PriserFragment extends Fragment {
+public class PriserFragment extends Fragment{
     private static final String ARG_SECTION_NUMBER = "section_number";
     Database database;
     TextView kg1;
@@ -56,7 +58,7 @@ public class PriserFragment extends Fragment {
         verdier = new ArrayList<>(Arrays.asList(kg1,kg05,kg025,ingf05kg,ingf025kg,flyt));
         honningtype = new ArrayList<>();
         try {
-            honningtype = (ArrayList<Honning>) getArguments().getSerializable("params");
+            honningtype = (ArrayList<Honning>) Parcels.unwrap(getArguments().getParcelable("params"));
             String s = "" + honningtype.get(0).getHjemmePris();
             kg1.setText(s);
         }catch (Exception e){

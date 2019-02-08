@@ -1,6 +1,9 @@
 package com.julia.bachelor;
 
-public class Honning {
+import android.os.Parcel;
+import android.os.Parcelable;
+
+public class Honning{
 
     private long _ID;
     private String Type;
@@ -36,4 +39,6 @@ public class Honning {
     public int getBondensMarkedPris() { return BondensMarkedPris; }
 
     public void setBondensMarkedPris(int bondensMarkedPris) { BondensMarkedPris = bondensMarkedPris; }
+
+
 }

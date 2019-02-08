@@ -34,7 +34,7 @@ public class Innstillinger extends Activity {
         Ingf05kg = findViewById(R.id.ingf05kg);
         Ingf025kg = findViewById(R.id.ingf025kg);
         flyt = findViewById(R.id.flyt);
-        endreverdier = findViewById(R.id.endreverdier);
+        endreverdier = findViewById(R.id.endremoms);
 
         endreverdier.setOnClickListener(new View.OnClickListener() {
             @Override

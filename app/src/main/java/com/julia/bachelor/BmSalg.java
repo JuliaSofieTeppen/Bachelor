@@ -31,7 +31,6 @@ public class BmSalg extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_bm_salg);
-
         getActionBar().setDisplayHomeAsUpEnabled(true);
         db = new Database();
         dato = findViewById(R.id.BMSdato);
@@ -44,51 +43,49 @@ public class BmSalg extends Activity {
         ingf05kg = findViewById(R.id.BMSingf05kg);
         ingf025kg = findViewById(R.id.BMSingf025kg);
         flytende = findViewById(R.id.BMSflyt);
-        verdier = new ArrayList<>(Arrays.asList(som1kg,som05kg,som025kg,lyng1kg,lyng05kg,lyng025kg,ingf05kg,ingf025kg,flytende));
+        verdier = new ArrayList<>(Arrays.asList(som1kg, som05kg, som025kg, lyng1kg, lyng05kg, lyng025kg, ingf05kg, ingf025kg, flytende));
         honningtyper = db.getHonningType();
     }
 
 
-    public void lagre(View v){
+    public void lagre(View v) {
         int tell = 0;
-        if(checkDate(dato.getText().toString())){
-            for(EditText verdi : verdier){
-                if(verdi.getText().toString().equals("")){
+        if (checkDate(dato.getText().toString())) {
+            for (EditText verdi : verdier) {
+                if (verdi.getText().toString().equals("")) {
                     verdi.setText("0");
 
-                }else{
+                } else {
                     tell++;
                 }
             }
-            if(tell == 0){
-                Toast.makeText(this,"Legg til minst et produkt", Toast.LENGTH_SHORT).show();
-            }else {
-                //db.executeOnDB("www.honningbier.no/PHP/BondensMarked.php/?" +
-                //        "Dato=" + dato.getText().toString() + "&Varer=" ); //  + varer string something
+            if (tell == 0) {
+                Toast.makeText(this, "Legg til minst et produkt", Toast.LENGTH_SHORT).show();
+            } else {
                 Toast.makeText(this, "Bondens marked salg lagret", Toast.LENGTH_SHORT).show();
                 finish();
             }
-        }else{
+        } else {
             Toast.makeText(this, "Ugyldig dato", Toast.LENGTH_SHORT).show();
         }
     }
 
     @Override
-    public boolean onOptionsItemSelected(MenuItem item){
-            this.finish();
+    public boolean onOptionsItemSelected(MenuItem item) {
+        this.finish();
         return true;
     }
 
-    public boolean checkDate(String date){
+    public boolean checkDate(String date) {
         String regex = "^\\d{4}\\.(0?[1-9]|1[012])\\.(0?[1-9]|[12][0-9]|3[01])$";
         return date.matches(regex);
     }
 
-    public String getVarer(){
+    public String getVarer() {
         StringBuilder stringBuilder = new StringBuilder();
-        for(int i = 0; i < honningtyper.size(); i++) {
-            stringBuilder.append(honningtyper.get(i).get_ID() +"-"+ verdier.get(i).getText().toString()+ "_");
+        for (int i = 0; i < honningtyper.size(); i++) {
+            stringBuilder.append(honningtyper.get(i).get_ID()).append("-").append(verdier.get(i).getText().toString()).append("_");
         }
-        return"hei";
+        return "hei";
     }
 }

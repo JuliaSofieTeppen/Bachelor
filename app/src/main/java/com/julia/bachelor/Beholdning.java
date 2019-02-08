@@ -14,49 +14,94 @@ class Beholdning {
     private int Flytende;
     private String Dato;
 
-    Beholdning(){}
+    Beholdning() {
+    }
 
-    long get_ID() { return _ID; }
+    long get_ID() {
+        return _ID;
+    }
 
-    void set_ID(long _ID){ this._ID = _ID; }
+    void set_ID(long _ID) {
+        this._ID = _ID;
+    }
 
-    int getSommer() { return Sommer; }
+    int getSommer() {
+        return Sommer;
+    }
 
-    void setSommer(int sommer) { Sommer = sommer; }
+    void setSommer(int sommer) {
+        Sommer = sommer;
+    }
 
-    int getSommerH() { return SommerH; }
+    int getSommerH() {
+        return SommerH;
+    }
 
-    void setSommerH(int sommerH) { SommerH = sommerH; }
+    void setSommerH(int sommerH) {
+        SommerH = sommerH;
+    }
 
-    int getSommerK() { return SommerK; }
+    int getSommerK() {
+        return SommerK;
+    }
 
-    void setSommerK(int sommerK) { SommerK = sommerK; }
+    void setSommerK(int sommerK) {
+        SommerK = sommerK;
+    }
 
-    int getLyng() { return Lyng; }
+    int getLyng() {
+        return Lyng;
+    }
 
-    void setLyng(int lyng) { Lyng = lyng; }
+    void setLyng(int lyng) {
+        Lyng = lyng;
+    }
 
-    int getLyngH() { return LyngH; }
+    int getLyngH() {
+        return LyngH;
+    }
 
-    void setLyngH(int lyngH) { LyngH = lyngH; }
+    void setLyngH(int lyngH) {
+        LyngH = lyngH;
+    }
 
-    int getLyngK() { return LyngK; }
+    int getLyngK() {
+        return LyngK;
+    }
 
-    void setLyngK(int lyngK) { LyngK = lyngK; }
+    void setLyngK(int lyngK) {
+        LyngK = lyngK;
+    }
 
-    int getIngeferH() { return IngeferH; }
+    int getIngeferH() {
+        return IngeferH;
+    }
 
-    void setIngeferH(int ingeferH) { IngeferH = ingeferH; }
+    void setIngeferH(int ingeferH) {
+        IngeferH = ingeferH;
+    }
 
-    int getIngeferK() { return IngeferK; }
+    int getIngeferK() {
+        return IngeferK;
+    }
 
-    void setIngeferK(int ingeferK) { IngeferK = ingeferK; }
+    void setIngeferK(int ingeferK) {
+        IngeferK = ingeferK;
+    }
 
-    int getFlytende() { return Flytende; }
+    int getFlytende() {
+        return Flytende;
+    }
 
-    void setFlytende(int flytende) { Flytende = flytende; }
+    void setFlytende(int flytende) {
+        Flytende = flytende;
+    }
 
-    String getDato(){ return Dato; }
+    String getDato() {
+        return Dato;
+    }
 
-    void setDato(String dato){ Dato = dato; }
+    void setDato(String dato) {
+        Dato = dato;
+    }
 }

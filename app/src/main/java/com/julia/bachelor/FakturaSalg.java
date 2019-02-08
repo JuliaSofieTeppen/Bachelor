@@ -4,15 +4,11 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.os.Bundle;
-import android.view.Gravity;
-import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
-import android.widget.LinearLayout;
-import android.widget.PopupWindow;
 import android.widget.ScrollView;
 import android.widget.Spinner;
 import android.widget.Toast;
@@ -44,7 +40,6 @@ public class FakturaSalg extends Activity implements AdapterView.OnItemSelectedL
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_faktura_salg);
-
         getActionBar().setDisplayHomeAsUpEnabled(true);
         db = new Database();
         moms = findViewById(R.id.FSmoms);
@@ -60,72 +55,73 @@ public class FakturaSalg extends Activity implements AdapterView.OnItemSelectedL
         flytende = findViewById(R.id.FSflyt);
         layout = findViewById(R.id.scroll);
         betaling = findViewById(R.id.FSbetalmet);
-        verdier = new ArrayList<>(Arrays.asList(moms,som1kg,som05kg,som025kg,lyng1kg,lyng05kg,lyng025kg,ingf05kg,ingf025kg,flytende));
+        verdier = new ArrayList<>(Arrays.asList(moms, som1kg, som05kg, som025kg, lyng1kg, lyng05kg, lyng025kg, ingf05kg, ingf025kg, flytende));
 
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.betalingsmetode, android.R.layout.simple_spinner_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         betaling.setAdapter(adapter);
         betaling.setOnItemSelectedListener(this);
     }
-    public void lagre(View v){
+
+    public void lagre(View v) {
         int tell = 0;
-        if(checkDate(dato.getText().toString())){
-            for(EditText verdi : verdier){
-                if(verdi.getText().toString().equals("")){
+        if (checkDate(dato.getText().toString())) {
+            for (EditText verdi : verdier) {
+                if (verdi.getText().toString().equals("")) {
                     verdi.setText("0");
-                }else{
+                } else {
                     tell++;
                 }
             }
-            if(tell == 0){
-                Toast.makeText(this,"Legg til minst et produkt", Toast.LENGTH_SHORT).show();
-            }else {
+            if (tell == 0) {
+                Toast.makeText(this, "Legg til minst et produkt", Toast.LENGTH_SHORT).show();
+            } else {
                 //TODO send alle verdier til databasen
-                //  db.executeOnDB("www.honningbier.no/PHP/Beholdning.php/?");
                 Toast.makeText(this, "Videre salg lagret", Toast.LENGTH_SHORT).show();
                 finish();
             }
-        }else{
+        } else {
             Toast.makeText(this, "Ugyldig dato", Toast.LENGTH_SHORT).show();
         }
     }
+
     @Override
-    public void onBackPressed(){
+    public void onBackPressed() {
         goback();
     }
-    public void goback(){
+
+    public void goback() {
         //TODO check fields before poppopen skal syntes.
-                //android.app.AlertDialog.Builder builder = new android.app.AlertDialog.Builder(FakturaSalg.this,R.style.AlertDialog);
-                final AlertDialog.Builder builder = new AlertDialog.Builder(FakturaSalg.this);
-                builder.setMessage("Vil du gå tilbake?");
-                builder.setCancelable(true);
-                builder.setNegativeButton("Yes", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        finish();
-                    }
-                });
-                builder.setPositiveButton("No", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        dialog.cancel();
-                    }
-                });
-                AlertDialog alertDialog = builder.create();
-                alertDialog.show();
+        //android.app.AlertDialog.Builder builder = new android.app.AlertDialog.Builder(FakturaSalg.this,R.style.AlertDialog);
+        final AlertDialog.Builder builder = new AlertDialog.Builder(FakturaSalg.this);
+        builder.setMessage("Vil du gå tilbake?");
+        builder.setCancelable(true);
+        builder.setNegativeButton("Yes", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                finish();
+            }
+        });
+        builder.setPositiveButton("No", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.cancel();
+            }
+        });
+        AlertDialog alertDialog = builder.create();
+        alertDialog.show();
 
     }
 
 
-
-    public boolean checkDate(String date){
+    public boolean checkDate(String date) {
         String regex = "^\\d{4}\\.(0?[1-9]|1[012])\\.(0?[1-9]|[12][0-9]|3[01])$";
         return date.matches(regex);
     }
 
     @Override
-    public boolean onOptionsItemSelected(MenuItem item){
-            goback();
+    public boolean onOptionsItemSelected(MenuItem item) {
+        goback();
         return true;
     }
 

@@ -72,7 +72,7 @@ public class Main extends Activity
                 break;
             case 2:
                 mTitle = getString(R.string.title_section2);
-                BeholdningFragment myf = new BeholdningFragment();
+                BeholdningFragment myf = BeholdningFragment.newInstance(1);
                 FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
                 fragmentTransaction.replace(R.id.container, myf);
                 fragmentTransaction.addToBackStack(null);
@@ -81,7 +81,7 @@ public class Main extends Activity
             case 3:
                 mTitle = getString(R.string.title_section3);
                 Bundle bundle = new Bundle();
-                bundle.putParcelable("params", Parcels.wrap(honningtype));
+                bundle.putSerializable("params", honningtype);
                 PriserFragment fragment = new PriserFragment();
                 fragment.setArguments(bundle);
                 FragmentTransaction fragmentt = getFragmentManager().beginTransaction();

@@ -1,6 +1,6 @@
 package com.julia.bachelor;
 
-class Honning{
+class Honning {
 
     private long _ID;
     private String Type;
@@ -9,7 +9,8 @@ class Honning{
     private int BondensMarkedPris;
     private int FakturaPris;
 
-    Honning() {}
+    Honning() {
+    }
 
     Honning(String type, double storrelse, int hjemmePris, int bondensMarkedPris, int fakturaPris) {
         Type = type;
@@ -19,27 +20,51 @@ class Honning{
         FakturaPris = fakturaPris;
     }
 
-    long get_ID() { return _ID; }
+    long get_ID() {
+        return _ID;
+    }
 
-    void set_ID(long _ID) { this._ID = _ID; }
+    void set_ID(long _ID) {
+        this._ID = _ID;
+    }
 
-    String getType() { return Type; }
+    String getType() {
+        return Type;
+    }
 
-    void setType(String type) { Type = type; }
+    void setType(String type) {
+        Type = type;
+    }
 
-    double getStorrelse() { return Storrelse; }
+    double getStorrelse() {
+        return Storrelse;
+    }
 
-    void setStorrelse(double storrelse) { Storrelse = storrelse; }
+    void setStorrelse(double storrelse) {
+        Storrelse = storrelse;
+    }
 
-    int getHjemmePris() { return HjemmePris; }
+    int getHjemmePris() {
+        return HjemmePris;
+    }
 
-    void setHjemmePris(int hjemmePris) { HjemmePris = hjemmePris; }
+    void setHjemmePris(int hjemmePris) {
+        HjemmePris = hjemmePris;
+    }
 
-    int getBondensMarkedPris() { return BondensMarkedPris; }
+    int getBondensMarkedPris() {
+        return BondensMarkedPris;
+    }
 
-    void setBondensMarkedPris(int bondensMarkedPris) { BondensMarkedPris = bondensMarkedPris; }
+    void setBondensMarkedPris(int bondensMarkedPris) {
+        BondensMarkedPris = bondensMarkedPris;
+    }
 
-    int getFakturaPris() { return FakturaPris; }
+    int getFakturaPris() {
+        return FakturaPris;
+    }
 
-    void setFakturaPris(int fakturaPris) { FakturaPris = fakturaPris; }
+    void setFakturaPris(int fakturaPris) {
+        FakturaPris = fakturaPris;
+    }
 }

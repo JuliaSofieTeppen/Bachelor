@@ -16,7 +16,7 @@ import android.widget.Toast;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 
@@ -75,9 +75,9 @@ public class HjemmeSalg extends Activity implements AdapterView.OnItemSelectedLi
     }
 
     String getDate() {
-        DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd", Locale.US);
-        Calendar cal = Calendar.getInstance();
-        return dateFormat.format(cal);
+        DateFormat dateFormat = new SimpleDateFormat("yyyy.MM.dd", Locale.US);
+        Date now = new Date();
+        return dateFormat.format(now);
     }
 
     void insertValues() {

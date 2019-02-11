@@ -78,7 +78,6 @@ public class HjemmeSalg extends Activity implements AdapterView.OnItemSelectedLi
         DateFormat dateFormat = new SimpleDateFormat("yyyy/mm/dd", Locale.US);
         Calendar cal = Calendar.getInstance();
         return dateFormat.format(cal);
-        //http://www.honningbier.no/PHP/BeholdningOut.php/?Antall=6&H_ID=9&Dato=%222018.09.3%22
     }
 
     void insertValues() {
@@ -202,9 +201,7 @@ public class HjemmeSalg extends Activity implements AdapterView.OnItemSelectedLi
             } else {
                 Toast.makeText(this, "Handlekurven er tom", Toast.LENGTH_SHORT).show();
             }
-
         }
-
     }
 
     @Override

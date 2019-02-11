@@ -75,7 +75,7 @@ public class HjemmeSalg extends Activity implements AdapterView.OnItemSelectedLi
     }
 
     String getDate() {
-        DateFormat dateFormat = new SimpleDateFormat("yyyy/mm/dd", Locale.US);
+        DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd", Locale.US);
         Calendar cal = Calendar.getInstance();
         return dateFormat.format(cal);
     }

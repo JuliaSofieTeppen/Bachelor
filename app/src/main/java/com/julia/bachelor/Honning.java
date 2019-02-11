@@ -1,6 +1,6 @@
 package com.julia.bachelor;
 
-class Honning {
+class Honning implements java.io.Serializable{
 
     private long _ID;
     private String Type;

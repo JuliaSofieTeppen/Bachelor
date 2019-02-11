@@ -17,6 +17,7 @@ public class Innstillinger extends Activity {
     ConstraintLayout Ingf025kg;
     ConstraintLayout flyt;
     ConstraintLayout endreverdier;
+    ConstraintLayout endremoms;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,12 +35,20 @@ public class Innstillinger extends Activity {
         Ingf05kg = findViewById(R.id.ingf05kg);
         Ingf025kg = findViewById(R.id.ingf025kg);
         flyt = findViewById(R.id.flyt);
-        endreverdier = findViewById(R.id.endremoms);
+        endreverdier = findViewById(R.id.endrepris);
+        endremoms = findViewById(R.id.endremoms);
 
         endreverdier.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 ConstraintLayout exe = findViewById(R.id.bigextend);
+                extend(exe);
+            }
+        });
+        endremoms.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ConstraintLayout exe = findViewById(R.id.bigextend2);
                 extend(exe);
             }
         });

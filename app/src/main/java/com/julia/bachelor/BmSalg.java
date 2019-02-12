@@ -27,7 +27,7 @@ public class BmSalg extends Activity {
     EditText flytende;
     List<EditText> verdier;
     Database db;
-    List<Honning> honningtyper;
+    static List<Honning> honningtyper;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,7 +46,7 @@ public class BmSalg extends Activity {
         ingf025kg = findViewById(R.id.BMSingf025kg);
         flytende = findViewById(R.id.BMSflyt);
         verdier = new ArrayList<>(Arrays.asList(som1kg, som05kg, som025kg, lyng1kg, lyng05kg, lyng025kg, ingf05kg, ingf025kg, flytende));
-        honningtyper = db.getHonningType();
+        db.getHonningType();
     }
 
 
@@ -111,11 +111,19 @@ public class BmSalg extends Activity {
 
     }
 
+    void setHonningtyper(ArrayList<Honning> type){
+        honningtyper = type;
+    }
+
     public String getVarer() {
         StringBuilder stringBuilder = new StringBuilder();
         for (int i = 0; i < honningtyper.size(); i++) {
-            stringBuilder.append(honningtyper.get(i).get_ID()).append("-").append(verdier.get(i).getText().toString()).append("_");
+            stringBuilder.append(honningtyper.get(i).get_ID()).append("-").append(verdier.get(i).getText().toString()).append(",");
         }
         return "hei";
+    }
+
+    void insertValues() {
+        db.executeOnDB("");
     }
 }

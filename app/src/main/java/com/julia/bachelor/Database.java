@@ -316,6 +316,8 @@ class Database {
             hjemmeSalg.setArrays(Honning);
             Main main = new Main();
             main.setHonning(Honning);
+            BmSalg bmSalg = new BmSalg();
+            bmSalg.setHonningtyper(Honning);
         }
     }
 

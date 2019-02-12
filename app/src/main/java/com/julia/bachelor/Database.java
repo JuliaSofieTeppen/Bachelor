@@ -9,53 +9,53 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.ArrayList;
-import java.util.List;
 
 class Database {
-    private static List<Annet> Annet = new ArrayList<>();
-    private static List<Beholdning> Beholdning = new ArrayList<>();
-    private static List<BondensMarked> BM = new ArrayList<>();
-    private static List<Hjemme> Hjemme = new ArrayList<>();
+    private static ArrayList<Annet> Annet = new ArrayList<>();
+    private static ArrayList<Beholdning> Beholdning = new ArrayList<>();
+    private static ArrayList<BondensMarked> BM = new ArrayList<>();
+    private static ArrayList<Hjemme> Hjemme = new ArrayList<>();
     private static ArrayList<Honning> Honning = new ArrayList<>();
+    private static ArrayList<Videresalg> Videresalg = new ArrayList<>();
 
     void executeOnDB(String url) {
         ExecuteOnDB task = new ExecuteOnDB();
         task.execute(url);
     }
 
-    List<Annet> getAnnetValues() {
+    void getAnnetValues() {
         AnnetTask task = new AnnetTask();
         // TODO set url for annet
-        task.execute("");
-        return Annet;
+        task.execute("http://www.honningbier.no/PHP/AnnetOut.php");
     }
 
-    List<Beholdning> getBeholdning() {
+    void getBeholdningValues() {
         BeholdningTask task = new BeholdningTask();
         // TODO set url for beholdning
-        task.execute("");
-        return Beholdning;
+        task.execute("http://www.honningbier.no/PHP/BeholdningOut.php");
     }
 
-    List<BondensMarked> getBMValues() {
+    void getBMValues() {
         BondensMTask task = new BondensMTask();
         // TODO set correct url
-        task.execute("");
-        return BM;
+        task.execute("http://www.honningbier.no/PHP/BondensMarkedOut.php");
     }
 
-    List<Hjemme> getHjemmeValues() {
+    void getHjemmeValues() {
         HjemmeTask task = new HjemmeTask();
         // TODO find url for hjemme
-        task.execute("");
-        return Hjemme;
+        task.execute("http://www.honningbier.no/PHP/HjemmeOut.php");
     }
 
-    List<Honning> getHonningType() {
+    void getHonningType() {
         HonningTask task = new HonningTask();
         // TODO Url for Honning
         task.execute("http://www.honningbier.no/PHP/HonningOut.php");
-        return Honning;
+    }
+
+    void getVideresalgValues(){
+        VideresalgTask task = new VideresalgTask();
+        task.execute("http://www.honningbier.no/PHP/VideresalgOut.php");
     }
 
     private static class AnnetTask extends AsyncTask<String, Void, String> {
@@ -99,6 +99,13 @@ class Database {
             } catch (Exception e) {
                 return "Noe gikk feil: " + e.toString();
             }
+        }
+
+        @Override
+        protected void onPostExecute(String s) {
+            super.onPostExecute(s);
+            Main main = new Main();
+            main.setAnnet(Annet);
         }
     }
 
@@ -149,6 +156,13 @@ class Database {
                 return "Noe gikk feil: " + e.toString();
             }
         }
+
+        @Override
+        protected void onPostExecute(String s) {
+            super.onPostExecute(s);
+            Main main = new Main();
+            main.setBeholdning(Beholdning);
+        }
     }
 
     private static class BondensMTask extends AsyncTask<String, Void, String> {
@@ -190,6 +204,13 @@ class Database {
             } catch (Exception e) {
                 return "Noe gikk feil: " + e.toString();
             }
+        }
+
+        @Override
+        protected void onPostExecute(String s) {
+            super.onPostExecute(s);
+            Main main = new Main();
+            main.setBM(BM);
         }
     }
 
@@ -234,6 +255,13 @@ class Database {
             } catch (Exception e) {
                 return "Noe gikk feil: " + e.toString();
             }
+        }
+
+        @Override
+        protected void onPostExecute(String s) {
+            super.onPostExecute(s);
+            Main main = new Main();
+            main.setHjemme(Hjemme);
         }
     }
 
@@ -287,7 +315,60 @@ class Database {
             HjemmeSalg hjemmeSalg = new HjemmeSalg();
             hjemmeSalg.setArrays(Honning);
             Main main = new Main();
-            main.setArrays(Honning);
+            main.setHonning(Honning);
+        }
+    }
+
+    private static class VideresalgTask extends AsyncTask<String, Void, String> {
+        @Override
+        protected String doInBackground(String... urls) {
+            // Get strings from bufferedReader.
+            String nextLine;
+            StringBuilder output = new StringBuilder();
+            Honning = new ArrayList<>();
+            try {
+                URL url = new URL(urls[0]);
+                HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+                conn.setRequestMethod("GET");
+                conn.setRequestProperty("Accept", "application/json");
+                if (conn.getResponseCode() != 200) {
+                    throw new RuntimeException("Failed: HTTP error code: " + conn.getResponseCode());
+                }
+                // Get the string containing values from db.
+                BufferedReader bufferedReader = new BufferedReader(new InputStreamReader((conn.getInputStream())));
+                while ((nextLine = bufferedReader.readLine()) != null) {
+                    output.append(nextLine);
+                }
+                conn.disconnect();
+                try {
+                    // Convert string to JSONArray containing JSONObjects.
+                    JSONArray jsonArray = new JSONArray(output.toString());
+                    for (int i = 0; i < jsonArray.length(); i++) {
+                        Videresalg videresalg = new Videresalg();
+                        JSONObject jsonobject = jsonArray.getJSONObject(i);
+                        videresalg.set_ID(jsonobject.getLong("_ID"));
+                        videresalg.setKunde(jsonobject.getString("Kunde"));
+                        videresalg.setDato(jsonobject.getString("Dato"));
+                        videresalg.setVarer(jsonobject.getString("Varer "));
+                        videresalg.setBelop(jsonobject.getInt("Belop"));
+                        videresalg.setBetaling(jsonobject.getString("Betaling"));
+                        videresalg.setMoms(jsonobject.getDouble("Moms"));
+                        Videresalg.add(videresalg);
+                    }
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+                return "Done!";
+            } catch (Exception e) {
+                return "Noe gikk feil: " + e.toString();
+            }
+        }
+
+        @Override
+        protected void onPostExecute(String s) {
+            super.onPostExecute(s);
+            Main main = new Main();
+            main.setVideresalg(Videresalg);
         }
     }
 

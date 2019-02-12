@@ -3,7 +3,7 @@
     package="com.julia.bachelor">
 
     <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission  android:name="android.permission.ACCESS_NETWORK_STATE"/>
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
     <application
         android:allowBackup="true"
@@ -11,7 +11,8 @@
         android:roundIcon="@drawable/logo"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".SalgAnnet"/>
+        <activity android:name=".FullOversikt"></activity>
+        <activity android:name=".SalgAnnet" />
         <activity android:name=".AddBeholdning" />
         <activity android:name=".Innstillinger" />
         <activity android:name=".FakturaSalg" />

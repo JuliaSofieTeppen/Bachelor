@@ -2,28 +2,23 @@ package com.julia.bachelor;
 
 import android.app.Activity;
 
-import android.app.ActionBar;
-import android.app.Fragment;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Parcel;
-import android.os.Parcelable;
-import android.support.design.internal.ParcelableSparseArray;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
 import android.support.v4.widget.DrawerLayout;
 
-import java.io.Serializable;
-import java.io.SerializablePermission;
 import java.util.ArrayList;
-import java.util.List;
 
 public class Main extends Activity
         implements NavigationDrawerFragment.NavigationDrawerCallbacks{
-    static ArrayList<Honning> honningtype;
+    static ArrayList<Honning> Honningtype;
+    static ArrayList<Annet> Annet;
+    static ArrayList<Hjemme> Hjemme;
+    static ArrayList<BondensMarked> Bm;
+    static ArrayList<Videresalg> Videresalg;
+    static ArrayList<Beholdning> Beholdning;
+
     static Database database;
 
     /**
@@ -38,7 +33,12 @@ public class Main extends Activity
         setContentView(R.layout.activity_main);
         database = new Database();
         database.getHonningType();
-        honningtype = new ArrayList<>();
+        database.getAnnetValues();
+        database.getBeholdningValues();
+        database.getBMValues();
+        database.getHjemmeValues();
+        database.getVideresalgValues();
+        Honningtype = new ArrayList<>();
         mNavigationDrawerFragment = (NavigationDrawerFragment)getFragmentManager().findFragmentById(R.id.navigation_drawer);
         // Set up the drawer.
         mNavigationDrawerFragment.setUp(R.id.navigation_drawer, (DrawerLayout) findViewById(R.id.drawer_layout));
@@ -69,7 +69,7 @@ public class Main extends Activity
             case 3:
                 mTitle = getString(R.string.title_section3);
                 Bundle bundle = new Bundle();
-                bundle.putSerializable("params", honningtype);
+                bundle.putSerializable("params", Honningtype);
                 PriserFragment fragment = new PriserFragment();
                 fragment.setArguments(bundle);
                 FragmentTransaction fragmentt = getFragmentManager().beginTransaction();
@@ -85,8 +85,27 @@ public class Main extends Activity
 
         }
     }
+    public void setAnnet(ArrayList<com.julia.bachelor.Annet> annet) {
+        Annet = annet;
+    }
 
-    public void setArrays(ArrayList<Honning> type){
-        honningtype = type;
+    public void setBeholdning(ArrayList<Beholdning> beholdnings){
+        Beholdning = beholdnings;
+    }
+
+    public void setBM(ArrayList<BondensMarked> bondensMarkeds){
+        Bm = bondensMarkeds;
+    }
+
+    public void setHjemme(ArrayList<Hjemme> hjemmes){
+        Hjemme = hjemmes;
+    }
+
+    public void setHonning(ArrayList<Honning> type){
+        Honningtype = type;
+    }
+
+    public void setVideresalg(ArrayList<com.julia.bachelor.Videresalg> videresalg) {
+        Videresalg = videresalg;
     }
 }

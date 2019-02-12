@@ -50,7 +50,7 @@ public class SalgAnnet extends Activity implements AdapterView.OnItemSelectedLis
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        this.finish();
+        goback();
         return true;
     }
 

@@ -1,10 +1,14 @@
 package com.julia.bachelor;
 
 import android.app.Activity;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.constraint.ConstraintLayout;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.EditText;
+import android.widget.Toast;
 
 public class Innstillinger extends Activity {
     ConstraintLayout som1kg;
@@ -18,6 +22,10 @@ public class Innstillinger extends Activity {
     ConstraintLayout flyt;
     ConstraintLayout endreverdier;
     ConstraintLayout endremoms;
+    SharedPreferences sharedPreferences;
+    SharedPreferences.Editor editor;
+    EditText ferdigprodukt;
+    EditText ikkeferdig;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,6 +45,13 @@ public class Innstillinger extends Activity {
         flyt = findViewById(R.id.flyt);
         endreverdier = findViewById(R.id.endrepris);
         endremoms = findViewById(R.id.endremoms);
+        ferdigprodukt = findViewById(R.id.ferdigprodukt);
+        ikkeferdig = findViewById(R.id.ikkeferdig);
+
+
+        sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
+        editor = sharedPreferences.edit();
+
 
         endreverdier.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -113,4 +128,14 @@ public class Innstillinger extends Activity {
         return true;
     }
     //TODO skal kunne endre verdier.
+    public void momslagre(View view){
+        if(ferdigprodukt.getText().toString().equals("")||ikkeferdig.getText().toString().equals("")) {
+            Toast.makeText(this, "Sett inn verdier i feltene", Toast.LENGTH_SHORT).show();
+        }else{
+            editor.putInt("ferdigprodukt", Integer.parseInt(ferdigprodukt.getText().toString()));
+            editor.putInt("ikkeferdig", Integer.parseInt(ikkeferdig.getText().toString()));
+            editor.apply();
+            Toast.makeText(this, "Moms lagret", Toast.LENGTH_SHORT).show();
+        }
+    }
 }

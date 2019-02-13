@@ -3,7 +3,9 @@ package com.julia.bachelor;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
@@ -21,7 +23,7 @@ public class FakturaSalg extends Activity implements AdapterView.OnItemSelectedL
 
     Spinner betaling;
     String betalingsmetode;
-    EditText moms;
+    Spinner moms;
     EditText dato;
     EditText som1kg;
     EditText som05kg;
@@ -35,6 +37,7 @@ public class FakturaSalg extends Activity implements AdapterView.OnItemSelectedL
     List<EditText> verdier;
     Database db;
     ScrollView layout;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,14 +58,25 @@ public class FakturaSalg extends Activity implements AdapterView.OnItemSelectedL
         flytende = findViewById(R.id.FSflyt);
         layout = findViewById(R.id.scroll);
         betaling = findViewById(R.id.FSbetalmet);
-        verdier = new ArrayList<>(Arrays.asList(moms, som1kg, som05kg, som025kg, lyng1kg, lyng05kg, lyng025kg, ingf05kg, ingf025kg, flytende));
+        verdier = new ArrayList<>(Arrays.asList(som1kg, som05kg, som025kg, lyng1kg, lyng05kg, lyng025kg, ingf05kg, ingf025kg, flytende));
 
+        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
+        setBetalingsmetodespinner();
+        setMomsspinner(sharedPreferences);
+    }
+    void setBetalingsmetodespinner(){
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.betalingsmetode, android.R.layout.simple_spinner_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         betaling.setAdapter(adapter);
         betaling.setOnItemSelectedListener(this);
     }
-
+    void setMomsspinner(SharedPreferences sh){
+        Integer[] momsarray = {sh.getInt("ferdigprodukt",15), sh.getInt("ikkeferdig",25)};
+        ArrayAdapter<Integer> adapter = new ArrayAdapter<Integer>(getApplicationContext(),  android.R.layout.simple_spinner_dropdown_item, momsarray);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        moms.setAdapter(adapter);
+        moms.setOnItemSelectedListener(this);
+    }
     public void lagre(View v) {
         int tell = 0;
         if (checkDate(dato.getText().toString())) {

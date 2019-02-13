@@ -64,6 +64,10 @@ public class BmSalg extends Activity {
             if (tell == 0) {
                 Toast.makeText(this, "Legg til minst et produkt", Toast.LENGTH_SHORT).show();
             } else {
+                //TODO legg til verdier
+
+                insertValues();
+
                 Toast.makeText(this, "Bondens marked salg lagret", Toast.LENGTH_SHORT).show();
                 finish();
             }
@@ -120,10 +124,19 @@ public class BmSalg extends Activity {
         for (int i = 0; i < honningtyper.size(); i++) {
             stringBuilder.append(honningtyper.get(i).get_ID()).append("-").append(verdier.get(i).getText().toString()).append(",");
         }
-        return "hei";
+        return stringBuilder.toString();
     }
 
     void insertValues() {
-        db.executeOnDB("");
+        db.executeOnDB("http://www.honningbier.no/PHP/BondensMarkedIn.php/?Dato=" + dato.getText().toString() +
+                "&Varer=" + getVarer() + "&Belop=" + getbelop());
+    }
+
+    int getbelop(){
+        int total=0;
+        for(int i = 0; i < verdier.size(); i++){
+            total += Integer.parseInt(verdier.get(i).getText().toString()) * honningtyper.get(i).getBondensMarkedPris();
+        }
+        return total;
     }
 }

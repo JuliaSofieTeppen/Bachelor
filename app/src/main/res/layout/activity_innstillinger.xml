@@ -814,7 +814,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
                 android:layout_marginEnd="8dp"
-                android:visibility="gone"
+                android:visibility="visible"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/endremoms">
@@ -844,7 +844,7 @@
                         app:layout_constraintTop_toTopOf="parent" />
 
                     <EditText
-                        android:id="@+id/editText34"
+                        android:id="@+id/ferdigprodukt"
                         android:layout_width="138dp"
                         android:layout_height="wrap_content"
                         android:layout_marginEnd="8dp"
@@ -879,7 +879,7 @@
                         app:layout_constraintTop_toTopOf="parent" />
 
                     <EditText
-                        android:id="@+id/editText35"
+                        android:id="@+id/ikkeferdig"
                         android:layout_width="136dp"
                         android:layout_height="39dp"
                         android:layout_marginEnd="8dp"
@@ -890,7 +890,7 @@
                 </android.support.constraint.ConstraintLayout>
 
                 <Button
-                    android:id="@+id/button14"
+                    android:id="@+id/momslagre"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="8dp"
@@ -898,6 +898,7 @@
                     android:layout_marginEnd="8dp"
                     android:background="#f9bb4f"
                     android:text="Lagre"
+                    android:onClick="momslagre"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.969"
                     app:layout_constraintStart_toStartOf="parent"

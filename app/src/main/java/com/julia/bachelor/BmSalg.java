@@ -33,8 +33,9 @@ public class BmSalg extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_bm_salg);
-        getActionBar().setDisplayHomeAsUpEnabled(true);
         db = new Database();
+        db.getHonningType();
+        getActionBar().setDisplayHomeAsUpEnabled(true);
         dato = findViewById(R.id.BMSdato);
         som1kg = findViewById(R.id.BMSsom1kg);
         som05kg = findViewById(R.id.BMSsom05kg);
@@ -46,7 +47,6 @@ public class BmSalg extends Activity {
         ingf025kg = findViewById(R.id.BMSingf025kg);
         flytende = findViewById(R.id.BMSflyt);
         verdier = new ArrayList<>(Arrays.asList(som1kg, som05kg, som025kg, lyng1kg, lyng05kg, lyng025kg, ingf05kg, ingf025kg, flytende));
-        db.getHonningType();
     }
 
 

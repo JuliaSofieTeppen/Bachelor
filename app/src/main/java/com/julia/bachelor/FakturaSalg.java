@@ -22,7 +22,6 @@ import java.util.List;
 public class FakturaSalg extends Activity implements AdapterView.OnItemSelectedListener {
 
     static List<Honning> honningtyper;
-    List<Integer> telling;
     Spinner betaling;
     String betalingsmetode;
     Spinner moms;
@@ -46,13 +45,9 @@ public class FakturaSalg extends Activity implements AdapterView.OnItemSelectedL
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_faktura_salg);
-        getActionBar().setDisplayHomeAsUpEnabled(true);
         db = new Database();
         db.getHonningType();
-
-        telling = new ArrayList<>();
-        setTelling();
-
+        getActionBar().setDisplayHomeAsUpEnabled(true);
         navn = findViewById(R.id.FSnavn);
         moms = findViewById(R.id.FSmoms);
         dato = findViewById(R.id.FSdato);
@@ -85,11 +80,6 @@ public class FakturaSalg extends Activity implements AdapterView.OnItemSelectedL
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         moms.setAdapter(adapter);
         moms.setOnItemSelectedListener(this);
-    }
-    void setTelling() {
-        for (int c = 0; c < 9; c++) {
-            telling.add(0);
-        }
     }
 
     public void lagre(View v) {

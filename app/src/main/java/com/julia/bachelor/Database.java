@@ -318,6 +318,8 @@ class Database {
             main.setHonning(Honning);
             BmSalg bmSalg = new BmSalg();
             bmSalg.setHonningtyper(Honning);
+            FakturaSalg fakturaSalg = new FakturaSalg();
+            fakturaSalg.setHonningtyper(Honning);
         }
     }
 

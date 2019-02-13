@@ -21,9 +21,12 @@ import java.util.List;
 
 public class FakturaSalg extends Activity implements AdapterView.OnItemSelectedListener {
 
+    static List<Honning> honningtyper;
+    List<Integer> telling;
     Spinner betaling;
     String betalingsmetode;
     Spinner moms;
+    EditText navn;
     EditText dato;
     EditText som1kg;
     EditText som05kg;
@@ -45,6 +48,12 @@ public class FakturaSalg extends Activity implements AdapterView.OnItemSelectedL
         setContentView(R.layout.activity_faktura_salg);
         getActionBar().setDisplayHomeAsUpEnabled(true);
         db = new Database();
+        db.getHonningType();
+
+        telling = new ArrayList<>();
+        setTelling();
+
+        navn = findViewById(R.id.FSnavn);
         moms = findViewById(R.id.FSmoms);
         dato = findViewById(R.id.FSdato);
         som1kg = findViewById(R.id.FSsom1kg);
@@ -77,6 +86,12 @@ public class FakturaSalg extends Activity implements AdapterView.OnItemSelectedL
         moms.setAdapter(adapter);
         moms.setOnItemSelectedListener(this);
     }
+    void setTelling() {
+        for (int c = 0; c < 9; c++) {
+            telling.add(0);
+        }
+    }
+
     public void lagre(View v) {
         int tell = 0;
         if (checkDate(dato.getText().toString())) {
@@ -90,7 +105,7 @@ public class FakturaSalg extends Activity implements AdapterView.OnItemSelectedL
             if (tell == 0) {
                 Toast.makeText(this, "Legg til minst et produkt", Toast.LENGTH_SHORT).show();
             } else {
-                //TODO send alle verdier til databasen
+                insertValues();
                 Toast.makeText(this, "Videre salg lagret", Toast.LENGTH_SHORT).show();
                 finish();
             }
@@ -98,7 +113,29 @@ public class FakturaSalg extends Activity implements AdapterView.OnItemSelectedL
             Toast.makeText(this, "Ugyldig dato", Toast.LENGTH_SHORT).show();
         }
     }
+    public String getVarer() {
+        StringBuilder stringBuilder = new StringBuilder();
+        for (int i = 0; i < honningtyper.size(); i++) {
+            stringBuilder.append(honningtyper.get(i).get_ID()).append("-").append(verdier.get(i).getText().toString()).append(",");
+        }
+        return stringBuilder.toString();
+    }
 
+    void insertValues() {
+        db.executeOnDB("http://www.honningbier.no/PHP/VideresalgIn.php/?Kunde=" + navn.getText().toString() +
+                "&Dato=" + dato.getText().toString() +
+                "&Varer=" + getVarer() + "&Belop=" + getbelop() + "&Betaling=" + betalingsmetode + "&Moms=" + moms.getSelectedItem().toString());
+    }
+    int getbelop(){
+        int total=0;
+        for(int i = 0; i < verdier.size(); i++){
+            total += Integer.parseInt(verdier.get(i).getText().toString()) * honningtyper.get(i).getBondensMarkedPris();
+        }
+        return total;
+    }
+    void setHonningtyper(ArrayList<Honning> type){
+        honningtyper = type;
+    }
     @Override
     public void onBackPressed() {
         goback();

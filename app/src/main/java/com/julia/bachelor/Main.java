@@ -18,14 +18,9 @@ public class Main extends Activity
     static ArrayList<BondensMarked> Bm;
     static ArrayList<Videresalg> Videresalg;
     static ArrayList<Beholdning> Beholdning;
+    static ArrayList<BeholdningUt> BeholdningUt;
 
     static Database database;
-
-    /**
-     * Fragment managing the behaviors, interactions and presentation of the navigation drawer.
-     */
-    private NavigationDrawerFragment mNavigationDrawerFragment;
-    private CharSequence mTitle;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,7 +34,10 @@ public class Main extends Activity
         database.getHjemmeValues();
         database.getVideresalgValues();
         Honningtype = new ArrayList<>();
-        mNavigationDrawerFragment = (NavigationDrawerFragment)getFragmentManager().findFragmentById(R.id.navigation_drawer);
+        /*
+         * Fragment managing the behaviors, interactions and presentation of the navigation drawer.
+         */
+        NavigationDrawerFragment mNavigationDrawerFragment = (NavigationDrawerFragment) getFragmentManager().findFragmentById(R.id.navigation_drawer);
         // Set up the drawer.
         mNavigationDrawerFragment.setUp(R.id.navigation_drawer, (DrawerLayout) findViewById(R.id.drawer_layout));
     }
@@ -54,13 +52,18 @@ public class Main extends Activity
     }
 
     public void onSectionAttached(int number) {
+        Bundle bundle;
         switch (number) {
             case 1:
-                mTitle = getString(R.string.title_section1);
+                CharSequence mTitle = getString(R.string.title_section1);
                 break;
             case 2:
                 mTitle = getString(R.string.title_section2);
+                bundle = new Bundle();
+                bundle.putSerializable("beholdning", Beholdning);
+                bundle.putSerializable("salg",BeholdningUt);
                 BeholdningFragment myf = BeholdningFragment.newInstance(1);
+                myf.setArguments(bundle);
                 FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
                 fragmentTransaction.replace(R.id.container, myf);
                 fragmentTransaction.addToBackStack(null);
@@ -68,7 +71,7 @@ public class Main extends Activity
                 break;
             case 3:
                 mTitle = getString(R.string.title_section3);
-                Bundle bundle = new Bundle();
+                bundle = new Bundle();
                 bundle.putSerializable("params", Honningtype);
                 PriserFragment fragment = new PriserFragment();
                 fragment.setArguments(bundle);
@@ -105,7 +108,5 @@ public class Main extends Activity
         Honningtype = type;
     }
 
-    public void setVideresalg(ArrayList<com.julia.bachelor.Videresalg> videresalg) {
-        Videresalg = videresalg;
-    }
+    public void setVideresalg(ArrayList<com.julia.bachelor.Videresalg> videresalg) { Videresalg = videresalg; }
 }

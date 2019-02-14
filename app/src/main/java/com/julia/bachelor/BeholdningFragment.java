@@ -9,8 +9,12 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 
+import java.util.ArrayList;
+
 public class BeholdningFragment extends Fragment {
     private static final String ARG_SECTION_NUMBER = "section_number";
+    static ArrayList<Beholdning> Beholdning;
+    static ArrayList<BeholdningUt> BeholdningUt;
     Button addbutton;
 
     public BeholdningFragment() {
@@ -28,11 +32,9 @@ public class BeholdningFragment extends Fragment {
         return fragment;
     }
 
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
+    @Override @SuppressWarnings("unchecked")
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_beholdning, container, false);
-
         addbutton = rootView.findViewById(R.id.button);
         addbutton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -42,6 +44,14 @@ public class BeholdningFragment extends Fragment {
                 getContext().startActivity(myIntent);
             }
         });
+        try {
+            Beholdning = (ArrayList<Beholdning>) (getArguments().getSerializable("beholdning"));
+            BeholdningUt = (ArrayList<BeholdningUt>) (getArguments().getSerializable("salg"));
+        } catch (NullPointerException e) {
+            e.printStackTrace();
+        }
+
+
         return rootView;
     }
 

@@ -13,14 +13,15 @@ import java.util.ArrayList;
 class Database {
     private static ArrayList<Annet> Annet = new ArrayList<>();
     private static ArrayList<Beholdning> Beholdning = new ArrayList<>();
+    private static ArrayList<BeholdningUt> BeholdningUt = new ArrayList<>();
     private static ArrayList<BondensMarked> BM = new ArrayList<>();
     private static ArrayList<Hjemme> Hjemme = new ArrayList<>();
     private static ArrayList<Honning> Honning = new ArrayList<>();
     private static ArrayList<Videresalg> Videresalg = new ArrayList<>();
 
-    void executeOnDB(String... urls) {
+    void executeOnDB(String url) {
         ExecuteOnDB task = new ExecuteOnDB();
-        task.execute(urls);
+        task.execute(url);
     }
 
     void getAnnetValues() {
@@ -33,6 +34,12 @@ class Database {
         BeholdningTask task = new BeholdningTask();
         // TODO set url for beholdning
         task.execute("http://www.honningbier.no/PHP/BeholdningOut.php");
+    }
+
+    void getBeholdningUtValues() {
+        BeholdningUtTask task = new BeholdningUtTask();
+        // TODO set url for beholdningUt
+        task.execute("http://www.honningbier.no/PHP/SalgOut.php");
     }
 
     void getBMValues() {
@@ -156,6 +163,55 @@ class Database {
                 return "Noe gikk feil: " + e.toString();
             }
         }
+    }
+
+    private static class BeholdningUtTask extends AsyncTask<String, Void, String> {
+            @Override
+            protected String doInBackground(String... urls) {
+                // Get strings from bufferedReader.
+                String nextLine;
+                StringBuilder output = new StringBuilder();
+                try {
+                    URL url = new URL(urls[0]);
+                    HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+                    conn.setRequestMethod("GET");
+                    conn.setRequestProperty("Accept", "application/json");
+                    if (conn.getResponseCode() != 200) {
+                        throw new RuntimeException("Failed: HTTP error code: " + conn.getResponseCode());
+                    }
+                    // Get the string containing values from db.
+                    BufferedReader bufferedReader = new BufferedReader(new InputStreamReader((conn.getInputStream())));
+                    while ((nextLine = bufferedReader.readLine()) != null) {
+                        output.append(nextLine);
+                    }
+                    conn.disconnect();
+                    try {
+                        // Convert string to JSONArray containing JSONObjects.
+                        JSONArray jsonArray = new JSONArray(output.toString());
+                        for (int i = 0; i < jsonArray.length(); i++) {
+                            BeholdningUt beholdningUt = new BeholdningUt();
+                            JSONObject jsonobject = jsonArray.getJSONObject(i);
+                            beholdningUt.set_ID(jsonobject.getLong("_ID"));
+                            beholdningUt.setSommer(jsonobject.getInt("Sommer"));
+                            beholdningUt.setSommerH(jsonobject.getInt("SommerHalv"));
+                            beholdningUt.setSommerK(jsonobject.getInt("SommerKvart"));
+                            beholdningUt.setLyng(jsonobject.getInt("Lyng"));
+                            beholdningUt.setLyngH(jsonobject.getInt("LyngHalv"));
+                            beholdningUt.setLyngK(jsonobject.getInt("LyngKvart"));
+                            beholdningUt.setIngeferH(jsonobject.getInt("IngeferHalv"));
+                            beholdningUt.setIngeferK(jsonobject.getInt("IngeferKvart"));
+                            beholdningUt.setFlytende(jsonobject.getInt("Flytende"));
+                            beholdningUt.setDato(jsonobject.getString("Dato"));
+                            BeholdningUt.add(beholdningUt);
+                        }
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+                    return "Done!";
+                } catch (Exception e) {
+                    return "Noe gikk feil: " + e.toString();
+                }
+            }
 
         @Override
         protected void onPostExecute(String s) {

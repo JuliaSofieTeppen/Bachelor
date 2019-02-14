@@ -83,8 +83,8 @@ public class AddBeholdning extends Activity {
     }
 
     void insertIntoDB(){
-        db.executeOnDB("http://www.honningbier.no/PHP/BeholdningIn.php/?" + getBeholdning() + "&Dato=" + dato.getText().toString(),
-                "http://www.honningbier.no/PHP/SalgIn.php/?Dato=" + dato.getText().toString());
+        db.executeOnDB("http://www.honningbier.no/PHP/SalgIn.php/?Dato=" + dato.getText().toString());
+        db.executeOnDB("http://www.honningbier.no/PHP/BeholdningIn.php/?" + getBeholdning() + "&Dato=" + dato.getText().toString());
     }
 
     public boolean checkDate(String date) {

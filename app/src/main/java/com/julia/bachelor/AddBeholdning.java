@@ -25,14 +25,13 @@ public class AddBeholdning extends Activity {
     EditText flytende;
     List<EditText> verdier;
     Database db;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_beholdning);
-        // TODO maybe a try{} around this one?
         getActionBar().setDisplayHomeAsUpEnabled(true);
         db = new Database();
+        db.getHonningType();
         dato = findViewById(R.id.Bdato);
         som1kg = findViewById(R.id.Bsom1kg);
         som05kg = findViewById(R.id.Bsom05kg);
@@ -65,7 +64,7 @@ public class AddBeholdning extends Activity {
             if (tell == 0) {
                 Toast.makeText(this, "Legg til minst et produkt", Toast.LENGTH_SHORT).show();
             } else {
-                //TODO for løkke? skal stå noe annet en 1 her.
+                insertIntoDB();
                 Toast.makeText(this, "Beholdning lagret", Toast.LENGTH_SHORT).show();
                 finish();
             }
@@ -73,6 +72,19 @@ public class AddBeholdning extends Activity {
         } else {
             Toast.makeText(this, "Ugyldig dato", Toast.LENGTH_SHORT).show();
         }
+    }
+    String getBeholdning(){
+        String[] strings = {"Sommer","SommerH","SommerK","Lyng","LyngH","LyngK","IngeferH","IngeferK","Flytende"};
+        StringBuilder sb = new StringBuilder();
+        for(int i = 0; i < strings.length; i++){
+            sb.append(strings[i]).append("=").append(verdier.get(i).getText().toString()).append("&");
+        }
+        return sb.toString();
+    }
+
+    void insertIntoDB(){
+        db.executeOnDB("http://www.honningbier.no/PHP/BeholdningIn.php/?" + getBeholdning() + "&Dato=" + dato.getText().toString(),
+                "http://www.honningbier.no/PHP/SalgIn.php/?Dato=" + dato.getText().toString());
     }
 
     public boolean checkDate(String date) {

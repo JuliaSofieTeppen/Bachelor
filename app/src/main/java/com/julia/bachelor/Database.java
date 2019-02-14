@@ -18,9 +18,9 @@ class Database {
     private static ArrayList<Honning> Honning = new ArrayList<>();
     private static ArrayList<Videresalg> Videresalg = new ArrayList<>();
 
-    void executeOnDB(String url) {
+    void executeOnDB(String... urls) {
         ExecuteOnDB task = new ExecuteOnDB();
-        task.execute(url);
+        task.execute(urls);
     }
 
     void getAnnetValues() {

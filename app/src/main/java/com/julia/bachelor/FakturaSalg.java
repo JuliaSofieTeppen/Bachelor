@@ -114,7 +114,7 @@ public class FakturaSalg extends Activity implements AdapterView.OnItemSelectedL
     void insertValues() {
         db.executeOnDB("http://www.honningbier.no/PHP/VideresalgIn.php/?Kunde=" + navn.getText().toString() +
                 "&Dato=" + dato.getText().toString() +
-                "&Varer=" + getVarer() + "&Belop=" + getbelop() + "&Betaling=" + betalingsmetode + "&Moms=" + moms.getSelectedItem().toString());
+                "&Varer=" + getVarer() + "&Belop=" + getbelop() + "&Betaling=" + betaling.getSelectedItem().toString() + "&Moms=" + moms.getSelectedItem().toString());
     }
     int getbelop(){
         int total=0;
@@ -123,9 +123,11 @@ public class FakturaSalg extends Activity implements AdapterView.OnItemSelectedL
         }
         return total;
     }
+
     void setHonningtyper(ArrayList<Honning> type){
         honningtyper = type;
     }
+
     @Override
     public void onBackPressed() {
         goback();
@@ -133,7 +135,6 @@ public class FakturaSalg extends Activity implements AdapterView.OnItemSelectedL
 
     public void goback() {
         //TODO check fields before poppopen skal syntes.
-        //android.app.AlertDialog.Builder builder = new android.app.AlertDialog.Builder(FakturaSalg.this,R.style.AlertDialog);
         final AlertDialog.Builder builder = new AlertDialog.Builder(FakturaSalg.this);
         builder.setMessage("Vil du gå tilbake?");
         builder.setCancelable(true);
@@ -151,7 +152,6 @@ public class FakturaSalg extends Activity implements AdapterView.OnItemSelectedL
         });
         AlertDialog alertDialog = builder.create();
         alertDialog.show();
-
     }
 
 

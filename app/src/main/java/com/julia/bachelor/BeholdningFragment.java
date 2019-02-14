@@ -11,7 +11,6 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 
 public class BeholdningFragment extends Fragment {
     private static final String ARG_SECTION_NUMBER = "section_number";

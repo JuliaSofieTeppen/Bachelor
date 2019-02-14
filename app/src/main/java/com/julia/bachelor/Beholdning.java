@@ -1,36 +1,107 @@
 package com.julia.bachelor;
 
-public class Beholdning {
+class Beholdning {
+
     private long _ID;
-    private int Antall;
-    // ID til en honning type.
-    private long H_ID;
+    private int Sommer;
+    private int SommerH;
+    private int SommerK;
+    private int Lyng;
+    private int LyngH;
+    private int LyngK;
+    private int IngeferH;
+    private int IngeferK;
+    private int Flytende;
+    private String Dato;
 
-    public Beholdning() {
+    Beholdning() {
     }
 
-    public Beholdning(int antall, long h_ID) {
-        Antall = antall;
-        H_ID = h_ID;
-    }
-
-    public long get_ID() {
+    long get_ID() {
         return _ID;
     }
 
-    public int getAntall() {
-        return Antall;
+    void set_ID(long _ID) {
+        this._ID = _ID;
     }
 
-    public void setAntall(int antall) {
-        Antall = antall;
+    int getSommer() {
+        return Sommer;
     }
 
-    public long getH_ID() {
-        return H_ID;
+    void setSommer(int sommer) {
+        Sommer = sommer;
     }
 
-    public void setH_ID(long h_ID) {
-        H_ID = h_ID;
+    int getSommerH() {
+        return SommerH;
+    }
+
+    void setSommerH(int sommerH) {
+        SommerH = sommerH;
+    }
+
+    int getSommerK() {
+        return SommerK;
+    }
+
+    void setSommerK(int sommerK) {
+        SommerK = sommerK;
+    }
+
+    int getLyng() {
+        return Lyng;
+    }
+
+    void setLyng(int lyng) {
+        Lyng = lyng;
+    }
+
+    int getLyngH() {
+        return LyngH;
+    }
+
+    void setLyngH(int lyngH) {
+        LyngH = lyngH;
+    }
+
+    int getLyngK() {
+        return LyngK;
+    }
+
+    void setLyngK(int lyngK) {
+        LyngK = lyngK;
+    }
+
+    int getIngeferH() {
+        return IngeferH;
+    }
+
+    void setIngeferH(int ingeferH) {
+        IngeferH = ingeferH;
+    }
+
+    int getIngeferK() {
+        return IngeferK;
+    }
+
+    void setIngeferK(int ingeferK) {
+        IngeferK = ingeferK;
+    }
+
+    int getFlytende() {
+        return Flytende;
+    }
+
+    void setFlytende(int flytende) {
+        Flytende = flytende;
+    }
+
+    String getDato() {
+        return Dato;
+    }
+
+    void setDato(String dato) {
+        Dato = dato;
     }
 }

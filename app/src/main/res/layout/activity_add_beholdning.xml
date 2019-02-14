@@ -29,289 +29,284 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
-            <TextView
-                android:id="@+id/textView90"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:layout_marginTop="36dp"
-                android:layout_marginEnd="8dp"
-                android:text="Dato"
-                app:layout_constraintEnd_toStartOf="@+id/editText25"
-                app:layout_constraintHorizontal_bias="0.166"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView88" />
-
-            <EditText
-                android:id="@+id/editText25"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="8dp"
-                android:ems="10"
-                android:inputType="date"
-                app:layout_constraintBaseline_toBaselineOf="@+id/textView90"
-                app:layout_constraintEnd_toEndOf="parent" />
-
-            <TextView
-                android:id="@+id/textView91"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:layout_marginTop="44dp"
-                android:layout_marginEnd="8dp"
-                android:text="Sommer"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.023"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView90" />
-
-            <TextView
-                android:id="@+id/textView92"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:layout_marginTop="40dp"
-                android:layout_marginEnd="8dp"
-                android:text="1kg"
-                app:layout_constraintEnd_toStartOf="@+id/editText26"
-                app:layout_constraintHorizontal_bias="0.433"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView91" />
-
-            <TextView
-                android:id="@+id/textView93"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:layout_marginTop="32dp"
-                android:layout_marginEnd="8dp"
-                android:text="1/2kg"
-                app:layout_constraintEnd_toStartOf="@+id/editText27"
-                app:layout_constraintHorizontal_bias="0.394"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView92" />
-
-            <TextView
-                android:id="@+id/textView94"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:layout_marginTop="28dp"
-                android:layout_marginEnd="8dp"
-                android:text="1/4kg"
-                app:layout_constraintEnd_toStartOf="@+id/editText28"
-                app:layout_constraintHorizontal_bias="0.394"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView93" />
-
-            <TextView
-                android:id="@+id/textView95"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:layout_marginTop="36dp"
-                android:layout_marginEnd="8dp"
-                android:text="Lyng"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.021"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView94" />
-
-            <TextView
-                android:id="@+id/textView96"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
+            <android.support.constraint.ConstraintLayout
+                android:id="@+id/honninglayout"
+                android:layout_width="0dp"
+                android:layout_height="612dp"
+                android:layout_marginStart="30dp"
                 android:layout_marginTop="16dp"
-                android:layout_marginEnd="8dp"
-                android:text="1kg"
-                app:layout_constraintEnd_toStartOf="@+id/editText29"
-                app:layout_constraintHorizontal_bias="0.357"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView95" />
-
-            <TextView
-                android:id="@+id/textView97"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:layout_marginTop="24dp"
-                android:layout_marginEnd="8dp"
-                android:text="1/2kg"
-                app:layout_constraintEnd_toStartOf="@+id/editText30"
-                app:layout_constraintHorizontal_bias="0.372"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView96" />
-
-            <TextView
-                android:id="@+id/textView98"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:layout_marginTop="32dp"
-                android:layout_marginEnd="8dp"
-                android:text="1/4kg"
-                app:layout_constraintEnd_toStartOf="@+id/editText31"
-                app:layout_constraintHorizontal_bias="0.372"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView97" />
-
-            <TextView
-                android:id="@+id/textView99"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:layout_marginTop="40dp"
-                android:layout_marginEnd="8dp"
-                android:text="Annet"
+                android:layout_marginEnd="30dp"
+                android:background="#ffffff"
+                android:elevation="2dp"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.044"
+                app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView98" />
+                app:layout_constraintTop_toBottomOf="@+id/datolayout">
 
-            <TextView
-                android:id="@+id/textView100"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:layout_marginTop="28dp"
-                android:layout_marginEnd="8dp"
-                android:text="Med ingefær"
-                app:layout_constraintEnd_toStartOf="@+id/editText32"
-                app:layout_constraintHorizontal_bias="0.542"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView99" />
+                <EditText
+                    android:id="@+id/Bsom05kg"
+                    android:layout_width="150dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="8dp"
+                    android:ems="10"
+                    android:inputType="number"
+                    app:layout_constraintBaseline_toBaselineOf="@+id/textView93"
+                    app:layout_constraintEnd_toEndOf="parent" />
 
-            <TextView
-                android:id="@+id/textView101"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:layout_marginTop="20dp"
-                android:layout_marginEnd="8dp"
-                android:text="Med ingefær"
-                app:layout_constraintEnd_toStartOf="@+id/editText33"
-                app:layout_constraintHorizontal_bias="0.542"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView100" />
+                <TextView
+                    android:id="@+id/textView102"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="28dp"
+                    android:layout_marginEnd="8dp"
+                    android:text="Flytende"
+                    app:layout_constraintEnd_toStartOf="@+id/Bflyt"
+                    app:layout_constraintHorizontal_bias="0.241"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/textView101" />
 
-            <TextView
-                android:id="@+id/textView102"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:layout_marginTop="20dp"
-                android:layout_marginEnd="8dp"
-                android:text="Flytende"
-                app:layout_constraintEnd_toStartOf="@+id/editText34"
-                app:layout_constraintHorizontal_bias="0.45"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView101" />
+                <EditText
+                    android:id="@+id/Blyn05kg"
+                    android:layout_width="150dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="8dp"
+                    android:ems="10"
+                    android:inputType="number"
+                    app:layout_constraintBaseline_toBaselineOf="@+id/textView97"
+                    app:layout_constraintEnd_toEndOf="parent" />
 
-            <EditText
-                android:id="@+id/editText26"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="16dp"
-                android:ems="10"
-                android:inputType="number"
-                app:layout_constraintBaseline_toBaselineOf="@+id/textView92"
-                app:layout_constraintEnd_toEndOf="parent" />
+                <TextView
+                    android:id="@+id/textView96"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="24dp"
+                    android:layout_marginEnd="8dp"
+                    android:text="1kg"
+                    app:layout_constraintEnd_toStartOf="@+id/Blyn1kg"
+                    app:layout_constraintHorizontal_bias="0.194"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/textView95" />
 
-            <EditText
-                android:id="@+id/editText27"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="16dp"
-                android:ems="10"
-                android:inputType="number"
-                app:layout_constraintBaseline_toBaselineOf="@+id/textView93"
-                app:layout_constraintEnd_toEndOf="parent" />
+                <EditText
+                    android:id="@+id/Binf025kg"
+                    android:layout_width="150dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="8dp"
+                    android:ems="10"
+                    android:inputType="number"
+                    app:layout_constraintBaseline_toBaselineOf="@+id/textView101"
+                    app:layout_constraintEnd_toEndOf="parent" />
 
-            <EditText
-                android:id="@+id/editText28"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="8dp"
-                android:ems="10"
-                android:inputType="number"
-                app:layout_constraintBaseline_toBaselineOf="@+id/textView94"
-                app:layout_constraintEnd_toEndOf="parent" />
+                <TextView
+                    android:id="@+id/textView93"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="32dp"
+                    android:layout_marginEnd="8dp"
+                    android:text="1/2kg"
+                    app:layout_constraintEnd_toStartOf="@+id/Bsom05kg"
+                    app:layout_constraintHorizontal_bias="0.212"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/textView92" />
 
-            <EditText
-                android:id="@+id/editText29"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="8dp"
-                android:ems="10"
-                android:inputType="number"
-                app:layout_constraintBaseline_toBaselineOf="@+id/textView96"
-                app:layout_constraintEnd_toEndOf="parent" />
+                <TextView
+                    android:id="@+id/textView91"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginEnd="8dp"
+                    android:text="Sommer"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.023"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
 
-            <EditText
-                android:id="@+id/editText30"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="8dp"
-                android:ems="10"
-                android:inputType="number"
-                app:layout_constraintBaseline_toBaselineOf="@+id/textView97"
-                app:layout_constraintEnd_toEndOf="parent" />
+                <EditText
+                    android:id="@+id/Bsom1kg"
+                    android:layout_width="150dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="8dp"
+                    android:ems="10"
+                    android:inputType="number"
+                    app:layout_constraintBaseline_toBaselineOf="@+id/textView92"
+                    app:layout_constraintEnd_toEndOf="parent" />
 
-            <EditText
-                android:id="@+id/editText31"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="8dp"
-                android:ems="10"
-                android:inputType="number"
-                app:layout_constraintBaseline_toBaselineOf="@+id/textView98"
-                app:layout_constraintEnd_toEndOf="parent" />
+                <TextView
+                    android:id="@+id/textView94"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="24dp"
+                    android:layout_marginEnd="8dp"
+                    android:text="1/4kg"
+                    app:layout_constraintEnd_toStartOf="@+id/Bsom025kg"
+                    app:layout_constraintHorizontal_bias="0.212"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/textView93" />
 
-            <EditText
-                android:id="@+id/editText32"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="8dp"
-                android:ems="10"
-                android:inputType="number"
-                app:layout_constraintBaseline_toBaselineOf="@+id/textView100"
-                app:layout_constraintEnd_toEndOf="parent" />
+                <TextView
+                    android:id="@+id/textView95"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="36dp"
+                    android:layout_marginEnd="8dp"
+                    android:text="Lyng"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.021"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/textView94" />
 
-            <EditText
-                android:id="@+id/editText33"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="8dp"
-                android:ems="10"
-                android:inputType="number"
-                app:layout_constraintBaseline_toBaselineOf="@+id/textView101"
-                app:layout_constraintEnd_toEndOf="parent" />
+                <TextView
+                    android:id="@+id/textView92"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="36dp"
+                    android:layout_marginEnd="8dp"
+                    android:text="1kg"
+                    app:layout_constraintEnd_toStartOf="@+id/Bsom1kg"
+                    app:layout_constraintHorizontal_bias="0.194"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/textView91" />
 
-            <EditText
-                android:id="@+id/editText34"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="8dp"
-                android:ems="10"
-                android:inputType="number"
-                app:layout_constraintBaseline_toBaselineOf="@+id/textView102"
-                app:layout_constraintEnd_toEndOf="parent" />
+                <EditText
+                    android:id="@+id/Bflyt"
+                    android:layout_width="150dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="8dp"
+                    android:ems="10"
+                    android:inputType="number"
+                    app:layout_constraintBaseline_toBaselineOf="@+id/textView102"
+                    app:layout_constraintEnd_toEndOf="parent" />
+
+                <EditText
+                    android:id="@+id/Binf05kg"
+                    android:layout_width="150dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="8dp"
+                    android:ems="10"
+                    android:inputType="number"
+                    app:layout_constraintBaseline_toBaselineOf="@+id/textView100"
+                    app:layout_constraintEnd_toEndOf="parent" />
+
+                <TextView
+                    android:id="@+id/textView100"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="36dp"
+                    android:layout_marginEnd="8dp"
+                    android:text="Med ingefær"
+                    app:layout_constraintEnd_toStartOf="@+id/Binf05kg"
+                    app:layout_constraintHorizontal_bias="0.303"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/textView99" />
+
+                <TextView
+                    android:id="@+id/textView99"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="40dp"
+                    android:layout_marginEnd="8dp"
+                    android:text="Annet"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.044"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/textView98" />
+
+                <EditText
+                    android:id="@+id/Bsom025kg"
+                    android:layout_width="150dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="8dp"
+                    android:ems="10"
+                    android:inputType="number"
+                    app:layout_constraintBaseline_toBaselineOf="@+id/textView94"
+                    app:layout_constraintEnd_toEndOf="parent" />
+
+                <TextView
+                    android:id="@+id/textView101"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="24dp"
+                    android:layout_marginEnd="8dp"
+                    android:text="Med ingefær"
+                    app:layout_constraintEnd_toStartOf="@+id/Binf025kg"
+                    app:layout_constraintHorizontal_bias="0.313"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/textView100" />
+
+                <EditText
+                    android:id="@+id/Blyn1kg"
+                    android:layout_width="150dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="8dp"
+                    android:ems="10"
+                    android:inputType="number"
+                    app:layout_constraintBaseline_toBaselineOf="@+id/textView96"
+                    app:layout_constraintEnd_toEndOf="parent" />
+
+                <TextView
+                    android:id="@+id/textView97"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="32dp"
+                    android:layout_marginEnd="8dp"
+                    android:text="1/2kg"
+                    app:layout_constraintEnd_toStartOf="@+id/Blyn05kg"
+                    app:layout_constraintHorizontal_bias="0.212"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/textView96" />
+
+                <EditText
+                    android:id="@+id/Blyn025kg"
+                    android:layout_width="150dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="8dp"
+                    android:ems="10"
+                    android:inputType="number"
+                    app:layout_constraintBaseline_toBaselineOf="@+id/textView98"
+                    app:layout_constraintEnd_toEndOf="parent" />
+
+                <TextView
+                    android:id="@+id/textView98"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="28dp"
+                    android:layout_marginEnd="8dp"
+                    android:text="1/4kg"
+                    app:layout_constraintEnd_toStartOf="@+id/Blyn025kg"
+                    app:layout_constraintHorizontal_bias="0.212"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/textView97" />
+            </android.support.constraint.ConstraintLayout>
 
             <Button
-                android:id="@+id/button16"
+                android:id="@+id/BaddLagre"
                 android:layout_width="310dp"
                 android:layout_height="54dp"
                 android:layout_marginStart="8dp"
-                android:layout_marginTop="25dp"
+                android:layout_marginTop="36dp"
                 android:layout_marginEnd="8dp"
-                android:text="Button"
                 android:background="#f4b042"
+                android:onClick="lagre"
+                android:text="Lagre"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.352"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/editText34" />
+                app:layout_constraintTop_toBottomOf="@+id/honninglayout" />
 
             <android.support.constraint.ConstraintLayout
+                android:id="@+id/bunn"
                 android:layout_width="188dp"
                 android:layout_height="36dp"
                 android:layout_marginStart="8dp"
@@ -319,8 +314,47 @@
                 android:layout_marginEnd="8dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/button16">
+                app:layout_constraintTop_toBottomOf="@+id/BaddLagre">
 
+            </android.support.constraint.ConstraintLayout>
+
+            <android.support.constraint.ConstraintLayout
+                android:id="@+id/datolayout"
+                android:layout_width="0dp"
+                android:layout_height="49dp"
+                android:layout_marginStart="30dp"
+                android:layout_marginTop="32dp"
+                android:layout_marginEnd="30dp"
+                android:background="#ffffff"
+                android:elevation="2dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView88">
+
+                <EditText
+                    android:id="@+id/Bdato"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:ems="10"
+                    android:inputType="date"
+                    app:layout_constraintBaseline_toBaselineOf="@+id/textView90"
+                    app:layout_constraintEnd_toEndOf="parent" />
+
+                <TextView
+                    android:id="@+id/textView90"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginEnd="8dp"
+                    android:layout_marginBottom="8dp"
+                    android:text="Dato"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toStartOf="@+id/Bdato"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
             </android.support.constraint.ConstraintLayout>
         </android.support.constraint.ConstraintLayout>
     </ScrollView>

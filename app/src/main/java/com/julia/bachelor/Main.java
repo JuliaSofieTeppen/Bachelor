@@ -2,43 +2,46 @@ package com.julia.bachelor;
 
 import android.app.Activity;
 
-import android.app.ActionBar;
-import android.app.Fragment;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
 import android.support.v4.widget.DrawerLayout;
 
+import java.util.ArrayList;
+
 public class Main extends Activity
-        implements NavigationDrawerFragment.NavigationDrawerCallbacks {
+        implements NavigationDrawerFragment.NavigationDrawerCallbacks{
+    static ArrayList<Honning> Honningtype;
+    static ArrayList<Annet> Annet;
+    static ArrayList<Hjemme> Hjemme;
+    static ArrayList<BondensMarked> Bm;
+    static ArrayList<Videresalg> Videresalg;
+    static ArrayList<Beholdning> Beholdning;
+
+    static Database database;
 
     /**
      * Fragment managing the behaviors, interactions and presentation of the navigation drawer.
      */
     private NavigationDrawerFragment mNavigationDrawerFragment;
-
-    /**
-     * Used to store the last screen title. For use in {@link #restoreActionBar()}.
-     */
     private CharSequence mTitle;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-        mNavigationDrawerFragment = (NavigationDrawerFragment)
-                getFragmentManager().findFragmentById(R.id.navigation_drawer);
-        mTitle = getTitle();
-
+        database = new Database();
+        database.getHonningType();
+        database.getAnnetValues();
+        database.getBeholdningValues();
+        database.getBMValues();
+        database.getHjemmeValues();
+        database.getVideresalgValues();
+        Honningtype = new ArrayList<>();
+        mNavigationDrawerFragment = (NavigationDrawerFragment)getFragmentManager().findFragmentById(R.id.navigation_drawer);
         // Set up the drawer.
-        mNavigationDrawerFragment.setUp(
-                R.id.navigation_drawer,
-                (DrawerLayout) findViewById(R.id.drawer_layout));
+        mNavigationDrawerFragment.setUp(R.id.navigation_drawer, (DrawerLayout) findViewById(R.id.drawer_layout));
     }
 
     @Override
@@ -57,7 +60,7 @@ public class Main extends Activity
                 break;
             case 2:
                 mTitle = getString(R.string.title_section2);
-                BeholdningFragment myf = new BeholdningFragment();
+                BeholdningFragment myf = BeholdningFragment.newInstance(1);
                 FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
                 fragmentTransaction.replace(R.id.container, myf);
                 fragmentTransaction.addToBackStack(null);
@@ -65,7 +68,10 @@ public class Main extends Activity
                 break;
             case 3:
                 mTitle = getString(R.string.title_section3);
+                Bundle bundle = new Bundle();
+                bundle.putSerializable("params", Honningtype);
                 PriserFragment fragment = new PriserFragment();
+                fragment.setArguments(bundle);
                 FragmentTransaction fragmentt = getFragmentManager().beginTransaction();
                 fragmentt.replace(R.id.container, fragment);
                 fragmentt.addToBackStack(null);
@@ -79,43 +85,27 @@ public class Main extends Activity
 
         }
     }
-
-    public void restoreActionBar() {
-        ActionBar actionBar = getActionBar();
-        actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_STANDARD);
-        actionBar.setDisplayShowTitleEnabled(true);
-        actionBar.setTitle(mTitle);
+    public void setAnnet(ArrayList<com.julia.bachelor.Annet> annet) {
+        Annet = annet;
     }
 
-    /**
-     * A placeholder fragment containing a simple view.
-     */
-
-
-    public static class PriserFragment extends Fragment {
-        private static final String ARG_SECTION_NUMBER = "section_number";
-
-        public PriserFragment() {
-        }
-
-        /**
-         * Returns a new instance of this fragment for the given section
-         * number.
-         */
-        public static PriserFragment newInstance(int sectionNumber) {
-            PriserFragment fragment = new PriserFragment();
-            Bundle args = new Bundle();
-            args.putInt(ARG_SECTION_NUMBER, sectionNumber);
-            fragment.setArguments(args);
-            return fragment;
-        }
-
-        @Override
-        public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                                 Bundle savedInstanceState) {
-            View rootView = inflater.inflate(R.layout.fragment_priser, container, false);
-            return rootView;
-        }
+    public void setBeholdning(ArrayList<Beholdning> beholdnings){
+        Beholdning = beholdnings;
     }
 
+    public void setBM(ArrayList<BondensMarked> bondensMarkeds){
+        Bm = bondensMarkeds;
+    }
+
+    public void setHjemme(ArrayList<Hjemme> hjemmes){
+        Hjemme = hjemmes;
+    }
+
+    public void setHonning(ArrayList<Honning> type){
+        Honningtype = type;
+    }
+
+    public void setVideresalg(ArrayList<com.julia.bachelor.Videresalg> videresalg) {
+        Videresalg = videresalg;
+    }
 }

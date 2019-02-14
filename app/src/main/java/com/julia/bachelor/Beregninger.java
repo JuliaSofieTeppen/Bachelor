@@ -1,67 +1,64 @@
 package com.julia.bachelor;
 
+import android.support.annotation.NonNull;
 import java.util.Iterator;
 import java.util.List;
 
-public class Beregninger {
+// math class can probably be static.
+class Beregninger {
 
-    static final double SATS = 0.15;
+    private static final double SATS = 0.15;
 
-    public Beregninger() {
-
+    Beregninger() {
     }
 
-    public static int belop_0(int[] tabell) {
+    public static int belop_0(@NonNull int[] tabell) {
         int total = 0;
         for (int i : tabell) {
             total = total + i;
         }
         return total;
     }
-
-    public static int belop(List<Integer> liste) {
-
+    /* The list we want to use here is of type Annet.class, BondensMarked.class, Hjemme.class and Videresalg.class
+        not an Integer
+     */
+    private static double belop(@NonNull List<Integer> liste) {
         Iterator<Integer> itererer = liste.iterator();
-
-        int total = 0;
+        double total = 0;
         while (itererer.hasNext()) {
             int tall = itererer.next();
             if (tall > 0) {
                 total += tall;
             }
         }
-
         return total;
     }
 
-    public static double merverdi(List<Integer> belopet) {
-
+    static double merverdi(List<Integer> belopet) {
         double merverdiavgift = 0.0;
-        int total_i = belop(belopet);
-        double total_d = total_i;
-
+        double total_d = belop(belopet);
         if (total_d > 0) {
             merverdiavgift = total_d * SATS;
         }
         return merverdiavgift;
     }
 
-    public static Object sjekkeType(int[] etTall, String type, String storrelse) {
-
+    /* sjekkeType is not used and probably wont be needed
+        and seeing that it should check the object type,
+        comparing it with a string will always make it false */
+    @NonNull
+    static Object sjekkeType(@NonNull int[] etTall, String type, String storrelse) {
         int total = 0;
-
-        for (int i = 0; i < etTall.length; i++) {
-
+        for (int anEtTall : etTall) {
             if ("Sommer".equals(type)) {
-                total += etTall[i];
+                total += anEtTall;
             } else if ("Lyng".equals(type)) {
-                total += etTall[i];
+                total += anEtTall;
             } else if ("Ingefær".equals(type)) {
-                total += etTall[i];
+                total += anEtTall;
             } else {
-                total += etTall[i];
+                total += anEtTall;
             }
-
         }
         return total + " " + type + " " + storrelse;
     }

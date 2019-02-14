@@ -1,6 +1,6 @@
 package com.julia.bachelor;
 
-public class Hjemme implements Salg {
+class Videresalg implements Salg {
 
     private long _ID;
     private String Kunde;
@@ -8,16 +8,18 @@ public class Hjemme implements Salg {
     private String Varer;
     private int Belop;
     private String Betaling;
+    private double Moms;
 
-    Hjemme() {
+    Videresalg() {
     }
 
-    public Hjemme(String kunde, String dato, String varer, int belop, String betaling) {
+    Videresalg(String kunde, String dato, String varer, int belop, String betaling, double moms) {
         Kunde = kunde;
         Dato = dato;
         Varer = varer;
         Belop = belop;
         Betaling = betaling;
+        Moms = moms;
     }
 
     public long get_ID() {
@@ -66,5 +68,13 @@ public class Hjemme implements Salg {
 
     public void setBetaling(String betaling) {
         Betaling = betaling;
+    }
+
+    double getMoms() {
+        return Moms;
+    }
+
+    void setMoms(double moms) {
+        Moms = moms;
     }
 }

@@ -12,6 +12,7 @@ import android.widget.Button;
 public class BeholdningFragment extends Fragment {
     private static final String ARG_SECTION_NUMBER = "section_number";
     Button addbutton;
+
     public BeholdningFragment() {
     }
 

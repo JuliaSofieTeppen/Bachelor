@@ -1,6 +1,6 @@
 package com.julia.bachelor;
 
-public class Annet implements Salg{
+class Annet implements Salg {
 
     private long _ID;
     private String Kunde;
@@ -9,11 +9,10 @@ public class Annet implements Salg{
     private int Belop;
     private String Betaling;
 
-    public Annet() {
-
+    Annet() {
     }
 
-    public Annet(String kunde, String dato, String varer, int belop, String betaling) {
+    Annet(String kunde, String dato, String varer, int belop, String betaling) {
         Kunde = kunde;
         Dato = dato;
         Varer = varer;
@@ -25,7 +24,7 @@ public class Annet implements Salg{
         return _ID;
     }
 
-    public void set_ID(long _ID){
+    public void set_ID(long _ID) {
         this._ID = _ID;
     }
 
@@ -37,9 +36,13 @@ public class Annet implements Salg{
         Kunde = kunde;
     }
 
-    public String getDato(){ return Dato; }
+    public String getDato() {
+        return Dato;
+    }
 
-    public void setDato(String dato){ Dato = dato; }
+    public void setDato(String dato) {
+        Dato = dato;
+    }
 
     public String getVarer() {
         return Varer;
@@ -64,6 +67,4 @@ public class Annet implements Salg{
     public void setBetaling(String betaling) {
         Betaling = betaling;
     }
-
-
 }

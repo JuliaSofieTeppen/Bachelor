@@ -20,7 +20,7 @@
             <android.support.v7.widget.GridLayout
                 android:id="@+id/gridLayout"
                 android:layout_width="326dp"
-                android:layout_height="449dp"
+                android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="8dp"
                 android:layout_marginEnd="8dp"
@@ -40,6 +40,7 @@
                     android:layout_marginBottom="16dp"
                     android:background="#f4c242"
                     android:text="Sommer \n 1kg"
+                    android:onClick="add1Sommerkg"
                     app:layout_gravity="left|top" />
 
                 <Button
@@ -48,14 +49,16 @@
                     android:layout_height="100dp"
                     android:background="#f4c242"
                     android:text="Sommer \n 1/2kg"
+                    android:onClick="add05sommerkg"
                     app:layout_gravity="left|top" />
 
                 <Button
-                    android:id="@+id/button3"
+                    android:id="@+id/FSlagre"
                     android:layout_width="100dp"
                     android:layout_height="100dp"
                     android:background="#f4c242"
                     android:text="Sommer \n 1/4kg"
+                    android:onClick="add025sommerkg"
                     app:layout_gravity="left|top" />
 
                 <!-- kolonne 1, rad 2 -->
@@ -66,6 +69,7 @@
                     android:layout_marginBottom="16dp"
                     android:background="#f4b042"
                     android:text="Lyng \n 1kg"
+                    android:onClick="add1lyngkg"
                     app:layout_gravity="left|top" />
 
                 <Button
@@ -75,6 +79,7 @@
                     android:layout_marginRight="12dp"
                     android:background="#f4b042"
                     android:text="Lyng \n 1/2kg"
+                    android:onClick="add05lyngkg"
                     app:layout_gravity="left|top" />
 
                 <Button
@@ -83,6 +88,7 @@
                     android:layout_height="100dp"
                     android:background="#f4b042"
                     android:text="Lyng \n 1/4kg"
+                    android:onClick="add025lyngkg"
                     app:layout_gravity="left|top" />
 
                 <Button
@@ -92,6 +98,7 @@
                     android:layout_marginBottom="16dp"
                     android:background="#f4dc41"
                     android:text="Med ingefær \n 1/2kg"
+                    android:onClick="add05ingfkg"
                     app:layout_gravity="left|top" />
 
                 <Button
@@ -100,6 +107,7 @@
                     android:layout_height="100dp"
                     android:background="#f4dc41"
                     android:text="Med ingefær \n 1/4kg"
+                    android:onClick="add025ingfkg"
                     app:layout_gravity="left|top" />
 
                 <Button
@@ -108,6 +116,7 @@
                     android:layout_height="100dp"
                     android:background="#f49441"
                     android:text="Flytende"
+                    android:onClick="addflytende"
                     app:layout_gravity="left|top" />
 
                 <Button
@@ -116,6 +125,7 @@
                     android:layout_height="100dp"
                     android:background="#b2b2b2"
                     android:text=""
+                    android:visibility="gone"
                     app:layout_gravity="left|top" />
 
                 <Button
@@ -124,6 +134,7 @@
                     android:layout_height="100dp"
                     android:background="#b2b2b2"
                     android:text=""
+                    android:visibility="gone"
                     app:layout_gravity="left|top" />
 
                 <Button
@@ -132,24 +143,23 @@
                     android:layout_height="100dp"
                     android:background="#b2b2b2"
                     android:text=""
+                    android:visibility="gone"
                     app:layout_gravity="left|top" />
             </android.support.v7.widget.GridLayout>
 
             <TextView
-                android:id="@+id/textView47"
-                android:layout_width="303dp"
-                android:layout_height="105dp"
-                android:layout_marginStart="8dp"
-                android:layout_marginTop="44dp"
+                android:id="@+id/oversikt"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="45dp"
+                android:layout_marginTop="28dp"
                 android:layout_marginEnd="8dp"
-                android:text="Sommerhonning 1kg \n Lynghonning 1kg"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.462"
+                app:layout_constraintEnd_toStartOf="@+id/oversikttall"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/gridLayout" />
 
             <Button
-                android:id="@+id/button2"
+                android:id="@+id/selg"
                 android:layout_width="323dp"
                 android:layout_height="56dp"
                 android:layout_marginStart="49dp"
@@ -158,12 +168,13 @@
                 android:background="@android:color/holo_orange_light"
                 android:text="Selg"
                 android:textSize="20dp"
+                android:onClick="selg"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/divider7" />
 
             <Spinner
-                android:id="@+id/spinner2"
+                android:id="@+id/betalingsmetode"
                 android:layout_width="325dp"
                 android:layout_height="47dp"
                 android:layout_marginStart="8dp"
@@ -178,40 +189,42 @@
                 android:layout_width="124dp"
                 android:layout_height="26dp"
                 android:layout_marginStart="8dp"
-                android:layout_marginTop="15dp"
+                android:layout_marginTop="24dp"
                 android:layout_marginEnd="8dp"
                 android:text="Betalingsmetode"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.129"
+                app:layout_constraintHorizontal_bias="0.077"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/divider8" />
+                app:layout_constraintTop_toBottomOf="@+id/total" />
 
             <View
                 android:id="@+id/divider6"
                 android:layout_width="395dp"
                 android:layout_height="1dp"
                 android:layout_marginStart="8dp"
+                android:layout_marginTop="24dp"
                 android:layout_marginEnd="8dp"
                 android:background="?android:attr/listDivider"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/spinner2" />
+                app:layout_constraintTop_toBottomOf="@+id/betalingsmetode" />
 
             <TextView
                 android:id="@+id/textView49"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
-                android:layout_marginTop="20dp"
+                android:layout_marginTop="31dp"
                 android:layout_marginEnd="8dp"
                 android:text="Navn"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.093"
+                app:layout_constraintHorizontal_bias="0.088"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/spinner2" />
+                app:layout_constraintTop_toBottomOf="@+id/divider6" />
 
             <EditText
-                android:id="@+id/editText"
+                android:id="@+id/kundenavn"
                 android:layout_width="322dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
@@ -234,7 +247,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/editText" />
+                app:layout_constraintTop_toBottomOf="@+id/kundenavn" />
 
             <View
                 android:id="@+id/divider8"
@@ -247,7 +260,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView47" />
+                app:layout_constraintTop_toBottomOf="@+id/oversikt" />
 
             <android.support.constraint.ConstraintLayout
                 android:layout_width="318dp"
@@ -260,10 +273,44 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.545"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/button2"
+                app:layout_constraintTop_toBottomOf="@+id/selg"
                 app:layout_constraintVertical_bias="1.0">
 
             </android.support.constraint.ConstraintLayout>
+
+            <ImageView
+                android:id="@+id/botte"
+                android:layout_width="24dp"
+                android:layout_height="26dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="20dp"
+                android:layout_marginBottom="8dp"
+                android:onClick="slettliste"
+                android:src="@drawable/botte"
+                app:layout_constraintBottom_toBottomOf="@+id/oversikt"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/gridLayout"
+                app:layout_constraintVertical_bias="0.181" />
+
+            <TextView
+                android:id="@+id/oversikttall"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="64dp"
+                app:layout_constraintBaseline_toBaselineOf="@+id/oversikt"
+                app:layout_constraintEnd_toEndOf="parent" />
+
+            <TextView
+                android:id="@+id/total"
+                android:layout_width="331dp"
+                android:layout_height="50dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="12dp"
+                android:layout_marginEnd="8dp"
+                android:textSize="30sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/divider8" />
         </android.support.constraint.ConstraintLayout>
     </ScrollView>
 

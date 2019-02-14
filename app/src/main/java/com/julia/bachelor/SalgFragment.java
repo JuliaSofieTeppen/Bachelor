@@ -151,25 +151,25 @@ public class SalgFragment extends Fragment {
         addbutton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                PopupMenu popupMenu = new PopupMenu(rootView.getContext() , addbutton);
+                PopupMenu popupMenu = new PopupMenu(rootView.getContext(), addbutton);
                 popupMenu.getMenuInflater().inflate(R.menu.popup_menu, popupMenu.getMenu());
 
                 popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
                     @Override
                     public boolean onMenuItemClick(MenuItem item) {
-                        if(item.getTitle().equals("Bondens Marked")){
+                        if (item.getTitle().equals("Bondens Marked")) {
                             Intent myIntent = new Intent(rootView.getContext(), BmSalg.class);
                             myIntent.putExtra("BM", 1); //Optional parameters
                             rootView.getContext().startActivity(myIntent);
-                        }else if(item.getTitle().equals("Hjemme salg")){
+                        } else if (item.getTitle().equals("Hjemme salg")) {
                             Intent myIntent = new Intent(rootView.getContext(), HjemmeSalg.class);
                             myIntent.putExtra("Hjemme", 1); //Optional parameters
                             rootView.getContext().startActivity(myIntent);
-                        }else if(item.getTitle().equals("Videre salg")){
+                        } else if (item.getTitle().equals("Videre salg")) {
                             Intent myIntent = new Intent(rootView.getContext(), FakturaSalg.class);
                             myIntent.putExtra("Videresalg", 1); //Optional parameters
                             rootView.getContext().startActivity(myIntent);
-                        }else{
+                        } else {
                             Intent myIntent = new Intent(rootView.getContext(), SalgAnnet.class);
                             myIntent.putExtra("Salgannet", 1); //Optional parameters
                             rootView.getContext().startActivity(myIntent);
@@ -184,12 +184,34 @@ public class SalgFragment extends Fragment {
         return rootView;
     }
 
-    public void extend(ConstraintLayout exe){
-        if(exe.isShown()){
+    public void extend(ConstraintLayout exe) {
+        if (exe.isShown()) {
             exe.setVisibility(View.GONE);
-        }else {
+        } else {
             exe.setVisibility(View.VISIBLE);
         }
+    }
+
+
+    public void setTotalGjennomsnitt() {
+        //totaltext.setText(totalsum(arraylist));
+        //gjnsnitttext.setText(gjensnitt(arraylist));
+
+    }
+
+    public void setSommerhonning() {
+        //kg1txtsom.setText(getSumArray(0));
+        //kg05txtsom.setText(getSumArray(1));
+        //kg025txtsom.setText(getSumArray(2));
+
+    }
+
+    public void setLynghonning() {
+
+    }
+
+    public void setAnnet() {
+
     }
 
     @Override
@@ -197,23 +219,5 @@ public class SalgFragment extends Fragment {
         super.onAttach(activity);
         ((Main) activity).onSectionAttached(
                 getArguments().getInt(ARG_SECTION_NUMBER));
-    }
-
-    public void setTotalGjennomsnitt(){
-       // totaltext.setText(totalsum(arraylist));
-       // gjnsnitttext.setText(gjensnitt(arraylist));
-
-    }
-    public void setSommerhonning(){
-       // kg1txtsom.setText(getSumArray(0));
-       // kg05txtsom.setText(getSumArray(1));
-       // kg025txtsom.setText(getSumArray(2));
-
-    }
-    public void setLynghonning(){
-
-    }
-    public void setAnnet(){
-
     }
 }

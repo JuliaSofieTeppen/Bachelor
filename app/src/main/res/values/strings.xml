@@ -12,5 +12,11 @@
     <string name="action_example">Example action</string>
 
     <string name="action_settings">Innstillinger</string>
-    <string name="title_activity_deleteafter">deleteafter</string>
+
+    <string-array name="betalingsmetode">
+        <item>Kontant</item>
+        <item>Kort</item>
+        <item>Vipps</item>
+    </string-array>
+
 </resources>

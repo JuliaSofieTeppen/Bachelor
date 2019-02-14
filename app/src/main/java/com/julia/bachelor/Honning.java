@@ -1,57 +1,70 @@
 package com.julia.bachelor;
 
-public class Honning {
+class Honning implements java.io.Serializable{
+
     private long _ID;
     private String Type;
-    // Kan være 1, 0.5 eller 0.25
     private double Storrelse;
     private int HjemmePris;
     private int BondensMarkedPris;
+    private int FakturaPris;
 
-    public Honning() {
-
+    Honning() {
     }
 
-    public Honning(String type, double storrelse, int hjemmePris, int bondensMarkedPris) {
+    Honning(String type, double storrelse, int hjemmePris, int bondensMarkedPris, int fakturaPris) {
         Type = type;
         Storrelse = storrelse;
         HjemmePris = hjemmePris;
         BondensMarkedPris = bondensMarkedPris;
+        FakturaPris = fakturaPris;
     }
 
-    public long get_ID() {
+    long get_ID() {
         return _ID;
     }
 
-    public String getType() {
+    void set_ID(long _ID) {
+        this._ID = _ID;
+    }
+
+    String getType() {
         return Type;
     }
 
-    public void setType(String type) {
+    void setType(String type) {
         Type = type;
     }
 
-    public double getStorrelse() {
+    double getStorrelse() {
         return Storrelse;
     }
 
-    public void setStorrelse(double storrelse) {
+    void setStorrelse(double storrelse) {
         Storrelse = storrelse;
     }
 
-    public int getHjemmePris() {
+    int getHjemmePris() {
         return HjemmePris;
     }
 
-    public void setHjemmePris(int hjemmePris) {
+    void setHjemmePris(int hjemmePris) {
         HjemmePris = hjemmePris;
     }
 
-    public int getBondensMarkedPris() {
+    int getBondensMarkedPris() {
         return BondensMarkedPris;
     }
 
-    public void setBondensMarkedPris(int bondensMarkedPris) {
+    void setBondensMarkedPris(int bondensMarkedPris) {
         BondensMarkedPris = bondensMarkedPris;
+    }
+
+    int getFakturaPris() {
+        return FakturaPris;
+    }
+
+    void setFakturaPris(int fakturaPris) {
+        FakturaPris = fakturaPris;
     }
 }

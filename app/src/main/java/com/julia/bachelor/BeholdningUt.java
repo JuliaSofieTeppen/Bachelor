@@ -1,6 +1,6 @@
 package com.julia.bachelor;
 
-class BeholdningUt {
+class BeholdningUt implements java.io.Serializable{
     private long _ID;
     private int Sommer;
     private int SommerH;

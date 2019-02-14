@@ -1,7 +1,9 @@
 package com.julia.bachelor;
 
 import java.util.ArrayList;
-
+/**
+ * This is the template for Beregninger.java
+ * */
 interface Template {
     /**
      * Should sum up the Belop from each of the objects.

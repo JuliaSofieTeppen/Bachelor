@@ -4,16 +4,19 @@ import java.util.ArrayList;
 
 interface Template {
     /**
-    * Should sum up the Belop from each of the objects
-    * */
-    double sumBelop(ArrayList<Hjemme> list);
+     * Should sum up the Belop from each of the objects.
+     * All of these objects have a variable Belop that can be accessed with the getBelop() or setBelop() methods.
+     * These method will all be very similar to each other.
+     * */
     double sumAnnet(ArrayList<Annet> list);
     double sumHjemme(ArrayList<Hjemme> list);
     double sumBm(ArrayList<BondensMarked> list);
     double sumVideresalg(ArrayList<Videresalg> list);
     double sumList(ArrayList<Object> list);
     /**
-     * there will be difference in the mva
+     * There will be difference in the mva.
+     * Some of the objects will be using sats = 25% and some sats = 15%
+     * Therefore there should be two methods for calculating this.
      * */
     double mvaHoy(ArrayList<Object> list);
     double mvaLav(ArrayList<Object> list);
@@ -29,8 +32,8 @@ interface Template {
      * */
     void sortBelop(ArrayList<Object>list);
     /**
-    * Sorts the list on Kunde from A to Å
-    * */
+     * Sorts the list on Kunde from A to Å
+     * */
     void sortKunde(ArrayList<Object> list);
     /**
      * This method will reverse the given list

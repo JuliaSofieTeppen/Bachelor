@@ -11,7 +11,8 @@
         android:roundIcon="@drawable/logo"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".FullOversikt"></activity>
+        <activity android:name=".SalgItem"></activity>
+        <activity android:name=".FullOversikt" />
         <activity android:name=".SalgAnnet" />
         <activity android:name=".AddBeholdning" />
         <activity android:name=".Innstillinger" />

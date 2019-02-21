@@ -9,11 +9,15 @@ import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.ListView;
 import android.widget.PopupMenu;
 import android.widget.TextView;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class SalgFragment extends Fragment {
@@ -24,21 +28,10 @@ public class SalgFragment extends Fragment {
     private static final String ARG_SECTION_NUMBER = "section_number";
 
     Button addbutton;
-    ConstraintLayout som1kg;
-    ConstraintLayout som05kg;
-    ConstraintLayout som025kg;
-    ConstraintLayout lyng1kg;
-    ConstraintLayout lyng05kg;
-    ConstraintLayout lyng025kg;
-    ConstraintLayout Ingf05kg;
-    ConstraintLayout Ingf025kg;
-    ConstraintLayout flyt;
     TextView totaltext;
-    TextView gjnsnitttext;
-    TextView kg1txtsom;
-    TextView kg05txtsom;
-    TextView kg025txtsom;
     List arraylist;
+    ListView listView;
+    private ArrayList<String> salgliste; //for now, må endres til objekter så vi kan putte inn objekter ordenlig.
 
     public SalgFragment() {
     }
@@ -62,92 +55,27 @@ public class SalgFragment extends Fragment {
 
         addbutton = rootView.findViewById(R.id.addbutton);
 
-        som1kg = rootView.findViewById(R.id.som1kg);
-        som05kg = rootView.findViewById(R.id.som05kg);
-        som025kg = rootView.findViewById(R.id.som025kg);
-        lyng1kg = rootView.findViewById(R.id.lyng1kg);
-        lyng05kg = rootView.findViewById(R.id.lyng05kg);
-        lyng025kg = rootView.findViewById(R.id.lyng025kg);
-        Ingf05kg = rootView.findViewById(R.id.ingf05kg);
-        Ingf025kg = rootView.findViewById(R.id.ingf025kg);
-        flyt = rootView.findViewById(R.id.flyt);
-
         totaltext = rootView.findViewById(R.id.totaltext);
-        gjnsnitttext = rootView.findViewById(R.id.gjnsnitttext);
-        kg1txtsom = rootView.findViewById(R.id.kg1txtsom);
-        kg05txtsom = rootView.findViewById(R.id.kg05txtsom);
-        kg025txtsom = rootView.findViewById(R.id.kg025txtsom);
-
-
         arraylist = new ArrayList();
 
+        //add salg variabler i listen
+        listView = rootView.findViewById(R.id.salgitems);
+        salgliste = new ArrayList<>();
+        salgliste.add("1234.1.1 salg 500kr");
+        salgliste.add("8832.2.2 salg 377kr");
 
-        som1kg.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                ConstraintLayout exe = rootView.findViewById(R.id.extend);
-                extend(exe);
-            }
-        });
+        ArrayAdapter<String> arrayAdapter = new ArrayAdapter(this.getContext(), android.R.layout.simple_list_item_1,salgliste);
+        listView.setAdapter(arrayAdapter);
+        //---------------------------------------
 
-        som05kg.setOnClickListener(new View.OnClickListener() {
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener(){
             @Override
-            public void onClick(View v) {
-                ConstraintLayout exe = rootView.findViewById(R.id.extend2);
-                extend(exe);
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                //TODO sett inn position der fordi ...fordi
+                Intent i = new Intent(getContext(),SalgItem.class );
+                startActivity(i);
             }
         });
-        som025kg.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                ConstraintLayout exe = rootView.findViewById(R.id.extend3);
-                extend(exe);
-            }
-        });
-
-        lyng1kg.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                ConstraintLayout exe = rootView.findViewById(R.id.extend4);
-                extend(exe);
-            }
-        });
-        lyng05kg.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                ConstraintLayout exe = rootView.findViewById(R.id.extend5);
-                extend(exe);
-            }
-        });
-        lyng025kg.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                ConstraintLayout exe = rootView.findViewById(R.id.extend6);
-                extend(exe);
-            }
-        });
-        Ingf05kg.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                ConstraintLayout exe = rootView.findViewById(R.id.extend7);
-                extend(exe);
-            }
-        });
-        Ingf025kg.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                ConstraintLayout exe = rootView.findViewById(R.id.extend8);
-                extend(exe);
-            }
-        });
-        flyt.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                ConstraintLayout exe = rootView.findViewById(R.id.extend9);
-                extend(exe);
-            }
-        });
-
         addbutton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

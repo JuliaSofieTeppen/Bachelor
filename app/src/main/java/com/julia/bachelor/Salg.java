@@ -1,5 +1,7 @@
 package com.julia.bachelor;
 
+import java.io.Serializable;
+
 interface Salg {
     long get_ID();
 

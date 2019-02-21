@@ -11,12 +11,9 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 public class Innstillinger extends Activity {
-    ConstraintLayout som1kg;
-    ConstraintLayout som05kg;
-    ConstraintLayout som025kg;
-    ConstraintLayout lyng1kg;
-    ConstraintLayout lyng05kg;
-    ConstraintLayout lyng025kg;
+    ConstraintLayout enkg;
+    ConstraintLayout halvkg;
+    ConstraintLayout kvartkg;
     ConstraintLayout Ingf05kg;
     ConstraintLayout Ingf025kg;
     ConstraintLayout flyt;
@@ -34,12 +31,9 @@ public class Innstillinger extends Activity {
 
         getActionBar().setDisplayHomeAsUpEnabled(true);
 
-        som1kg = findViewById(R.id.som1kg);
-        som05kg = findViewById(R.id.som05kg);
-        som025kg = findViewById(R.id.som025kg);
-        lyng1kg = findViewById(R.id.lyng1kg);
-        lyng05kg = findViewById(R.id.lyng05kg);
-        lyng025kg = findViewById(R.id.lyng025kg);
+        enkg = findViewById(R.id.som1kg);
+        halvkg = findViewById(R.id.som05kg);
+        kvartkg = findViewById(R.id.som025kg);
         Ingf05kg = findViewById(R.id.ingf05kg);
         Ingf025kg = findViewById(R.id.ingf025kg);
         flyt = findViewById(R.id.flyt);
@@ -67,7 +61,7 @@ public class Innstillinger extends Activity {
                 extend(exe);
             }
         });
-        som1kg.setOnClickListener(new View.OnClickListener() {
+        enkg.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 ConstraintLayout exe = findViewById(R.id.extend);
@@ -75,14 +69,14 @@ public class Innstillinger extends Activity {
             }
         });
 
-        som05kg.setOnClickListener(new View.OnClickListener() {
+        halvkg.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 ConstraintLayout exe = findViewById(R.id.extend2);
                 extend(exe);
             }
         });
-        som025kg.setOnClickListener(new View.OnClickListener() {
+        kvartkg.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 ConstraintLayout exe = findViewById(R.id.extend3);

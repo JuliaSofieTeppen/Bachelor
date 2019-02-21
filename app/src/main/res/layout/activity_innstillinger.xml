@@ -109,7 +109,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
                 android:layout_marginEnd="8dp"
-                android:visibility="gone"
+                android:visibility="visible"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/endrepris">
@@ -299,13 +299,6 @@
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
 
-                    <TextView
-                        android:id="@+id/textView89"
-                        android:layout_width="98dp"
-                        android:layout_height="28dp"
-                        android:layout_marginEnd="16dp"
-                        app:layout_constraintBaseline_toBaselineOf="@+id/textView41"
-                        app:layout_constraintEnd_toEndOf="parent" />
                 </android.support.constraint.ConstraintLayout>
 
                 <android.support.constraint.ConstraintLayout
@@ -334,13 +327,6 @@
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
 
-                    <TextView
-                        android:id="@+id/kg05txtsom"
-                        android:layout_width="98dp"
-                        android:layout_height="23dp"
-                        android:layout_marginEnd="16dp"
-                        app:layout_constraintBaseline_toBaselineOf="@+id/textView36"
-                        app:layout_constraintEnd_toEndOf="parent" />
                 </android.support.constraint.ConstraintLayout>
 
                 <android.support.constraint.ConstraintLayout
@@ -519,13 +505,6 @@
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
 
-                    <TextView
-                        android:id="@+id/kg1txtsom"
-                        android:layout_width="93dp"
-                        android:layout_height="23dp"
-                        android:layout_marginEnd="16dp"
-                        app:layout_constraintBaseline_toBaselineOf="@+id/textView35"
-                        app:layout_constraintEnd_toEndOf="parent" />
                 </android.support.constraint.ConstraintLayout>
 
                 <android.support.constraint.ConstraintLayout
@@ -554,13 +533,6 @@
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
 
-                    <TextView
-                        android:id="@+id/textView103"
-                        android:layout_width="83dp"
-                        android:layout_height="20dp"
-                        android:layout_marginEnd="16dp"
-                        app:layout_constraintBaseline_toBaselineOf="@+id/textView42"
-                        app:layout_constraintEnd_toEndOf="parent" />
                 </android.support.constraint.ConstraintLayout>
 
                 <android.support.constraint.ConstraintLayout
@@ -589,13 +561,6 @@
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
 
-                    <TextView
-                        android:id="@+id/kg025txtsom"
-                        android:layout_width="95dp"
-                        android:layout_height="26dp"
-                        android:layout_marginEnd="16dp"
-                        app:layout_constraintBaseline_toBaselineOf="@+id/textView37"
-                        app:layout_constraintEnd_toEndOf="parent" />
                 </android.support.constraint.ConstraintLayout>
 
                 <TextView
@@ -782,14 +747,6 @@
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
-
-                    <TextView
-                        android:id="@+id/textView104"
-                        android:layout_width="93dp"
-                        android:layout_height="26dp"
-                        android:layout_marginEnd="8dp"
-                        app:layout_constraintBaseline_toBaselineOf="@+id/textView43"
-                        app:layout_constraintEnd_toEndOf="parent" />
 
                 </android.support.constraint.ConstraintLayout>
 

@@ -50,7 +50,7 @@ public class Hovedside extends Fragment {
     @Override
     public View onCreateView(final LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        final View rootView = inflater.inflate(R.layout.hovedside_fragment, container, false);
+        final View rootView = inflater.inflate(R.layout.rapport_fragment, container, false);
 
         addbutton = rootView.findViewById(R.id.addbutton);
 

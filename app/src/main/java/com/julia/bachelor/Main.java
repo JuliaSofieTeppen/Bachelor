@@ -47,7 +47,7 @@ public class Main extends Activity
         // update the main content by replacing fragments
         FragmentManager fragmentManager = getFragmentManager();
         fragmentManager.beginTransaction()
-                .replace(R.id.container, SalgFragment.newInstance(position + 1))
+                .replace(R.id.container, Hovedside.newInstance(position + 1))
                 .commit();
     }
 
@@ -62,15 +62,33 @@ public class Main extends Activity
                 bundle = new Bundle();
                 bundle.putSerializable("beholdning", Beholdning);
                 bundle.putSerializable("salg",BeholdningUt);
-                BeholdningFragment myf = BeholdningFragment.newInstance(1);
+                RapportFragment myf = RapportFragment.newInstance(1);
                 myf.setArguments(bundle);
                 FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
                 fragmentTransaction.replace(R.id.container, myf);
                 fragmentTransaction.addToBackStack(null);
                 fragmentTransaction.commit();
                 break;
+
             case 3:
+               /* mTitle = getString(R.string.title_section3);
+                bundle = new Bundle();
+                bundle.putSerializable("params", Honningtype);
+                PriserFragment fragment = new PriserFragment();
+                fragment.setArguments(bundle);
+                FragmentTransaction fragmentt = getFragmentManager().beginTransaction();
+                fragmentt.replace(R.id.container, fragment);
+                fragmentt.addToBackStack(null);
+                fragmentt.commit();
+                break;*/
                 mTitle = getString(R.string.title_section3);
+                Intent myIntent = new Intent(Main.this, AddBeholdning.class);
+                myIntent.putExtra("addbeholdning", 1); //Optional parameters
+                Main.this.startActivity(myIntent);
+                break;
+
+            case 4:
+                mTitle = getString(R.string.title_section4);
                 bundle = new Bundle();
                 bundle.putSerializable("params", Honningtype);
                 PriserFragment fragment = new PriserFragment();
@@ -80,11 +98,13 @@ public class Main extends Activity
                 fragmentt.addToBackStack(null);
                 fragmentt.commit();
                 break;
-            case 4:
-                mTitle = getString(R.string.title_section4);
-                Intent myIntent = new Intent(Main.this, Innstillinger.class);
-                myIntent.putExtra("Innstillinger", 1); //Optional parameters
-                Main.this.startActivity(myIntent);
+
+            case 5:
+                mTitle = getString(R.string.title_section5);
+                Intent myIntentinstillinger = new Intent(Main.this, Innstillinger.class);
+                myIntentinstillinger.putExtra("Innstillinger", 1); //Optional parameters
+                Main.this.startActivity(myIntentinstillinger);
+                break;
 
         }
     }

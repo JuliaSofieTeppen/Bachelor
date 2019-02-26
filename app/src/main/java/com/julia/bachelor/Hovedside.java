@@ -17,10 +17,9 @@ import android.widget.PopupMenu;
 import android.widget.TextView;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
-public class SalgFragment extends Fragment {
+public class Hovedside extends Fragment {
     /**
      * The fragment argument representing the section number for this
      * fragment.
@@ -33,15 +32,15 @@ public class SalgFragment extends Fragment {
     ListView listView;
     private ArrayList<String> salgliste; //for now, må endres til objekter så vi kan putte inn objekter ordenlig.
 
-    public SalgFragment() {
+    public Hovedside() {
     }
 
     /**
      * Returns a new instance of this fragment for the given section
      * number.
      */
-    public static SalgFragment newInstance(int sectionNumber) {
-        SalgFragment fragment = new SalgFragment();
+    public static Hovedside newInstance(int sectionNumber) {
+        Hovedside fragment = new Hovedside();
         Bundle args = new Bundle();
         args.putInt(ARG_SECTION_NUMBER, sectionNumber);
         fragment.setArguments(args);
@@ -51,7 +50,7 @@ public class SalgFragment extends Fragment {
     @Override
     public View onCreateView(final LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        final View rootView = inflater.inflate(R.layout.fragment_salg, container, false);
+        final View rootView = inflater.inflate(R.layout.hovedside_fragment, container, false);
 
         addbutton = rootView.findViewById(R.id.addbutton);
 

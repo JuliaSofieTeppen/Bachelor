@@ -12,22 +12,22 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 
-public class BeholdningFragment extends Fragment {
+public class RapportFragment extends Fragment {
     private static final String ARG_SECTION_NUMBER = "section_number";
     static ArrayList<Beholdning> Beholdning;
     static ArrayList<BeholdningUt> BeholdningUt;
     Button addbutton;
     TextView Som, SomH, SomK, Lyng, LyngH, LyngK, IngH, IngK, Flyt;
 
-    public BeholdningFragment() {
+    public RapportFragment() {
     }
 
     /**
      * Returns a new instance of this fragment for the given section
      * number.
      */
-    public static BeholdningFragment newInstance(int sectionNumber) {
-        BeholdningFragment fragment = new BeholdningFragment();
+    public static RapportFragment newInstance(int sectionNumber) {
+        RapportFragment fragment = new RapportFragment();
         Bundle args = new Bundle();
         args.putInt(ARG_SECTION_NUMBER, sectionNumber);
         fragment.setArguments(args);
@@ -36,7 +36,7 @@ public class BeholdningFragment extends Fragment {
 
     @Override @SuppressWarnings("unchecked")
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View rootView = inflater.inflate(R.layout.fragment_beholdning, container, false);
+        View rootView = inflater.inflate(R.layout.rapport_fragment, container, false);
         Som = rootView.findViewById(R.id.BSom);
         SomH = rootView.findViewById(R.id.BSomH);
         SomK = rootView.findViewById(R.id.BSomK);

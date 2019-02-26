@@ -1,23 +1,36 @@
 package com.julia.bachelor;
 
-
+import android.app.Activity;
 import android.app.Fragment;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.constraint.ConstraintLayout;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.ListView;
+import android.widget.PopupMenu;
 import android.widget.TextView;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class RapportFragment extends Fragment {
+    /**
+     * The fragment argument representing the section number for this
+     * fragment.
+     */
     private static final String ARG_SECTION_NUMBER = "section_number";
-    static ArrayList<Beholdning> Beholdning;
-    static ArrayList<BeholdningUt> BeholdningUt;
+
     Button addbutton;
-    TextView Som, SomH, SomK, Lyng, LyngH, LyngK, IngH, IngK, Flyt;
+    TextView totaltext;
+    List arraylist;
+    ListView listView;
+    private ArrayList<String> salgliste; //for now, må endres til objekter så vi kan putte inn objekter ordenlig.
 
     public RapportFragment() {
     }
@@ -34,53 +47,104 @@ public class RapportFragment extends Fragment {
         return fragment;
     }
 
-    @Override @SuppressWarnings("unchecked")
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View rootView = inflater.inflate(R.layout.hovedside_fragment, container, false);
-        Som = rootView.findViewById(R.id.BSom);
-        SomH = rootView.findViewById(R.id.BSomH);
-        SomK = rootView.findViewById(R.id.BSomK);
-        Lyng = rootView.findViewById(R.id.BLyng);
-        LyngH = rootView.findViewById(R.id.BLyngH);
-        LyngK = rootView.findViewById(R.id.BLyngK);
-        IngH = rootView.findViewById(R.id.BIngH);
-        IngK = rootView.findViewById(R.id.BIngK);
-        Flyt = rootView.findViewById(R.id.BFlyt);
-        addbutton = rootView.findViewById(R.id.button);
+    @Override
+    public View onCreateView(final LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+        final View rootView = inflater.inflate(R.layout.rapport_fragment, container, false);
+
+        addbutton = rootView.findViewById(R.id.addbutton);
+
+        totaltext = rootView.findViewById(R.id.totaltext);
+        arraylist = new ArrayList();
+
+        //add salg variabler i listen
+        listView = rootView.findViewById(R.id.salgitems);
+        salgliste = new ArrayList<>();
+        salgliste.add("1234.1.1 salg 500kr");
+        salgliste.add("8832.2.2 salg 377kr");
+
+        ArrayAdapter<String> arrayAdapter = new ArrayAdapter(this.getContext(), android.R.layout.simple_list_item_1,salgliste);
+        listView.setAdapter(arrayAdapter);
+        //---------------------------------------
+
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener(){
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                //TODO sett inn position der fordi ...fordi
+                Intent i = new Intent(getContext(),SalgItem.class );
+                startActivity(i);
+            }
+        });
         addbutton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent myIntent = new Intent(getContext(), AddBeholdning.class);
-                myIntent.putExtra("addbeholdning", 1); //Optional parameters
-                getContext().startActivity(myIntent);
+                PopupMenu popupMenu = new PopupMenu(rootView.getContext(), addbutton);
+                popupMenu.getMenuInflater().inflate(R.menu.popup_menu, popupMenu.getMenu());
+
+                popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
+                    @Override
+                    public boolean onMenuItemClick(MenuItem item) {
+                        if (item.getTitle().equals("Bondens Marked")) {
+                            Intent myIntent = new Intent(rootView.getContext(), BmSalg.class);
+                            myIntent.putExtra("BM", 1); //Optional parameters
+                            rootView.getContext().startActivity(myIntent);
+                        } else if (item.getTitle().equals("Hjemme salg")) {
+                            Intent myIntent = new Intent(rootView.getContext(), HjemmeSalg.class);
+                            myIntent.putExtra("Hjemme", 1); //Optional parameters
+                            rootView.getContext().startActivity(myIntent);
+                        } else if (item.getTitle().equals("Videre salg")) {
+                            Intent myIntent = new Intent(rootView.getContext(), FakturaSalg.class);
+                            myIntent.putExtra("Videresalg", 1); //Optional parameters
+                            rootView.getContext().startActivity(myIntent);
+                        } else {
+                            Intent myIntent = new Intent(rootView.getContext(), SalgAnnet.class);
+                            myIntent.putExtra("Salgannet", 1); //Optional parameters
+                            rootView.getContext().startActivity(myIntent);
+                        }
+                        return true;
+                    }
+                });
+                popupMenu.show();
             }
         });
-        try {
-            Beholdning = (ArrayList<Beholdning>) (getArguments().getSerializable("beholdning"));
-            BeholdningUt = (ArrayList<BeholdningUt>) (getArguments().getSerializable("salg"));
-            // TODO do not use get(0) must find the right object here..
-            String tmpString=Integer.toString(Beholdning.get(0).getSommer() - BeholdningUt.get(0).getSommer());
-            Som.setText(tmpString);
-            tmpString=Integer.toString(Beholdning.get(0).getSommerH() - BeholdningUt.get(0).getSommerH());
-            SomH.setText(tmpString);
-            tmpString=Integer.toString(Beholdning.get(0).getSommerK() - BeholdningUt.get(0).getSommerK());
-            SomK.setText(tmpString);
-            tmpString=Integer.toString(Beholdning.get(0).getLyng() - BeholdningUt.get(0).getLyng());
-            Lyng.setText(tmpString);
-            tmpString=Integer.toString(Beholdning.get(0).getLyngH() - BeholdningUt.get(0).getLyngH());
-            LyngH.setText(tmpString);
-            tmpString=Integer.toString(Beholdning.get(0).getLyngK() - BeholdningUt.get(0).getLyngK());
-            LyngK.setText(tmpString);
-            tmpString=Integer.toString(Beholdning.get(0).getIngeferH() - BeholdningUt.get(0).getIngeferH());
-            IngH.setText(tmpString);
-            tmpString=Integer.toString(Beholdning.get(0).getIngeferK() - BeholdningUt.get(0).getIngeferK());
-            IngK.setText(tmpString);
-            tmpString=Integer.toString(Beholdning.get(0).getFlytende() - BeholdningUt.get(0).getFlytende());
-            Flyt.setText(tmpString);
-        } catch (NullPointerException e) {
-            e.printStackTrace();
-        }
+
         return rootView;
     }
 
+    public void extend(ConstraintLayout exe) {
+        if (exe.isShown()) {
+            exe.setVisibility(View.GONE);
+        } else {
+            exe.setVisibility(View.VISIBLE);
+        }
+    }
+
+
+    public void setTotalGjennomsnitt() {
+        //totaltext.setText(totalsum(arraylist));
+        //gjnsnitttext.setText(gjensnitt(arraylist));
+
+    }
+
+    public void setSommerhonning() {
+        //kg1txtsom.setText(getSumArray(0));
+        //kg05txtsom.setText(getSumArray(1));
+        //kg025txtsom.setText(getSumArray(2));
+
+    }
+
+    public void setLynghonning() {
+
+    }
+
+    public void setAnnet() {
+
+    }
+
+    @Override
+    public void onAttach(Activity activity) {
+        super.onAttach(activity);
+        ((Main) activity).onSectionAttached(
+                getArguments().getInt(ARG_SECTION_NUMBER));
+    }
 }

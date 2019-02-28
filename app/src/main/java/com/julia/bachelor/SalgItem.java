@@ -1,9 +1,10 @@
 package com.julia.bachelor;
 
+import android.app.Activity;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
-public class SalgItem extends AppCompatActivity {
+public class SalgItem extends Activity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

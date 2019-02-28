@@ -111,7 +111,6 @@ public class Main extends Activity implements NavigationDrawerFragment.Navigatio
         }
     }
 
-
     public void lagre(View v) {
         dato = findViewById(R.id.Bdato);
         som1kg = findViewById(R.id.Bsom1kg);

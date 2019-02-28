@@ -7,27 +7,31 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
 import android.widget.TextView;
 
 import java.util.ArrayList;
 
-public class HovedsideFragment extends Fragment {
+public class Rapport extends Fragment {
     private static final String ARG_SECTION_NUMBER = "section_number";
     static ArrayList<Beholdning> Beholdning;
     static ArrayList<BeholdningUt> BeholdningUt;
-    Button addbutton;
     TextView Som, SomH, SomK, Lyng, LyngH, LyngK, IngH, IngK, Flyt;
+    ListView listView;
+    private ArrayList<String> salgliste; //for now, må endres til objekter så vi kan putte inn objekter ordenlig.
 
-    public HovedsideFragment() {
+
+    public Rapport() {
     }
 
     /**
      * Returns a new instance of this fragment for the given section
      * number.
      */
-    public static HovedsideFragment newInstance(int sectionNumber) {
-        HovedsideFragment fragment = new HovedsideFragment();
+    public static Rapport newInstance(int sectionNumber) {
+        Rapport fragment = new Rapport();
         Bundle args = new Bundle();
         args.putInt(ARG_SECTION_NUMBER, sectionNumber);
         fragment.setArguments(args);
@@ -36,16 +40,27 @@ public class HovedsideFragment extends Fragment {
 
     @Override @SuppressWarnings("unchecked")
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View rootView = inflater.inflate(R.layout.hovedside_fragment, container, false);
-        addbutton = rootView.findViewById(R.id.button);
-        addbutton.setOnClickListener(new View.OnClickListener() {
+        View rootView = inflater.inflate(R.layout.rapport, container, false);
+
+        listView = rootView.findViewById(R.id.salgitems);
+        salgliste = new ArrayList<>();
+        salgliste.add("1234.1.1 salg 500kr");
+        salgliste.add("8832.2.2 salg 377kr");
+
+        ArrayAdapter<String> arrayAdapter = new ArrayAdapter(this.getContext(), android.R.layout.simple_list_item_1,salgliste);
+        listView.setAdapter(arrayAdapter);
+        //---------------------------------------
+
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener(){
             @Override
-            public void onClick(View v) {
-                Intent myIntent = new Intent(getContext(), AddBeholdning.class);
-                myIntent.putExtra("addbeholdning", 1); //Optional parameters
-                getContext().startActivity(myIntent);
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                //TODO sett inn position der fordi ...fordi
+                Intent i = new Intent(getContext(),SalgItem.class );
+                startActivity(i);
             }
         });
+
+
         try {
             Beholdning = (ArrayList<Beholdning>) (getArguments().getSerializable("beholdning"));
             BeholdningUt = (ArrayList<BeholdningUt>) (getArguments().getSerializable("salg"));

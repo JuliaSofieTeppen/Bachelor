@@ -19,7 +19,7 @@ import android.widget.TextView;
 import java.util.ArrayList;
 import java.util.List;
 
-public class RapportFragment extends Fragment {
+public class Hovedside extends Fragment {
     /**
      * The fragment argument representing the section number for this
      * fragment.
@@ -32,15 +32,15 @@ public class RapportFragment extends Fragment {
     ListView listView;
     private ArrayList<String> salgliste; //for now, må endres til objekter så vi kan putte inn objekter ordenlig.
 
-    public RapportFragment() {
+    public Hovedside() {
     }
 
     /**
      * Returns a new instance of this fragment for the given section
      * number.
      */
-    public static RapportFragment newInstance(int sectionNumber) {
-        RapportFragment fragment = new RapportFragment();
+    public static Hovedside newInstance(int sectionNumber) {
+        Hovedside fragment = new Hovedside();
         Bundle args = new Bundle();
         args.putInt(ARG_SECTION_NUMBER, sectionNumber);
         fragment.setArguments(args);
@@ -50,31 +50,14 @@ public class RapportFragment extends Fragment {
     @Override
     public View onCreateView(final LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        final View rootView = inflater.inflate(R.layout.rapport_fragment, container, false);
+        final View rootView = inflater.inflate(R.layout.hovedside, container, false);
 
         addbutton = rootView.findViewById(R.id.addbutton);
 
         totaltext = rootView.findViewById(R.id.totaltext);
         arraylist = new ArrayList();
 
-        //add salg variabler i listen
-        listView = rootView.findViewById(R.id.salgitems);
-        salgliste = new ArrayList<>();
-        salgliste.add("1234.1.1 salg 500kr");
-        salgliste.add("8832.2.2 salg 377kr");
 
-        ArrayAdapter<String> arrayAdapter = new ArrayAdapter(this.getContext(), android.R.layout.simple_list_item_1,salgliste);
-        listView.setAdapter(arrayAdapter);
-        //---------------------------------------
-
-        listView.setOnItemClickListener(new AdapterView.OnItemClickListener(){
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                //TODO sett inn position der fordi ...fordi
-                Intent i = new Intent(getContext(),SalgItem.class );
-                startActivity(i);
-            }
-        });
         addbutton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

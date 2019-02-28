@@ -70,44 +70,4 @@ public class SkalBliAddBeholdning extends Fragment {
         return rootView;
     }
 
-    public void lagre(View v) {
-        int tell = 0;
-        if (checkDate(dato.getText().toString())) {
-            for (EditText verdi : verdier) {
-                if (verdi.getText().toString().equals("")) {
-                    verdi.setText("0");
-                } else {
-                    tell++;
-                }
-            }
-            if (tell == 0) {
-                Toast.makeText(this.getContext(), "Legg til minst et produkt", Toast.LENGTH_SHORT).show();
-            } else {
-                insertIntoDB();
-                Toast.makeText(this.getContext(), "Beholdning lagret", Toast.LENGTH_SHORT).show();
-            }
-
-        } else {
-            Toast.makeText(this.getContext(), "Ugyldig dato", Toast.LENGTH_SHORT).show();
-        }
-    }
-
-    String getBeholdning(){
-        String[] strings = {"Sommer","SommerH","SommerK","Lyng","LyngH","LyngK","IngeferH","IngeferK","Flytende"};
-        StringBuilder sb = new StringBuilder();
-        for(int i = 0; i < strings.length; i++){
-            sb.append(strings[i]).append("=").append(verdier.get(i).getText().toString()).append("&");
-        }
-        return sb.toString();
-    }
-
-    void insertIntoDB(){
-        db.executeOnDB("http://www.honningbier.no/PHP/SalgIn.php/?Dato=" + dato.getText().toString());
-        db.executeOnDB("http://www.honningbier.no/PHP/BeholdningIn.php/?" + getBeholdning() + "&Dato=" + dato.getText().toString());
-    }
-
-    public boolean checkDate(String date) {
-        String regex = "^\\d{4}\\.(0?[1-9]|1[012])\\.(0?[1-9]|[12][0-9]|3[01])$";
-        return date.matches(regex);
-    }
 }

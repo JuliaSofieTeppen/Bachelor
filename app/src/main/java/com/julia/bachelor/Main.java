@@ -15,8 +15,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-public class Main extends Activity
-        implements NavigationDrawerFragment.NavigationDrawerCallbacks{
+public class Main extends Activity implements NavigationDrawerFragment.NavigationDrawerCallbacks{
     static ArrayList<Honning> Honningtype;
     static ArrayList<Annet> Annet;
     static ArrayList<Hjemme> Hjemme;
@@ -24,7 +23,7 @@ public class Main extends Activity
     static ArrayList<Videresalg> Videresalg;
     static ArrayList<Beholdning> Beholdning;
     static ArrayList<BeholdningUt> BeholdningUt;
-
+    static ArrayList<Object> Salg;
     static Database database;
 
     EditText dato;
@@ -50,7 +49,6 @@ public class Main extends Activity
         database.getBMValues();
         database.getHjemmeValues();
         database.getVideresalgValues();
-        Honningtype = new ArrayList<>();
         /*
          * Fragment managing the behaviors, interactions and presentation of the navigation drawer.
          */
@@ -166,25 +164,23 @@ public class Main extends Activity
         String regex = "^\\d{4}\\.(0?[1-9]|1[012])\\.(0?[1-9]|[12][0-9]|3[01])$";
         return date.matches(regex);
     }
-    public void setAnnet(ArrayList<com.julia.bachelor.Annet> annet) {
-        Annet = annet;
-    }
 
-    public void setBeholdning(ArrayList<Beholdning> beholdnings){
-        Beholdning = beholdnings;
-    }
+    public void setAnnet(ArrayList<com.julia.bachelor.Annet> annet) { Annet = annet; }
 
-    public void setBM(ArrayList<BondensMarked> bondensMarkeds){
-        Bm = bondensMarkeds;
-    }
+    public void setBeholdning(ArrayList<Beholdning> beholdnings){ Beholdning = beholdnings; }
 
-    public void setHjemme(ArrayList<Hjemme> hjemmes){
-        Hjemme = hjemmes;
-    }
+    public void setBM(ArrayList<BondensMarked> bondensMarkeds){ Bm = bondensMarkeds; }
 
-    public void setHonning(ArrayList<Honning> type){
-        Honningtype = type;
-    }
+    public void setHjemme(ArrayList<Hjemme> hjemmes){ Hjemme = hjemmes; }
+
+    public void setHonning(ArrayList<Honning> type){ Honningtype = type; }
 
     public void setVideresalg(ArrayList<com.julia.bachelor.Videresalg> videresalg) { Videresalg = videresalg; }
+
+    private void setSalg(){
+        Salg.addAll(Bm);
+        Salg.addAll(Hjemme);
+        Salg.addAll(Videresalg);
+        Salg.addAll(Annet);
+    }
 }

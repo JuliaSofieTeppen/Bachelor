@@ -4,7 +4,6 @@ import android.app.Activity;
 
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.widget.DrawerLayout;
 import android.view.View;
@@ -64,7 +63,7 @@ public class Main extends Activity
         // update the main content by replacing fragments
         FragmentManager fragmentManager = getFragmentManager();
         fragmentManager.beginTransaction()
-                .replace(R.id.container, RapportFragment.newInstance(position + 1))
+                .replace(R.id.container, Hovedside.newInstance(position + 1))
                 .commit();
     }
 
@@ -79,7 +78,7 @@ public class Main extends Activity
                 bundle = new Bundle();
                 bundle.putSerializable("beholdning", Beholdning);
                 bundle.putSerializable("salg",BeholdningUt);
-                HovedsideFragment myf = HovedsideFragment.newInstance(1);
+                Rapport myf = Rapport.newInstance(1);
                 myf.setArguments(bundle);
                 FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
                 fragmentTransaction.replace(R.id.container, myf);

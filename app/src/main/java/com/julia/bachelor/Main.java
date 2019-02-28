@@ -71,21 +71,11 @@ public class Main extends Activity
                 break;
 
             case 3:
-               /* mTitle = getString(R.string.title_section3);
-                bundle = new Bundle();
-                bundle.putSerializable("params", Honningtype);
-                PriserFragment fragment = new PriserFragment();
-                fragment.setArguments(bundle);
+                SkalBliAddBeholdning fragment = new SkalBliAddBeholdning();
                 FragmentTransaction fragmentt = getFragmentManager().beginTransaction();
                 fragmentt.replace(R.id.container, fragment);
                 fragmentt.addToBackStack(null);
                 fragmentt.commit();
-                break;*/
-                /*mTitle = getString(R.string.title_section3);
-                Intent myIntent = new Intent(Main.this, AddBeholdning.class);
-                myIntent.putExtra("addbeholdning", 1); //Optional parameters
-                Main.this.startActivity(myIntent);*/
-                break;
 
             case 4:
                 /*mTitle = getString(R.string.title_section4);
@@ -100,11 +90,11 @@ public class Main extends Activity
                 break;
 
             case 5:
-                SkalBliInnstillinger fragment = new SkalBliInnstillinger();
-                FragmentTransaction fragmentt = getFragmentManager().beginTransaction();
-                fragmentt.replace(R.id.container, fragment);
-                fragmentt.addToBackStack(null);
-                fragmentt.commit();
+                SkalBliInnstillinger insfragment = new SkalBliInnstillinger();
+                FragmentTransaction insfragmentt = getFragmentManager().beginTransaction();
+                insfragmentt.replace(R.id.container, insfragment);
+                insfragmentt.addToBackStack(null);
+                insfragmentt.commit();
 
         }
     }

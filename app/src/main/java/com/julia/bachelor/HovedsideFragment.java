@@ -37,15 +37,6 @@ public class HovedsideFragment extends Fragment {
     @Override @SuppressWarnings("unchecked")
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.hovedside_fragment, container, false);
-        Som = rootView.findViewById(R.id.BSom);
-        SomH = rootView.findViewById(R.id.BSomH);
-        SomK = rootView.findViewById(R.id.BSomK);
-        Lyng = rootView.findViewById(R.id.BLyng);
-        LyngH = rootView.findViewById(R.id.BLyngH);
-        LyngK = rootView.findViewById(R.id.BLyngK);
-        IngH = rootView.findViewById(R.id.BIngH);
-        IngK = rootView.findViewById(R.id.BIngK);
-        Flyt = rootView.findViewById(R.id.BFlyt);
         addbutton = rootView.findViewById(R.id.button);
         addbutton.setOnClickListener(new View.OnClickListener() {
             @Override

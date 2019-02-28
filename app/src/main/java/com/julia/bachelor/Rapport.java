@@ -10,6 +10,7 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.Spinner;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -21,6 +22,7 @@ public class Rapport extends Fragment {
     TextView Som, SomH, SomK, Lyng, LyngH, LyngK, IngH, IngK, Flyt;
     ListView listView;
     private ArrayList<String> salgliste; //for now, må endres til objekter så vi kan putte inn objekter ordenlig.
+    Spinner datoer;
 
 
     public Rapport() {
@@ -41,6 +43,13 @@ public class Rapport extends Fragment {
     @Override @SuppressWarnings("unchecked")
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.rapport, container, false);
+
+        datoer = rootView.findViewById(R.id.dagmånedår);
+
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this.getContext(), R.array.datoer, android.R.layout.simple_spinner_item);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        datoer.setAdapter(adapter);
+        //datoer.setOnItemSelectedListener(null); TODO what to do
 
         listView = rootView.findViewById(R.id.salgitems);
         salgliste = new ArrayList<>();

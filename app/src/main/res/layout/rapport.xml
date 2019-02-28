@@ -10,62 +10,35 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context=".Rapport">
 
-    <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
+    <Spinner
+        android:id="@+id/spinner2"
+        android:layout_width="124dp"
+        android:layout_height="49dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        app:layout_constraintBaseline_toBaselineOf="@+id/dagmånedår"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.105"
+        app:layout_constraintStart_toEndOf="@+id/dagmånedår" />
 
-        <android.support.constraint.ConstraintLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
+    <Spinner
+        android:id="@+id/dagmånedår"
+        android:layout_width="124dp"
+        android:layout_height="49dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
-            <Spinner
-                android:id="@+id/spinner"
-                android:layout_width="124dp"
-                android:layout_height="49dp"
-                android:layout_marginStart="8dp"
-                android:layout_marginTop="8dp"
-                android:layout_marginEnd="8dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <android.support.constraint.ConstraintLayout
-                android:id="@+id/bunn"
-                android:layout_width="296dp"
-                android:layout_height="52dp"
-                android:layout_marginStart="8dp"
-                android:layout_marginTop="14dp"
-                android:layout_marginEnd="8dp"
-                android:elevation="4dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.492"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/salgitems" />
-
-            <ListView
-                android:id="@+id/salgitems"
-                android:layout_width="363dp"
-                android:layout_height="622dp"
-                android:layout_marginStart="8dp"
-                android:layout_marginTop="11dp"
-                android:layout_marginEnd="8dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/spinner" />
-
-            <Spinner
-                android:id="@+id/spinner2"
-                android:layout_width="129dp"
-                android:layout_height="49dp"
-                android:layout_marginStart="8dp"
-                android:layout_marginEnd="8dp"
-                app:layout_constraintBaseline_toBaselineOf="@+id/spinner"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.105"
-                app:layout_constraintStart_toEndOf="@+id/spinner" />
-
-        </android.support.constraint.ConstraintLayout>
-    </ScrollView>
+    <ListView
+        android:id="@+id/salgitems"
+        android:layout_width="0dp"
+        android:layout_height="569dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="11dp"
+        android:layout_marginEnd="8dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/dagmånedår" />
 
 </android.support.constraint.ConstraintLayout>

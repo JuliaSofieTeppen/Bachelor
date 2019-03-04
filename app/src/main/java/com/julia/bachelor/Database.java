@@ -111,8 +111,8 @@ class Database {
         @Override
         protected void onPostExecute(String s) {
             super.onPostExecute(s);
-            Main main = new Main();
-            main.setAnnet(Annet);
+            LoadContent load = new LoadContent();
+            load.setAnnet(Annet);
         }
     }
 
@@ -167,8 +167,8 @@ class Database {
         @Override
         protected void onPostExecute(String s) {
             super.onPostExecute(s);
-            Main main = new Main();
-            main.setBeholdning(Beholdning);
+            LoadContent load = new LoadContent();
+            load.setBeholdning(Beholdning);
         }
     }
 
@@ -223,8 +223,8 @@ class Database {
         @Override
         protected void onPostExecute(String s) {
             super.onPostExecute(s);
-            Main main = new Main();
-            main.setBeholdningUt(BeholdningUt);
+            LoadContent load = new LoadContent();
+            load.setBeholdningUt(BeholdningUt);
         }
     }
 
@@ -272,8 +272,8 @@ class Database {
         @Override
         protected void onPostExecute(String s) {
             super.onPostExecute(s);
-            Main main = new Main();
-            main.setBM(BM);
+            LoadContent load = new LoadContent();
+            load.setBM(BM);
         }
     }
 
@@ -323,8 +323,8 @@ class Database {
         @Override
         protected void onPostExecute(String s) {
             super.onPostExecute(s);
-            Main main = new Main();
-            main.setHjemme(Hjemme);
+            LoadContent load = new LoadContent();
+            load.setHjemme(Hjemme);
         }
     }
 
@@ -375,14 +375,8 @@ class Database {
         @Override
         protected void onPostExecute(String s) {
             super.onPostExecute(s);
-            HjemmeSalg hjemmeSalg = new HjemmeSalg();
-            hjemmeSalg.setArrays(Honning);
-            Main main = new Main();
-            main.setHonning(Honning);
-            BmSalg bmSalg = new BmSalg();
-            bmSalg.setHonningtyper(Honning);
-            FakturaSalg fakturaSalg = new FakturaSalg();
-            fakturaSalg.setHonningtyper(Honning);
+            LoadContent load = new LoadContent();
+            load.setHonning(Honning);
         }
     }
 
@@ -434,8 +428,8 @@ class Database {
         @Override
         protected void onPostExecute(String s) {
             super.onPostExecute(s);
-            Main main = new Main();
-            main.setVideresalg(Videresalg);
+            LoadContent load = new LoadContent();
+            load.setVideresalg(Videresalg);
         }
     }
 

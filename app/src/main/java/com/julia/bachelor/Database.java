@@ -91,10 +91,10 @@ class Database {
                     for (int i = 0; i < jsonArray.length(); i++) {
                         Annet annet = new Annet();
                         JSONObject jsonobject = jsonArray.getJSONObject(i);
-                        annet.set_ID(jsonobject.getLong("_ID"));
+                        annet.set_ID(jsonobject.getLong("ID"));
                         annet.setKunde(jsonobject.getString("Kunde"));
                         annet.setDato(jsonobject.getString("Dato"));
-                        annet.setVarer(jsonobject.getString("Varer "));
+                        annet.setVarer(jsonobject.getString("Varer"));
                         annet.setBelop(jsonobject.getInt("Belop"));
                         annet.setBetaling(jsonobject.getString("Betaling"));
                         Annet.add(annet);
@@ -142,7 +142,7 @@ class Database {
                     for (int i = 0; i < jsonArray.length(); i++) {
                         Beholdning beholdning = new Beholdning();
                         JSONObject jsonobject = jsonArray.getJSONObject(i);
-                        beholdning.set_ID(jsonobject.getLong("_ID"));
+                        beholdning.set_ID(jsonobject.getLong("ID"));
                         beholdning.setSommer(jsonobject.getInt("Sommer"));
                         beholdning.setSommerH(jsonobject.getInt("SommerHalv"));
                         beholdning.setSommerK(jsonobject.getInt("SommerKvart"));
@@ -191,7 +191,7 @@ class Database {
                         for (int i = 0; i < jsonArray.length(); i++) {
                             BeholdningUt beholdningUt = new BeholdningUt();
                             JSONObject jsonobject = jsonArray.getJSONObject(i);
-                            beholdningUt.set_ID(jsonobject.getLong("_ID"));
+                            beholdningUt.set_ID(jsonobject.getLong("ID"));
                             beholdningUt.setSommer(jsonobject.getInt("Sommer"));
                             beholdningUt.setSommerH(jsonobject.getInt("SommerHalv"));
                             beholdningUt.setSommerK(jsonobject.getInt("SommerKvart"));
@@ -247,9 +247,9 @@ class Database {
                     for (int i = 0; i < jsonArray.length(); i++) {
                         BondensMarked bondensMarked = new BondensMarked();
                         JSONObject jsonobject = jsonArray.getJSONObject(i);
-                        bondensMarked.set_ID(jsonobject.getLong("_ID"));
+                        bondensMarked.set_ID(jsonobject.getLong("ID"));
                         bondensMarked.setDato(jsonobject.getString("Dato"));
-                        bondensMarked.setVarer(jsonobject.getString("Varer "));
+                        bondensMarked.setVarer(jsonobject.getString("Varer"));
                         bondensMarked.setBelop(jsonobject.getInt("Belop"));
                         BM.add(bondensMarked);
                     }
@@ -296,10 +296,10 @@ class Database {
                     for (int i = 0; i < jsonArray.length(); i++) {
                         Hjemme hjemme = new Hjemme();
                         JSONObject jsonobject = jsonArray.getJSONObject(i);
-                        hjemme.set_ID(jsonobject.getLong("_ID"));
+                        hjemme.set_ID(jsonobject.getLong("ID"));
                         hjemme.setKunde(jsonobject.getString("Kunde"));
                         hjemme.setDato(jsonobject.getString("Dato"));
-                        hjemme.setVarer(jsonobject.getString("Varer "));
+                        hjemme.setVarer(jsonobject.getString("Varer"));
                         hjemme.setBelop(jsonobject.getInt("Belop"));
                         hjemme.setBetaling(jsonobject.getString("Betaling"));
                         Hjemme.add(hjemme);
@@ -406,10 +406,10 @@ class Database {
                     for (int i = 0; i < jsonArray.length(); i++) {
                         Videresalg videresalg = new Videresalg();
                         JSONObject jsonobject = jsonArray.getJSONObject(i);
-                        videresalg.set_ID(jsonobject.getLong("_ID"));
+                        videresalg.set_ID(jsonobject.getLong("ID"));
                         videresalg.setKunde(jsonobject.getString("Kunde"));
                         videresalg.setDato(jsonobject.getString("Dato"));
-                        videresalg.setVarer(jsonobject.getString("Varer "));
+                        videresalg.setVarer(jsonobject.getString("Varer"));
                         videresalg.setBelop(jsonobject.getInt("Belop"));
                         videresalg.setBetaling(jsonobject.getString("Betaling"));
                         videresalg.setMoms(jsonobject.getDouble("Moms"));

@@ -17,8 +17,8 @@ import java.util.ArrayList;
 
 public class Rapport extends Fragment {
     private static final String ARG_SECTION_NUMBER = "section_number";
-    static ArrayList<Beholdning> Beholdning;
-    static ArrayList<BeholdningUt> BeholdningUt;
+    private static ArrayList<Object> Salg;
+
     TextView Som, SomH, SomK, Lyng, LyngH, LyngK, IngH, IngK, Flyt;
     ListView listView;
     private ArrayList<String> salgliste; //for now, må endres til objekter så vi kan putte inn objekter ordenlig.
@@ -43,19 +43,43 @@ public class Rapport extends Fragment {
     @Override @SuppressWarnings("unchecked")
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.rapport, container, false);
-
+        Salg = (ArrayList<Object>) getArguments().getSerializable("Salg");
         datoer = rootView.findViewById(R.id.dagmånedår);
-
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this.getContext(), R.array.datoer, android.R.layout.simple_spinner_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         datoer.setAdapter(adapter);
-        //datoer.setOnItemSelectedListener(null); TODO what to do
-
+        //datoer.setOnItemSelectedListener(null); TODO what to do.. ER DETTE RIKTIG ARRAYADAPTER??
         listView = rootView.findViewById(R.id.salgitems);
         salgliste = new ArrayList<>();
-        salgliste.add("1234.1.1 salg 500kr");
-        salgliste.add("8832.2.2 salg 377kr");
+        StringBuilder sb = new StringBuilder();
+        for(int i = 0; i < Salg.size(); i++){
+            if(Salg.get(i) instanceof BondensMarked){
+                BondensMarked bm = (BondensMarked) Salg.get(i);
+                sb.append(bm.getDato()).append("   ").append(bm.getBelop());
+                salgliste.add(sb.toString());
+                sb.delete(0,sb.length());
+            }else if(Salg.get(i) instanceof Hjemme){
+                Hjemme hjemme = (Hjemme) Salg.get(i);
+                sb.append(hjemme.getDato()).append("   ").append(hjemme.getKunde()).append("  Beløp: ").append(hjemme.getBelop());
+                salgliste.add(sb.toString());
+                sb.delete(0,sb.length());
+            }else if(Salg.get(i) instanceof Videresalg){
+                Videresalg videresalg = (Videresalg) Salg.get(i);
+                sb.append(videresalg.getDato()).append("   ").append(videresalg.getKunde()).append("  Beløp: ").append(videresalg.getBelop());
+                salgliste.add(sb.toString());
+                sb.delete(0,sb.length());
+            }else if(Salg.get(i) instanceof Annet){
+                Annet annet = (Annet) Salg.get(i);
+                sb.append(annet.getDato()).append("   ").append(annet.getKunde()).append("  Beløp: ").append(annet.getBelop());
+                salgliste.add(sb.toString());
+                sb.delete(0,sb.length());
+            }else {
+                sb.append("Beklager noe gikk galt  :(");
+                salgliste.add(sb.toString());
+                sb.delete(0,sb.length());
+            }
 
+        }
         ArrayAdapter<String> arrayAdapter = new ArrayAdapter(this.getContext(), android.R.layout.simple_list_item_1,salgliste);
         listView.setAdapter(arrayAdapter);
         //---------------------------------------
@@ -69,7 +93,7 @@ public class Rapport extends Fragment {
             }
         });
 
-
+        /*
         try {
             Beholdning = (ArrayList<Beholdning>) (getArguments().getSerializable("beholdning"));
             BeholdningUt = (ArrayList<BeholdningUt>) (getArguments().getSerializable("salg"));
@@ -94,7 +118,7 @@ public class Rapport extends Fragment {
             Flyt.setText(tmpString);
         } catch (NullPointerException e) {
             e.printStackTrace();
-        }
+        }*/
         return rootView;
     }
 

@@ -1,6 +1,8 @@
 package com.julia.bachelor;
 
-class Annet implements Salg {
+import java.io.Serializable;
+
+class Annet implements Salg, Serializable {
 
     private long _ID;
     private String Kunde;

@@ -1,6 +1,8 @@
 package com.julia.bachelor;
 
-class BondensMarked {
+import java.io.Serializable;
+
+class BondensMarked implements Serializable {
 
     private long _ID;
     private String Dato;

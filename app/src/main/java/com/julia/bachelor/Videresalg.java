@@ -1,6 +1,8 @@
 package com.julia.bachelor;
 
-class Videresalg implements Salg {
+import java.io.Serializable;
+
+class Videresalg implements Salg, Serializable {
 
     private long _ID;
     private String Kunde;

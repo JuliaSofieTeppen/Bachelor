@@ -41,6 +41,7 @@ public class Main extends Activity implements NavigationDrawerFragment.Navigatio
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        Salg = new ArrayList<>();
         database = new Database();
         database.getHonningType();
         database.getAnnetValues();
@@ -74,8 +75,7 @@ public class Main extends Activity implements NavigationDrawerFragment.Navigatio
             case 2:
                 mTitle = getString(R.string.title_section2);
                 bundle = new Bundle();
-                bundle.putSerializable("beholdning", Beholdning);
-                bundle.putSerializable("salg",BeholdningUt);
+                bundle.putSerializable("Salg", Salg);
                 Rapport myf = Rapport.newInstance(1);
                 myf.setArguments(bundle);
                 FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
@@ -173,7 +173,9 @@ public class Main extends Activity implements NavigationDrawerFragment.Navigatio
 
     public void setHonning(ArrayList<Honning> type){ Honningtype = type; }
 
-    public void setVideresalg(ArrayList<com.julia.bachelor.Videresalg> videresalg) { Videresalg = videresalg; }
+    public void setVideresalg(ArrayList<com.julia.bachelor.Videresalg> videresalg) { Videresalg = videresalg;
+    setSalg();
+    }
 
     private void setSalg(){
         Salg.addAll(Bm);

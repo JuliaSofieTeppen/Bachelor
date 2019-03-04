@@ -48,7 +48,6 @@ public class Rapport extends Fragment {
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this.getContext(), R.array.datoer, android.R.layout.simple_spinner_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         datoer.setAdapter(adapter);
-        //datoer.setOnItemSelectedListener(null); TODO what to do.. ER DETTE RIKTIG ARRAYADAPTER??
         listView = rootView.findViewById(R.id.salgitems);
         salgliste = new ArrayList<>();
         StringBuilder sb = new StringBuilder();

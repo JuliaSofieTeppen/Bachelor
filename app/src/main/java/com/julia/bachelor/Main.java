@@ -46,6 +46,7 @@ public class Main extends Activity implements NavigationDrawerFragment.Navigatio
         database.getHonningType();
         database.getAnnetValues();
         database.getBeholdningValues();
+        database.getBeholdningUtValues();
         database.getBMValues();
         database.getHjemmeValues();
         database.getVideresalgValues();

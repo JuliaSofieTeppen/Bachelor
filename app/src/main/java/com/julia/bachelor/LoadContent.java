@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.graphics.drawable.AnimationDrawable;
 import android.os.Bundle;
+import android.os.Handler;
 import android.widget.ImageView;
 
 import java.util.ArrayList;
@@ -16,7 +17,7 @@ public class LoadContent extends Activity {
     static ArrayList<Videresalg> Videresalg;
     static ArrayList<Beholdning> Beholdning;
     static ArrayList<BeholdningUt> BeholdningUt;
-    static boolean notFinished = true;
+    static public boolean notFinished = true;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,24 +38,28 @@ public class LoadContent extends Activity {
         AnimationDrawable anim = (AnimationDrawable) rocketImage.getBackground();
         anim.start();
 
-        while(notFinished){
-            // Flying bee ....
-            //  \ / />/>
-            // (^_^)( || ||)>
-            //   /// \\\
-        }
-        Intent intent = new Intent(this, Main.class);
-        Bundle bundle = new Bundle();
-        bundle.putSerializable("Honningtype", Honningtype);
-        bundle.putSerializable("Annet", Annet);
-        bundle.putSerializable("Beholdning",Beholdning);
-        bundle.putSerializable("BeholdningUt", BeholdningUt);
-        bundle.putSerializable("BondensMarked", Bm);
-        bundle.putSerializable("Hjemme", Hjemme);
-        bundle.putSerializable("Videresalg", Videresalg);
-        intent.putExtra("ThaBundle",bundle);
-        this.startActivity(intent);
+        // Flying bee ....
+        //  \ / />/>
+        // (^_^)( || ||)>
+        //   /// \\\
+        new Handler().postDelayed(new Runnable(){
+            @Override
+            public void run(){
+                Intent intent = new Intent(LoadContent.this, Main.class);
+                Bundle bundle = new Bundle();
+                bundle.putSerializable("Honningtype", Honningtype);
+                bundle.putSerializable("Annet", Annet);
+                bundle.putSerializable("Beholdning",Beholdning);
+                bundle.putSerializable("BeholdningUt", BeholdningUt);
+                bundle.putSerializable("BondensMarked", Bm);
+                bundle.putSerializable("Hjemme", Hjemme);
+                bundle.putSerializable("Videresalg", Videresalg);
+                intent.putExtra("ThaBundle",bundle);
+                LoadContent.this.startActivity(intent);
+                finish();
+            }
 
+        },2000);
     }
     public void setAnnet(ArrayList<Annet> annet) { Annet = annet; }
 

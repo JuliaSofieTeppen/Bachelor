@@ -46,6 +46,7 @@ public class Main extends Activity implements NavigationDrawerFragment.Navigatio
         database.getHonningType();
         database.getAnnetValues();
         database.getBeholdningValues();
+        database.getBeholdningUtValues();
         database.getBMValues();
         database.getHjemmeValues();
         database.getVideresalgValues();
@@ -150,7 +151,7 @@ public class Main extends Activity implements NavigationDrawerFragment.Navigatio
         database.executeOnDB("http://www.honningbier.no/PHP/BeholdningIn.php/?" + getBeholdning() + "&Dato=" + dato.getText().toString());
     }
 
-    String getBeholdning(){
+    private String getBeholdning(){
         String[] strings = {"Sommer","SommerH","SommerK","Lyng","LyngH","LyngK","IngeferH","IngeferK","Flytende"};
         StringBuilder sb = new StringBuilder();
         for(int i = 0; i < strings.length; i++){
@@ -158,6 +159,7 @@ public class Main extends Activity implements NavigationDrawerFragment.Navigatio
         }
         return sb.toString();
     }
+
     public boolean checkDate(String date) {
         String regex = "^\\d{4}\\.(0?[1-9]|1[012])\\.(0?[1-9]|[12][0-9]|3[01])$";
         return date.matches(regex);
@@ -166,6 +168,8 @@ public class Main extends Activity implements NavigationDrawerFragment.Navigatio
     public void setAnnet(ArrayList<com.julia.bachelor.Annet> annet) { Annet = annet; }
 
     public void setBeholdning(ArrayList<Beholdning> beholdnings){ Beholdning = beholdnings; }
+
+    public void setBeholdningUt(ArrayList<BeholdningUt> beholdningUts){ BeholdningUt = beholdningUts;}
 
     public void setBM(ArrayList<BondensMarked> bondensMarkeds){ Bm = bondensMarkeds; }
 

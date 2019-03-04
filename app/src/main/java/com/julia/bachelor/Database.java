@@ -163,6 +163,13 @@ class Database {
                 return "Noe gikk feil: " + e.toString();
             }
         }
+
+        @Override
+        protected void onPostExecute(String s) {
+            super.onPostExecute(s);
+            Main main = new Main();
+            main.setBeholdning(Beholdning);
+        }
     }
 
     private static class BeholdningUtTask extends AsyncTask<String, Void, String> {
@@ -217,7 +224,7 @@ class Database {
         protected void onPostExecute(String s) {
             super.onPostExecute(s);
             Main main = new Main();
-            main.setBeholdning(Beholdning);
+            main.setBeholdningUt(BeholdningUt);
         }
     }
 

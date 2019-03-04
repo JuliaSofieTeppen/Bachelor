@@ -430,7 +430,6 @@ class Database {
             super.onPostExecute(s);
             LoadContent load = new LoadContent();
             load.setVideresalg(Videresalg);
-            LoadContent.notFinished=false;
         }
     }
 

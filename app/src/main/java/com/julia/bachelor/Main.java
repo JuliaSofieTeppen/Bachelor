@@ -150,7 +150,7 @@ public class Main extends Activity implements NavigationDrawerFragment.Navigatio
         database.executeOnDB("http://www.honningbier.no/PHP/BeholdningIn.php/?" + getBeholdning() + "&Dato=" + dato.getText().toString());
     }
 
-    String getBeholdning(){
+    private String getBeholdning(){
         String[] strings = {"Sommer","SommerH","SommerK","Lyng","LyngH","LyngK","IngeferH","IngeferK","Flytende"};
         StringBuilder sb = new StringBuilder();
         for(int i = 0; i < strings.length; i++){

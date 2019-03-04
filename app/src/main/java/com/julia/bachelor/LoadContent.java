@@ -2,7 +2,9 @@ package com.julia.bachelor;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.drawable.AnimationDrawable;
 import android.os.Bundle;
+import android.widget.ImageView;
 
 import java.util.ArrayList;
 
@@ -15,6 +17,7 @@ public class LoadContent extends Activity {
     static ArrayList<Beholdning> Beholdning;
     static ArrayList<BeholdningUt> BeholdningUt;
     static boolean notFinished = true;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -28,6 +31,12 @@ public class LoadContent extends Activity {
         database.getBMValues();
         database.getHjemmeValues();
         database.getVideresalgValues();
+
+        ImageView rocketImage = (ImageView) findViewById(R.id.LoadingBeeImage);
+        rocketImage.setBackgroundResource(R.drawable.animation);
+        AnimationDrawable anim = (AnimationDrawable) rocketImage.getBackground();
+        anim.start();
+
         while(notFinished){
             // Flying bee ....
             //  \ / />/>
@@ -43,6 +52,8 @@ public class LoadContent extends Activity {
         bundle.putSerializable("BondensMarked", Bm);
         bundle.putSerializable("Hjemme", Hjemme);
         bundle.putSerializable("Videresalg", Videresalg);
+        intent.putExtra("ThaBundle",bundle);
+        this.startActivity(intent);
 
     }
     public void setAnnet(ArrayList<Annet> annet) { Annet = annet; }

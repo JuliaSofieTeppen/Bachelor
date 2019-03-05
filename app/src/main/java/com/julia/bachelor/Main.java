@@ -76,7 +76,7 @@ public class Main extends Activity implements NavigationDrawerFragment.Navigatio
         hovedside.setArguments(bundle);
         FragmentManager fragmentManager = getFragmentManager();
         fragmentManager.beginTransaction()
-                .replace(R.id.container, hovedside)
+                .replace(R.id.container, Hovedside.newInstance(position + 1))
                 .commit();
     }
 

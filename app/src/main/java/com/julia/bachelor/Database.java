@@ -19,48 +19,48 @@ class Database {
     private static ArrayList<Honning> Honning = new ArrayList<>();
     private static ArrayList<Videresalg> Videresalg = new ArrayList<>();
 
-    void executeOnDB(String url) {
+    static void executeOnDB(String url) {
         ExecuteOnDB task = new ExecuteOnDB();
         task.execute(url);
     }
 
-    void getAnnetValues() {
+    static void getAnnetValues() {
         AnnetTask task = new AnnetTask();
         // TODO set url for annet
         task.execute("http://www.honningbier.no/PHP/AnnetOut.php");
     }
 
-    void getBeholdningValues() {
+    static void getBeholdningValues() {
         BeholdningTask task = new BeholdningTask();
         // TODO set url for beholdning
         task.execute("http://www.honningbier.no/PHP/BeholdningOut.php");
     }
 
-    void getBeholdningUtValues() {
+    static void getBeholdningUtValues() {
         BeholdningUtTask task = new BeholdningUtTask();
         // TODO set url for beholdningUt
         task.execute("http://www.honningbier.no/PHP/SalgOut.php");
     }
 
-    void getBMValues() {
+    static void getBMValues() {
         BondensMTask task = new BondensMTask();
         // TODO set correct url
         task.execute("http://www.honningbier.no/PHP/BondensMarkedOut.php");
     }
 
-    void getHjemmeValues() {
+    static void getHjemmeValues() {
         HjemmeTask task = new HjemmeTask();
         // TODO find url for hjemme
         task.execute("http://www.honningbier.no/PHP/HjemmeOut.php");
     }
 
-    void getHonningType() {
+    static void getHonningType() {
         HonningTask task = new HonningTask();
         // TODO Url for Honning
         task.execute("http://www.honningbier.no/PHP/HonningOut.php");
     }
 
-    void getVideresalgValues(){
+    static void getVideresalgValues(){
         VideresalgTask task = new VideresalgTask();
         task.execute("http://www.honningbier.no/PHP/VideresalgOut.php");
     }
@@ -334,7 +334,6 @@ class Database {
             // Get strings from bufferedReader.
             String nextLine;
             StringBuilder output = new StringBuilder();
-            Honning = new ArrayList<>();
             try {
                 URL url = new URL(urls[0]);
                 HttpURLConnection conn = (HttpURLConnection) url.openConnection();
@@ -371,7 +370,6 @@ class Database {
                 return "Noe gikk feil: " + e.toString();
             }
         }
-
         @Override
         protected void onPostExecute(String s) {
             super.onPostExecute(s);
@@ -386,7 +384,6 @@ class Database {
             // Get strings from bufferedReader.
             String nextLine;
             StringBuilder output = new StringBuilder();
-            Honning = new ArrayList<>();
             try {
                 URL url = new URL(urls[0]);
                 HttpURLConnection conn = (HttpURLConnection) url.openConnection();

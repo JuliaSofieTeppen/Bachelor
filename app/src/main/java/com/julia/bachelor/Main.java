@@ -16,15 +16,24 @@ import java.util.Arrays;
 import java.util.List;
 
 public class Main extends Activity implements NavigationDrawerFragment.NavigationDrawerCallbacks{
-    static ArrayList<Honning> Honningtype;
+    private static final String KEY_ANNET = "Annet";
+    private static final String KEY_BEHOLDNING = "Beholdning";
+    private static final String KEY_BEHOLDNINGUT = "BeholdningUt";
+    private static final String KEY_BONDENSMARKED = "Bondensmarked";
+    private static final String KEY_HJEMME = "Hjemme";
+    private static final String KEY_HONNING = "Honning";
+    private static final String KEY_VIDERESALG = "Videresalg";
+    private static final String KEY_BUNDLE = "Bundle";
+    private static final String KEY_SALG = "Salg";
+
+    static ArrayList<Honning> Honning;
     static ArrayList<Annet> Annet;
     static ArrayList<Hjemme> Hjemme;
     static ArrayList<BondensMarked> Bm;
     static ArrayList<Videresalg> Videresalg;
     static ArrayList<Beholdning> Beholdning;
     static ArrayList<BeholdningUt> BeholdningUt;
-    static ArrayList<Object> Salg;
-    static Database database;
+    static ArrayList<Object> Salg = new ArrayList<>();
 
     EditText dato;
     EditText som1kg;
@@ -42,8 +51,6 @@ public class Main extends Activity implements NavigationDrawerFragment.Navigatio
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        Salg = new ArrayList<>();
-        setArrays();
         /*
          * Fragment managing the behaviors, interactions and presentation of the navigation drawer.
          */
@@ -54,29 +61,24 @@ public class Main extends Activity implements NavigationDrawerFragment.Navigatio
     @SuppressWarnings("unchecked")
     void setArrays(){
         Intent intent = getIntent();
-        Bundle bundle = intent.getBundleExtra("ThaBundle");
-        Honningtype = (ArrayList<Honning>) bundle.getSerializable("HonningType");
-        Annet = (ArrayList<Annet>) bundle.getSerializable("Annet");
-        Hjemme = (ArrayList<Hjemme>) bundle.getSerializable("Hjemme");
-        Bm = (ArrayList<BondensMarked>) bundle.getSerializable("BondensMarked");
-        Videresalg = (ArrayList<Videresalg>) bundle.getSerializable("Videresalg");
-        Beholdning = (ArrayList<Beholdning>) bundle.getSerializable("Beholdning");
-        BeholdningUt = (ArrayList<BeholdningUt>) bundle.getSerializable("BeholdningUt");
-        if(Videresalg==null) return;
+        Bundle bundle = intent.getBundleExtra(KEY_BUNDLE);
+        Honning = (ArrayList<Honning>) bundle.getSerializable(KEY_HONNING);
+        Annet = (ArrayList<Annet>) bundle.getSerializable(KEY_ANNET);
+        Hjemme = (ArrayList<Hjemme>) bundle.getSerializable(KEY_HJEMME);
+        Bm = (ArrayList<BondensMarked>) bundle.getSerializable(KEY_BONDENSMARKED);
+        Videresalg = (ArrayList<Videresalg>) bundle.getSerializable(KEY_VIDERESALG);
+        Beholdning = (ArrayList<Beholdning>) bundle.getSerializable(KEY_BEHOLDNING);
+        BeholdningUt = (ArrayList<BeholdningUt>) bundle.getSerializable(KEY_BEHOLDNINGUT);
+        if(Videresalg==null || Hjemme==null || Annet==null || Bm==null) return;
         setSalg();
     }
     @Override
     public void onNavigationDrawerItemSelected(int position) {
         // update the main content by replacing fragments
-        Bundle bundle = new Bundle();
-        bundle.putSerializable("Beholdning", Beholdning);
-        bundle.putSerializable("BeholdningUt", BeholdningUt);
-        bundle.putSerializable("HonningType", Honningtype);
-        Hovedside hovedside = Hovedside.newInstance(1);
-        hovedside.setArguments(bundle);
+        setArrays();
         FragmentManager fragmentManager = getFragmentManager();
         fragmentManager.beginTransaction()
-                .replace(R.id.container, Hovedside.newInstance(position + 1))
+                .replace(R.id.container, Hovedside.newInstance(position + 1, Beholdning, BeholdningUt, Honning))
                 .commit();
     }
 
@@ -84,14 +86,9 @@ public class Main extends Activity implements NavigationDrawerFragment.Navigatio
         Bundle bundle;
         switch (number) {
             case 1:
-                CharSequence mTitle = getString(R.string.title_section1);
                 break;
             case 2:
-                mTitle = getString(R.string.title_section2);
-                bundle = new Bundle();
-                bundle.putSerializable("Salg", Salg);
-                Rapport myf = Rapport.newInstance(1);
-                myf.setArguments(bundle);
+                Rapport myf = Rapport.newInstance(1, Salg);
                 FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
                 fragmentTransaction.replace(R.id.container, myf);
                 fragmentTransaction.addToBackStack(null);
@@ -160,8 +157,8 @@ public class Main extends Activity implements NavigationDrawerFragment.Navigatio
     }
 
     void insertIntoDB(){
-        database.executeOnDB("http://www.honningbier.no/PHP/SalgIn.php/?Dato=" + dato.getText().toString());
-        database.executeOnDB("http://www.honningbier.no/PHP/BeholdningIn.php/?" + getBeholdning() + "&Dato=" + dato.getText().toString());
+        Database.executeOnDB("http://www.honningbier.no/PHP/SalgIn.php/?Dato=" + dato.getText().toString());
+        Database.executeOnDB("http://www.honningbier.no/PHP/BeholdningIn.php/?" + getBeholdning() + "&Dato=" + dato.getText().toString());
     }
 
     private String getBeholdning(){
@@ -177,23 +174,7 @@ public class Main extends Activity implements NavigationDrawerFragment.Navigatio
         String regex = "^\\d{4}\\.(0?[1-9]|1[012])\\.(0?[1-9]|[12][0-9]|3[01])$";
         return date.matches(regex);
     }
-    /*
-    public void setAnnet(ArrayList<com.julia.bachelor.Annet> annet) { Annet = annet; }
 
-    public void setBeholdning(ArrayList<Beholdning> beholdnings){ Beholdning = beholdnings; }
-
-    public void setBeholdningUt(ArrayList<BeholdningUt> beholdningUts){ BeholdningUt = beholdningUts;}
-
-    public void setBM(ArrayList<BondensMarked> bondensMarkeds){ Bm = bondensMarkeds; }
-
-    public void setHjemme(ArrayList<Hjemme> hjemmes){ Hjemme = hjemmes; }
-
-    public void setHonning(ArrayList<Honning> type){ Honningtype = type; }
-
-    public void setVideresalg(ArrayList<com.julia.bachelor.Videresalg> videresalg) { Videresalg = videresalg;
-    setSalg();
-    }
-    */
     private void setSalg(){
         Salg.addAll(Bm);
         Salg.addAll(Hjemme);

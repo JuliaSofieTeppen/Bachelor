@@ -6,14 +6,11 @@
     <string name="title_section3">Legg til Beholdning</string>
     <string name="title_section4">Priser</string>
     <string name="title_section5">Innstillinger</string>
-
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
-
     <string name="action_example">Example action</string>
-
     <string name="action_settings">Innstillinger</string>
-
+    <string name="toto">10001</string>
     <string-array name="betalingsmetode">
         <item>Kontant</item>
         <item>Kort</item>

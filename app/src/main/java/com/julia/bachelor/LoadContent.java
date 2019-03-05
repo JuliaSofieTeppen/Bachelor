@@ -10,34 +10,39 @@ import android.widget.ImageView;
 import java.util.ArrayList;
 
 public class LoadContent extends Activity {
-    static ArrayList<Honning> Honningtype;
+    private static final String KEY_ANNET = "Annet";
+    private static final String KEY_BEHOLDNING = "Beholdning";
+    private static final String KEY_BEHOLDNINGUT = "BeholdningUt";
+    private static final String KEY_BONDENSMARKED = "Bondensmarked";
+    private static final String KEY_HJEMME = "Hjemme";
+    private static final String KEY_HONNING = "Honning";
+    private static final String KEY_VIDERESALG = "Videresalg";
+    private static final String KEY_BUNDLE = "Bundle";
+
     static ArrayList<Annet> Annet;
-    static ArrayList<Hjemme> Hjemme;
-    static ArrayList<BondensMarked> Bm;
-    static ArrayList<Videresalg> Videresalg;
     static ArrayList<Beholdning> Beholdning;
     static ArrayList<BeholdningUt> BeholdningUt;
+    static ArrayList<BondensMarked> Bm;
+    static ArrayList<Hjemme> Hjemme;
+    static ArrayList<Honning> Honning;
+    static ArrayList<Videresalg> Videresalg;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_load_content);
         getActionBar().hide();
-        Database database;
-        database = new Database();
-        database.getHonningType();
-        database.getAnnetValues();
-        database.getBeholdningValues();
-        database.getBeholdningUtValues();
-        database.getBMValues();
-        database.getHjemmeValues();
-        database.getVideresalgValues();
-
-        ImageView rocketImage = findViewById(R.id.LoadingBeeImage);
-        rocketImage.setBackgroundResource(R.drawable.animation);
-        AnimationDrawable anim = (AnimationDrawable) rocketImage.getBackground();
+        Database.getAnnetValues();
+        Database.getBeholdningValues();
+        Database.getBeholdningUtValues();
+        Database.getBMValues();
+        Database.getHjemmeValues();
+        Database.getHonningType();
+        Database.getVideresalgValues();
+        ImageView bee = findViewById(R.id.LoadingBeeImage);
+        bee.setBackgroundResource(R.drawable.animation);
+        AnimationDrawable anim = (AnimationDrawable) bee.getBackground();
         anim.start();
-
         // Flying bee ....
         //  \ / />/>
         // (^_^)( || ||)>
@@ -47,14 +52,14 @@ public class LoadContent extends Activity {
             public void run(){
                 Intent intent = new Intent(LoadContent.this, Main.class);
                 Bundle bundle = new Bundle();
-                bundle.putSerializable("Honningtype", Honningtype);
-                bundle.putSerializable("Annet", Annet);
-                bundle.putSerializable("Beholdning",Beholdning);
-                bundle.putSerializable("BeholdningUt", BeholdningUt);
-                bundle.putSerializable("BondensMarked", Bm);
-                bundle.putSerializable("Hjemme", Hjemme);
-                bundle.putSerializable("Videresalg", Videresalg);
-                intent.putExtra("ThaBundle",bundle);
+                bundle.putSerializable(KEY_HONNING, Honning);
+                bundle.putSerializable(KEY_ANNET, Annet);
+                bundle.putSerializable(KEY_BEHOLDNING,Beholdning);
+                bundle.putSerializable(KEY_BEHOLDNINGUT, BeholdningUt);
+                bundle.putSerializable(KEY_BONDENSMARKED, Bm);
+                bundle.putSerializable(KEY_HJEMME, Hjemme);
+                bundle.putSerializable(KEY_VIDERESALG, Videresalg);
+                intent.putExtra(KEY_BUNDLE,bundle);
                 LoadContent.this.startActivity(intent);
                 finish();
             }
@@ -71,7 +76,7 @@ public class LoadContent extends Activity {
 
     public void setHjemme(ArrayList<Hjemme> hjemmes){ Hjemme = hjemmes; }
 
-    public void setHonning(ArrayList<Honning> type){ Honningtype = type; }
+    public void setHonning(ArrayList<Honning> honning){ Honning = honning; }
 
     public void setVideresalg(ArrayList<com.julia.bachelor.Videresalg> videresalg) { Videresalg = videresalg; }
 }

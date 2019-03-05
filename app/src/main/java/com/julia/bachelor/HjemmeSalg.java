@@ -3,6 +3,7 @@ package com.julia.bachelor;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
@@ -21,6 +22,9 @@ import java.util.List;
 import java.util.Locale;
 
 public class HjemmeSalg extends Activity implements AdapterView.OnItemSelectedListener {
+    private static final String KEY_BUNDLE = "Bundle";
+    private static final String KEY_HONNING = "Honning";
+
     static List<Honning> honningtype;
     String betalingsmetode;
     List<Integer> telling;
@@ -48,6 +52,10 @@ public class HjemmeSalg extends Activity implements AdapterView.OnItemSelectedLi
         telling = new ArrayList<>();
         setTelling();
 
+
+        Intent intent = getIntent();
+        Bundle bundle = intent.getBundleExtra(KEY_BUNDLE);
+        honningtype = (ArrayList<Honning>)bundle.getSerializable(KEY_HONNING);
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.betalingsmetode, android.R.layout.simple_spinner_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         betaling.setAdapter(adapter);

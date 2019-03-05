@@ -21,6 +21,7 @@ public class Rapport extends Fragment {
     ListView listView;
     Spinner datoer;
     Spinner salgtyper;
+    static StringBuilder sb;
 
     public Rapport() {
     }
@@ -55,7 +56,7 @@ public class Rapport extends Fragment {
         sadapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         salgtyper.setAdapter(sadapter);
 
-        StringBuilder sb = new StringBuilder();
+        sb = new StringBuilder();
         try{
             for(int i = 0; i < Salg.size(); i++) {
                 if (Salg.get(i) instanceof BondensMarked) {

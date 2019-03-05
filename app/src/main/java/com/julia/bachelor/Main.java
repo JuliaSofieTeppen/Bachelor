@@ -176,6 +176,7 @@ public class Main extends Activity implements NavigationDrawerFragment.Navigatio
     }
 
     private void setSalg(){
+        Salg = new ArrayList<>();
         Salg.addAll(Bm);
         Salg.addAll(Hjemme);
         Salg.addAll(Videresalg);

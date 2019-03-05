@@ -24,6 +24,7 @@ public class Hovedside extends Fragment {
     private static final String KEY_BEHOLDNING = "Beholdning";
     private static final String KEY_BEHOLDNINGUT = "BeholdningUt";
     private static final String KEY_HONNING = "Honning";
+    private static final String KEY_BUNDLE = "Bundle";
     Button addbutton;
     TextView totaltext, info, navn;
     List arraylist;
@@ -69,8 +70,10 @@ public class Hovedside extends Fragment {
                             myIntent.putExtra("BM", 1); //Optional parameters
                             rootView.getContext().startActivity(myIntent);
                         } else if (item.getTitle().equals("Hjemme salg")) {
+                            Bundle bundle = new Bundle();
+                            bundle.putSerializable(KEY_HONNING,honning);
                             Intent myIntent = new Intent(rootView.getContext(), HjemmeSalg.class);
-                            myIntent.putExtra("Hjemme", 1); //Optional parameters
+                            myIntent.putExtra(KEY_BUNDLE, bundle); //Optional parameters
                             rootView.getContext().startActivity(myIntent);
                         } else if (item.getTitle().equals("Videre salg")) {
                             Intent myIntent = new Intent(rootView.getContext(), FakturaSalg.class);

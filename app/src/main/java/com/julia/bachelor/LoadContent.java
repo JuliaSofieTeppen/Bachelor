@@ -23,6 +23,7 @@ public class LoadContent extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_load_content);
+        getActionBar().hide();
         Database database;
         database = new Database();
         database.getHonningType();

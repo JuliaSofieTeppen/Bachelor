@@ -4,6 +4,7 @@ import android.app.Activity;
 
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.widget.DrawerLayout;
 import android.view.View;
@@ -42,14 +43,7 @@ public class Main extends Activity implements NavigationDrawerFragment.Navigatio
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         Salg = new ArrayList<>();
-        database = new Database();
-        database.getHonningType();
-        database.getAnnetValues();
-        database.getBeholdningValues();
-        database.getBeholdningUtValues();
-        database.getBMValues();
-        database.getHjemmeValues();
-        database.getVideresalgValues();
+        setArrays();
         /*
          * Fragment managing the behaviors, interactions and presentation of the navigation drawer.
          */
@@ -57,10 +51,28 @@ public class Main extends Activity implements NavigationDrawerFragment.Navigatio
         // Set up the drawer.
         mNavigationDrawerFragment.setUp(R.id.navigation_drawer, (DrawerLayout) findViewById(R.id.drawer_layout));
     }
-
+    @SuppressWarnings("unchecked")
+    void setArrays(){
+        Intent intent = getIntent();
+        Bundle bundle = intent.getBundleExtra("ThaBundle");
+        Honningtype = (ArrayList<Honning>) bundle.getSerializable("HonningType");
+        Annet = (ArrayList<Annet>) bundle.getSerializable("Annet");
+        Hjemme = (ArrayList<Hjemme>) bundle.getSerializable("Hjemme");
+        Bm = (ArrayList<BondensMarked>) bundle.getSerializable("BondensMarked");
+        Videresalg = (ArrayList<Videresalg>) bundle.getSerializable("Videresalg");
+        Beholdning = (ArrayList<Beholdning>) bundle.getSerializable("Beholdning");
+        BeholdningUt = (ArrayList<BeholdningUt>) bundle.getSerializable("BeholdningUt");
+        setSalg();
+    }
     @Override
     public void onNavigationDrawerItemSelected(int position) {
         // update the main content by replacing fragments
+        Bundle bundle = new Bundle();
+        bundle.putSerializable("Beholdning", Beholdning);
+        bundle.putSerializable("BeholdningUt", BeholdningUt);
+        bundle.putSerializable("HonningType", Honningtype);
+        Hovedside hovedside = Hovedside.newInstance(1);
+        hovedside.setArguments(bundle);
         FragmentManager fragmentManager = getFragmentManager();
         fragmentManager.beginTransaction()
                 .replace(R.id.container, Hovedside.newInstance(position + 1))
@@ -164,7 +176,7 @@ public class Main extends Activity implements NavigationDrawerFragment.Navigatio
         String regex = "^\\d{4}\\.(0?[1-9]|1[012])\\.(0?[1-9]|[12][0-9]|3[01])$";
         return date.matches(regex);
     }
-
+    /*
     public void setAnnet(ArrayList<com.julia.bachelor.Annet> annet) { Annet = annet; }
 
     public void setBeholdning(ArrayList<Beholdning> beholdnings){ Beholdning = beholdnings; }
@@ -180,7 +192,7 @@ public class Main extends Activity implements NavigationDrawerFragment.Navigatio
     public void setVideresalg(ArrayList<com.julia.bachelor.Videresalg> videresalg) { Videresalg = videresalg;
     setSalg();
     }
-
+    */
     private void setSalg(){
         Salg.addAll(Bm);
         Salg.addAll(Hjemme);

@@ -91,33 +91,6 @@ public class Rapport extends Fragment {
                 startActivity(i);
             }
         });
-
-        /*
-        try {
-            Beholdning = (ArrayList<Beholdning>) (getArguments().getSerializable("beholdning"));
-            BeholdningUt = (ArrayList<BeholdningUt>) (getArguments().getSerializable("salg"));
-            // TODO do not use get(0) must find the right object here..
-            String tmpString=Integer.toString(Beholdning.get(0).getSommer() - BeholdningUt.get(0).getSommer());
-            Som.setText(tmpString);
-            tmpString=Integer.toString(Beholdning.get(0).getSommerH() - BeholdningUt.get(0).getSommerH());
-            SomH.setText(tmpString);
-            tmpString=Integer.toString(Beholdning.get(0).getSommerK() - BeholdningUt.get(0).getSommerK());
-            SomK.setText(tmpString);
-            tmpString=Integer.toString(Beholdning.get(0).getLyng() - BeholdningUt.get(0).getLyng());
-            Lyng.setText(tmpString);
-            tmpString=Integer.toString(Beholdning.get(0).getLyngH() - BeholdningUt.get(0).getLyngH());
-            LyngH.setText(tmpString);
-            tmpString=Integer.toString(Beholdning.get(0).getLyngK() - BeholdningUt.get(0).getLyngK());
-            LyngK.setText(tmpString);
-            tmpString=Integer.toString(Beholdning.get(0).getIngeferH() - BeholdningUt.get(0).getIngeferH());
-            IngH.setText(tmpString);
-            tmpString=Integer.toString(Beholdning.get(0).getIngeferK() - BeholdningUt.get(0).getIngeferK());
-            IngK.setText(tmpString);
-            tmpString=Integer.toString(Beholdning.get(0).getFlytende() - BeholdningUt.get(0).getFlytende());
-            Flyt.setText(tmpString);
-        } catch (NullPointerException e) {
-            e.printStackTrace();
-        }*/
         return rootView;
     }
 

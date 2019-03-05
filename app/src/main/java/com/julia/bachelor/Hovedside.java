@@ -27,14 +27,14 @@ public class Hovedside extends Fragment {
     private static final String ARG_SECTION_NUMBER = "section_number";
 
     Button addbutton;
-    TextView totaltext;
+    TextView totaltext, info;
     List arraylist;
-    ListView listView;
+    ArrayList<Beholdning> beholdning;
+    ArrayList<BeholdningUt> beholdningUt;
     private ArrayList<String> salgliste; //for now, må endres til objekter så vi kan putte inn objekter ordenlig.
 
     public Hovedside() {
     }
-
     /**
      * Returns a new instance of this fragment for the given section
      * number.
@@ -46,24 +46,18 @@ public class Hovedside extends Fragment {
         fragment.setArguments(args);
         return fragment;
     }
-
-    @Override
-    public View onCreateView(final LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
+    @Override @SuppressWarnings("unchecked")
+    public View onCreateView(final LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         final View rootView = inflater.inflate(R.layout.hovedside, container, false);
-
         addbutton = rootView.findViewById(R.id.addbutton);
-
         totaltext = rootView.findViewById(R.id.totaltext);
+        info = rootView.findViewById(R.id.Info);
         arraylist = new ArrayList();
-
-
         addbutton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 PopupMenu popupMenu = new PopupMenu(rootView.getContext(), addbutton);
                 popupMenu.getMenuInflater().inflate(R.menu.popup_menu, popupMenu.getMenu());
-
                 popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
                     @Override
                     public boolean onMenuItemClick(MenuItem item) {
@@ -91,7 +85,21 @@ public class Hovedside extends Fragment {
             }
         });
 
+        try {
+            beholdning = (ArrayList<Beholdning>) (getArguments().getSerializable("beholdning"));
+            beholdningUt = (ArrayList<BeholdningUt>) (getArguments().getSerializable("salg"));
+            StringBuilder sb = new StringBuilder();
+            Beholdning beholdning = findCurrentBeholdning();
+            sb.append(beholdning.getDato());
+        } catch (NullPointerException e) {
+            e.printStackTrace();
+        }
         return rootView;
+    }
+
+    Beholdning findCurrentBeholdning(){
+        // TODO make this method find the newest Beholdning object
+        return beholdning.get(0);
     }
 
     public void extend(ConstraintLayout exe) {
@@ -101,7 +109,6 @@ public class Hovedside extends Fragment {
             exe.setVisibility(View.VISIBLE);
         }
     }
-
 
     public void setTotalGjennomsnitt() {
         //totaltext.setText(totalsum(arraylist));
@@ -113,17 +120,13 @@ public class Hovedside extends Fragment {
         //kg1txtsom.setText(getSumArray(0));
         //kg05txtsom.setText(getSumArray(1));
         //kg025txtsom.setText(getSumArray(2));
-
     }
 
     public void setLynghonning() {
-
     }
 
     public void setAnnet() {
-
     }
-
     @Override
     public void onAttach(Activity activity) {
         super.onAttach(activity);

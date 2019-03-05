@@ -17,7 +17,6 @@ public class LoadContent extends Activity {
     static ArrayList<Videresalg> Videresalg;
     static ArrayList<Beholdning> Beholdning;
     static ArrayList<BeholdningUt> BeholdningUt;
-    static public boolean notFinished = true;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -73,5 +72,5 @@ public class LoadContent extends Activity {
 
     public void setHonning(ArrayList<Honning> type){ Honningtype = type; }
 
-    public void setVideresalg(ArrayList<com.julia.bachelor.Videresalg> videresalg) { Videresalg = videresalg; notFinished = false;}
+    public void setVideresalg(ArrayList<com.julia.bachelor.Videresalg> videresalg) { Videresalg = videresalg; }
 }

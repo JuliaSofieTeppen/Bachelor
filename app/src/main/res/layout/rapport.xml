@@ -11,14 +11,14 @@
     tools:context=".Rapport">
 
     <Spinner
-        android:id="@+id/spinner2"
-        android:layout_width="124dp"
+        android:id="@+id/salgtyper"
+        android:layout_width="214dp"
         android:layout_height="49dp"
         android:layout_marginStart="8dp"
         android:layout_marginEnd="8dp"
         app:layout_constraintBaseline_toBaselineOf="@+id/dagmånedår"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.105"
+        app:layout_constraintHorizontal_bias="0.757"
         app:layout_constraintStart_toEndOf="@+id/dagmånedår" />
 
     <Spinner

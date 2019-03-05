@@ -1,8 +1,6 @@
 package com.julia.bachelor;
 
-import android.content.Context;
 import android.content.SharedPreferences;
-import android.net.Uri;
 import android.os.Bundle;
 import android.app.Fragment;
 import android.preference.PreferenceManager;
@@ -20,14 +18,7 @@ public class SkalBliInnstillinger extends Fragment {
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
 
     private static final String ARG_SECTION_NUMBER = "section_number";
-    ConstraintLayout enkg;
-    ConstraintLayout halvkg;
-    ConstraintLayout kvartkg;
-    ConstraintLayout Ingf05kg;
-    ConstraintLayout Ingf025kg;
-    ConstraintLayout flyt;
-    ConstraintLayout endreverdier;
-    ConstraintLayout endremoms;
+    ConstraintLayout enkg,halvkg,kvartkg,Ingf05kg,Ingf025kg,flyt,endreverdier,endremoms;
     SharedPreferences sharedPreferences;
     SharedPreferences.Editor editor;
     EditText ferdigprodukt;
@@ -54,9 +45,9 @@ public class SkalBliInnstillinger extends Fragment {
         // Inflate the layout for this fragment
         final View rootView = inflater.inflate(R.layout.fragment_skal_bli_innstillinger, container, false);
 
-        enkg = rootView.findViewById(R.id.som1kg);
-        halvkg = rootView.findViewById(R.id.som05kg);
-        kvartkg = rootView.findViewById(R.id.som025kg);
+        enkg = rootView.findViewById(R.id.enkg);
+        halvkg = rootView.findViewById(R.id.halvkg);
+        kvartkg = rootView.findViewById(R.id.kvartkg);
         Ingf05kg = rootView.findViewById(R.id.ingf05kg);
         Ingf025kg = rootView.findViewById(R.id.ingf025kg);
         flyt = rootView.findViewById(R.id.flyt);
@@ -87,7 +78,7 @@ public class SkalBliInnstillinger extends Fragment {
         enkg.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ConstraintLayout exe = rootView.findViewById(R.id.extend);
+                ConstraintLayout exe = rootView.findViewById(R.id.enkgextend);
                 extend(exe);
             }
         });
@@ -95,14 +86,14 @@ public class SkalBliInnstillinger extends Fragment {
         halvkg.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ConstraintLayout exe = rootView.findViewById(R.id.extend2);
+                ConstraintLayout exe = rootView.findViewById(R.id.halvkgextend);
                 extend(exe);
             }
         });
         kvartkg.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ConstraintLayout exe = rootView.findViewById(R.id.extend3);
+                ConstraintLayout exe = rootView.findViewById(R.id.kvartkgextend);
                 extend(exe);
             }
         });
@@ -111,21 +102,21 @@ public class SkalBliInnstillinger extends Fragment {
         Ingf05kg.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ConstraintLayout exe = rootView.findViewById(R.id.extend7);
+                ConstraintLayout exe = rootView.findViewById(R.id.ingfhalvkgextend);
                 extend(exe);
             }
         });
         Ingf025kg.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ConstraintLayout exe = rootView.findViewById(R.id.extend8);
+                ConstraintLayout exe = rootView.findViewById(R.id.ingfkvartkgextend);
                 extend(exe);
             }
         });
         flyt.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ConstraintLayout exe = rootView.findViewById(R.id.extend9);
+                ConstraintLayout exe = rootView.findViewById(R.id.flytextend);
                 extend(exe);
             }
         });

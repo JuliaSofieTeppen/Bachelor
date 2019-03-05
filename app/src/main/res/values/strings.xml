@@ -21,5 +21,12 @@
         <item>Måned</item>
         <item>År</item>
     </string-array>
+    <string-array name="Salg">
+        <item>Alle</item>
+        <item>Bondens marked</item>
+        <item>Hjemme salg</item>
+        <item>Videre salg</item>
+        <item>Annet</item>
+    </string-array>
 
 </resources>

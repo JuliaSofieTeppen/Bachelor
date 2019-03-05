@@ -8,6 +8,7 @@ import android.support.constraint.ConstraintLayout;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
@@ -23,6 +24,7 @@ public class SkalBliInnstillinger extends Fragment {
     SharedPreferences.Editor editor;
     EditText ferdigprodukt;
     EditText ikkeferdig;
+    Button momslagre;
 
     public SkalBliInnstillinger() {
         // Required empty public constructor
@@ -55,12 +57,25 @@ public class SkalBliInnstillinger extends Fragment {
         endremoms = rootView.findViewById(R.id.endremoms);
         ferdigprodukt = rootView.findViewById(R.id.ferdigprodukt);
         ikkeferdig = rootView.findViewById(R.id.ikkeferdig);
+        momslagre = rootView.findViewById(R.id.momslagre);
 
 
         sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this.getContext());
         editor = sharedPreferences.edit();
 
-
+        momslagre.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(ferdigprodukt.getText().toString().equals("")||ikkeferdig.getText().toString().equals("")) {
+                    Toast.makeText(getContext(), "Sett inn verdier i feltene", Toast.LENGTH_SHORT).show();
+                }else{
+                    editor.putInt("ferdigprodukt", Integer.parseInt(ferdigprodukt.getText().toString()));
+                    editor.putInt("ikkeferdig", Integer.parseInt(ikkeferdig.getText().toString()));
+                    editor.apply();
+                    Toast.makeText(getContext(), "Moms lagret", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
         endreverdier.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -98,7 +113,6 @@ public class SkalBliInnstillinger extends Fragment {
             }
         });
 
-
         Ingf05kg.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -134,17 +148,6 @@ public class SkalBliInnstillinger extends Fragment {
      * >Communicating with Other Fragments</a> for more information.
      */
 
-    //TODO skal kunne endre verdier.
-    public void momslagre(View view){
-        if(ferdigprodukt.getText().toString().equals("")||ikkeferdig.getText().toString().equals("")) {
-            Toast.makeText(this.getContext(), "Sett inn verdier i feltene", Toast.LENGTH_SHORT).show();
-        }else{
-            editor.putInt("ferdigprodukt", Integer.parseInt(ferdigprodukt.getText().toString()));
-            editor.putInt("ikkeferdig", Integer.parseInt(ikkeferdig.getText().toString()));
-            editor.apply();
-            Toast.makeText(this.getContext(), "Moms lagret", Toast.LENGTH_SHORT).show();
-        }
-    }
     public void extend(ConstraintLayout exe){
         if(exe.isShown()){
             exe.setVisibility(View.GONE);

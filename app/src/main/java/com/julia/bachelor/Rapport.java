@@ -22,10 +22,8 @@ public class Rapport extends Fragment {
     Spinner datoer;
     Spinner salgtyper;
 
-
     public Rapport() {
     }
-
     /**
      * Returns a new instance of this fragment for the given section
      * number.
@@ -42,49 +40,53 @@ public class Rapport extends Fragment {
     @Override @SuppressWarnings("unchecked")
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.rapport, container, false);
+
         ArrayList<Object> Salg = (ArrayList<Object>) getArguments().getSerializable("Salg");
+        listView = rootView.findViewById(R.id.salgitems);
+        ArrayList<String> salgliste = new ArrayList<>();
 
         datoer = rootView.findViewById(R.id.dagmånedår);
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this.getContext(), R.array.datoer, android.R.layout.simple_spinner_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         datoer.setAdapter(adapter);
 
-        listView = rootView.findViewById(R.id.salgitems);
         salgtyper = rootView.findViewById(R.id.salgtyper);
         ArrayAdapter<CharSequence> sadapter = ArrayAdapter.createFromResource(this.getContext(), R.array.Salg, android.R.layout.simple_spinner_item);
         sadapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         salgtyper.setAdapter(sadapter);
-        
-        ArrayList<String> salgliste = new ArrayList<>();
-        StringBuilder sb = new StringBuilder();
-        //if(Salg.equals(null)) sb.append("Beklager noe gikk galt.");
-        for(int i = 0; i < Salg.size(); i++){
-            if(Salg.get(i) instanceof BondensMarked){
-                BondensMarked bm = (BondensMarked) Salg.get(i);
-                sb.append(bm.getDato()).append("   ").append(bm.getBelop());
-                salgliste.add(sb.toString());
-                sb.delete(0,sb.length());
-            }else if(Salg.get(i) instanceof Hjemme){
-                Hjemme hjemme = (Hjemme) Salg.get(i);
-                sb.append(hjemme.getDato()).append("   ").append(hjemme.getKunde()).append("  Beløp: ").append(hjemme.getBelop());
-                salgliste.add(sb.toString());
-                sb.delete(0,sb.length());
-            }else if(Salg.get(i) instanceof Videresalg){
-                Videresalg videresalg = (Videresalg) Salg.get(i);
-                sb.append(videresalg.getDato()).append("   ").append(videresalg.getKunde()).append("  Beløp: ").append(videresalg.getBelop());
-                salgliste.add(sb.toString());
-                sb.delete(0,sb.length());
-            }else if(Salg.get(i) instanceof Annet){
-                Annet annet = (Annet) Salg.get(i);
-                sb.append(annet.getDato()).append("   ").append(annet.getKunde()).append("  Beløp: ").append(annet.getBelop());
-                salgliste.add(sb.toString());
-                sb.delete(0,sb.length());
-            }else {
-                sb.append("Beklager noe gikk galt  :(");
-                salgliste.add(sb.toString());
-                sb.delete(0,sb.length());
-            }
 
+        StringBuilder sb = new StringBuilder();
+        try{
+            for(int i = 0; i < Salg.size(); i++) {
+                if (Salg.get(i) instanceof BondensMarked) {
+                    BondensMarked bm = (BondensMarked) Salg.get(i);
+                    sb.append(bm.getDato()).append("   ").append(bm.getBelop());
+                    salgliste.add(sb.toString());
+                    sb.delete(0, sb.length());
+                } else if (Salg.get(i) instanceof Hjemme) {
+                    Hjemme hjemme = (Hjemme) Salg.get(i);
+                    sb.append(hjemme.getDato()).append("   ").append(hjemme.getKunde()).append("  Beløp: ").append(hjemme.getBelop());
+                    salgliste.add(sb.toString());
+                    sb.delete(0, sb.length());
+                } else if (Salg.get(i) instanceof Videresalg) {
+                    Videresalg videresalg = (Videresalg) Salg.get(i);
+                    sb.append(videresalg.getDato()).append("   ").append(videresalg.getKunde()).append("  Beløp: ").append(videresalg.getBelop());
+                    salgliste.add(sb.toString());
+                    sb.delete(0, sb.length());
+                } else if (Salg.get(i) instanceof Annet) {
+                    Annet annet = (Annet) Salg.get(i);
+                    sb.append(annet.getDato()).append("   ").append(annet.getKunde()).append("  Beløp: ").append(annet.getBelop());
+                    salgliste.add(sb.toString());
+                    sb.delete(0, sb.length());
+                } else {
+                    sb.append("Beklager noe gikk galt  :(");
+                    salgliste.add(sb.toString());
+                    sb.delete(0, sb.length());
+                }
+            }
+        }catch (NullPointerException e){
+            e.printStackTrace();
+            sb.append("Beklager kan ikke laste innhold.");
         }
         ArrayAdapter<String> arrayAdapter = new ArrayAdapter(this.getContext(), android.R.layout.simple_list_item_1, salgliste);
         listView.setAdapter(arrayAdapter);

@@ -62,6 +62,7 @@ public class Main extends Activity implements NavigationDrawerFragment.Navigatio
         Videresalg = (ArrayList<Videresalg>) bundle.getSerializable("Videresalg");
         Beholdning = (ArrayList<Beholdning>) bundle.getSerializable("Beholdning");
         BeholdningUt = (ArrayList<BeholdningUt>) bundle.getSerializable("BeholdningUt");
+        if(Videresalg==null) return;
         setSalg();
     }
     @Override
@@ -75,7 +76,7 @@ public class Main extends Activity implements NavigationDrawerFragment.Navigatio
         hovedside.setArguments(bundle);
         FragmentManager fragmentManager = getFragmentManager();
         fragmentManager.beginTransaction()
-                .replace(R.id.container, Hovedside.newInstance(position + 1))
+                .replace(R.id.container, hovedside)
                 .commit();
     }
 

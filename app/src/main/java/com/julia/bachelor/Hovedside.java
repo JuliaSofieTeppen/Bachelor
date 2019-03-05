@@ -31,6 +31,7 @@ public class Hovedside extends Fragment {
     List arraylist;
     ArrayList<Beholdning> beholdning;
     ArrayList<BeholdningUt> beholdningUt;
+    ArrayList<Honning> honning;
     private ArrayList<String> salgliste; //for now, må endres til objekter så vi kan putte inn objekter ordenlig.
 
     public Hovedside() {
@@ -87,14 +88,30 @@ public class Hovedside extends Fragment {
 
         try {
             beholdning = (ArrayList<Beholdning>) (getArguments().getSerializable("beholdning"));
-            beholdningUt = (ArrayList<BeholdningUt>) (getArguments().getSerializable("salg"));
-            StringBuilder sb = new StringBuilder();
-            Beholdning beholdning = findCurrentBeholdning();
-            sb.append(beholdning.getDato());
+            beholdningUt = (ArrayList<BeholdningUt>) (getArguments().getSerializable("beholdning"));
+            honning = (ArrayList<Honning>) getArguments().getSerializable("HonningType");
+
         } catch (NullPointerException e) {
             e.printStackTrace();
         }
+        info.setText(buildString());
         return rootView;
+    }
+
+    String buildString(){
+        if(beholdning==null) return "Error getting content";
+        StringBuilder sb = new StringBuilder();
+        Beholdning beholdning = findCurrentBeholdning();
+        sb.append(beholdning.getDato()).append("\n").append(honning.get(0).getType()).append("   Antall: ").append(beholdning.getSommer()).append("\n");
+        sb.append(honning.get(1).getType()).append("   Antall: ").append(beholdning.getSommerH()).append("\n");
+        sb.append(honning.get(2).getType()).append("   Antall: ").append(beholdning.getSommerK()).append("\n");
+        sb.append(honning.get(3).getType()).append("   Antall: ").append(beholdning.getLyng()).append("\n");
+        sb.append(honning.get(4).getType()).append("   Antall: ").append(beholdning.getLyngH()).append("\n");
+        sb.append(honning.get(5).getType()).append("   Antall: ").append(beholdning.getLyngK()).append("\n");
+        sb.append(honning.get(6).getType()).append("   Antall: ").append(beholdning.getIngeferH()).append("\n");
+        sb.append(honning.get(7).getType()).append("   Antall: ").append(beholdning.getIngeferK()).append("\n");
+        sb.append(honning.get(8).getType()).append("   Antall: ").append(beholdning.getFlytende()).append("\n");
+        return sb.toString();
     }
 
     Beholdning findCurrentBeholdning(){

@@ -32,7 +32,7 @@ public class LoadContent extends Activity {
         database.getHjemmeValues();
         database.getVideresalgValues();
 
-        ImageView rocketImage = (ImageView) findViewById(R.id.LoadingBeeImage);
+        ImageView rocketImage = findViewById(R.id.LoadingBeeImage);
         rocketImage.setBackgroundResource(R.drawable.animation);
         AnimationDrawable anim = (AnimationDrawable) rocketImage.getBackground();
         anim.start();
@@ -58,7 +58,7 @@ public class LoadContent extends Activity {
                 finish();
             }
 
-        },2000);
+        },3000);
     }
     public void setAnnet(ArrayList<Annet> annet) { Annet = annet; }
 

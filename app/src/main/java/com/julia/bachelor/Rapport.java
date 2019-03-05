@@ -23,6 +23,7 @@ public class Rapport extends Fragment {
     ListView listView;
     private ArrayList<String> salgliste; //for now, må endres til objekter så vi kan putte inn objekter ordenlig.
     Spinner datoer;
+    Spinner salgtyper;
 
 
     public Rapport() {
@@ -44,10 +45,17 @@ public class Rapport extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.rapport, container, false);
         Salg = (ArrayList<Object>) getArguments().getSerializable("Salg");
+
         datoer = rootView.findViewById(R.id.dagmånedår);
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this.getContext(), R.array.datoer, android.R.layout.simple_spinner_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         datoer.setAdapter(adapter);
+
+        salgtyper = rootView.findViewById(R.id.salgtyper);
+        ArrayAdapter<CharSequence> sadapter = ArrayAdapter.createFromResource(this.getContext(), R.array.Salg, android.R.layout.simple_spinner_item);
+        sadapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        salgtyper.setAdapter(sadapter);
+
         listView = rootView.findViewById(R.id.salgitems);
         salgliste = new ArrayList<>();
         StringBuilder sb = new StringBuilder();

@@ -20,6 +20,7 @@ public class Rapport extends Fragment {
     //private static ArrayList<Object> Salg;
     ListView listView;
     Spinner datoer;
+    Spinner salgtyper;
 
 
     public Rapport() {
@@ -42,11 +43,18 @@ public class Rapport extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.rapport, container, false);
         ArrayList<Object> Salg = (ArrayList<Object>) getArguments().getSerializable("Salg");
+
         datoer = rootView.findViewById(R.id.dagmånedår);
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this.getContext(), R.array.datoer, android.R.layout.simple_spinner_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         datoer.setAdapter(adapter);
+
         listView = rootView.findViewById(R.id.salgitems);
+        salgtyper = rootView.findViewById(R.id.salgtyper);
+        ArrayAdapter<CharSequence> sadapter = ArrayAdapter.createFromResource(this.getContext(), R.array.Salg, android.R.layout.simple_spinner_item);
+        sadapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        salgtyper.setAdapter(sadapter);
+        
         ArrayList<String> salgliste = new ArrayList<>();
         StringBuilder sb = new StringBuilder();
         //if(Salg.equals(null)) sb.append("Beklager noe gikk galt.");

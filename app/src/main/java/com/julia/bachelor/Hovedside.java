@@ -25,7 +25,7 @@ public class Hovedside extends Fragment {
     private static final String KEY_BEHOLDNINGUT = "BeholdningUt";
     private static final String KEY_HONNING = "Honning";
     Button addbutton;
-    TextView totaltext, info;
+    TextView totaltext, info, navn;
     List arraylist;
     ArrayList<Beholdning> beholdning;
     ArrayList<BeholdningUt> beholdningUt;
@@ -54,6 +54,7 @@ public class Hovedside extends Fragment {
         totaltext = rootView.findViewById(R.id.totaltext);
         setTotalGjennomsnitt();
         info = rootView.findViewById(R.id.Info);
+        navn = rootView.findViewById(R.id.navn);
         arraylist = new ArrayList();
         addbutton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -90,27 +91,61 @@ public class Hovedside extends Fragment {
             beholdning = (ArrayList<Beholdning>) (getArguments().getSerializable(KEY_BEHOLDNING));
             beholdningUt = (ArrayList<BeholdningUt>) (getArguments().getSerializable(KEY_BEHOLDNINGUT));
             honning = (ArrayList<Honning>) (getArguments().getSerializable(KEY_HONNING));
-            info.setText(buildString());
+            info.setText(setValueString());
+            navn.setText(setNameString());
         } catch (NullPointerException e) {
             e.printStackTrace();
         }
         return rootView;
     }
+    String setNameString(){
+        return honning.get(0).getType() + "\n" +
+                honning.get(1).getType() + "\n" +
+                honning.get(2).getType() + "\n" +
+                honning.get(3).getType() + "\n" +
+                honning.get(4).getType() + "\n" +
+                honning.get(5).getType() + "\n" +
+                honning.get(6).getType() + "\n" +
+                honning.get(7).getType() + "\n" +
+                honning.get(8).getType() + "\n";
+    }
+    String setValueString(){
+        Beholdning beholdning = findCurrentBeholdning();
+        return beholdning.getSommer() + "\n" +
+                beholdning.getSommerH() + " \n" +
+                beholdning.getSommerK() + " \n" +
+                beholdning.getLyng() + " \n" +
+                beholdning.getLyngH() + " \n" +
+                beholdning.getLyngK() + " \n" +
+                beholdning.getIngeferH() + " \n" +
+                beholdning.getIngeferK() + " \n" +
+                beholdning.getFlytende() + " \n";
+    }
 
-    String buildString(){
+    String buildNameString(){
+        if(beholdning==null || beholdningUt==null || honning==null || honning.size()==0) return "Error getting content";
+        StringBuilder sb = new StringBuilder();
+        try {
+            for(int i = 0; i < honning.size(); i++){
+                sb.append(honning.get(i).getType()).append("\n");
+            }
+        }catch (IndexOutOfBoundsException e){e.printStackTrace();}
+        return sb.toString();
+    }
+    String buildValueString(){
         if(beholdning==null || beholdningUt==null || honning==null || honning.size()==0) return "Error getting content";
         StringBuilder sb = new StringBuilder();
         try {
             Beholdning beholdning = findCurrentBeholdning();
-            sb.append(beholdning.getDato()).append("\n").append(honning.get(0).getType()).append("   Antall: ").append(beholdning.getSommer()).append("\n");
-            sb.append(honning.get(1).getType()).append("   Antall: ").append(beholdning.getSommerH()).append("\n");
-            sb.append(honning.get(2).getType()).append("   Antall: ").append(beholdning.getSommerK()).append("\n");
-            sb.append(honning.get(3).getType()).append("   Antall: ").append(beholdning.getLyng()).append("\n");
-            sb.append(honning.get(4).getType()).append("   Antall: ").append(beholdning.getLyngH()).append("\n");
-            sb.append(honning.get(5).getType()).append("   Antall: ").append(beholdning.getLyngK()).append("\n");
-            sb.append(honning.get(6).getType()).append("   Antall: ").append(beholdning.getIngeferH()).append("\n");
-            sb.append(honning.get(7).getType()).append("   Antall: ").append(beholdning.getIngeferK()).append("\n");
-            sb.append(honning.get(8).getType()).append("   Antall: ").append(beholdning.getFlytende()).append("\n");
+            sb.append(beholdning.getSommer()).append("\n");
+            sb.append(beholdning.getSommerH()).append("\n");
+            sb.append(beholdning.getSommerK()).append("\n");
+            sb.append(beholdning.getLyng()).append("\n");
+            sb.append(beholdning.getLyngH()).append("\n");
+            sb.append(beholdning.getLyngK()).append("\n");
+            sb.append(beholdning.getIngeferH()).append("\n");
+            sb.append(beholdning.getIngeferK()).append("\n");
+            sb.append(beholdning.getFlytende()).append("\n");
         }catch (IndexOutOfBoundsException e){e.printStackTrace();}
         return sb.toString();
     }

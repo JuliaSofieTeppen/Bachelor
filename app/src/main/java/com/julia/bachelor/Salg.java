@@ -1,29 +1,107 @@
 package com.julia.bachelor;
 
-import java.io.Serializable;
+class Salg implements java.io.Serializable{
+    private long _ID;
+    private int Sommer;
+    private int SommerH;
+    private int SommerK;
+    private int Lyng;
+    private int LyngH;
+    private int LyngK;
+    private int IngeferH;
+    private int IngeferK;
+    private int Flytende;
+    private String Dato;
 
-interface Salg {
-    long get_ID();
+    Salg() {
+    }
 
-    void set_ID(long _ID);
+    long get_ID() {
+        return _ID;
+    }
 
-    String getKunde();
+    void set_ID(long _ID) {
+        this._ID = _ID;
+    }
 
-    void setKunde(String kunde);
+    int getSommer() {
+        return Sommer;
+    }
 
-    String getDato();
+    void setSommer(int sommer) {
+        Sommer = sommer;
+    }
 
-    void setDato(String dato);
+    int getSommerH() {
+        return SommerH;
+    }
 
-    String getVarer();
+    void setSommerH(int sommerH) {
+        SommerH = sommerH;
+    }
 
-    void setVarer(String varer);
+    int getSommerK() {
+        return SommerK;
+    }
 
-    int getBelop();
+    void setSommerK(int sommerK) {
+        SommerK = sommerK;
+    }
 
-    void setBelop(int belop);
+    int getLyng() {
+        return Lyng;
+    }
 
-    String getBetaling();
+    void setLyng(int lyng) {
+        Lyng = lyng;
+    }
 
-    void setBetaling(String betaling);
+    int getLyngH() {
+        return LyngH;
+    }
+
+    void setLyngH(int lyngH) {
+        LyngH = lyngH;
+    }
+
+    int getLyngK() {
+        return LyngK;
+    }
+
+    void setLyngK(int lyngK) {
+        LyngK = lyngK;
+    }
+
+    int getIngeferH() {
+        return IngeferH;
+    }
+
+    void setIngeferH(int ingeferH) {
+        IngeferH = ingeferH;
+    }
+
+    int getIngeferK() {
+        return IngeferK;
+    }
+
+    void setIngeferK(int ingeferK) {
+        IngeferK = ingeferK;
+    }
+
+    int getFlytende() {
+        return Flytende;
+    }
+
+    void setFlytende(int flytende) {
+        Flytende = flytende;
+    }
+
+    String getDato() {
+        return Dato;
+    }
+
+    void setDato(String dato) {
+        Dato = dato;
+    }
 }
+

@@ -13,7 +13,7 @@ import java.util.ArrayList;
 class Database {
     private static ArrayList<Annet> Annet = new ArrayList<>();
     private static ArrayList<Beholdning> Beholdning = new ArrayList<>();
-    private static ArrayList<BeholdningUt> BeholdningUt = new ArrayList<>();
+    private static ArrayList<Salg> Salg = new ArrayList<>();
     private static ArrayList<BondensMarked> BM = new ArrayList<>();
     private static ArrayList<Hjemme> Hjemme = new ArrayList<>();
     private static ArrayList<Honning> Honning = new ArrayList<>();
@@ -38,7 +38,7 @@ class Database {
 
     static void getBeholdningUtValues() {
         BeholdningUtTask task = new BeholdningUtTask();
-        // TODO set url for beholdningUt
+        // TODO set url for salg
         task.execute("http://www.honningbier.no/PHP/SalgOut.php");
     }
 
@@ -196,20 +196,20 @@ class Database {
                         // Convert string to JSONArray containing JSONObjects.
                         JSONArray jsonArray = new JSONArray(output.toString());
                         for (int i = 0; i < jsonArray.length(); i++) {
-                            BeholdningUt beholdningUt = new BeholdningUt();
+                            Salg salg = new Salg();
                             JSONObject jsonobject = jsonArray.getJSONObject(i);
-                            beholdningUt.set_ID(jsonobject.getLong("ID"));
-                            beholdningUt.setSommer(jsonobject.getInt("Sommer"));
-                            beholdningUt.setSommerH(jsonobject.getInt("SommerHalv"));
-                            beholdningUt.setSommerK(jsonobject.getInt("SommerKvart"));
-                            beholdningUt.setLyng(jsonobject.getInt("Lyng"));
-                            beholdningUt.setLyngH(jsonobject.getInt("LyngHalv"));
-                            beholdningUt.setLyngK(jsonobject.getInt("LyngKvart"));
-                            beholdningUt.setIngeferH(jsonobject.getInt("IngeferHalv"));
-                            beholdningUt.setIngeferK(jsonobject.getInt("IngeferKvart"));
-                            beholdningUt.setFlytende(jsonobject.getInt("Flytende"));
-                            beholdningUt.setDato(jsonobject.getString("Dato"));
-                            BeholdningUt.add(beholdningUt);
+                            salg.set_ID(jsonobject.getLong("ID"));
+                            salg.setSommer(jsonobject.getInt("Sommer"));
+                            salg.setSommerH(jsonobject.getInt("SommerHalv"));
+                            salg.setSommerK(jsonobject.getInt("SommerKvart"));
+                            salg.setLyng(jsonobject.getInt("Lyng"));
+                            salg.setLyngH(jsonobject.getInt("LyngHalv"));
+                            salg.setLyngK(jsonobject.getInt("LyngKvart"));
+                            salg.setIngeferH(jsonobject.getInt("IngeferHalv"));
+                            salg.setIngeferK(jsonobject.getInt("IngeferKvart"));
+                            salg.setFlytende(jsonobject.getInt("Flytende"));
+                            salg.setDato(jsonobject.getString("Dato"));
+                            Salg.add(salg);
                         }
                     } catch (JSONException e) {
                         e.printStackTrace();
@@ -224,7 +224,7 @@ class Database {
         protected void onPostExecute(String s) {
             super.onPostExecute(s);
             LoadContent load = new LoadContent();
-            load.setBeholdningUt(BeholdningUt);
+            load.setBeholdningUt(Salg);
         }
     }
 

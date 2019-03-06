@@ -22,14 +22,14 @@ public class Hovedside extends Fragment {
      */
     private static final String ARG_SECTION_NUMBER = "section_number";
     private static final String KEY_BEHOLDNING = "Beholdning";
-    private static final String KEY_BEHOLDNINGUT = "BeholdningUt";
+    private static final String KEY_BEHOLDNINGUT = "Salg";
     private static final String KEY_HONNING = "Honning";
     private static final String KEY_BUNDLE = "Bundle";
     Button addbutton;
     TextView totaltext, info, navn;
     List arraylist;
     ArrayList<Beholdning> beholdning;
-    ArrayList<BeholdningUt> beholdningUt;
+    ArrayList<Salg> salg;
     ArrayList<Honning> honning;
 
     public Hovedside() {
@@ -38,12 +38,12 @@ public class Hovedside extends Fragment {
      * Returns a new instance of this fragment for the given section
      * number.
      */
-    public static Hovedside newInstance(int sectionNumber, ArrayList<Beholdning> Beholdning, ArrayList<BeholdningUt> BeholdningUt, ArrayList<Honning> Honning) {
+    public static Hovedside newInstance(int sectionNumber, ArrayList<Beholdning> Beholdning, ArrayList<Salg> Salg, ArrayList<Honning> Honning) {
         Hovedside fragment = new Hovedside();
         Bundle args = new Bundle();
         args.putInt(ARG_SECTION_NUMBER, sectionNumber);
         args.putSerializable(KEY_BEHOLDNING, Beholdning);
-        args.putSerializable(KEY_BEHOLDNINGUT, BeholdningUt);
+        args.putSerializable(KEY_BEHOLDNINGUT, Salg);
         args.putSerializable(KEY_HONNING , Honning);
         fragment.setArguments(args);
         return fragment;
@@ -92,7 +92,7 @@ public class Hovedside extends Fragment {
         });
         try {
             beholdning = (ArrayList<Beholdning>) (getArguments().getSerializable(KEY_BEHOLDNING));
-            beholdningUt = (ArrayList<BeholdningUt>) (getArguments().getSerializable(KEY_BEHOLDNINGUT));
+            salg = (ArrayList<Salg>) (getArguments().getSerializable(KEY_BEHOLDNINGUT));
             honning = (ArrayList<Honning>) (getArguments().getSerializable(KEY_HONNING));
             info.setText(setValueString());
             navn.setText(setNameString());
@@ -126,7 +126,7 @@ public class Hovedside extends Fragment {
     }
 
     String buildNameString(){
-        if(beholdning==null || beholdningUt==null || honning==null || honning.size()==0) return "Error getting content";
+        if(beholdning==null || salg ==null || honning==null || honning.size()==0) return "Error getting content";
         StringBuilder sb = new StringBuilder();
         try {
             for(int i = 0; i < honning.size(); i++){
@@ -136,7 +136,7 @@ public class Hovedside extends Fragment {
         return sb.toString();
     }
     String buildValueString(){
-        if(beholdning==null || beholdningUt==null || honning==null || honning.size()==0) return "Error getting content";
+        if(beholdning==null || salg ==null || honning==null || honning.size()==0) return "Error getting content";
         StringBuilder sb = new StringBuilder();
         try {
             Beholdning beholdning = findCurrentBeholdning();

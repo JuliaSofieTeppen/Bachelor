@@ -24,14 +24,13 @@ public class AddBeholdning extends Activity {
     EditText ingf025kg;
     EditText flytende;
     List<EditText> verdier;
-    Database db;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_beholdning);
         getActionBar().setDisplayHomeAsUpEnabled(true);
-        db = new Database();
-        db.getHonningType();
+        Database.getHonningType();
         dato = findViewById(R.id.Bdato);
         som1kg = findViewById(R.id.Bsom1kg);
         som05kg = findViewById(R.id.Bsom05kg);
@@ -83,10 +82,11 @@ public class AddBeholdning extends Activity {
     }
 
     void insertIntoDB(){
-        db.executeOnDB("http://www.honningbier.no/PHP/SalgIn.php/?Dato=" + dato.getText().toString());
-        db.executeOnDB("http://www.honningbier.no/PHP/BeholdningIn.php/?" + getBeholdning() + "&Dato=" + dato.getText().toString());
+        Database.executeOnDB("http://www.honningbier.no/PHP/SalgIn.php/?Dato=" + dato.getText().toString());
+        Database.executeOnDB("http://www.honningbier.no/PHP/BeholdningIn.php/?" + getBeholdning() + "&Dato=" + dato.getText().toString());
     }
 
+    // TODO move?
     public boolean checkDate(String date) {
         String regex = "^\\d{4}\\.(0?[1-9]|1[012])\\.(0?[1-9]|[12][0-9]|3[01])$";
         return date.matches(regex);

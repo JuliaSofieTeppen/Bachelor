@@ -12,7 +12,7 @@ import java.util.ArrayList;
 public class LoadContent extends Activity {
     private static final String KEY_ANNET = "Annet";
     private static final String KEY_BEHOLDNING = "Beholdning";
-    private static final String KEY_BEHOLDNINGUT = "BeholdningUt";
+    private static final String KEY_BEHOLDNINGUT = "Salg";
     private static final String KEY_BONDENSMARKED = "Bondensmarked";
     private static final String KEY_HJEMME = "Hjemme";
     private static final String KEY_HONNING = "Honning";
@@ -21,7 +21,7 @@ public class LoadContent extends Activity {
 
     static ArrayList<Annet> Annet;
     static ArrayList<Beholdning> Beholdning;
-    static ArrayList<BeholdningUt> BeholdningUt;
+    static ArrayList<Salg> Salg;
     static ArrayList<BondensMarked> Bm;
     static ArrayList<Hjemme> Hjemme;
     static ArrayList<Honning> Honning;
@@ -55,7 +55,7 @@ public class LoadContent extends Activity {
                 bundle.putSerializable(KEY_HONNING, Honning);
                 bundle.putSerializable(KEY_ANNET, Annet);
                 bundle.putSerializable(KEY_BEHOLDNING,Beholdning);
-                bundle.putSerializable(KEY_BEHOLDNINGUT, BeholdningUt);
+                bundle.putSerializable(KEY_BEHOLDNINGUT, Salg);
                 bundle.putSerializable(KEY_BONDENSMARKED, Bm);
                 bundle.putSerializable(KEY_HJEMME, Hjemme);
                 bundle.putSerializable(KEY_VIDERESALG, Videresalg);
@@ -70,7 +70,7 @@ public class LoadContent extends Activity {
 
     public void setBeholdning(ArrayList<Beholdning> beholdnings){ Beholdning = beholdnings; }
 
-    public void setBeholdningUt(ArrayList<BeholdningUt> beholdningUts){ BeholdningUt = beholdningUts;}
+    public void setBeholdningUt(ArrayList<Salg> salgs){ Salg = salgs;}
 
     public void setBM(ArrayList<BondensMarked> bondensMarkeds){ Bm = bondensMarkeds; }
 

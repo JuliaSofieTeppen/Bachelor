@@ -2,7 +2,7 @@ package com.julia.bachelor;
 
 import java.io.Serializable;
 
-public class Hjemme implements Salg, Serializable {
+public class Hjemme implements SalgTemplate, Serializable {
 
     private long _ID;
     private String Kunde;

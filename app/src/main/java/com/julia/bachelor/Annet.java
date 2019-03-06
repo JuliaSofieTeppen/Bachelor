@@ -2,7 +2,7 @@ package com.julia.bachelor;
 
 import java.io.Serializable;
 
-class Annet implements Salg, Serializable {
+class Annet implements SalgTemplate, Serializable {
 
     private long _ID;
     private String Kunde;
@@ -12,14 +12,6 @@ class Annet implements Salg, Serializable {
     private String Betaling;
 
     Annet() {
-    }
-
-    Annet(String kunde, String dato, String varer, int belop, String betaling) {
-        Kunde = kunde;
-        Dato = dato;
-        Varer = varer;
-        Belop = belop;
-        Betaling = betaling;
     }
 
     public long get_ID() {

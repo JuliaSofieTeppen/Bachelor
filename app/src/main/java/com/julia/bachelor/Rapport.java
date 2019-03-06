@@ -16,8 +16,8 @@ import java.util.ArrayList;
 
 public class Rapport extends Fragment {
     private static final String ARG_SECTION_NUMBER = "section_number";
-    private static final String KEY_SALG = "Salg";
-    //private static ArrayList<Object> Salg;
+    private static final String KEY_SALG = "SalgTemplate";
+    //private static ArrayList<Object> SalgTemplate;
     ListView listView;
     Spinner datoer;
     Spinner salgtyper;
@@ -42,7 +42,7 @@ public class Rapport extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.rapport, container, false);
 
-        ArrayList<Object> Salg = (ArrayList<Object>) getArguments().getSerializable("Salg");
+        ArrayList<Object> Salg = (ArrayList<Object>) getArguments().getSerializable("SalgTemplate");
         listView = rootView.findViewById(R.id.salgitems);
         ArrayList<String> salgliste = new ArrayList<>();
 

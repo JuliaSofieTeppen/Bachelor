@@ -2,7 +2,7 @@ package com.julia.bachelor;
 
 import java.io.Serializable;
 
-class Videresalg implements Salg, Serializable {
+class Videresalg implements SalgTemplate, Serializable {
 
     private long _ID;
     private String Kunde;

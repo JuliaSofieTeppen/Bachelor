@@ -18,13 +18,12 @@ import java.util.List;
 public class Main extends Activity implements NavigationDrawerFragment.NavigationDrawerCallbacks{
     private static final String KEY_ANNET = "Annet";
     private static final String KEY_BEHOLDNING = "Beholdning";
-    private static final String KEY_BEHOLDNINGUT = "BeholdningUt";
+    private static final String KEY_BEHOLDNINGUT = "Salg";
     private static final String KEY_BONDENSMARKED = "Bondensmarked";
     private static final String KEY_HJEMME = "Hjemme";
     private static final String KEY_HONNING = "Honning";
     private static final String KEY_VIDERESALG = "Videresalg";
     private static final String KEY_BUNDLE = "Bundle";
-    private static final String KEY_SALG = "Salg";
 
     static ArrayList<Honning> Honning;
     static ArrayList<Annet> Annet;
@@ -32,8 +31,8 @@ public class Main extends Activity implements NavigationDrawerFragment.Navigatio
     static ArrayList<BondensMarked> Bm;
     static ArrayList<Videresalg> Videresalg;
     static ArrayList<Beholdning> Beholdning;
-    static ArrayList<BeholdningUt> BeholdningUt;
-    static ArrayList<Object> Salg = new ArrayList<>();
+    static ArrayList<com.julia.bachelor.Salg> Salg;
+    static ArrayList<Object> AllSalg = new ArrayList<>();
 
     EditText dato;
     EditText som1kg;
@@ -68,7 +67,7 @@ public class Main extends Activity implements NavigationDrawerFragment.Navigatio
         Bm = (ArrayList<BondensMarked>) bundle.getSerializable(KEY_BONDENSMARKED);
         Videresalg = (ArrayList<Videresalg>) bundle.getSerializable(KEY_VIDERESALG);
         Beholdning = (ArrayList<Beholdning>) bundle.getSerializable(KEY_BEHOLDNING);
-        BeholdningUt = (ArrayList<BeholdningUt>) bundle.getSerializable(KEY_BEHOLDNINGUT);
+        Salg = (ArrayList<com.julia.bachelor.Salg>) bundle.getSerializable(KEY_BEHOLDNINGUT);
         if(Videresalg==null || Hjemme==null || Annet==null || Bm==null) return;
         setSalg();
     }
@@ -78,17 +77,16 @@ public class Main extends Activity implements NavigationDrawerFragment.Navigatio
         setArrays();
         FragmentManager fragmentManager = getFragmentManager();
         fragmentManager.beginTransaction()
-                .replace(R.id.container, Hovedside.newInstance(position + 1, Beholdning, BeholdningUt, Honning))
+                .replace(R.id.container, Hovedside.newInstance(position + 1, Beholdning, Salg, Honning))
                 .commit();
     }
 
     public void onSectionAttached(int number) {
-        Bundle bundle;
         switch (number) {
             case 1:
                 break;
             case 2:
-                Rapport myf = Rapport.newInstance(1, Salg);
+                Rapport myf = Rapport.newInstance(1, AllSalg);
                 FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
                 fragmentTransaction.replace(R.id.container, myf);
                 fragmentTransaction.addToBackStack(null);
@@ -176,10 +174,10 @@ public class Main extends Activity implements NavigationDrawerFragment.Navigatio
     }
 
     private void setSalg(){
-        Salg = new ArrayList<>();
-        Salg.addAll(Bm);
-        Salg.addAll(Hjemme);
-        Salg.addAll(Videresalg);
-        Salg.addAll(Annet);
+        AllSalg = new ArrayList<>();
+        AllSalg.addAll(Bm);
+        AllSalg.addAll(Hjemme);
+        AllSalg.addAll(Videresalg);
+        AllSalg.addAll(Annet);
     }
 }

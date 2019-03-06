@@ -31,18 +31,16 @@ public class HjemmeSalg extends Activity implements AdapterView.OnItemSelectedLi
     TextView oversikt;
     EditText kundenavn;
     TextView oversikttall;
-    Database database;
     TextView total;
     Spinner betaling;
     int kr;
 
-    @Override
+    @Override @SuppressWarnings("unchecked")
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_hjemme_salg);
         kr = 0;
-        database = new Database();
-        database.getHonningType();
+        Database.getHonningType();
         getActionBar().setDisplayHomeAsUpEnabled(true);
         oversikt = findViewById(R.id.oversikt);
         oversikttall = findViewById(R.id.oversikttall);
@@ -55,21 +53,11 @@ public class HjemmeSalg extends Activity implements AdapterView.OnItemSelectedLi
 
         Intent intent = getIntent();
         Bundle bundle = intent.getBundleExtra(KEY_BUNDLE);
-        honningtype = (ArrayList<Honning>)bundle.getSerializable(KEY_HONNING);
+        honningtype = (ArrayList<Honning>) bundle.getSerializable(KEY_HONNING);
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.betalingsmetode, android.R.layout.simple_spinner_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         betaling.setAdapter(adapter);
         betaling.setOnItemSelectedListener(this);
-    }
-
-    public String reverseDate(String date) {
-        String[] strings = date.split("\\.");
-        date = "";
-        for (int i = strings.length - 1; i >= 0; i--) {
-            date += strings[i];
-            date += i >= 1 ? "." : "";
-        }
-        return date;
     }
 
     String getVarer() {
@@ -89,12 +77,12 @@ public class HjemmeSalg extends Activity implements AdapterView.OnItemSelectedLi
     }
 
     void insertValues() {
-        database.executeOnDB("http://www.honningbier.no/PHP/HjemmeIn.php/?Kunde=" + kundenavn.getText().toString() +
+        Database.executeOnDB("http://www.honningbier.no/PHP/HjemmeIn.php/?Kunde=" + kundenavn.getText().toString() +
                 "&Dato=" + getDate() + "&Varer=" + getVarer() + "&Belop=" + kr + "&Betaling=" + betalingsmetode);
     }
 
     void setTelling() {
-        for (int c = 0; c < 9; c++) {
+        for (int c = 0; c < honningtype.size(); c++) {
             telling.add(0);
         }
     }
@@ -168,8 +156,6 @@ public class HjemmeSalg extends Activity implements AdapterView.OnItemSelectedLi
         kr = kr + honningtype.get(8).getHjemmePris();
         setText();
     }
-    //TODO hvordan kan vi legge til flere verdier/ slette honningtyper (dynamisk oppsett)
-    // case, for dynamisk oppsett
 
     public void setText() {
         StringBuilder sb = new StringBuilder();
@@ -184,10 +170,6 @@ public class HjemmeSalg extends Activity implements AdapterView.OnItemSelectedLi
         oversikttall.setText(sbtall.toString());
         String text = kr + "kr";
         total.setText(text);
-    }
-
-    public void setArrays(ArrayList<Honning> type) {
-        honningtype = type;
     }
 
     public void slettliste(View v) {
@@ -219,7 +201,6 @@ public class HjemmeSalg extends Activity implements AdapterView.OnItemSelectedLi
 
     public void goback() {
         //TODO check fields before poppopen skal syntes.
-        //android.app.AlertDialog.Builder builder = new android.app.AlertDialog.Builder(FakturaSalg.this,R.style.AlertDialog);
         final AlertDialog.Builder builder = new AlertDialog.Builder(HjemmeSalg.this);
         builder.setMessage("Vil du gå tilbake?");
         builder.setCancelable(true);
@@ -237,7 +218,5 @@ public class HjemmeSalg extends Activity implements AdapterView.OnItemSelectedLi
         });
         AlertDialog alertDialog = builder.create();
         alertDialog.show();
-
     }
-
 }

@@ -34,6 +34,16 @@ class Beregninger {
         return total;
     }
 
+    public String reverseDate(String date) {
+        String[] strings = date.split("\\.");
+        date = "";
+        for (int i = strings.length - 1; i >= 0; i--) {
+            date += strings[i];
+            date += i >= 1 ? "." : "";
+        }
+        return date;
+    }
+
     static double merverdi(List<Integer> belopet) {
         double merverdiavgift = 0.0;
         double total_d = belop(belopet);

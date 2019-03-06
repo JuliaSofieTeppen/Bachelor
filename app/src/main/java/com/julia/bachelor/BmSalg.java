@@ -14,27 +14,17 @@ import java.util.Arrays;
 import java.util.List;
 
 public class BmSalg extends Activity {
-
-    EditText dato;
-    EditText som1kg;
-    EditText som05kg;
-    EditText som025kg;
-    EditText lyng1kg;
-    EditText lyng05kg;
-    EditText lyng025kg;
-    EditText ingf05kg;
-    EditText ingf025kg;
-    EditText flytende;
+    static List<Honning> honningtyper;
+    EditText dato, som1kg, som05kg, som025kg, lyng1kg, lyng05kg, lyng025kg, ingf05kg, ingf025kg, flytende;
     List<EditText> verdier;
     Database db;
-    static List<Honning> honningtyper;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_bm_salg);
         db = new Database();
-        db.getHonningType();
+        Database.getHonningType();
         getActionBar().setDisplayHomeAsUpEnabled(true);
         dato = findViewById(R.id.BMSdato);
         som1kg = findViewById(R.id.BMSsom1kg);
@@ -48,7 +38,6 @@ public class BmSalg extends Activity {
         flytende = findViewById(R.id.BMSflyt);
         verdier = new ArrayList<>(Arrays.asList(som1kg, som05kg, som025kg, lyng1kg, lyng05kg, lyng025kg, ingf05kg, ingf025kg, flytende));
     }
-
 
     public void lagre(View v) {
         int tell = 0;
@@ -64,10 +53,7 @@ public class BmSalg extends Activity {
             if (tell == 0) {
                 Toast.makeText(this, "Legg til minst et produkt", Toast.LENGTH_SHORT).show();
             } else {
-                //TODO legg til verdier
-
                 insertValues();
-
                 Toast.makeText(this, "Bondens marked salg lagret", Toast.LENGTH_SHORT).show();
                 finish();
             }
@@ -82,6 +68,7 @@ public class BmSalg extends Activity {
         return true;
     }
 
+    // TODO move this method?
     public boolean checkDate(String date) {
         String regex = "^\\d{4}\\.(0?[1-9]|1[012])\\.(0?[1-9]|[12][0-9]|3[01])$";
         return date.matches(regex);
@@ -94,7 +81,7 @@ public class BmSalg extends Activity {
 
     public void goback() {
         //TODO check fields before poppopen skal syntes.
-        if(ValueInField()) {
+        if (ValueInField()) {
             //android.app.AlertDialog.Builder builder = new android.app.AlertDialog.Builder(FakturaSalg.this,R.style.AlertDialog);
             final AlertDialog.Builder builder = new AlertDialog.Builder(BmSalg.this);
             builder.setMessage("Vil du gå tilbake?");
@@ -113,21 +100,18 @@ public class BmSalg extends Activity {
             });
             AlertDialog alertDialog = builder.create();
             alertDialog.show();
-        }else{
+        } else {
             finish();
         }
     }
-    public boolean ValueInField(){
-        for(EditText verdi : verdier){
-            if(!(verdi.getText().toString().equals(""))){
+
+    public boolean ValueInField() {
+        for (EditText verdi : verdier) {
+            if (!(verdi.getText().toString().equals(""))) {
                 return true;
             }
         }
         return false;
-    }
-
-    void setHonningtyper(ArrayList<Honning> type){
-        honningtyper = type;
     }
 
     public String getVarer() {
@@ -139,13 +123,13 @@ public class BmSalg extends Activity {
     }
 
     void insertValues() {
-        db.executeOnDB("http://www.honningbier.no/PHP/BondensMarkedIn.php/?Dato=" + dato.getText().toString() +
+        Database.executeOnDB("http://www.honningbier.no/PHP/BondensMarkedIn.php/?Dato=" + dato.getText().toString() +
                 "&Varer=" + getVarer() + "&Belop=" + getbelop());
     }
 
-    int getbelop(){
-        int total=0;
-        for(int i = 0; i < verdier.size(); i++){
+    int getbelop() {
+        int total = 0;
+        for (int i = 0; i < verdier.size(); i++) {
             total += Integer.parseInt(verdier.get(i).getText().toString()) * honningtyper.get(i).getBondensMarkedPris();
         }
         return total;

@@ -78,7 +78,7 @@ public class BmSalg extends Activity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        this.finish();
+        goback();
         return true;
     }
 
@@ -94,25 +94,36 @@ public class BmSalg extends Activity {
 
     public void goback() {
         //TODO check fields before poppopen skal syntes.
-        //android.app.AlertDialog.Builder builder = new android.app.AlertDialog.Builder(FakturaSalg.this,R.style.AlertDialog);
-        final AlertDialog.Builder builder = new AlertDialog.Builder(BmSalg.this);
-        builder.setMessage("Vil du gå tilbake?");
-        builder.setCancelable(true);
-        builder.setNegativeButton("Yes", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                finish();
+        if(ValueInField()) {
+            //android.app.AlertDialog.Builder builder = new android.app.AlertDialog.Builder(FakturaSalg.this,R.style.AlertDialog);
+            final AlertDialog.Builder builder = new AlertDialog.Builder(BmSalg.this);
+            builder.setMessage("Vil du gå tilbake?");
+            builder.setCancelable(true);
+            builder.setNegativeButton("Yes", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    finish();
+                }
+            });
+            builder.setPositiveButton("No", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    dialog.cancel();
+                }
+            });
+            AlertDialog alertDialog = builder.create();
+            alertDialog.show();
+        }else{
+            finish();
+        }
+    }
+    public boolean ValueInField(){
+        for(EditText verdi : verdier){
+            if(!(verdi.getText().toString().equals(""))){
+                return true;
             }
-        });
-        builder.setPositiveButton("No", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                dialog.cancel();
-            }
-        });
-        AlertDialog alertDialog = builder.create();
-        alertDialog.show();
-
+        }
+        return false;
     }
 
     void setHonningtyper(ArrayList<Honning> type){

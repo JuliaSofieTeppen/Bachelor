@@ -24,17 +24,7 @@ public class FakturaSalg extends Activity implements AdapterView.OnItemSelectedL
     Spinner betaling;
     String betalingsmetode;
     Spinner moms;
-    EditText navn;
-    EditText dato;
-    EditText som1kg;
-    EditText som05kg;
-    EditText som025kg;
-    EditText lyng1kg;
-    EditText lyng05kg;
-    EditText lyng025kg;
-    EditText ingf05kg;
-    EditText ingf025kg;
-    EditText flytende;
+    EditText navn, dato, som1kg, som05kg, som025kg, lyng1kg, lyng05kg, lyng025kg, ingf05kg, ingf025kg, flytende;
     List<EditText> verdier;
     ScrollView layout;
 
@@ -129,24 +119,27 @@ public class FakturaSalg extends Activity implements AdapterView.OnItemSelectedL
     }
 
     public void goback() {
-        //TODO check fields before poppopen skal syntes.
-        final AlertDialog.Builder builder = new AlertDialog.Builder(FakturaSalg.this);
-        builder.setMessage("Vil du gå tilbake?");
-        builder.setCancelable(true);
-        builder.setNegativeButton("Yes", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                finish();
-            }
-        });
-        builder.setPositiveButton("No", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                dialog.cancel();
-            }
-        });
-        AlertDialog alertDialog = builder.create();
-        alertDialog.show();
+        if (ValueInField()) {
+            final AlertDialog.Builder builder = new AlertDialog.Builder(FakturaSalg.this);
+            builder.setMessage("Vil du gå tilbake?");
+            builder.setCancelable(true);
+            builder.setNegativeButton("Ja", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    finish();
+                }
+            });
+            builder.setPositiveButton("Nei", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    dialog.cancel();
+                }
+            });
+            AlertDialog alertDialog = builder.create();
+            alertDialog.show();
+        }else{
+            finish();
+        }
     }
 
     // TODO might move it to another class since this method is needed in several classes.
@@ -169,5 +162,13 @@ public class FakturaSalg extends Activity implements AdapterView.OnItemSelectedL
     @Override
     public void onNothingSelected(AdapterView<?> parent) {
 
+    }
+    public boolean ValueInField(){
+        for(EditText verdi : verdier){
+            if(!(verdi.getText().toString().equals(""))){
+                return true;
+            }
+        }
+        return false;
     }
 }

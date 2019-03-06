@@ -20,7 +20,6 @@ import java.util.Arrays;
 import java.util.List;
 
 public class FakturaSalg extends Activity implements AdapterView.OnItemSelectedListener {
-
     static List<Honning> honningtyper;
     Spinner betaling;
     String betalingsmetode;
@@ -37,16 +36,13 @@ public class FakturaSalg extends Activity implements AdapterView.OnItemSelectedL
     EditText ingf025kg;
     EditText flytende;
     List<EditText> verdier;
-    Database db;
     ScrollView layout;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_faktura_salg);
-        db = new Database();
-        db.getHonningType();
+        Database.getHonningType();
         getActionBar().setDisplayHomeAsUpEnabled(true);
         navn = findViewById(R.id.FSnavn);
         moms = findViewById(R.id.FSmoms);
@@ -63,20 +59,21 @@ public class FakturaSalg extends Activity implements AdapterView.OnItemSelectedL
         layout = findViewById(R.id.scroll);
         betaling = findViewById(R.id.FSbetalmet);
         verdier = new ArrayList<>(Arrays.asList(som1kg, som05kg, som025kg, lyng1kg, lyng05kg, lyng025kg, ingf05kg, ingf025kg, flytende));
-
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
         setBetalingsmetodespinner();
         setMomsspinner(sharedPreferences);
     }
-    void setBetalingsmetodespinner(){
+
+    private void setBetalingsmetodespinner() {
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.betalingsmetode, android.R.layout.simple_spinner_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         betaling.setAdapter(adapter);
         betaling.setOnItemSelectedListener(this);
     }
-    void setMomsspinner(SharedPreferences sh){
-        Integer[] momsarray = {sh.getInt("ferdigprodukt",15), sh.getInt("ikkeferdig",25)};
-        ArrayAdapter<Integer> adapter = new ArrayAdapter<Integer>(getApplicationContext(),  android.R.layout.simple_spinner_dropdown_item, momsarray);
+
+    private void setMomsspinner(SharedPreferences sh) {
+        Integer[] momsarray = {sh.getInt("ferdigprodukt", 15), sh.getInt("ikkeferdig", 25)};
+        ArrayAdapter<Integer> adapter = new ArrayAdapter<>(getApplicationContext(), android.R.layout.simple_spinner_dropdown_item, momsarray);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         moms.setAdapter(adapter);
         moms.setOnItemSelectedListener(this);
@@ -103,7 +100,8 @@ public class FakturaSalg extends Activity implements AdapterView.OnItemSelectedL
             Toast.makeText(this, "Ugyldig dato", Toast.LENGTH_SHORT).show();
         }
     }
-    public String getVarer() {
+
+    private String getVarer() {
         StringBuilder stringBuilder = new StringBuilder();
         for (int i = 0; i < honningtyper.size(); i++) {
             stringBuilder.append(honningtyper.get(i).get_ID()).append("-").append(verdier.get(i).getText().toString()).append(",");
@@ -112,20 +110,17 @@ public class FakturaSalg extends Activity implements AdapterView.OnItemSelectedL
     }
 
     void insertValues() {
-        db.executeOnDB("http://www.honningbier.no/PHP/VideresalgIn.php/?Kunde=" + navn.getText().toString() +
+        Database.executeOnDB("http://www.honningbier.no/PHP/VideresalgIn.php/?Kunde=" + navn.getText().toString() +
                 "&Dato=" + dato.getText().toString() +
                 "&Varer=" + getVarer() + "&Belop=" + getbelop() + "&Betaling=" + betaling.getSelectedItem().toString() + "&Moms=" + moms.getSelectedItem().toString());
     }
-    int getbelop(){
-        int total=0;
-        for(int i = 0; i < verdier.size(); i++){
+
+    int getbelop() {
+        int total = 0;
+        for (int i = 0; i < verdier.size(); i++) {
             total += Integer.parseInt(verdier.get(i).getText().toString()) * honningtyper.get(i).getBondensMarkedPris();
         }
         return total;
-    }
-
-    void setHonningtyper(ArrayList<Honning> type){
-        honningtyper = type;
     }
 
     @Override
@@ -154,7 +149,7 @@ public class FakturaSalg extends Activity implements AdapterView.OnItemSelectedL
         alertDialog.show();
     }
 
-
+    // TODO might move it to another class since this method is needed in several classes.
     public boolean checkDate(String date) {
         String regex = "^\\d{4}\\.(0?[1-9]|1[012])\\.(0?[1-9]|[12][0-9]|3[01])$";
         return date.matches(regex);

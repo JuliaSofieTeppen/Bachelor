@@ -99,13 +99,13 @@ public class BmSalg extends Activity {
             final AlertDialog.Builder builder = new AlertDialog.Builder(BmSalg.this);
             builder.setMessage("Vil du gå tilbake?");
             builder.setCancelable(true);
-            builder.setNegativeButton("Yes", new DialogInterface.OnClickListener() {
+            builder.setNegativeButton("Ja", new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialog, int which) {
                     finish();
                 }
             });
-            builder.setPositiveButton("No", new DialogInterface.OnClickListener() {
+            builder.setPositiveButton("Nei", new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialog, int which) {
                     dialog.cancel();

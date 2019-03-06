@@ -35,7 +35,8 @@ public class HjemmeSalg extends Activity implements AdapterView.OnItemSelectedLi
     Spinner betaling;
     int kr;
 
-    @Override @SuppressWarnings("unchecked")
+    @Override
+    @SuppressWarnings("unchecked")
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_hjemme_salg);
@@ -48,8 +49,6 @@ public class HjemmeSalg extends Activity implements AdapterView.OnItemSelectedLi
         kundenavn = findViewById(R.id.kundenavn);
         total = findViewById(R.id.total);
         telling = new ArrayList<>();
-        setTelling();
-
 
         Intent intent = getIntent();
         Bundle bundle = intent.getBundleExtra(KEY_BUNDLE);
@@ -58,6 +57,8 @@ public class HjemmeSalg extends Activity implements AdapterView.OnItemSelectedLi
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         betaling.setAdapter(adapter);
         betaling.setOnItemSelectedListener(this);
+
+        setTelling();
     }
 
     String getVarer() {
@@ -99,7 +100,7 @@ public class HjemmeSalg extends Activity implements AdapterView.OnItemSelectedLi
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        this.finish();
+        goback();
         return true;
     }
 
@@ -200,23 +201,35 @@ public class HjemmeSalg extends Activity implements AdapterView.OnItemSelectedLi
     }
 
     public void goback() {
-        //TODO check fields before poppopen skal syntes.
-        final AlertDialog.Builder builder = new AlertDialog.Builder(HjemmeSalg.this);
-        builder.setMessage("Vil du gå tilbake?");
-        builder.setCancelable(true);
-        builder.setNegativeButton("Yes", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                finish();
+        if (ValueInField()) {
+            final AlertDialog.Builder builder = new AlertDialog.Builder(HjemmeSalg.this);
+            builder.setMessage("Vil du gå tilbake?");
+            builder.setCancelable(true);
+            builder.setNegativeButton("Ja", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    finish();
+                }
+            });
+            builder.setPositiveButton("Nei", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    dialog.cancel();
+                }
+            });
+            AlertDialog alertDialog = builder.create();
+            alertDialog.show();
+        }else{
+            finish();
+        }
+    }
+
+    public boolean ValueInField() {
+        for (int i = 0; i < telling.size(); i++) {
+            if(!(telling.get(i).equals(0))){
+                return true;
             }
-        });
-        builder.setPositiveButton("No", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                dialog.cancel();
-            }
-        });
-        AlertDialog alertDialog = builder.create();
-        alertDialog.show();
+        }
+        return false;
     }
 }

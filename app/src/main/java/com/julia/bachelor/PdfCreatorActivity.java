@@ -138,7 +138,9 @@ public class PdfCreatorActivity extends AppCompatActivity {
         document.add(new Paragraph(mContentEditText.getText().toString()));
 
         document.close();
-        previewPdf();
+        Toast.makeText(this, "PDF laget", Toast.LENGTH_SHORT ).show();
+        finish();
+        //previewPdf();
 
     }
 

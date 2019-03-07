@@ -1,24 +1,36 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:gravity="top">
+    android:layout_height="match_parent">
+
     <EditText
         android:id="@+id/edit_text_content"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_margin="5dp"
+        android:layout_marginStart="5dp"
+        android:layout_marginEnd="4dp"
         android:gravity="top"
         android:hint="Enter your content..."
         android:inputType="textMultiLine"
-        android:layout_margin="5dp"
+        android:lines="5"
         android:padding="20dp"
-        android:lines="5">
-    </EditText>
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"></EditText>
+
     <Button
         android:id="@+id/button_create"
         android:layout_width="wrap_content"
-        android:layout_gravity="center_horizontal"
         android:layout_height="wrap_content"
-        android:text="Create PDF"/>
-</LinearLayout>
+        android:layout_gravity="center_horizontal"
+        android:layout_marginStart="135dp"
+        android:layout_marginTop="41dp"
+        android:layout_marginEnd="171dp"
+        android:text="Create PDF"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/edit_text_content" />
+</android.support.constraint.ConstraintLayout>

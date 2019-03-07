@@ -31,8 +31,8 @@ public class Main extends Activity implements NavigationDrawerFragment.Navigatio
     static ArrayList<BondensMarked> Bm;
     static ArrayList<Videresalg> Videresalg;
     static ArrayList<Beholdning> Beholdning;
-    static ArrayList<com.julia.bachelor.Salg> Salg;
-    static ArrayList<Object> AllSalg = new ArrayList<>();
+    static ArrayList<Salg> Salg;
+    static ArrayList<Object> AllSalg;
 
     EditText dato;
     EditText som1kg;
@@ -67,7 +67,7 @@ public class Main extends Activity implements NavigationDrawerFragment.Navigatio
         Bm = (ArrayList<BondensMarked>) bundle.getSerializable(KEY_BONDENSMARKED);
         Videresalg = (ArrayList<Videresalg>) bundle.getSerializable(KEY_VIDERESALG);
         Beholdning = (ArrayList<Beholdning>) bundle.getSerializable(KEY_BEHOLDNING);
-        Salg = (ArrayList<com.julia.bachelor.Salg>) bundle.getSerializable(KEY_BEHOLDNINGUT);
+        Salg = (ArrayList<Salg>) bundle.getSerializable(KEY_BEHOLDNINGUT);
         if(Videresalg==null || Hjemme==null || Annet==null || Bm==null) return;
         setSalg();
     }

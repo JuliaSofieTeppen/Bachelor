@@ -12,7 +12,7 @@ class Beregninger {
     Beregninger() {
     }
 
-    public boolean checkDate(String date) {
+    public static boolean checkDate(String date) {
         String regex = "^\\d{4}\\.(0?[1-9]|1[012])\\.(0?[1-9]|[12][0-9]|3[01])$";
         return date.matches(regex);
     }

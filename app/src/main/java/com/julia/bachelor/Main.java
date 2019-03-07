@@ -1,11 +1,13 @@
 package com.julia.bachelor;
 
+import android.Manifest;
 import android.app.Activity;
 
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v4.app.ActivityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.view.View;
 import android.widget.EditText;
@@ -56,6 +58,7 @@ public class Main extends Activity implements NavigationDrawerFragment.Navigatio
         NavigationDrawerFragment mNavigationDrawerFragment = (NavigationDrawerFragment) getFragmentManager().findFragmentById(R.id.navigation_drawer);
         // Set up the drawer.
         mNavigationDrawerFragment.setUp(R.id.navigation_drawer, (DrawerLayout) findViewById(R.id.drawer_layout));
+
     }
     @SuppressWarnings("unchecked")
     void setArrays(){
@@ -116,7 +119,9 @@ public class Main extends Activity implements NavigationDrawerFragment.Navigatio
                 insfragmentt.addToBackStack(null);
                 insfragmentt.commit();
                 break;
-
+            case 6:
+                Intent intent = new Intent(this, PdfCreatorActivity.class);
+                startActivity(intent);
         }
     }
 

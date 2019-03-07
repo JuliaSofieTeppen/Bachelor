@@ -1,10 +1,12 @@
 package com.julia.bachelor;
 
+import android.Manifest;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v4.app.ActivityCompat;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
@@ -59,6 +61,7 @@ public class HjemmeSalg extends Activity implements AdapterView.OnItemSelectedLi
         betaling.setOnItemSelectedListener(this);
 
         setTelling();
+
     }
 
     String getVarer() {

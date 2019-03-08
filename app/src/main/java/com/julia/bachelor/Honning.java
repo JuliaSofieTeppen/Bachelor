@@ -14,14 +14,6 @@ class Honning implements Serializable{
     Honning() {
     }
 
-    Honning(String type, double storrelse, int hjemmePris, int bondensMarkedPris, int fakturaPris) {
-        Type = type;
-        Storrelse = storrelse;
-        HjemmePris = hjemmePris;
-        BondensMarkedPris = bondensMarkedPris;
-        FakturaPris = fakturaPris;
-    }
-
     long get_ID() {
         return _ID;
     }

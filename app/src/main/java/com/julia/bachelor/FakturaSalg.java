@@ -33,7 +33,7 @@ public class FakturaSalg extends Activity implements AdapterView.OnItemSelectedL
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_faktura_salg);
         Database.getHonningType();
-        getActionBar().setDisplayHomeAsUpEnabled(true);
+        if(getActionBar() != null) getActionBar().setDisplayHomeAsUpEnabled(true);
         navn = findViewById(R.id.FSnavn);
         moms = findViewById(R.id.FSmoms);
         dato = findViewById(R.id.FSdato);

@@ -31,7 +31,7 @@ public class SalgAnnet extends Activity implements AdapterView.OnItemSelectedLis
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_salg_annet);
-        getActionBar().setDisplayHomeAsUpEnabled(true);
+        if(getActionBar() != null) getActionBar().setDisplayHomeAsUpEnabled(true);
         betaling = findViewById(R.id.sabetalingsmetode);
         AntBifolk = findViewById(R.id.antbifolk);
         AntVoks = findViewById(R.id.antvoks);
@@ -84,7 +84,6 @@ public class SalgAnnet extends Activity implements AdapterView.OnItemSelectedLis
                     Toast.makeText(this, "Legg til minst et produkt", Toast.LENGTH_SHORT).show();
                 } else {
                     //TODO send alle verdier til databasen
-                    //  db.executeOnDB("www.honningbier.no/PHP/Beholdning.php/?");
                     Toast.makeText(this, "Annet salg lagret", Toast.LENGTH_SHORT).show();
                     finish();
                 }

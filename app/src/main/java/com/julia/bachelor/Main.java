@@ -1,13 +1,10 @@
 package com.julia.bachelor;
 
-import android.Manifest;
 import android.app.Activity;
-
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v4.app.ActivityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.view.View;
 import android.widget.EditText;
@@ -97,7 +94,7 @@ public class Main extends Activity implements NavigationDrawerFragment.Navigatio
                 break;
 
             case 3:
-                SkalBliAddBeholdning fragment = new SkalBliAddBeholdning();
+                SkalBliAddBeholdning fragment = SkalBliAddBeholdning.newInstance();
                 FragmentTransaction fragmentt = getFragmentManager().beginTransaction();
                 fragmentt.replace(R.id.container, fragment);
                 fragmentt.addToBackStack(null);

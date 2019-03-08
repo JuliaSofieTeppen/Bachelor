@@ -2,6 +2,7 @@ package com.julia.bachelor;
 
 
 import android.Manifest;
+import android.content.ActivityNotFoundException;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -31,6 +32,7 @@ import java.util.List;
 
 public class PdfCreatorActivity extends AppCompatActivity {
     private static final String TAG = "PdfCreatorActivity";
+    private String filename="HelloWorld.pdf";
     private EditText  mContentEditText;
     private Button mCreateButton;
     private File pdfFile;
@@ -130,7 +132,7 @@ public class PdfCreatorActivity extends AppCompatActivity {
             Log.i(TAG, "Created a new directory for PDF");
         }
 
-        pdfFile = new File(docsFolder.getAbsolutePath(),"HelloWorld.pdf");
+        pdfFile = new File(docsFolder.getAbsolutePath(),filename);
         OutputStream output = new FileOutputStream(pdfFile);
         Document document = new Document();
         PdfWriter.getInstance(document, output);
@@ -139,26 +141,23 @@ public class PdfCreatorActivity extends AppCompatActivity {
 
         document.close();
         Toast.makeText(this, "PDF laget", Toast.LENGTH_SHORT ).show();
-        finish();
-        //previewPdf();
+        previewPdf();
 
     }
 
     private void previewPdf() {
 
-        PackageManager packageManager = getPackageManager();
-        Intent testIntent = new Intent(Intent.ACTION_VIEW);
-        testIntent.setType("application/pdf");
-        List list = packageManager.queryIntentActivities(testIntent, PackageManager.MATCH_DEFAULT_ONLY);
-        if (list.size() > 0) {
-            Intent intent = new Intent();
-            intent.setAction(Intent.ACTION_VIEW);
-            Uri uri = Uri.fromFile(pdfFile);
-            intent.setDataAndType(uri, "application/pdf");
+        File file = new File(Environment.getDataDirectory().getAbsolutePath() +"/"+ filename);
+        Intent target = new Intent(Intent.ACTION_VIEW);
+        target.setDataAndType(Uri.fromFile(file),"application/pdf");
+        target.setFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
 
+        Intent intent = Intent.createChooser(target, "Open File");
+        try {
             startActivity(intent);
-        }else{
-            Toast.makeText(this,"Download a PDF Viewer to see the generated PDF",Toast.LENGTH_SHORT).show();
+        } catch (ActivityNotFoundException e) {
+            // Instruct the user to install a PDF reader here, or something
+        Toast.makeText(this,"Download a PDF Viewer to see the generated PDF",Toast.LENGTH_SHORT).show();
         }
     }
 }

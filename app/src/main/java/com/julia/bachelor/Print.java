@@ -170,7 +170,6 @@ public class Print extends Fragment {
         PdfWriter.getInstance(document, output);
         document.open();
         document.add(new Paragraph(mContentEditText.getText().toString()));
-
         document.close();
         previewPdf();
 

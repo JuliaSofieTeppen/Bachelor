@@ -10,7 +10,9 @@ import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
+import android.os.StrictMode;
 import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.FileProvider;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -22,12 +24,14 @@ import android.widget.Toast;
 import com.itextpdf.text.Document;
 import com.itextpdf.text.DocumentException;
 import com.itextpdf.text.Paragraph;
+import com.itextpdf.text.pdf.PdfPTable;
 import com.itextpdf.text.pdf.PdfWriter;
 
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.OutputStream;
+import java.net.URI;
 import java.util.List;
 
 public class PdfCreatorActivity extends AppCompatActivity {
@@ -138,6 +142,11 @@ public class PdfCreatorActivity extends AppCompatActivity {
         PdfWriter.getInstance(document, output);
         document.open();
         document.add(new Paragraph(mContentEditText.getText().toString()));
+        PdfPTable table = new PdfPTable(3);
+        table.addCell("Dato");
+        table.addCell("Beløp");
+        table.addCell("MVA");
+        document.add(table);
 
         document.close();
         Toast.makeText(this, "PDF laget", Toast.LENGTH_SHORT ).show();
@@ -146,18 +155,22 @@ public class PdfCreatorActivity extends AppCompatActivity {
     }
 
     private void previewPdf() {
+        File file;
+        file = new File(Environment.getExternalStorageDirectory()+"/Documents/"+ filename);
+        Toast.makeText(getApplicationContext(), file.toString() , Toast.LENGTH_LONG).show();
+        if(file.exists()) {
+            Intent target = new Intent(Intent.ACTION_VIEW);
+            target.setDataAndType(FileProvider.getUriForFile(this, this.getApplicationContext().getPackageName() + ".com.julia.bachelor.GenericFileProvider", file), "application/pdf");
+            target.setFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
 
-        File file = new File(Environment.getDataDirectory().getAbsolutePath() +"/"+ filename);
-        Intent target = new Intent(Intent.ACTION_VIEW);
-        target.setDataAndType(Uri.fromFile(file),"application/pdf");
-        target.setFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
-
-        Intent intent = Intent.createChooser(target, "Open File");
-        try {
-            startActivity(intent);
-        } catch (ActivityNotFoundException e) {
-            // Instruct the user to install a PDF reader here, or something
-        Toast.makeText(this,"Download a PDF Viewer to see the generated PDF",Toast.LENGTH_SHORT).show();
+            Intent intent = Intent.createChooser(target, "Open File");
+            try {
+                startActivity(intent);
+            } catch (ActivityNotFoundException e) {
+                Toast.makeText(getApplicationContext(), "Installer en PDF-leser." , Toast.LENGTH_LONG).show();
+            }
         }
+        else
+            Toast.makeText(getApplicationContext(), "File path is incorrect." , Toast.LENGTH_LONG).show();
     }
 }

@@ -17,12 +17,13 @@ import java.util.List;
 public class Main extends Activity implements NavigationDrawerFragment.NavigationDrawerCallbacks{
     private static final String KEY_ANNET = "Annet";
     private static final String KEY_BEHOLDNING = "Beholdning";
-    private static final String KEY_BEHOLDNINGUT = "Salg";
+    private static final String KEY_BEHOLDNINGUT = "BeholdningUt";
     private static final String KEY_BONDENSMARKED = "Bondensmarked";
     private static final String KEY_HJEMME = "Hjemme";
     private static final String KEY_HONNING = "Honning";
     private static final String KEY_VIDERESALG = "Videresalg";
     private static final String KEY_BUNDLE = "Bundle";
+    private static final String KEY_SALG = "Salg";
 
     static ArrayList<Honning> Honning;
     static ArrayList<Annet> Annet;
@@ -118,6 +119,9 @@ public class Main extends Activity implements NavigationDrawerFragment.Navigatio
                 break;
             case 6:
                 Intent intent = new Intent(this, PdfCreatorActivity.class);
+                Bundle bundle = new Bundle();
+                bundle.putSerializable(KEY_SALG,AllSalg);
+                intent.putExtra(KEY_BUNDLE,bundle);
                 startActivity(intent);
         }
     }

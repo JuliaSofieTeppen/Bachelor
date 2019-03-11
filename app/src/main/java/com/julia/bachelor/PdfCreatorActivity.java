@@ -5,12 +5,14 @@ import android.Manifest;
 import android.content.ActivityNotFoundException;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
 import android.os.StrictMode;
+import android.preference.PreferenceManager;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.FileProvider;
 import android.support.v7.app.AlertDialog;
@@ -31,7 +33,9 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.OutputStream;
+import java.lang.reflect.Array;
 import java.net.URI;
+import java.util.ArrayList;
 import java.util.List;
 
 public class PdfCreatorActivity extends AppCompatActivity {
@@ -41,11 +45,18 @@ public class PdfCreatorActivity extends AppCompatActivity {
     private Button mCreateButton;
     private File pdfFile;
     final private int REQUEST_CODE_ASK_PERMISSIONS = 111;
+    private static final String KEY_BUNDLE = "Bundle";
+    private static final String KEY_SALG = "Salg";
+    private ArrayList<Object> solgt;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pdfcreator);
+
+        Intent intent = getIntent();
+        Bundle bundle = intent.getBundleExtra(KEY_BUNDLE);
+        solgt = (ArrayList<Object>) bundle.getSerializable(KEY_SALG);
 
         mContentEditText = findViewById(R.id.edit_text_content);
         mCreateButton = findViewById(R.id.button_create);
@@ -140,13 +151,51 @@ public class PdfCreatorActivity extends AppCompatActivity {
         OutputStream output = new FileOutputStream(pdfFile);
         Document document = new Document();
         PdfWriter.getInstance(document, output);
+        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
+
         document.open();
         document.add(new Paragraph(mContentEditText.getText().toString()));
-        PdfPTable table = new PdfPTable(3);
-        table.addCell("Dato");
-        table.addCell("Beløp");
-        table.addCell("MVA");
-        document.add(table);
+
+        PdfPTable hjemmetable = new PdfPTable(3);
+        hjemmetable.addCell("Dato");
+        hjemmetable.addCell("Beløp");
+        hjemmetable.addCell("MVA");
+
+        PdfPTable videretable = new PdfPTable(3);
+        videretable.addCell("Dato");
+        videretable.addCell("Beløp");
+        videretable.addCell("MVA");
+
+        PdfPTable annettable = new PdfPTable(3);
+        annettable.addCell("Dato");
+        annettable.addCell("Beløp");
+        annettable.addCell("MVA");
+
+        for(Object salg : solgt){
+            if(salg instanceof BondensMarked){
+
+            }else if(salg instanceof Hjemme){
+                Hjemme hjemmeSalg = (Hjemme) salg;
+                hjemmetable.addCell(hjemmeSalg.getDato());
+                hjemmetable.addCell(Integer.toString(hjemmeSalg.getBelop()));
+                hjemmetable.addCell(Double.toString(sharedPreferences.getInt("ferdigprodukt",15)));
+            }else if(salg instanceof Videresalg){
+                Videresalg videresalg = (Videresalg) salg;
+                videretable.addCell(videresalg.getDato());
+                videretable.addCell(Integer.toString(videresalg.getBelop()));
+                videretable.addCell(Double.toString(videresalg.getMoms()));
+            }else if(salg instanceof Annet){
+                Annet annet = (Annet) salg;
+                annettable.addCell(annet.getDato());
+                annettable.addCell(Integer.toString(annet.getBelop()));
+                annettable.addCell(Double.toString(sharedPreferences.getInt("ikkeferdig",25)));
+            }else{
+                Toast.makeText(this, "Noe gikk galt", Toast.LENGTH_SHORT).show();
+            }
+        }
+        document.add(hjemmetable);
+        document.add(videretable);
+        document.add(annettable);
 
         document.close();
         Toast.makeText(this, "PDF laget", Toast.LENGTH_SHORT ).show();

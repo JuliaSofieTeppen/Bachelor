@@ -12,7 +12,7 @@ import java.util.ArrayList;
 public class LoadContent extends Activity {
     private static final String KEY_ANNET = "Annet";
     private static final String KEY_BEHOLDNING = "Beholdning";
-    private static final String KEY_BEHOLDNINGUT = "Salg";
+    private static final String KEY_BEHOLDNINGUT = "BeholdningUt";
     private static final String KEY_BONDENSMARKED = "Bondensmarked";
     private static final String KEY_HJEMME = "Hjemme";
     private static final String KEY_HONNING = "Honning";

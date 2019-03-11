@@ -25,7 +25,7 @@ public class BmSalg extends Activity {
         setContentView(R.layout.activity_bm_salg);
         db = new Database();
         Database.getHonningType();
-        getActionBar().setDisplayHomeAsUpEnabled(true);
+        if(getActionBar() != null) getActionBar().setDisplayHomeAsUpEnabled(true);
         dato = findViewById(R.id.BMSdato);
         som1kg = findViewById(R.id.BMSsom1kg);
         som05kg = findViewById(R.id.BMSsom05kg);
@@ -41,7 +41,7 @@ public class BmSalg extends Activity {
 
     public void lagre(View v) {
         int tell = 0;
-        if (checkDate(dato.getText().toString())) {
+        if (Beregninger.checkDate(dato.getText().toString())) {
             for (EditText verdi : verdier) {
                 if (verdi.getText().toString().equals("")) {
                     verdi.setText("0");
@@ -66,12 +66,6 @@ public class BmSalg extends Activity {
     public boolean onOptionsItemSelected(MenuItem item) {
         goback();
         return true;
-    }
-
-    // TODO move this method?
-    public boolean checkDate(String date) {
-        String regex = "^\\d{4}\\.(0?[1-9]|1[012])\\.(0?[1-9]|[12][0-9]|3[01])$";
-        return date.matches(regex);
     }
 
     @Override

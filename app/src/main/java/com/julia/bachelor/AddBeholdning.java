@@ -29,7 +29,7 @@ public class AddBeholdning extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_beholdning);
-        getActionBar().setDisplayHomeAsUpEnabled(true);
+        if(getActionBar() != null) getActionBar().setDisplayHomeAsUpEnabled(true);
         Database.getHonningType();
         dato = findViewById(R.id.Bdato);
         som1kg = findViewById(R.id.Bsom1kg);

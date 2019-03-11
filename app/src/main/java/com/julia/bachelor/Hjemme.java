@@ -14,14 +14,6 @@ public class Hjemme implements SalgTemplate, Serializable {
     Hjemme() {
     }
 
-    public Hjemme(String kunde, String dato, String varer, int belop, String betaling) {
-        Kunde = kunde;
-        Dato = dato;
-        Varer = varer;
-        Belop = belop;
-        Betaling = betaling;
-    }
-
     public long get_ID() {
         return _ID;
     }

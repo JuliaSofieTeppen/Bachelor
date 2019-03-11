@@ -11,8 +11,7 @@ public class SalgItem extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_salg_item);
-
-        getActionBar().setDisplayHomeAsUpEnabled(true);
+        if(getActionBar() != null) getActionBar().setDisplayHomeAsUpEnabled(true);
     }
 
     @Override

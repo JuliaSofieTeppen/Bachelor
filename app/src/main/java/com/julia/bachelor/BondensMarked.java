@@ -12,12 +12,6 @@ class BondensMarked implements Serializable {
     BondensMarked() {
     }
 
-    BondensMarked(String dato, String varer, int belop) {
-        Dato = dato;
-        Belop = belop;
-        Varer = varer;
-    }
-
     long get_ID() {
         return _ID;
     }

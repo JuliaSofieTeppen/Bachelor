@@ -15,9 +15,8 @@ import android.widget.Toast;
 
 
 public class SkalBliInnstillinger extends Fragment {
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
 
+    // TODO: Rename parameter arguments, choose names that match
     private static final String ARG_SECTION_NUMBER = "section_number";
     ConstraintLayout enkg,halvkg,kvartkg,Ingf05kg,Ingf025kg,flyt,endreverdier,endremoms;
     SharedPreferences sharedPreferences;
@@ -26,10 +25,7 @@ public class SkalBliInnstillinger extends Fragment {
     EditText ikkeferdig;
     Button momslagre;
 
-    public SkalBliInnstillinger() {
-        // Required empty public constructor
-    }
-
+    public SkalBliInnstillinger() {}
 
     // TODO: Rename and change types and number of parameters
     public static SkalBliInnstillinger newInstance(int sectionNumber) {
@@ -42,11 +38,9 @@ public class SkalBliInnstillinger extends Fragment {
 
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        final View rootView = inflater.inflate(R.layout.fragment_skal_bli_innstillinger, container, false);
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
+        final View rootView = inflater.inflate(R.layout.fragment_skal_bli_innstillinger, container, false);
         enkg = rootView.findViewById(R.id.enkg);
         halvkg = rootView.findViewById(R.id.halvkg);
         kvartkg = rootView.findViewById(R.id.kvartkg);
@@ -58,11 +52,8 @@ public class SkalBliInnstillinger extends Fragment {
         ferdigprodukt = rootView.findViewById(R.id.ferdigprodukt);
         ikkeferdig = rootView.findViewById(R.id.ikkeferdig);
         momslagre = rootView.findViewById(R.id.momslagre);
-
-
         sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this.getContext());
         editor = sharedPreferences.edit();
-
         momslagre.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -97,7 +88,6 @@ public class SkalBliInnstillinger extends Fragment {
                 extend(exe);
             }
         });
-
         halvkg.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -112,7 +102,6 @@ public class SkalBliInnstillinger extends Fragment {
                 extend(exe);
             }
         });
-
         Ingf05kg.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -136,17 +125,6 @@ public class SkalBliInnstillinger extends Fragment {
         });
         return rootView;
     }
-
-    /**
-     * This interface must be implemented by activities that contain this
-     * fragment to allow an interaction in this fragment to be communicated
-     * to the activity and potentially other fragments contained in that
-     * activity.
-     * <p>
-     * See the Android Training lesson <a href=
-     * "http://developer.android.com/training/basics/fragments/communicating.html"
-     * >Communicating with Other Fragments</a> for more information.
-     */
 
     public void extend(ConstraintLayout exe){
         if(exe.isShown()){

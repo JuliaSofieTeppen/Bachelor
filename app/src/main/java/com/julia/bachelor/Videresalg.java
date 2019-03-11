@@ -15,15 +15,6 @@ class Videresalg implements SalgTemplate, Serializable {
     Videresalg() {
     }
 
-    Videresalg(String kunde, String dato, String varer, int belop, String betaling, double moms) {
-        Kunde = kunde;
-        Dato = dato;
-        Varer = varer;
-        Belop = belop;
-        Betaling = betaling;
-        Moms = moms;
-    }
-
     public long get_ID() {
         return _ID;
     }

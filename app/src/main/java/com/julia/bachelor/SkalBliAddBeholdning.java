@@ -38,7 +38,6 @@ public class SkalBliAddBeholdning extends Fragment {
         ingf025kg = rootView.findViewById(R.id.Binf025kg);
         flytende = rootView.findViewById(R.id.Bflyt);
         verdier = new ArrayList<>(Arrays.asList(som1kg, som05kg, som025kg, lyng1kg, lyng05kg, lyng025kg, ingf05kg, ingf025kg, flytende));
-
         return rootView;
     }
 
@@ -63,6 +62,7 @@ public class SkalBliAddBeholdning extends Fragment {
             Toast.makeText(getActivity(),"Ugyldig dato", Toast.LENGTH_SHORT).show();
         }
     }
+
     String getBeholdning(){
         String[] strings = {"Sommer","SommerH","SommerK","Lyng","LyngH","LyngK","IngeferH","IngeferK","Flytende"};
         StringBuilder sb = new StringBuilder();
@@ -76,5 +76,4 @@ public class SkalBliAddBeholdning extends Fragment {
         Database.executeOnDB("http://www.honningbier.no/PHP/SalgIn.php/?Dato=" + dato.getText().toString());
         Database.executeOnDB("http://www.honningbier.no/PHP/BeholdningIn.php/?" + getBeholdning() + "&Dato=" + dato.getText().toString());
     }
-
 }

@@ -86,7 +86,7 @@ public class Main extends Activity implements NavigationDrawerFragment.Navigatio
                 break;
 
             case 3:
-                SkalBliAddBeholdning fragment = SkalBliAddBeholdning.newInstance();
+                AddBeholdning fragment = AddBeholdning.newInstance();
                 FragmentTransaction fragmentt = getFragmentManager().beginTransaction();
                 fragmentt.replace(R.id.container, fragment);
                 fragmentt.addToBackStack(null);
@@ -94,7 +94,7 @@ public class Main extends Activity implements NavigationDrawerFragment.Navigatio
                 break;
 
             case 4:
-                PriserFragment prifragment = new PriserFragment();
+                PriserFragment prifragment = PriserFragment.newInstance(1);
                 FragmentTransaction prifragmentt = getFragmentManager().beginTransaction();
                 prifragmentt.replace(R.id.container, prifragment);
                 prifragmentt.addToBackStack(null);
@@ -102,7 +102,7 @@ public class Main extends Activity implements NavigationDrawerFragment.Navigatio
                 break;
 
             case 5:
-                SkalBliInnstillinger insfragment = new SkalBliInnstillinger();
+                Innstillinger insfragment = Innstillinger.newInstance(2);
                 FragmentTransaction insfragmentt = getFragmentManager().beginTransaction();
                 insfragmentt.replace(R.id.container, insfragment);
                 insfragmentt.addToBackStack(null);

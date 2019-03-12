@@ -1,9 +1,10 @@
 package com.julia.bachelor;
 
-import android.app.Activity;
+import android.app.Fragment;
 import android.os.Bundle;
-import android.view.MenuItem;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.Toast;
 
@@ -11,43 +12,33 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-public class AddBeholdning extends Activity {
 
-    EditText dato;
-    EditText som1kg;
-    EditText som05kg;
-    EditText som025kg;
-    EditText lyng1kg;
-    EditText lyng05kg;
-    EditText lyng025kg;
-    EditText ingf05kg;
-    EditText ingf025kg;
-    EditText flytende;
+public class AddBeholdning extends Fragment {
+    EditText dato, som1kg, som05kg, som025kg, lyng1kg, lyng05kg, lyng025kg, ingf05kg, ingf025kg, flytende;
     List<EditText> verdier;
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_add_beholdning);
-        if(getActionBar() != null) getActionBar().setDisplayHomeAsUpEnabled(true);
-        Database.getHonningType();
-        dato = findViewById(R.id.Bdato);
-        som1kg = findViewById(R.id.Bsom1kg);
-        som05kg = findViewById(R.id.Bsom05kg);
-        som025kg = findViewById(R.id.Bsom025kg);
-        lyng1kg = findViewById(R.id.Blyn1kg);
-        lyng05kg = findViewById(R.id.Blyn05kg);
-        lyng025kg = findViewById(R.id.Blyn025kg);
-        ingf05kg = findViewById(R.id.Binf05kg);
-        ingf025kg = findViewById(R.id.Binf025kg);
-        flytende = findViewById(R.id.Bflyt);
-        verdier = new ArrayList<>(Arrays.asList(som1kg, som05kg, som025kg, lyng1kg, lyng05kg, lyng025kg, ingf05kg, ingf025kg, flytende));
+    public AddBeholdning() {}
+
+    public static AddBeholdning newInstance() {
+        return new AddBeholdning();
     }
 
     @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        this.finish();
-        return true;
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+
+        View rootView =  inflater.inflate(R.layout.fragment_skal_bli_add_beholdning, container, false);
+        dato = rootView.findViewById(R.id.Bdato);
+        som1kg = rootView.findViewById(R.id.Bsom1kg);
+        som05kg = rootView.findViewById(R.id.Bsom05kg);
+        som025kg = rootView.findViewById(R.id.Bsom025kg);
+        lyng1kg = rootView.findViewById(R.id.Blyn1kg);
+        lyng05kg = rootView.findViewById(R.id.Blyn05kg);
+        lyng025kg = rootView.findViewById(R.id.Blyn025kg);
+        ingf05kg = rootView.findViewById(R.id.Binf05kg);
+        ingf025kg = rootView.findViewById(R.id.Binf025kg);
+        flytende = rootView.findViewById(R.id.Bflyt);
+        verdier = new ArrayList<>(Arrays.asList(som1kg, som05kg, som025kg, lyng1kg, lyng05kg, lyng025kg, ingf05kg, ingf025kg, flytende));
+        return rootView;
     }
 
     public void lagre(View v) {
@@ -61,17 +52,17 @@ public class AddBeholdning extends Activity {
                 }
             }
             if (tell == 0) {
-                Toast.makeText(this, "Legg til minst et produkt", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getActivity(),"Legg til minst et produkt", Toast.LENGTH_SHORT).show();
             } else {
                 insertIntoDB();
-                Toast.makeText(this, "Beholdning lagret", Toast.LENGTH_SHORT).show();
-                finish();
+                Toast.makeText(getActivity() ,"Beholdning lagret", Toast.LENGTH_SHORT).show();
+                //this.finish();
             }
-
         } else {
-            Toast.makeText(this, "Ugyldig dato", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getActivity(),"Ugyldig dato", Toast.LENGTH_SHORT).show();
         }
     }
+
     String getBeholdning(){
         String[] strings = {"Sommer","SommerH","SommerK","Lyng","LyngH","LyngK","IngeferH","IngeferK","Flytende"};
         StringBuilder sb = new StringBuilder();

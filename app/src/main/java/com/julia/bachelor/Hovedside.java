@@ -102,6 +102,7 @@ public class Hovedside extends Fragment {
         return rootView;
     }
     String setNameString(){
+        // TODO ???
         return honning.get(0).getType() + "\n" +
                 honning.get(1).getType() + "\n" +
                 honning.get(2).getType() + "\n" +
@@ -114,6 +115,7 @@ public class Hovedside extends Fragment {
     }
     String setValueString(){
         Beholdning beholdning = findCurrentBeholdning();
+        // TODO ???
         return beholdning.getSommer() + "\n" +
                 beholdning.getSommerH() + " \n" +
                 beholdning.getSommerK() + " \n" +
@@ -157,10 +159,12 @@ public class Hovedside extends Fragment {
         // TODO make this method find the newest Beholdning object
         return beholdning.get(0);
     }
+
     // TODO need math class here..
-    public void setTotalGjennomsnitt() {
+    void setTotalGjennomsnitt() {
         totaltext.setText(R.string.toto);
     }
+
     @Override
     public void onAttach(Activity activity) {
         super.onAttach(activity);

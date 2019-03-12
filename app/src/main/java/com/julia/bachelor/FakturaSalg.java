@@ -36,6 +36,7 @@ public class FakturaSalg extends Activity implements AdapterView.OnItemSelectedL
         if(getActionBar() != null) getActionBar().setDisplayHomeAsUpEnabled(true);
         navn = findViewById(R.id.FSnavn);
         moms = findViewById(R.id.FSmoms);
+        // TODO add current date to dato field by default
         dato = findViewById(R.id.FSdato);
         som1kg = findViewById(R.id.FSsom1kg);
         som05kg = findViewById(R.id.FSsom05kg);
@@ -82,6 +83,7 @@ public class FakturaSalg extends Activity implements AdapterView.OnItemSelectedL
             if (tell == 0) {
                 Toast.makeText(this, "Legg til minst et produkt", Toast.LENGTH_SHORT).show();
             } else {
+                // TODO update beholdning
                 insertValues();
                 Toast.makeText(this, "Videre salg lagret", Toast.LENGTH_SHORT).show();
                 finish();

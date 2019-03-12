@@ -24,39 +24,35 @@ class Database {
         task.execute(url);
     }
 
+    // TODO add method for updating BeholdningUt
+
     static void getAnnetValues() {
         AnnetTask task = new AnnetTask();
-        // TODO set url for annet
         task.execute("http://www.honningbier.no/PHP/AnnetOut.php");
     }
 
     static void getBeholdningValues() {
         BeholdningTask task = new BeholdningTask();
-        // TODO set url for beholdning
         task.execute("http://www.honningbier.no/PHP/BeholdningOut.php");
     }
 
     static void getBeholdningUtValues() {
         BeholdningUtTask task = new BeholdningUtTask();
-        // TODO set url for salg
         task.execute("http://www.honningbier.no/PHP/SalgOut.php");
     }
 
     static void getBMValues() {
         BondensMTask task = new BondensMTask();
-        // TODO set correct url
         task.execute("http://www.honningbier.no/PHP/BondensMarkedOut.php");
     }
 
     static void getHjemmeValues() {
         HjemmeTask task = new HjemmeTask();
-        // TODO find url for hjemme
         task.execute("http://www.honningbier.no/PHP/HjemmeOut.php");
     }
 
     static void getHonningType() {
         HonningTask task = new HonningTask();
-        // TODO Url for Honning
         task.execute("http://www.honningbier.no/PHP/HonningOut.php");
     }
 

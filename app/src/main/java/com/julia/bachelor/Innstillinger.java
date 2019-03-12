@@ -18,11 +18,10 @@ public class Innstillinger extends Fragment {
 
     // TODO: Rename parameter arguments, choose names that match
     private static final String ARG_SECTION_NUMBER = "section_number";
-    ConstraintLayout enkg,halvkg,kvartkg,Ingf05kg,Ingf025kg,flyt,endreverdier,endremoms;
+    ConstraintLayout enkg, halvkg, kvartkg, Ingf05kg, Ingf025kg, flyt, endreverdier, endremoms;
     SharedPreferences sharedPreferences;
     SharedPreferences.Editor editor;
-    EditText ferdigprodukt;
-    EditText ikkeferdig;
+    EditText ferdigprodukt, ikkeferdig;
     Button momslagre;
 
     public Innstillinger() {}

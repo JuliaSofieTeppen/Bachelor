@@ -7,11 +7,9 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
-import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
-import android.os.StrictMode;
 import android.preference.PreferenceManager;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.FileProvider;
@@ -23,8 +21,12 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.itextpdf.text.Chunk;
 import com.itextpdf.text.Document;
 import com.itextpdf.text.DocumentException;
+import com.itextpdf.text.Font;
+import com.itextpdf.text.FontFactory;
+import com.itextpdf.text.Image;
 import com.itextpdf.text.Paragraph;
 import com.itextpdf.text.pdf.PdfPTable;
 import com.itextpdf.text.pdf.PdfWriter;
@@ -33,15 +35,15 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.OutputStream;
-import java.lang.reflect.Array;
-import java.net.URI;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.List;
+import java.util.Date;
 
 public class PdfCreatorActivity extends AppCompatActivity {
     private static final String TAG = "PdfCreatorActivity";
     private String filename="HelloWorld.pdf";
-    private EditText  mContentEditText;
+    private EditText Startdato, Sluttdato, Lagresom;
     private Button mCreateButton;
     private File pdfFile;
     final private int REQUEST_CODE_ASK_PERMISSIONS = 111;
@@ -58,14 +60,19 @@ public class PdfCreatorActivity extends AppCompatActivity {
         Bundle bundle = intent.getBundleExtra(KEY_BUNDLE);
         solgt = (ArrayList<Object>) bundle.getSerializable(KEY_SALG);
 
-        mContentEditText = findViewById(R.id.edit_text_content);
+        Startdato = findViewById(R.id.startdato);
+        Sluttdato = findViewById(R.id.sluttdato);
+        Lagresom = findViewById(R.id.lagresom);
         mCreateButton = findViewById(R.id.button_create);
         mCreateButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (mContentEditText.getText().toString().isEmpty()){
-                    mContentEditText.setError("Body is empty");
-                    mContentEditText.requestFocus();
+                if (!checkDate(Startdato.getText().toString())|| !checkDate(Sluttdato.getText().toString())){
+                    Toast.makeText(PdfCreatorActivity.this,"Ugyldig dato", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                if(!datehigherthan()){
+                    Toast.makeText(PdfCreatorActivity.this,"Sluttdato er tidligere enn Startdato", Toast.LENGTH_SHORT).show();
                     return;
                 }
                 try {
@@ -80,6 +87,7 @@ public class PdfCreatorActivity extends AppCompatActivity {
 
     }
     private void createPdfWrapper() throws FileNotFoundException,DocumentException{
+
 
         int hasWriteStoragePermission = ActivityCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE);
         if (hasWriteStoragePermission != PackageManager.PERMISSION_GRANTED) {
@@ -154,7 +162,6 @@ public class PdfCreatorActivity extends AppCompatActivity {
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
 
         document.open();
-        document.add(new Paragraph(mContentEditText.getText().toString()));
 
         PdfPTable hjemmetable = new PdfPTable(3);
         hjemmetable.addCell("Dato");
@@ -193,8 +200,26 @@ public class PdfCreatorActivity extends AppCompatActivity {
                 Toast.makeText(this, "Noe gikk galt", Toast.LENGTH_SHORT).show();
             }
         }
+
+        document.add(new Paragraph("Faktura oversikt", new Font(Font.FontFamily.HELVETICA,18,Font.BOLD)));
+        document.add( Chunk.NEWLINE );
+
+        document.add(new Paragraph("Startdato: " + Startdato.getText().toString()));
+        document.add(new Paragraph("Sluttdato: " + Sluttdato.getText().toString()));
+
+        document.add( Chunk.NEWLINE );
+        document.add(new Paragraph("Hjemmesalg", new Font(Font.FontFamily.HELVETICA, 12, Font.BOLD)));
+        document.add( Chunk.NEWLINE );
         document.add(hjemmetable);
+
+        document.add( Chunk.NEWLINE );
+        document.add(new Paragraph("Videresalg", new Font(Font.FontFamily.HELVETICA,12,Font.BOLD)));
+        document.add( Chunk.NEWLINE );
         document.add(videretable);
+
+        document.add( Chunk.NEWLINE );
+        document.add(new Paragraph("Annet salg", new Font(Font.FontFamily.HELVETICA,12,Font.BOLD)));
+        document.add( Chunk.NEWLINE );
         document.add(annettable);
 
         document.close();
@@ -221,5 +246,22 @@ public class PdfCreatorActivity extends AppCompatActivity {
         }
         else
             Toast.makeText(getApplicationContext(), "File path is incorrect." , Toast.LENGTH_LONG).show();
+    }
+    public boolean checkDate(String date) {
+        String regex = "^\\d{4}\\.(0?[1-9]|1[012])\\.(0?[1-9]|[12][0-9]|3[01])$";
+        return date.matches(regex);
+    }
+    public boolean datehigherthan(){
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        try {
+            Date date1 = sdf.parse(Startdato.getText().toString());
+            Date date2 = sdf.parse(Sluttdato.getText().toString());
+            if(date2.after(date1)){
+                return true;
+            }
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        return false;
     }
 }

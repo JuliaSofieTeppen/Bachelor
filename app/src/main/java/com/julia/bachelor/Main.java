@@ -23,7 +23,7 @@ public class Main extends Activity implements NavigationDrawerFragment.Navigatio
     private static final String KEY_HONNING = "Honning";
     private static final String KEY_VIDERESALG = "Videresalg";
     private static final String KEY_BUNDLE = "Bundle";
-    private static final String KEY_SALG = "Salg";
+    private static final String KEY_ALLSALG = "AllSalg";
 
     static ArrayList<Honning> Honning;
     static ArrayList<Annet> Annet;
@@ -34,16 +34,7 @@ public class Main extends Activity implements NavigationDrawerFragment.Navigatio
     static ArrayList<Salg> Salg;
     static ArrayList<Object> AllSalg;
 
-    EditText dato;
-    EditText som1kg;
-    EditText som05kg;
-    EditText som025kg;
-    EditText lyng1kg;
-    EditText lyng05kg;
-    EditText lyng025kg;
-    EditText ingf05kg;
-    EditText ingf025kg;
-    EditText flytende;
+    EditText dato, som1kg, som05kg, som025kg, lyng1kg, lyng05kg, lyng025kg, ingf05kg, ingf025kg, flytende;
     List<EditText> verdier;
 
     @Override
@@ -87,7 +78,7 @@ public class Main extends Activity implements NavigationDrawerFragment.Navigatio
             case 1:
                 break;
             case 2:
-                Rapport myf = Rapport.newInstance(1, AllSalg);
+                Rapport myf = Rapport.newInstance(AllSalg);
                 FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
                 fragmentTransaction.replace(R.id.container, myf);
                 fragmentTransaction.addToBackStack(null);
@@ -95,7 +86,7 @@ public class Main extends Activity implements NavigationDrawerFragment.Navigatio
                 break;
 
             case 3:
-                SkalBliAddBeholdning fragment = SkalBliAddBeholdning.newInstance();
+                AddBeholdning fragment = AddBeholdning.newInstance();
                 FragmentTransaction fragmentt = getFragmentManager().beginTransaction();
                 fragmentt.replace(R.id.container, fragment);
                 fragmentt.addToBackStack(null);
@@ -103,7 +94,7 @@ public class Main extends Activity implements NavigationDrawerFragment.Navigatio
                 break;
 
             case 4:
-                PriserFragment prifragment = new PriserFragment();
+                PriserFragment prifragment = PriserFragment.newInstance(1);
                 FragmentTransaction prifragmentt = getFragmentManager().beginTransaction();
                 prifragmentt.replace(R.id.container, prifragment);
                 prifragmentt.addToBackStack(null);
@@ -111,7 +102,7 @@ public class Main extends Activity implements NavigationDrawerFragment.Navigatio
                 break;
 
             case 5:
-                SkalBliInnstillinger insfragment = new SkalBliInnstillinger();
+                Innstillinger insfragment = Innstillinger.newInstance(2);
                 FragmentTransaction insfragmentt = getFragmentManager().beginTransaction();
                 insfragmentt.replace(R.id.container, insfragment);
                 insfragmentt.addToBackStack(null);
@@ -120,7 +111,7 @@ public class Main extends Activity implements NavigationDrawerFragment.Navigatio
             case 6:
                 Intent intent = new Intent(this, PdfCreatorActivity.class);
                 Bundle bundle = new Bundle();
-                bundle.putSerializable(KEY_SALG,AllSalg);
+                bundle.putSerializable(KEY_ALLSALG,AllSalg);
                 intent.putExtra(KEY_BUNDLE,bundle);
                 startActivity(intent);
         }

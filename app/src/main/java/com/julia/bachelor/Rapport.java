@@ -15,9 +15,7 @@ import android.widget.Spinner;
 import java.util.ArrayList;
 
 public class Rapport extends Fragment {
-    private static final String ARG_SECTION_NUMBER = "section_number";
-    private static final String KEY_SALG = "SalgTemplate";
-    //private static ArrayList<Object> SalgTemplate;
+    private static final String KEY_ALLSALG = "AllSalg";
     ListView listView;
     Spinner datoer;
     Spinner salgtyper;
@@ -29,11 +27,10 @@ public class Rapport extends Fragment {
      * Returns a new instance of this fragment for the given section
      * number.
      */
-    public static Rapport newInstance(int sectionNumber, ArrayList<Object> salg) {
+    public static Rapport newInstance(ArrayList<Object> salg) {
         Rapport fragment = new Rapport();
         Bundle args = new Bundle();
-        args.putInt(ARG_SECTION_NUMBER, sectionNumber);
-        args.putSerializable(KEY_SALG,salg);
+        args.putSerializable(KEY_ALLSALG,salg);
         fragment.setArguments(args);
         return fragment;
     }
@@ -42,7 +39,7 @@ public class Rapport extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.rapport, container, false);
 
-        ArrayList<Object> Salg = (ArrayList<Object>) getArguments().getSerializable("SalgTemplate");
+        ArrayList<Object> Salg = (ArrayList<Object>) getArguments().getSerializable(KEY_ALLSALG);
         listView = rootView.findViewById(R.id.salgitems);
         ArrayList<String> salgliste = new ArrayList<>();
 
@@ -57,7 +54,7 @@ public class Rapport extends Fragment {
         salgtyper.setAdapter(sadapter);
 
         sb = new StringBuilder();
-        try{
+        if(Salg != null){
             for(int i = 0; i < Salg.size(); i++) {
                 if (Salg.get(i) instanceof BondensMarked) {
                     BondensMarked bm = (BondensMarked) Salg.get(i);
@@ -85,8 +82,7 @@ public class Rapport extends Fragment {
                     sb.delete(0, sb.length());
                 }
             }
-        }catch (NullPointerException e){
-            e.printStackTrace();
+        }else {
             sb.append("Beklager kan ikke laste innhold.");
         }
         ArrayAdapter<String> arrayAdapter = new ArrayAdapter(this.getContext(), android.R.layout.simple_list_item_1, salgliste);
@@ -102,5 +98,4 @@ public class Rapport extends Fragment {
         });
         return rootView;
     }
-
 }

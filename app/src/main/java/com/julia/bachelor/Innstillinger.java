@@ -14,7 +14,7 @@ import android.widget.Toast;
 
 
 
-public class SkalBliInnstillinger extends Fragment {
+public class Innstillinger extends Fragment {
 
     // TODO: Rename parameter arguments, choose names that match
     private static final String ARG_SECTION_NUMBER = "section_number";
@@ -25,11 +25,11 @@ public class SkalBliInnstillinger extends Fragment {
     EditText ikkeferdig;
     Button momslagre;
 
-    public SkalBliInnstillinger() {}
+    public Innstillinger() {}
 
     // TODO: Rename and change types and number of parameters
-    public static SkalBliInnstillinger newInstance(int sectionNumber) {
-        SkalBliInnstillinger fragment = new SkalBliInnstillinger();
+    public static Innstillinger newInstance(int sectionNumber) {
+        Innstillinger fragment = new Innstillinger();
         Bundle args = new Bundle();
         args.putInt(ARG_SECTION_NUMBER, sectionNumber);
         fragment.setArguments(args);

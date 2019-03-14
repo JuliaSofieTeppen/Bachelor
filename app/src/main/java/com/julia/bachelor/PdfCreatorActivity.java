@@ -44,7 +44,6 @@ import java.util.Date;
 
 public class PdfCreatorActivity extends AppCompatActivity {
     private static final String TAG = "PdfCreatorActivity";
-    private String filename="HelloWorld.pdf";
     private EditText Startdato, Sluttdato, Lagresom;
     private Button mCreateButton;
     private File pdfFile;
@@ -158,7 +157,7 @@ public class PdfCreatorActivity extends AppCompatActivity {
             Log.i(TAG, "Created a new directory for PDF");
         }
 
-        pdfFile = new File(docsFolder.getAbsolutePath(),filename);
+        pdfFile = new File(docsFolder.getAbsolutePath(),Lagresom.getText().toString() + ".pdf");
         OutputStream output = new FileOutputStream(pdfFile);
         Document document = new Document();
         PdfWriter.getInstance(document, output);
@@ -233,7 +232,7 @@ public class PdfCreatorActivity extends AppCompatActivity {
 
     private void previewPdf() {
         File file;
-        file = new File(Environment.getExternalStorageDirectory()+"/Documents/"+ filename);
+        file = new File(Environment.getExternalStorageDirectory()+"/Documents/"+Lagresom.getText().toString() + ".pdf");
         Toast.makeText(getApplicationContext(), file.toString() , Toast.LENGTH_LONG).show();
         if(file.exists()) {
             Intent target = new Intent(Intent.ACTION_VIEW);

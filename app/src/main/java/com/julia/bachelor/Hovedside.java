@@ -11,6 +11,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.PopupMenu;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -55,6 +56,7 @@ public class Hovedside extends Fragment {
         info = rootView.findViewById(R.id.Info);
         navn = rootView.findViewById(R.id.navn);
         arraylist = new ArrayList();
+
         addbutton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -136,7 +138,7 @@ public class Hovedside extends Fragment {
     String buildValueString(){
         if(beholdning==null || salg ==null || honning==null || honning.size()==0) return "Error getting content";
         StringBuilder sb = new StringBuilder();
-        try {
+        try{
             Beholdning beholdning = findCurrentBeholdning();
             sb.append(beholdning.getSommer()).append("\n");
             sb.append(beholdning.getSommerH()).append("\n");
@@ -153,7 +155,12 @@ public class Hovedside extends Fragment {
 
     Beholdning findCurrentBeholdning(){
         // TODO make this method find the newest Beholdning object
-        return beholdning.get(0);
+        try {
+            return beholdning.get(0);
+        }catch (IndexOutOfBoundsException e){
+            Toast.makeText(this.getContext(), "Internett ikke tilkoblet", Toast.LENGTH_SHORT).show();
+        }
+        return null;
     }
     @Override
     public void onAttach(Activity activity) {

@@ -61,8 +61,8 @@ public class HjemmeSalg extends Activity implements AdapterView.OnItemSelectedLi
         betaling.setOnItemSelectedListener(this);
 
         setTelling();
-
     }
+
 
     String getVarer() {
         StringBuilder varer = new StringBuilder();

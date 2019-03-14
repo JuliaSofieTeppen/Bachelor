@@ -15,13 +15,14 @@ import java.util.ArrayList;
 
 public class Rapport extends Fragment {
     private static final String KEY_ALLSALG = "AllSalg";
+    static StringBuilder sb;
     ListView listView;
     Spinner datoer;
     Spinner salgtyper;
-    static StringBuilder sb;
 
     public Rapport() {
     }
+
     /**
      * Returns a new instance of this fragment for the given section
      * number.
@@ -29,12 +30,13 @@ public class Rapport extends Fragment {
     public static Rapport newInstance(ArrayList<Object> salg) {
         Rapport fragment = new Rapport();
         Bundle args = new Bundle();
-        args.putSerializable(KEY_ALLSALG,salg);
+        args.putSerializable(KEY_ALLSALG, salg);
         fragment.setArguments(args);
         return fragment;
     }
 
-    @Override @SuppressWarnings("unchecked")
+    @Override
+    @SuppressWarnings("unchecked")
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.rapport, container, false);
 
@@ -53,8 +55,8 @@ public class Rapport extends Fragment {
         salgtyper.setAdapter(sadapter);
 
         sb = new StringBuilder();
-        if(Salg != null){
-            for(int i = 0; i < Salg.size(); i++) {
+        if (Salg != null) {
+            for (int i = 0; i < Salg.size(); i++) {
                 if (Salg.get(i) instanceof BondensMarked) {
                     BondensMarked bm = (BondensMarked) Salg.get(i);
                     sb.append(bm.getDato()).append("   ").append(bm.getBelop());
@@ -81,17 +83,17 @@ public class Rapport extends Fragment {
                     sb.delete(0, sb.length());
                 }
             }
-        }else {
+        } else {
             sb.append("Beklager kan ikke laste innhold.");
         }
         ArrayAdapter<String> arrayAdapter = new ArrayAdapter(this.getContext(), android.R.layout.simple_list_item_1, salgliste);
         listView.setAdapter(arrayAdapter);
         //---------------------------------------
-        listView.setOnItemClickListener(new AdapterView.OnItemClickListener(){
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 //TODO sett inn position der fordi ...fordi
-                Intent i = new Intent(getContext(),SalgItem.class );
+                Intent i = new Intent(getContext(), SalgItem.class);
                 startActivity(i);
             }
         });

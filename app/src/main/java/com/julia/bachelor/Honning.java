@@ -2,7 +2,7 @@ package com.julia.bachelor;
 
 import java.io.Serializable;
 
-class Honning implements Serializable{
+class Honning implements Serializable {
 
     private long _ID;
     private String Type;

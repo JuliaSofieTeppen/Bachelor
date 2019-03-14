@@ -12,8 +12,6 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-
-
 public class Innstillinger extends Fragment {
 
     // TODO: Rename parameter arguments, choose names that match
@@ -24,7 +22,8 @@ public class Innstillinger extends Fragment {
     EditText ferdigprodukt, ikkeferdig;
     Button momslagre;
 
-    public Innstillinger() {}
+    public Innstillinger() {
+    }
 
     // TODO: Rename and change types and number of parameters
     public static Innstillinger newInstance(int sectionNumber) {
@@ -56,9 +55,9 @@ public class Innstillinger extends Fragment {
         momslagre.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(ferdigprodukt.getText().toString().equals("")||ikkeferdig.getText().toString().equals("")) {
+                if (ferdigprodukt.getText().toString().equals("") || ikkeferdig.getText().toString().equals("")) {
                     Toast.makeText(getContext(), "Sett inn verdier i feltene", Toast.LENGTH_SHORT).show();
-                }else{
+                } else {
                     editor.putInt("ferdigprodukt", Integer.parseInt(ferdigprodukt.getText().toString()));
                     editor.putInt("ikkeferdig", Integer.parseInt(ikkeferdig.getText().toString()));
                     editor.apply();
@@ -125,10 +124,10 @@ public class Innstillinger extends Fragment {
         return rootView;
     }
 
-    public void extend(ConstraintLayout exe){
-        if(exe.isShown()){
+    public void extend(ConstraintLayout exe) {
+        if (exe.isShown()) {
             exe.setVisibility(View.GONE);
-        }else {
+        } else {
             exe.setVisibility(View.VISIBLE);
         }
     }

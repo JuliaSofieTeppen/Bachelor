@@ -1,6 +1,6 @@
 package com.julia.bachelor;
 
-class Salg implements java.io.Serializable{
+class Salg implements java.io.Serializable {
     private long _ID;
     private int Sommer;
     private int SommerH;

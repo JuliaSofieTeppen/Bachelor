@@ -33,7 +33,7 @@ public class FakturaSalg extends Activity implements AdapterView.OnItemSelectedL
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_faktura_salg);
         Database.getHonningType();
-        if(getActionBar() != null) getActionBar().setDisplayHomeAsUpEnabled(true);
+        if (getActionBar() != null) getActionBar().setDisplayHomeAsUpEnabled(true);
         navn = findViewById(R.id.FSnavn);
         moms = findViewById(R.id.FSmoms);
         // TODO add current date to dato field by default
@@ -140,7 +140,7 @@ public class FakturaSalg extends Activity implements AdapterView.OnItemSelectedL
             });
             AlertDialog alertDialog = builder.create();
             alertDialog.show();
-        }else{
+        } else {
             finish();
         }
     }
@@ -166,9 +166,10 @@ public class FakturaSalg extends Activity implements AdapterView.OnItemSelectedL
     public void onNothingSelected(AdapterView<?> parent) {
 
     }
-    public boolean ValueInField(){
-        for(EditText verdi : verdier){
-            if(!(verdi.getText().toString().equals(""))){
+
+    public boolean ValueInField() {
+        for (EditText verdi : verdier) {
+            if (!(verdi.getText().toString().equals(""))) {
                 return true;
             }
         }

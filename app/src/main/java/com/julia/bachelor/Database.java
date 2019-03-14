@@ -1,9 +1,11 @@
 package com.julia.bachelor;
 
 import android.os.AsyncTask;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
@@ -56,7 +58,7 @@ class Database {
         task.execute("http://www.honningbier.no/PHP/HonningOut.php");
     }
 
-    static void getVideresalgValues(){
+    static void getVideresalgValues() {
         VideresalgTask task = new VideresalgTask();
         task.execute("http://www.honningbier.no/PHP/VideresalgOut.php");
     }
@@ -169,52 +171,52 @@ class Database {
     }
 
     private static class BeholdningUtTask extends AsyncTask<String, Void, String> {
-            @Override
-            protected String doInBackground(String... urls) {
-                // Get strings from bufferedReader.
-                String nextLine;
-                StringBuilder output = new StringBuilder();
-                try {
-                    URL url = new URL(urls[0]);
-                    HttpURLConnection conn = (HttpURLConnection) url.openConnection();
-                    conn.setRequestMethod("GET");
-                    conn.setRequestProperty("Accept", "application/json");
-                    if (conn.getResponseCode() != 200) {
-                        throw new RuntimeException("Failed: HTTP error code: " + conn.getResponseCode());
-                    }
-                    // Get the string containing values from db.
-                    BufferedReader bufferedReader = new BufferedReader(new InputStreamReader((conn.getInputStream())));
-                    while ((nextLine = bufferedReader.readLine()) != null) {
-                        output.append(nextLine);
-                    }
-                    conn.disconnect();
-                    try {
-                        // Convert string to JSONArray containing JSONObjects.
-                        JSONArray jsonArray = new JSONArray(output.toString());
-                        for (int i = 0; i < jsonArray.length(); i++) {
-                            Salg salg = new Salg();
-                            JSONObject jsonobject = jsonArray.getJSONObject(i);
-                            salg.set_ID(jsonobject.getLong("ID"));
-                            salg.setSommer(jsonobject.getInt("Sommer"));
-                            salg.setSommerH(jsonobject.getInt("SommerHalv"));
-                            salg.setSommerK(jsonobject.getInt("SommerKvart"));
-                            salg.setLyng(jsonobject.getInt("Lyng"));
-                            salg.setLyngH(jsonobject.getInt("LyngHalv"));
-                            salg.setLyngK(jsonobject.getInt("LyngKvart"));
-                            salg.setIngeferH(jsonobject.getInt("IngeferHalv"));
-                            salg.setIngeferK(jsonobject.getInt("IngeferKvart"));
-                            salg.setFlytende(jsonobject.getInt("Flytende"));
-                            salg.setDato(jsonobject.getString("Dato"));
-                            Salg.add(salg);
-                        }
-                    } catch (JSONException e) {
-                        e.printStackTrace();
-                    }
-                    return "Done!";
-                } catch (Exception e) {
-                    return "Noe gikk feil: " + e.toString();
+        @Override
+        protected String doInBackground(String... urls) {
+            // Get strings from bufferedReader.
+            String nextLine;
+            StringBuilder output = new StringBuilder();
+            try {
+                URL url = new URL(urls[0]);
+                HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+                conn.setRequestMethod("GET");
+                conn.setRequestProperty("Accept", "application/json");
+                if (conn.getResponseCode() != 200) {
+                    throw new RuntimeException("Failed: HTTP error code: " + conn.getResponseCode());
                 }
+                // Get the string containing values from db.
+                BufferedReader bufferedReader = new BufferedReader(new InputStreamReader((conn.getInputStream())));
+                while ((nextLine = bufferedReader.readLine()) != null) {
+                    output.append(nextLine);
+                }
+                conn.disconnect();
+                try {
+                    // Convert string to JSONArray containing JSONObjects.
+                    JSONArray jsonArray = new JSONArray(output.toString());
+                    for (int i = 0; i < jsonArray.length(); i++) {
+                        Salg salg = new Salg();
+                        JSONObject jsonobject = jsonArray.getJSONObject(i);
+                        salg.set_ID(jsonobject.getLong("ID"));
+                        salg.setSommer(jsonobject.getInt("Sommer"));
+                        salg.setSommerH(jsonobject.getInt("SommerHalv"));
+                        salg.setSommerK(jsonobject.getInt("SommerKvart"));
+                        salg.setLyng(jsonobject.getInt("Lyng"));
+                        salg.setLyngH(jsonobject.getInt("LyngHalv"));
+                        salg.setLyngK(jsonobject.getInt("LyngKvart"));
+                        salg.setIngeferH(jsonobject.getInt("IngeferHalv"));
+                        salg.setIngeferK(jsonobject.getInt("IngeferKvart"));
+                        salg.setFlytende(jsonobject.getInt("Flytende"));
+                        salg.setDato(jsonobject.getString("Dato"));
+                        Salg.add(salg);
+                    }
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+                return "Done!";
+            } catch (Exception e) {
+                return "Noe gikk feil: " + e.toString();
             }
+        }
 
         @Override
         protected void onPostExecute(String s) {
@@ -366,6 +368,7 @@ class Database {
                 return "Noe gikk feil: " + e.toString();
             }
         }
+
         @Override
         protected void onPostExecute(String s) {
             super.onPostExecute(s);

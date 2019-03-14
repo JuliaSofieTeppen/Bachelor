@@ -25,7 +25,6 @@
             </intent-filter>
         </activity>
         <activity android:name=".SalgItem" />
-        <activity android:name=".FullOversikt" />
         <activity android:name=".SalgAnnet" />
         <activity android:name=".FakturaSalg" />
         <activity android:name=".BmSalg" />

@@ -13,10 +13,12 @@ import android.os.Environment;
 import android.preference.PreferenceManager;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.FileProvider;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
+import android.view.Window;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -25,6 +27,8 @@ import com.itextpdf.text.Chunk;
 import com.itextpdf.text.Document;
 import com.itextpdf.text.DocumentException;
 import com.itextpdf.text.Font;
+import com.itextpdf.text.FontFactory;
+import com.itextpdf.text.Image;
 import com.itextpdf.text.Paragraph;
 import com.itextpdf.text.pdf.PdfPTable;
 import com.itextpdf.text.pdf.PdfWriter;
@@ -37,21 +41,18 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.Locale;
 
 public class PdfCreatorActivity extends AppCompatActivity {
     private static final String TAG = "PdfCreatorActivity";
-    private static final String KEY_BUNDLE = "Bundle";
-    private static final String KEY_SALG = "AllSalg";
-    final private int REQUEST_CODE_ASK_PERMISSIONS = 111;
-    private String filename = "HelloWorld.pdf";
     private EditText Startdato, Sluttdato, Lagresom;
     private Button mCreateButton;
     private File pdfFile;
+    final private int REQUEST_CODE_ASK_PERMISSIONS = 111;
+    private static final String KEY_BUNDLE = "Bundle";
+    private static final String KEY_SALG = "AllSalg";
     private ArrayList<Object> solgt;
 
-    @Override
-    @SuppressWarnings("unchecked")
+    @Override @SuppressWarnings("unchecked")
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pdfcreator);
@@ -59,7 +60,7 @@ public class PdfCreatorActivity extends AppCompatActivity {
         Intent intent = getIntent();
         Bundle bundle = intent.getBundleExtra(KEY_BUNDLE);
         solgt = (ArrayList<Object>) bundle.getSerializable(KEY_SALG);
-        ;
+;
 
         Startdato = findViewById(R.id.startdato);
         Sluttdato = findViewById(R.id.sluttdato);
@@ -68,12 +69,12 @@ public class PdfCreatorActivity extends AppCompatActivity {
         mCreateButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (!Beregninger.checkDate(Startdato.getText().toString()) || !Beregninger.checkDate(Sluttdato.getText().toString())) {
-                    Toast.makeText(PdfCreatorActivity.this, "Ugyldig dato", Toast.LENGTH_SHORT).show();
+                if (!checkDate(Startdato.getText().toString())|| !checkDate(Sluttdato.getText().toString())){
+                    Toast.makeText(PdfCreatorActivity.this,"Ugyldig dato", Toast.LENGTH_SHORT).show();
                     return;
                 }
-                if (!datehigherthan()) {
-                    Toast.makeText(PdfCreatorActivity.this, "Sluttdato er tidligere enn Startdato", Toast.LENGTH_SHORT).show();
+                if(!datehigherthan()){
+                    Toast.makeText(PdfCreatorActivity.this,"Sluttdato er tidligere enn Startdato", Toast.LENGTH_SHORT).show();
                     return;
                 }
                 try {
@@ -87,19 +88,22 @@ public class PdfCreatorActivity extends AppCompatActivity {
         });
 
     }
-
-    private void createPdfWrapper() throws FileNotFoundException, DocumentException {
+    private void createPdfWrapper() throws FileNotFoundException,DocumentException{
 
 
         int hasWriteStoragePermission = ActivityCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE);
         if (hasWriteStoragePermission != PackageManager.PERMISSION_GRANTED) {
+
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
                 if (!shouldShowRequestPermissionRationale(Manifest.permission.WRITE_CONTACTS)) {
-                    showMessageOKCancel(
+                    showMessageOKCancel("You need to allow access to Storage",
                             new DialogInterface.OnClickListener() {
                                 @Override
                                 public void onClick(DialogInterface dialog, int which) {
-                                    requestPermissions(new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, REQUEST_CODE_ASK_PERMISSIONS);
+                                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                                        requestPermissions(new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE},
+                                                REQUEST_CODE_ASK_PERMISSIONS);
+                                    }
                                 }
                             });
                     return;
@@ -108,11 +112,11 @@ public class PdfCreatorActivity extends AppCompatActivity {
                 requestPermissions(new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE},
                         REQUEST_CODE_ASK_PERMISSIONS);
             }
-        } else {
+            return;
+        }else {
             createPdf();
         }
     }
-
     @Override
     public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
         switch (requestCode) {
@@ -136,10 +140,9 @@ public class PdfCreatorActivity extends AppCompatActivity {
                 super.onRequestPermissionsResult(requestCode, permissions, grantResults);
         }
     }
-
-    private void showMessageOKCancel(DialogInterface.OnClickListener okListener) {
+    private void showMessageOKCancel(String message, DialogInterface.OnClickListener okListener) {
         new AlertDialog.Builder(this)
-                .setMessage("You need to allow access to Storage")
+                .setMessage(message)
                 .setPositiveButton("OK", okListener)
                 .setNegativeButton("Cancel", null)
                 .create()
@@ -150,11 +153,11 @@ public class PdfCreatorActivity extends AppCompatActivity {
 
         File docsFolder = new File(Environment.getExternalStorageDirectory() + "/Documents");
         if (!docsFolder.exists()) {
-            if(docsFolder.mkdir()) Log.i(TAG, "Created a new directory for PDF");
-            else Log.i(TAG, "Error creating directory");
+            docsFolder.mkdir();
+            Log.i(TAG, "Created a new directory for PDF");
         }
 
-        pdfFile = new File(docsFolder.getAbsolutePath(), filename);
+        pdfFile = new File(docsFolder.getAbsolutePath(),Lagresom.getText().toString() + ".pdf");
         OutputStream output = new FileOutputStream(pdfFile);
         Document document = new Document();
         PdfWriter.getInstance(document, output);
@@ -177,59 +180,61 @@ public class PdfCreatorActivity extends AppCompatActivity {
         annettable.addCell("Beløp");
         annettable.addCell("MVA");
 
-        for (Object salg : solgt) {
-            if (salg instanceof Hjemme) {
+        for(Object salg : solgt){
+            if(salg instanceof BondensMarked){
+
+            }else if(salg instanceof Hjemme){
                 Hjemme hjemmeSalg = (Hjemme) salg;
                 hjemmetable.addCell(hjemmeSalg.getDato());
                 hjemmetable.addCell(Integer.toString(hjemmeSalg.getBelop()));
-                hjemmetable.addCell(Double.toString(sharedPreferences.getInt("ferdigprodukt", 15)));
-            } else if (salg instanceof Videresalg) {
+                hjemmetable.addCell(Double.toString(sharedPreferences.getInt("ferdigprodukt",15)));
+            }else if(salg instanceof Videresalg){
                 Videresalg videresalg = (Videresalg) salg;
                 videretable.addCell(videresalg.getDato());
                 videretable.addCell(Integer.toString(videresalg.getBelop()));
                 videretable.addCell(Double.toString(videresalg.getMoms()));
-            } else if (salg instanceof Annet) {
+            }else if(salg instanceof Annet){
                 Annet annet = (Annet) salg;
                 annettable.addCell(annet.getDato());
                 annettable.addCell(Integer.toString(annet.getBelop()));
-                annettable.addCell(Double.toString(sharedPreferences.getInt("ikkeferdig", 25)));
-            } else {
+                annettable.addCell(Double.toString(sharedPreferences.getInt("ikkeferdig",25)));
+            }else{
                 Toast.makeText(this, "Noe gikk galt", Toast.LENGTH_SHORT).show();
             }
         }
 
-        document.add(new Paragraph("Faktura oversikt", new Font(Font.FontFamily.HELVETICA, 18, Font.BOLD)));
-        document.add(Chunk.NEWLINE);
+        document.add(new Paragraph("Faktura oversikt", new Font(Font.FontFamily.HELVETICA,18,Font.BOLD)));
+        document.add( Chunk.NEWLINE );
 
         document.add(new Paragraph("Startdato: " + Startdato.getText().toString()));
         document.add(new Paragraph("Sluttdato: " + Sluttdato.getText().toString()));
 
-        document.add(Chunk.NEWLINE);
+        document.add( Chunk.NEWLINE );
         document.add(new Paragraph("Hjemmesalg", new Font(Font.FontFamily.HELVETICA, 12, Font.BOLD)));
-        document.add(Chunk.NEWLINE);
+        document.add( Chunk.NEWLINE );
         document.add(hjemmetable);
 
-        document.add(Chunk.NEWLINE);
-        document.add(new Paragraph("Videresalg", new Font(Font.FontFamily.HELVETICA, 12, Font.BOLD)));
-        document.add(Chunk.NEWLINE);
+        document.add( Chunk.NEWLINE );
+        document.add(new Paragraph("Videresalg", new Font(Font.FontFamily.HELVETICA,12,Font.BOLD)));
+        document.add( Chunk.NEWLINE );
         document.add(videretable);
 
-        document.add(Chunk.NEWLINE);
-        document.add(new Paragraph("Annet salg", new Font(Font.FontFamily.HELVETICA, 12, Font.BOLD)));
-        document.add(Chunk.NEWLINE);
+        document.add( Chunk.NEWLINE );
+        document.add(new Paragraph("Annet salg", new Font(Font.FontFamily.HELVETICA,12,Font.BOLD)));
+        document.add( Chunk.NEWLINE );
         document.add(annettable);
 
         document.close();
-        Toast.makeText(this, "PDF laget", Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, "PDF laget", Toast.LENGTH_SHORT ).show();
         previewPdf();
 
     }
 
     private void previewPdf() {
         File file;
-        file = new File(Environment.getExternalStorageDirectory() + "/Documents/" + filename);
-        Toast.makeText(getApplicationContext(), file.toString(), Toast.LENGTH_LONG).show();
-        if (file.exists()) {
+        file = new File(Environment.getExternalStorageDirectory()+"/Documents/"+Lagresom.getText().toString() + ".pdf");
+        Toast.makeText(getApplicationContext(), file.toString() , Toast.LENGTH_LONG).show();
+        if(file.exists()) {
             Intent target = new Intent(Intent.ACTION_VIEW);
             target.setDataAndType(FileProvider.getUriForFile(this, this.getApplicationContext().getPackageName() + ".com.julia.bachelor.GenericFileProvider", file), "application/pdf");
             target.setFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
@@ -238,18 +243,22 @@ public class PdfCreatorActivity extends AppCompatActivity {
             try {
                 startActivity(intent);
             } catch (ActivityNotFoundException e) {
-                Toast.makeText(getApplicationContext(), "Installer en PDF-leser.", Toast.LENGTH_LONG).show();
+                Toast.makeText(getApplicationContext(), "Installer en PDF-leser." , Toast.LENGTH_LONG).show();
             }
-        } else
-            Toast.makeText(getApplicationContext(), "File path is incorrect.", Toast.LENGTH_LONG).show();
+        }
+        else
+            Toast.makeText(getApplicationContext(), "File path is incorrect." , Toast.LENGTH_LONG).show();
     }
-
-    public boolean datehigherthan() {
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy.MM.dd", Locale.US);
+    public boolean checkDate(String date) {
+        String regex = "^\\d{4}\\.(0?[1-9]|1[012])\\.(0?[1-9]|[12][0-9]|3[01])$";
+        return date.matches(regex);
+    }
+    public boolean datehigherthan(){
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy.MM.dd");
         try {
             Date date1 = sdf.parse(Startdato.getText().toString());
             Date date2 = sdf.parse(Sluttdato.getText().toString());
-            if (date2.after(date1)) {
+            if(date2.after(date1)){
                 return true;
             }
         } catch (ParseException e) {

@@ -55,6 +55,7 @@ public class HjemmeSalg extends Activity implements AdapterView.OnItemSelectedLi
         setTelling();
     }
 
+
     String getVarer() {
         StringBuilder varer = new StringBuilder();
         for (int i = 0; i < honningtype.size(); i++) {

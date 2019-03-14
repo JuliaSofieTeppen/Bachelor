@@ -52,7 +52,7 @@ public class PdfCreatorActivity extends AppCompatActivity {
     private static final String KEY_SALG = "AllSalg";
     private ArrayList<Object> solgt;
 
-    @Override
+    @Override @SuppressWarnings("unchecked")
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pdfcreator);

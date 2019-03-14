@@ -1,12 +1,10 @@
 package com.julia.bachelor;
 
-import android.Manifest;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v4.app.ActivityCompat;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
@@ -26,14 +24,11 @@ import java.util.Locale;
 public class HjemmeSalg extends Activity implements AdapterView.OnItemSelectedListener {
     private static final String KEY_BUNDLE = "Bundle";
     private static final String KEY_HONNING = "Honning";
-
-    static List<Honning> honningtype;
+    static ArrayList<Honning> honningtype;
     String betalingsmetode;
     List<Integer> telling;
-    TextView oversikt;
+    TextView oversikt, oversikttall, total;
     EditText kundenavn;
-    TextView oversikttall;
-    TextView total;
     Spinner betaling;
     int kr;
 
@@ -43,15 +38,13 @@ public class HjemmeSalg extends Activity implements AdapterView.OnItemSelectedLi
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_hjemme_salg);
         kr = 0;
-        Database.getHonningType();
-        getActionBar().setDisplayHomeAsUpEnabled(true);
+        if(getActionBar() != null) getActionBar().setDisplayHomeAsUpEnabled(true);
         oversikt = findViewById(R.id.oversikt);
         oversikttall = findViewById(R.id.oversikttall);
         betaling = findViewById(R.id.betalingsmetode);
         kundenavn = findViewById(R.id.kundenavn);
         total = findViewById(R.id.total);
         telling = new ArrayList<>();
-
         Intent intent = getIntent();
         Bundle bundle = intent.getBundleExtra(KEY_BUNDLE);
         honningtype = (ArrayList<Honning>) bundle.getSerializable(KEY_HONNING);
@@ -59,7 +52,6 @@ public class HjemmeSalg extends Activity implements AdapterView.OnItemSelectedLi
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         betaling.setAdapter(adapter);
         betaling.setOnItemSelectedListener(this);
-
         setTelling();
     }
 
@@ -189,6 +181,7 @@ public class HjemmeSalg extends Activity implements AdapterView.OnItemSelectedLi
             Toast.makeText(this, "Skriv inn navn på kunde", Toast.LENGTH_SHORT).show();
         } else {
             if (!(oversikt.getText().toString().equals(""))) {
+                // TODO update beholdning
                 insertValues();
                 Toast.makeText(this, "Hjemmesalg lagret", Toast.LENGTH_SHORT).show();
                 finish();

@@ -13,12 +13,7 @@ import java.util.List;
 
 public class PriserFragment extends Fragment {
     private static final String ARG_SECTION_NUMBER = "section_number";
-    TextView kg1;
-    TextView kg05;
-    TextView kg025;
-    TextView ingf05kg;
-    TextView ingf025kg;
-    TextView flyt;
+    TextView kg1, kg05, kg025, ingf05kg, ingf025kg, flyt;
     List<TextView> verdier;
     List<Honning> honningtype;
 
@@ -51,15 +46,15 @@ public class PriserFragment extends Fragment {
         honningtype = new ArrayList<>();
         try {
             honningtype = (ArrayList<Honning>) (getArguments().getSerializable("params"));
-            for(int i = 0; i<verdier.size();i++){
-                String s = "" + honningtype.get(i+3).getHjemmePris()+ "kr";
-                verdier.get(i).setText(s);
+            if(honningtype != null) {
+                for (int i = 0; i < verdier.size(); i++) {
+                    String s = "" + honningtype.get(i + 3).getHjemmePris() + "kr";
+                    verdier.get(i).setText(s);
+                }
             }
         } catch (NullPointerException e) {
             e.printStackTrace();
         }
         return rootView;
     }
-
-
 }

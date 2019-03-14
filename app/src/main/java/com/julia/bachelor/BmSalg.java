@@ -17,15 +17,13 @@ public class BmSalg extends Activity {
     static List<Honning> honningtyper;
     EditText dato, som1kg, som05kg, som025kg, lyng1kg, lyng05kg, lyng025kg, ingf05kg, ingf025kg, flytende;
     List<EditText> verdier;
-    Database db;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_bm_salg);
-        db = new Database();
-        Database.getHonningType();
         if(getActionBar() != null) getActionBar().setDisplayHomeAsUpEnabled(true);
+        // TODO add current date to dato field by default
         dato = findViewById(R.id.BMSdato);
         som1kg = findViewById(R.id.BMSsom1kg);
         som05kg = findViewById(R.id.BMSsom05kg);
@@ -53,6 +51,7 @@ public class BmSalg extends Activity {
             if (tell == 0) {
                 Toast.makeText(this, "Legg til minst et produkt", Toast.LENGTH_SHORT).show();
             } else {
+                // TODO update beholdning
                 insertValues();
                 Toast.makeText(this, "Bondens marked salg lagret", Toast.LENGTH_SHORT).show();
                 finish();
@@ -74,7 +73,6 @@ public class BmSalg extends Activity {
     }
 
     public void goback() {
-        //TODO check fields before poppopen skal syntes.
         if (ValueInField()) {
             //android.app.AlertDialog.Builder builder = new android.app.AlertDialog.Builder(FakturaSalg.this,R.style.AlertDialog);
             final AlertDialog.Builder builder = new AlertDialog.Builder(BmSalg.this);

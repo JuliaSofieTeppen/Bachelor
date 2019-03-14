@@ -34,12 +34,13 @@
             <View
                 android:id="@+id/divider"
                 android:layout_width="369dp"
-                android:layout_height="5dp"
+                android:layout_height="0dp"
                 android:layout_marginStart="8dp"
-                android:layout_marginTop="24dp"
+                android:layout_marginTop="16dp"
                 android:layout_marginEnd="8dp"
                 android:background="?android:attr/listDivider"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.833"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textView3" />
 
@@ -48,11 +49,11 @@
                 android:layout_width="wrap_content"
                 android:layout_height="17dp"
                 android:layout_marginStart="20dp"
-                android:layout_marginTop="56dp"
+                android:layout_marginTop="36dp"
                 android:layout_marginEnd="8dp"
                 android:text="1 kg"
                 app:layout_constraintEnd_toStartOf="@+id/kg1pris"
-                app:layout_constraintHorizontal_bias="0.017"
+                app:layout_constraintHorizontal_bias="0.095"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/divider" />
 
@@ -65,7 +66,7 @@
                 android:layout_marginEnd="8dp"
                 android:text="1/2 kg"
                 app:layout_constraintEnd_toStartOf="@+id/kg05pris"
-                app:layout_constraintHorizontal_bias="0.15"
+                app:layout_constraintHorizontal_bias="0.149"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/kg1" />
 
@@ -74,11 +75,11 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
-                android:layout_marginTop="36dp"
+                android:layout_marginTop="32dp"
                 android:layout_marginEnd="8dp"
                 android:text="1/4 kg"
                 app:layout_constraintEnd_toStartOf="@+id/kg025pris"
-                app:layout_constraintHorizontal_bias="0.196"
+                app:layout_constraintHorizontal_bias="0.173"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/kg05" />
 
@@ -86,7 +87,7 @@
                 android:id="@+id/ingf05kg"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="40dp"
+                android:layout_marginEnd="28dp"
                 android:text="Ingefær 1/2"
                 app:layout_constraintBaseline_toBaselineOf="@+id/kg1"
                 app:layout_constraintEnd_toStartOf="@+id/ingf05kgpris" />
@@ -95,7 +96,7 @@
                 android:id="@+id/ing025kg"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="48dp"
+                android:layout_marginEnd="28dp"
                 android:text="Ingefær 1/4"
                 app:layout_constraintBaseline_toBaselineOf="@+id/kg05"
                 app:layout_constraintEnd_toStartOf="@+id/ingf025kgpris" />
@@ -104,7 +105,7 @@
                 android:id="@+id/flyt"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="52dp"
+                android:layout_marginEnd="48dp"
                 android:text="Flytende"
                 app:layout_constraintBaseline_toBaselineOf="@+id/kg025"
                 app:layout_constraintEnd_toStartOf="@+id/flytpris" />
@@ -113,7 +114,7 @@
                 android:id="@+id/kg1pris"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="48dp"
+                android:layout_marginEnd="56dp"
                 android:text="150kr"
                 app:layout_constraintBaseline_toBaselineOf="@+id/kg1"
                 app:layout_constraintEnd_toStartOf="@+id/ingf05kg" />
@@ -122,7 +123,7 @@
                 android:id="@+id/kg05pris"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="40dp"
+                android:layout_marginEnd="64dp"
                 android:text="80kr"
                 app:layout_constraintBaseline_toBaselineOf="@+id/kg05"
                 app:layout_constraintEnd_toStartOf="@+id/ing025kg" />
@@ -131,7 +132,7 @@
                 android:id="@+id/kg025pris"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="52dp"
+                android:layout_marginEnd="64dp"
                 android:text="60kr"
                 app:layout_constraintBaseline_toBaselineOf="@+id/kg025"
                 app:layout_constraintEnd_toStartOf="@+id/flyt" />
@@ -139,8 +140,8 @@
             <TextView
                 android:id="@+id/ingf05kgpris"
                 android:layout_width="wrap_content"
-                android:layout_height="14dp"
-                android:layout_marginEnd="64dp"
+                android:layout_height="21dp"
+                android:layout_marginEnd="32dp"
                 android:text="90kr"
                 app:layout_constraintBaseline_toBaselineOf="@+id/ingf05kg"
                 app:layout_constraintEnd_toEndOf="parent" />
@@ -149,7 +150,7 @@
                 android:id="@+id/ingf025kgpris"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="60dp"
+                android:layout_marginEnd="32dp"
                 android:text="60kr"
                 app:layout_constraintBaseline_toBaselineOf="@+id/ing025kg"
                 app:layout_constraintEnd_toEndOf="parent" />
@@ -158,7 +159,7 @@
                 android:id="@+id/flytpris"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="60dp"
+                android:layout_marginEnd="32dp"
                 android:text="40kr"
                 app:layout_constraintBaseline_toBaselineOf="@+id/flyt"
                 app:layout_constraintEnd_toEndOf="parent" />
@@ -166,7 +167,7 @@
             <View
                 android:id="@+id/divider2"
                 android:layout_width="368dp"
-                android:layout_height="3dp"
+                android:layout_height="0dp"
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="36dp"
                 android:layout_marginEnd="8dp"
@@ -219,7 +220,7 @@
             <View
                 android:id="@+id/divider4"
                 android:layout_width="364dp"
-                android:layout_height="3dp"
+                android:layout_height="0dp"
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="32dp"
                 android:layout_marginEnd="8dp"
@@ -260,7 +261,7 @@
             <View
                 android:id="@+id/divider5"
                 android:layout_width="366dp"
-                android:layout_height="2dp"
+                android:layout_height="0dp"
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="28dp"
                 android:layout_marginEnd="8dp"
@@ -272,15 +273,17 @@
 
             <android.support.constraint.ConstraintLayout
                 android:layout_width="303dp"
-                android:layout_height="35dp"
+                android:layout_height="45dp"
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="8dp"
                 android:layout_marginEnd="8dp"
                 android:layout_marginBottom="10dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.466"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView19">
+                app:layout_constraintTop_toBottomOf="@+id/textView19"
+                app:layout_constraintVertical_bias="1.0">
 
             </android.support.constraint.ConstraintLayout>
         </android.support.constraint.ConstraintLayout>

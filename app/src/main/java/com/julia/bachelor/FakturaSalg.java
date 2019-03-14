@@ -52,6 +52,7 @@ public class FakturaSalg extends Activity implements AdapterView.OnItemSelectedL
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
         setBetalingsmetodespinner();
         setMomsspinner(sharedPreferences);
+
     }
 
     private void setBetalingsmetodespinner() {

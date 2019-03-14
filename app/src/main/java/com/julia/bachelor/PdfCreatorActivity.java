@@ -13,10 +13,12 @@ import android.os.Environment;
 import android.preference.PreferenceManager;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.FileProvider;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
+import android.view.Window;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -48,7 +50,7 @@ public class PdfCreatorActivity extends AppCompatActivity {
     private File pdfFile;
     final private int REQUEST_CODE_ASK_PERMISSIONS = 111;
     private static final String KEY_BUNDLE = "Bundle";
-    private static final String KEY_SALG = "Salg";
+    private static final String KEY_SALG = "AllSalg";
     private ArrayList<Object> solgt;
 
     @Override @SuppressWarnings("unchecked")
@@ -59,6 +61,7 @@ public class PdfCreatorActivity extends AppCompatActivity {
         Intent intent = getIntent();
         Bundle bundle = intent.getBundleExtra(KEY_BUNDLE);
         solgt = (ArrayList<Object>) bundle.getSerializable(KEY_SALG);
+;
 
         Startdato = findViewById(R.id.startdato);
         Sluttdato = findViewById(R.id.sluttdato);
@@ -252,7 +255,7 @@ public class PdfCreatorActivity extends AppCompatActivity {
         return date.matches(regex);
     }
     public boolean datehigherthan(){
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy.MM.dd");
         try {
             Date date1 = sdf.parse(Startdato.getText().toString());
             Date date2 = sdf.parse(Sluttdato.getText().toString());

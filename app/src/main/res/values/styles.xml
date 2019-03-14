@@ -4,16 +4,15 @@
     <style name="AppTheme" parent="android:Theme.Material.Light">
         <!-- Customize your theme here. -->
         <item name="android:actionBarStyle">@style/HeaderBar</item>
-        <item name="android:colorAccent">#f9bb4f</item>
+        <item name="android:colorAccent">#efc483</item>
     </style>
     <style name="HeaderBar">
         <item name="android:background">#f3f3f3</item>
     </style>
 
     <style name="CompAppTheme" parent="Theme.AppCompat.Light.Dialog">
-        <!-- Customize your theme here. -->
-        <item name="android:actionBarStyle">@style/HeaderBar</item>
         <item name="android:colorAccent">#f9bb4f</item>
+        <item name="windowNoTitle">true</item>
     </style>
 
 </resources>

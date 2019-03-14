@@ -26,7 +26,7 @@ public class Hovedside extends Fragment {
     private static final String KEY_HONNING = "Honning";
     private static final String KEY_BUNDLE = "Bundle";
     Button addbutton;
-    TextView totaltext, info, navn;
+    TextView info, navn;
     List arraylist;
     ArrayList<Beholdning> beholdning;
     ArrayList<Salg> salg;
@@ -52,8 +52,6 @@ public class Hovedside extends Fragment {
     public View onCreateView(final LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         final View rootView = inflater.inflate(R.layout.hovedside, container, false);
         addbutton = rootView.findViewById(R.id.addbutton);
-        totaltext = rootView.findViewById(R.id.totaltext);
-        setTotalGjennomsnitt();
         info = rootView.findViewById(R.id.Info);
         navn = rootView.findViewById(R.id.navn);
         arraylist = new ArrayList();
@@ -102,7 +100,6 @@ public class Hovedside extends Fragment {
         return rootView;
     }
     String setNameString(){
-        // TODO ???
         return honning.get(0).getType() + "\n" +
                 honning.get(1).getType() + "\n" +
                 honning.get(2).getType() + "\n" +
@@ -115,7 +112,6 @@ public class Hovedside extends Fragment {
     }
     String setValueString(){
         Beholdning beholdning = findCurrentBeholdning();
-        // TODO ???
         return beholdning.getSommer() + "\n" +
                 beholdning.getSommerH() + " \n" +
                 beholdning.getSommerK() + " \n" +
@@ -159,12 +155,6 @@ public class Hovedside extends Fragment {
         // TODO make this method find the newest Beholdning object
         return beholdning.get(0);
     }
-
-    // TODO need math class here..
-    void setTotalGjennomsnitt() {
-        totaltext.setText(R.string.toto);
-    }
-
     @Override
     public void onAttach(Activity activity) {
         super.onAttach(activity);

@@ -3,9 +3,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#FFD491"
+    android:background="#ffeece"
     android:choiceMode="singleChoice"
-    android:listSelector="#FFD491"
+    android:listSelector="#ffd6bc"
     android:divider="@android:color/transparent"
     android:dividerHeight="0dp"
     tools:context=".NavigationDrawerFragment" />

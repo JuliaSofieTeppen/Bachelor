@@ -31,7 +31,7 @@ public class SalgAnnet extends Activity implements AdapterView.OnItemSelectedLis
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_salg_annet);
-        if(getActionBar() != null) getActionBar().setDisplayHomeAsUpEnabled(true);
+        if (getActionBar() != null) getActionBar().setDisplayHomeAsUpEnabled(true);
         betaling = findViewById(R.id.sabetalingsmetode);
         AntBifolk = findViewById(R.id.antbifolk);
         AntVoks = findViewById(R.id.antvoks);
@@ -102,7 +102,7 @@ public class SalgAnnet extends Activity implements AdapterView.OnItemSelectedLis
     }
 
     public void goback() {
-        if(ValueInField()) {
+        if (ValueInField()) {
             //android.app.AlertDialog.Builder builder = new android.app.AlertDialog.Builder(FakturaSalg.this,R.style.AlertDialog);
             final AlertDialog.Builder builder = new AlertDialog.Builder(SalgAnnet.this);
             builder.setMessage("Vil du gå tilbake?");
@@ -121,13 +121,14 @@ public class SalgAnnet extends Activity implements AdapterView.OnItemSelectedLis
             });
             AlertDialog alertDialog = builder.create();
             alertDialog.show();
-        }else{
+        } else {
             finish();
         }
     }
-    public boolean ValueInField(){
-        for(EditText verdi : verdier){
-            if(!(verdi.getText().toString().equals(""))){
+
+    public boolean ValueInField() {
+        for (EditText verdi : verdier) {
+            if (!(verdi.getText().toString().equals(""))) {
                 return true;
             }
         }

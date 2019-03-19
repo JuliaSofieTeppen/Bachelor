@@ -31,7 +31,7 @@ public class LoadContent extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_load_content);
-        if(getActionBar() != null) getActionBar().hide();
+        if (getActionBar() != null) getActionBar().hide();
         Database.getAnnetValues();
         Database.getBeholdningValues();
         Database.getBeholdningUtValues();
@@ -47,36 +47,51 @@ public class LoadContent extends Activity {
         //  \ / />/>
         // (^_^)( || ||)>
         //   /// \\\
-        new Handler().postDelayed(new Runnable(){
+        new Handler().postDelayed(new Runnable() {
             @Override
-            public void run(){
+            public void run() {
                 Intent intent = new Intent(LoadContent.this, Main.class);
                 Bundle bundle = new Bundle();
                 bundle.putSerializable(KEY_HONNING, Honning);
                 bundle.putSerializable(KEY_ANNET, Annet);
-                bundle.putSerializable(KEY_BEHOLDNING,Beholdning);
+                bundle.putSerializable(KEY_BEHOLDNING, Beholdning);
                 bundle.putSerializable(KEY_BEHOLDNINGUT, Salg);
                 bundle.putSerializable(KEY_BONDENSMARKED, Bm);
                 bundle.putSerializable(KEY_HJEMME, Hjemme);
                 bundle.putSerializable(KEY_VIDERESALG, Videresalg);
-                intent.putExtra(KEY_BUNDLE,bundle);
+                intent.putExtra(KEY_BUNDLE, bundle);
                 LoadContent.this.startActivity(intent);
                 finish();
             }
 
-        },3000);
+        }, 3000);
     }
-    public void setAnnet(ArrayList<Annet> annet) { Annet = annet; }
 
-    public void setBeholdning(ArrayList<Beholdning> beholdnings){ Beholdning = beholdnings; }
+    public void setAnnet(ArrayList<Annet> annet) {
+        Annet = annet;
+    }
 
-    public void setBeholdningUt(ArrayList<Salg> salgs){ Salg = salgs;}
+    public void setBeholdning(ArrayList<Beholdning> beholdnings) {
+        Beholdning = beholdnings;
+    }
 
-    public void setBM(ArrayList<BondensMarked> bondensMarkeds){ Bm = bondensMarkeds; }
+    public void setBeholdningUt(ArrayList<Salg> salgs) {
+        Salg = salgs;
+    }
 
-    public void setHjemme(ArrayList<Hjemme> hjemmes){ Hjemme = hjemmes; }
+    public void setBM(ArrayList<BondensMarked> bondensMarkeds) {
+        Bm = bondensMarkeds;
+    }
 
-    public void setHonning(ArrayList<Honning> honning){ Honning = honning; }
+    public void setHjemme(ArrayList<Hjemme> hjemmes) {
+        Hjemme = hjemmes;
+    }
 
-    public void setVideresalg(ArrayList<com.julia.bachelor.Videresalg> videresalg) { Videresalg = videresalg; }
+    public void setHonning(ArrayList<Honning> honning) {
+        Honning = honning;
+    }
+
+    public void setVideresalg(ArrayList<com.julia.bachelor.Videresalg> videresalg) {
+        Videresalg = videresalg;
+    }
 }

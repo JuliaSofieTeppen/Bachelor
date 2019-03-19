@@ -38,7 +38,7 @@ public class HjemmeSalg extends Activity implements AdapterView.OnItemSelectedLi
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_hjemme_salg);
         kr = 0;
-        if(getActionBar() != null) getActionBar().setDisplayHomeAsUpEnabled(true);
+        if (getActionBar() != null) getActionBar().setDisplayHomeAsUpEnabled(true);
         oversikt = findViewById(R.id.oversikt);
         oversikttall = findViewById(R.id.oversikttall);
         betaling = findViewById(R.id.betalingsmetode);
@@ -215,14 +215,14 @@ public class HjemmeSalg extends Activity implements AdapterView.OnItemSelectedLi
             });
             AlertDialog alertDialog = builder.create();
             alertDialog.show();
-        }else{
+        } else {
             finish();
         }
     }
 
     public boolean ValueInField() {
         for (int i = 0; i < telling.size(); i++) {
-            if(!(telling.get(i).equals(0))){
+            if (!(telling.get(i).equals(0))) {
                 return true;
             }
         }

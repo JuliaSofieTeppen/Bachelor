@@ -12,12 +12,12 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-
 public class AddBeholdning extends Fragment {
     EditText dato, som1kg, som05kg, som025kg, lyng1kg, lyng05kg, lyng025kg, ingf05kg, ingf025kg, flytende;
     List<EditText> verdier;
 
-    public AddBeholdning() {}
+    public AddBeholdning() {
+    }
 
     public static AddBeholdning newInstance() {
         return new AddBeholdning();
@@ -26,7 +26,7 @@ public class AddBeholdning extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
-        View rootView =  inflater.inflate(R.layout.fragment_skal_bli_add_beholdning, container, false);
+        View rootView = inflater.inflate(R.layout.fragment_skal_bli_add_beholdning, container, false);
         // TODO use current date as default
         dato = rootView.findViewById(R.id.Bdato);
         som1kg = rootView.findViewById(R.id.Bsom1kg);
@@ -53,27 +53,27 @@ public class AddBeholdning extends Fragment {
                 }
             }
             if (tell == 0) {
-                Toast.makeText(getActivity(),"Legg til minst et produkt", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getActivity(), "Legg til minst et produkt", Toast.LENGTH_SHORT).show();
             } else {
                 insertIntoDB();
-                Toast.makeText(getActivity() ,"Beholdning lagret", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getActivity(), "Beholdning lagret", Toast.LENGTH_SHORT).show();
                 //this.finish();
             }
         } else {
-            Toast.makeText(getActivity(),"Ugyldig dato", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getActivity(), "Ugyldig dato", Toast.LENGTH_SHORT).show();
         }
     }
 
-    String getBeholdning(){
-        String[] strings = {"Sommer","SommerH","SommerK","Lyng","LyngH","LyngK","IngeferH","IngeferK","Flytende"};
+    String getBeholdning() {
+        String[] strings = {"Sommer", "SommerH", "SommerK", "Lyng", "LyngH", "LyngK", "IngeferH", "IngeferK", "Flytende"};
         StringBuilder sb = new StringBuilder();
-        for(int i = 0; i < strings.length; i++){
+        for (int i = 0; i < strings.length; i++) {
             sb.append(strings[i]).append("=").append(verdier.get(i).getText().toString()).append("&");
         }
         return sb.toString();
     }
 
-    void insertIntoDB(){
+    void insertIntoDB() {
         Database.executeOnDB("http://www.honningbier.no/PHP/SalgIn.php/?Dato=" + dato.getText().toString());
         Database.executeOnDB("http://www.honningbier.no/PHP/BeholdningIn.php/?" + getBeholdning() + "&Dato=" + dato.getText().toString());
     }

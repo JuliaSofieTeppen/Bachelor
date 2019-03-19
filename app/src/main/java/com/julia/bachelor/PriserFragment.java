@@ -32,7 +32,8 @@ public class PriserFragment extends Fragment {
         return fragment;
     }
 
-    @Override @SuppressWarnings("unchecked")
+    @Override
+    @SuppressWarnings("unchecked")
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_priser, container, false);
@@ -46,7 +47,7 @@ public class PriserFragment extends Fragment {
         honningtype = new ArrayList<>();
         try {
             honningtype = (ArrayList<Honning>) (getArguments().getSerializable("params"));
-            if(honningtype != null) {
+            if (honningtype != null) {
                 for (int i = 0; i < verdier.size(); i++) {
                     String s = "" + honningtype.get(i + 3).getHjemmePris() + "kr";
                     verdier.get(i).setText(s);

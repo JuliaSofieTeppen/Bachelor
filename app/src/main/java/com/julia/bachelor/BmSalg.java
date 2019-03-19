@@ -22,7 +22,7 @@ public class BmSalg extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_bm_salg);
-        if(getActionBar() != null) getActionBar().setDisplayHomeAsUpEnabled(true);
+        if (getActionBar() != null) getActionBar().setDisplayHomeAsUpEnabled(true);
         // TODO add current date to dato field by default
         dato = findViewById(R.id.BMSdato);
         som1kg = findViewById(R.id.BMSsom1kg);

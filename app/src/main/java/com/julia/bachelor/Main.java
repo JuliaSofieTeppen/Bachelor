@@ -14,7 +14,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-public class Main extends Activity implements NavigationDrawerFragment.NavigationDrawerCallbacks{
+public class Main extends Activity implements NavigationDrawerFragment.NavigationDrawerCallbacks {
     private static final String KEY_ANNET = "Annet";
     private static final String KEY_BEHOLDNING = "Beholdning";
     private static final String KEY_BEHOLDNINGUT = "BeholdningUt";
@@ -49,8 +49,9 @@ public class Main extends Activity implements NavigationDrawerFragment.Navigatio
         mNavigationDrawerFragment.setUp(R.id.navigation_drawer, (DrawerLayout) findViewById(R.id.drawer_layout));
 
     }
+
     @SuppressWarnings("unchecked")
-    void setArrays(){
+    void setArrays() {
         Intent intent = getIntent();
         Bundle bundle = intent.getBundleExtra(KEY_BUNDLE);
         Honning = (ArrayList<Honning>) bundle.getSerializable(KEY_HONNING);
@@ -60,9 +61,10 @@ public class Main extends Activity implements NavigationDrawerFragment.Navigatio
         Videresalg = (ArrayList<Videresalg>) bundle.getSerializable(KEY_VIDERESALG);
         Beholdning = (ArrayList<Beholdning>) bundle.getSerializable(KEY_BEHOLDNING);
         Salg = (ArrayList<Salg>) bundle.getSerializable(KEY_BEHOLDNINGUT);
-        if(Videresalg==null || Hjemme==null || Annet==null || Bm==null) return;
+        if (Videresalg == null || Hjemme == null || Annet == null || Bm == null) return;
         setSalg();
     }
+
     @Override
     public void onNavigationDrawerItemSelected(int position) {
         // update the main content by replacing fragments
@@ -111,8 +113,8 @@ public class Main extends Activity implements NavigationDrawerFragment.Navigatio
             case 6:
                 Intent intent = new Intent(this, PdfCreatorActivity.class);
                 Bundle bundle = new Bundle();
-                bundle.putSerializable(KEY_ALLSALG,AllSalg);
-                intent.putExtra(KEY_BUNDLE,bundle);
+                bundle.putSerializable(KEY_ALLSALG, AllSalg);
+                intent.putExtra(KEY_BUNDLE, bundle);
                 startActivity(intent);
         }
     }
@@ -151,15 +153,15 @@ public class Main extends Activity implements NavigationDrawerFragment.Navigatio
         }
     }
 
-    void insertIntoDB(){
+    void insertIntoDB() {
         Database.executeOnDB("http://www.honningbier.no/PHP/SalgIn.php/?Dato=" + dato.getText().toString());
         Database.executeOnDB("http://www.honningbier.no/PHP/BeholdningIn.php/?" + getBeholdning() + "&Dato=" + dato.getText().toString());
     }
 
-    private String getBeholdning(){
-        String[] strings = {"Sommer","SommerH","SommerK","Lyng","LyngH","LyngK","IngeferH","IngeferK","Flytende"};
+    private String getBeholdning() {
+        String[] strings = {"Sommer", "SommerH", "SommerK", "Lyng", "LyngH", "LyngK", "IngeferH", "IngeferK", "Flytende"};
         StringBuilder sb = new StringBuilder();
-        for(int i = 0; i < strings.length; i++){
+        for (int i = 0; i < strings.length; i++) {
             sb.append(strings[i]).append("=").append(verdier.get(i).getText().toString()).append("&");
         }
         return sb.toString();
@@ -170,7 +172,7 @@ public class Main extends Activity implements NavigationDrawerFragment.Navigatio
         return date.matches(regex);
     }
 
-    private void setSalg(){
+    private void setSalg() {
         AllSalg = new ArrayList<>();
         AllSalg.addAll(Bm);
         AllSalg.addAll(Hjemme);

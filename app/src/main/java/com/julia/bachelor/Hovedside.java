@@ -35,6 +35,7 @@ public class Hovedside extends Fragment {
 
     public Hovedside() {
     }
+
     /**
      * Returns a new instance of this fragment for the given section
      * number.
@@ -45,11 +46,13 @@ public class Hovedside extends Fragment {
         args.putInt(ARG_SECTION_NUMBER, sectionNumber);
         args.putSerializable(KEY_BEHOLDNING, Beholdning);
         args.putSerializable(KEY_BEHOLDNINGUT, Salg);
-        args.putSerializable(KEY_HONNING , Honning);
+        args.putSerializable(KEY_HONNING, Honning);
         fragment.setArguments(args);
         return fragment;
     }
-    @Override @SuppressWarnings("unchecked")
+
+    @Override
+    @SuppressWarnings("unchecked")
     public View onCreateView(final LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         final View rootView = inflater.inflate(R.layout.hovedside, container, false);
         addbutton = rootView.findViewById(R.id.addbutton);
@@ -71,7 +74,7 @@ public class Hovedside extends Fragment {
                             rootView.getContext().startActivity(myIntent);
                         } else if (item.getTitle().equals("Hjemme salg")) {
                             Bundle bundle = new Bundle();
-                            bundle.putSerializable(KEY_HONNING,honning);
+                            bundle.putSerializable(KEY_HONNING, honning);
                             Intent myIntent = new Intent(rootView.getContext(), HjemmeSalg.class);
                             myIntent.putExtra(KEY_BUNDLE, bundle); //Optional parameters
                             rootView.getContext().startActivity(myIntent);
@@ -101,7 +104,8 @@ public class Hovedside extends Fragment {
         }
         return rootView;
     }
-    String setNameString(){
+
+    String setNameString() {
         return honning.get(0).getType() + "\n" +
                 honning.get(1).getType() + "\n" +
                 honning.get(2).getType() + "\n" +
@@ -112,7 +116,8 @@ public class Hovedside extends Fragment {
                 honning.get(7).getType() + "\n" +
                 honning.get(8).getType() + "\n";
     }
-    String setValueString(){
+
+    String setValueString() {
         Beholdning beholdning = findCurrentBeholdning();
         return beholdning.getSommer() + "\n" +
                 beholdning.getSommerH() + " \n" +
@@ -125,18 +130,23 @@ public class Hovedside extends Fragment {
                 beholdning.getFlytende() + " \n";
     }
 
-    String buildNameString(){
-        if(beholdning==null || salg ==null || honning==null || honning.size()==0) return "Error getting content";
+    String buildNameString() {
+        if (beholdning == null || salg == null || honning == null || honning.size() == 0)
+            return "Error getting content";
         StringBuilder sb = new StringBuilder();
         try {
-            for(int i = 0; i < honning.size(); i++){
+            for (int i = 0; i < honning.size(); i++) {
                 sb.append(honning.get(i).getType()).append("\n");
             }
-        }catch (IndexOutOfBoundsException e){e.printStackTrace();}
+        } catch (IndexOutOfBoundsException e) {
+            e.printStackTrace();
+        }
         return sb.toString();
     }
-    String buildValueString(){
-        if(beholdning==null || salg ==null || honning==null || honning.size()==0) return "Error getting content";
+
+    String buildValueString() {
+        if (beholdning == null || salg == null || honning == null || honning.size() == 0)
+            return "Error getting content";
         StringBuilder sb = new StringBuilder();
         try{
             Beholdning beholdning = findCurrentBeholdning();
@@ -149,11 +159,13 @@ public class Hovedside extends Fragment {
             sb.append(beholdning.getIngeferH()).append("\n");
             sb.append(beholdning.getIngeferK()).append("\n");
             sb.append(beholdning.getFlytende()).append("\n");
-        }catch (IndexOutOfBoundsException e){e.printStackTrace();}
+        } catch (IndexOutOfBoundsException e) {
+            e.printStackTrace();
+        }
         return sb.toString();
     }
 
-    Beholdning findCurrentBeholdning(){
+    Beholdning findCurrentBeholdning() {
         // TODO make this method find the newest Beholdning object
         try {
             return beholdning.get(0);
@@ -163,6 +175,7 @@ public class Hovedside extends Fragment {
         }
         return null;
     }
+
     @Override
     public void onAttach(Activity activity) {
         super.onAttach(activity);

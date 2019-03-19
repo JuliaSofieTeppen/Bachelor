@@ -14,6 +14,7 @@ import android.widget.Switch;
 import android.widget.Toast;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class Rapport extends Fragment {
     private static final String KEY_ALLSALG = "AllSalg";
@@ -23,6 +24,7 @@ public class Rapport extends Fragment {
     static StringBuilder sb;
     ArrayList<Object> Salg;
     ArrayList<String> salgliste;
+    Beregninger beregninger;
 
     public Rapport() {
     }
@@ -44,6 +46,7 @@ public class Rapport extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.rapport, container, false);
 
+        beregninger = new Beregninger(this.getContext());
         Salg = (ArrayList<Object>) getArguments().getSerializable(KEY_ALLSALG);
 
         listView = rootView.findViewById(R.id.salgitems);
@@ -58,6 +61,18 @@ public class Rapport extends Fragment {
         ArrayAdapter<CharSequence> sadapter = ArrayAdapter.createFromResource(this.getContext(), R.array.Salg, android.R.layout.simple_spinner_item);
         sadapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         salgtyper.setAdapter(sadapter);
+
+        salgtyper.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                selectsalgtyper(view);
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
 
         sb = new StringBuilder();
         sorterpåalle();
@@ -87,29 +102,32 @@ public class Rapport extends Fragment {
         }
     }
 
-    private void selectsalgtyper() {
-        switch (datoer.getSelectedItemPosition()) {
+    private void selectsalgtyper(View view) {
+        switch (salgtyper.getSelectedItemPosition()) {
+            case 0:
+                sorterpåalle();
+                break;
             case 1:
-                //LIST Bondens marked objekter
-
+                sorterpåBondensMarked();
                 break;
             case 2:
-                //seperate hjemme
+                sorterpåHjemme();
                 break;
             case 3:
-                //seperate videresalg
+                sorterpåvideresalg();
                 break;
             case 4:
-                //seperate annet.
+                sorterpåAnnet();
                 break;
         }
     }
 
     public void sorterpåBondensMarked() {
-        for (int i = 0; i < listaSomIkkeEksitererenda; i++) {
+        ArrayList<BondensMarked> bmlist = beregninger.separateBondensMarked(Salg);
+        for (int i = 0; i < bmlist.size(); i++) {
             listView.removeAllViews();
             salgliste = null;
-            BondensMarked bm = (BondensMarked) listaSomIkkeEksistererEnda.get(i);
+            BondensMarked bm = (BondensMarked) bmlist.get(i);
             sb.append(bm.getDato()).append("   ").append(bm.getBelop());
             salgliste.add(sb.toString());
             sb.delete(0, sb.length());
@@ -119,10 +137,11 @@ public class Rapport extends Fragment {
     }
 
     public void sorterpåHjemme() {
-        for (int i = 0; i < listaSomIkkeEksitererenda; i++) {
+        ArrayList<Hjemme> bmlist = beregninger.separateHjemme(Salg);
+        for (int i = 0; i < bmlist.size(); i++) {
             listView.removeAllViews();
             salgliste = null;
-            BondensMarked bm = (BondensMarked) listaSomIkkeEksistererEnda.get(i);
+            Hjemme bm = (Hjemme) bmlist.get(i);
             sb.append(bm.getDato()).append("   ").append(bm.getBelop());
             salgliste.add(sb.toString());
             sb.delete(0, sb.length());
@@ -132,10 +151,11 @@ public class Rapport extends Fragment {
     }
 
     public void sorterpåvideresalg() {
-        for (int i = 0; i < listaSomIkkeEksitererenda; i++) {
+        ArrayList<Videresalg> bmlist = beregninger.separateVideresalg(Salg);
+        for (int i = 0; i < bmlist.size(); i++) {
             listView.removeAllViews();
             salgliste = null;
-            BondensMarked bm = (BondensMarked) listaSomIkkeEksistererEnda.get(i);
+            Videresalg bm = (Videresalg) bmlist.get(i);
             sb.append(bm.getDato()).append("   ").append(bm.getBelop());
             salgliste.add(sb.toString());
             sb.delete(0, sb.length());
@@ -145,10 +165,11 @@ public class Rapport extends Fragment {
     }
 
     public void sorterpåAnnet() {
-        for (int i = 0; i < listaSomIkkeEksitererenda; i++) {
+        ArrayList<Annet> bmlist = beregninger.separateAnnet(Salg);
+        for (int i = 0; i < bmlist.size(); i++) {
             listView.removeAllViews();
             salgliste = null;
-            BondensMarked bm = (BondensMarked) listaSomIkkeEksistererEnda.get(i);
+            Annet bm = (Annet) bmlist.get(i);
             sb.append(bm.getDato()).append("   ").append(bm.getBelop());
             salgliste.add(sb.toString());
             sb.delete(0, sb.length());

@@ -173,41 +173,29 @@ class Beregninger implements Template {
     }
 
     @Override
-    public double mvaHoy(ArrayList<Object> list) {//ok
-
-        Iterator<Object> itererer = list.iterator();
-        double total = 0.0;
-
-        while (itererer.hasNext()) {
-
-            double tall = (double) itererer.next();
-
-            if (tall > 0) {
-
-                total += tall;
-            }
+    public double mvaHoy(ArrayList<Object> list) {
+        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
+        double mva = ((double)sharedPreferences.getInt("ikkeferdig", 25))/100.0;
+        ArrayList<Videresalg> videresalgs = separateVideresalg(list);
+        double avgift = 0;
+        for(Videresalg videresalg : videresalgs){
+            avgift += videresalg.getMoms()*videresalg.getBelop();
         }
-        return total * SATSH;
+        avgift += sumAnnet(separateAnnet(list));
+        return avgift;
     }
 
     @Override
     public double mvaLav(ArrayList<Object> list) {
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
-        Iterator<Object> itererer = list.iterator();
-        double total = 0.0;
-
-        while (itererer.hasNext()) {
-
-            double tall = (double) itererer.next();
-
-            if (tall > 0) {
-
-                total += tall;
-            }
+        double mva = ((double)sharedPreferences.getInt("ferdigprodukt", 15))/100.0;
+        ArrayList<Videresalg> videresalgs = separateVideresalg(list);
+        double avgift = 0;
+        for(Videresalg videresalg : videresalgs){
+            avgift += videresalg.getMoms()*videresalg.getBelop();
         }
-        double merverdiavgift = total * SATSL;
-
-        return merverdiavgift;
+        avgift += sumAnnet(separateAnnet(list));
+        return avgift;
     }
 
     //følgende metode er litt usikker

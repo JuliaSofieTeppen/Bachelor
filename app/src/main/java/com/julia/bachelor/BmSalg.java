@@ -3,6 +3,7 @@ package com.julia.bachelor;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
@@ -15,6 +16,8 @@ import java.util.List;
 
 public class BmSalg extends Activity {
     static List<Honning> honningtyper;
+    private static final String KEY_BUNDLE = "Bundle";
+    private static final String KEY_HONNING = "Honning";
     EditText dato, som1kg, som05kg, som025kg, lyng1kg, lyng05kg, lyng025kg, ingf05kg, ingf025kg, flytende;
     List<EditText> verdier;
 
@@ -35,6 +38,9 @@ public class BmSalg extends Activity {
         ingf025kg = findViewById(R.id.BMSingf025kg);
         flytende = findViewById(R.id.BMSflyt);
         verdier = new ArrayList<>(Arrays.asList(som1kg, som05kg, som025kg, lyng1kg, lyng05kg, lyng025kg, ingf05kg, ingf025kg, flytende));
+        Intent intent = getIntent();
+        Bundle bundle = intent.getBundleExtra(KEY_BUNDLE);
+        honningtyper = (ArrayList<Honning>) bundle.getSerializable(KEY_HONNING);
     }
 
     public void lagre(View v) {

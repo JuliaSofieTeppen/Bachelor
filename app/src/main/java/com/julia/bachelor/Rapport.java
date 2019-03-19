@@ -65,7 +65,7 @@ public class Rapport extends Fragment {
         salgtyper.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                selectsalgtyper(view);
+                selectsalgtyper(position);
             }
 
             @Override
@@ -73,9 +73,6 @@ public class Rapport extends Fragment {
 
             }
         });
-
-        sb = new StringBuilder();
-        sorterpåalle();
         //---------------------------------------
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -102,88 +99,96 @@ public class Rapport extends Fragment {
         }
     }
 
-    private void selectsalgtyper(View view) {
-        switch (salgtyper.getSelectedItemPosition()) {
-            case 0:
-                sorterpåalle();
-                break;
-            case 1:
-                sorterpåBondensMarked();
-                break;
-            case 2:
-                sorterpåHjemme();
-                break;
-            case 3:
-                sorterpåvideresalg();
-                break;
-            case 4:
-                sorterpåAnnet();
-                break;
+    private void selectsalgtyper(int posisjon) {
+            switch (posisjon) {
+                case 0:
+                    sorterpåalle();
+                    break;
+                case 1:
+                    sorterpåBondensMarked();
+                    break;
+                case 2:
+                    sorterpåHjemme();
+                    break;
+                case 3:
+                    sorterpåvideresalg();
+                    break;
+                case 4:
+                    sorterpåAnnet();
+                    break;
+
         }
     }
 
     public void sorterpåBondensMarked() {
+        sb = new StringBuilder();
         ArrayList<BondensMarked> bmlist = beregninger.separateBondensMarked(Salg);
+        salgliste.removeAll(salgliste);
+
         for (int i = 0; i < bmlist.size(); i++) {
-            listView.removeAllViews();
-            salgliste = null;
-            BondensMarked bm = (BondensMarked) bmlist.get(i);
-            sb.append(bm.getDato()).append("   ").append(bm.getBelop());
+            BondensMarked bm = bmlist.get(i);
+            sb.append(bm.getDato()).append("   ").append("BM").append("  Beløp: ").append(bm.getBelop());
             salgliste.add(sb.toString());
             sb.delete(0, sb.length());
-            ArrayAdapter<String> arrayAdapter = new ArrayAdapter(this.getContext(), android.R.layout.simple_list_item_1, salgliste);
-            listView.setAdapter(arrayAdapter);
         }
+        ArrayAdapter<String> arrayAdapter = new ArrayAdapter(this.getContext(), android.R.layout.simple_list_item_1, salgliste);
+        listView.setAdapter(arrayAdapter);
     }
 
     public void sorterpåHjemme() {
+        sb = new StringBuilder();
         ArrayList<Hjemme> bmlist = beregninger.separateHjemme(Salg);
+        salgliste.removeAll(salgliste);
+
         for (int i = 0; i < bmlist.size(); i++) {
-            listView.removeAllViews();
-            salgliste = null;
-            Hjemme bm = (Hjemme) bmlist.get(i);
-            sb.append(bm.getDato()).append("   ").append(bm.getBelop());
+            Hjemme bm = bmlist.get(i);
+            sb.append(bm.getDato()).append("   ").append(bm.getKunde()).append("  Beløp: ").append(bm.getBelop());
             salgliste.add(sb.toString());
             sb.delete(0, sb.length());
-            ArrayAdapter<String> arrayAdapter = new ArrayAdapter(this.getContext(), android.R.layout.simple_list_item_1, salgliste);
-            listView.setAdapter(arrayAdapter);
         }
+
+        ArrayAdapter<String> arrayAdapter = new ArrayAdapter(this.getContext(), android.R.layout.simple_list_item_1, salgliste);
+        listView.setAdapter(arrayAdapter);
     }
 
     public void sorterpåvideresalg() {
+        sb = new StringBuilder();
         ArrayList<Videresalg> bmlist = beregninger.separateVideresalg(Salg);
+        salgliste.removeAll(salgliste);
+
         for (int i = 0; i < bmlist.size(); i++) {
-            listView.removeAllViews();
-            salgliste = null;
-            Videresalg bm = (Videresalg) bmlist.get(i);
-            sb.append(bm.getDato()).append("   ").append(bm.getBelop());
+            Videresalg bm = bmlist.get(i);
+            sb.append(bm.getDato()).append("   ").append(bm.getKunde()).append("  Beløp: ").append(bm.getBelop());
             salgliste.add(sb.toString());
             sb.delete(0, sb.length());
-            ArrayAdapter<String> arrayAdapter = new ArrayAdapter(this.getContext(), android.R.layout.simple_list_item_1, salgliste);
-            listView.setAdapter(arrayAdapter);
         }
+        ArrayAdapter<String> arrayAdapter = new ArrayAdapter(this.getContext(), android.R.layout.simple_list_item_1, salgliste);
+        listView.setAdapter(arrayAdapter);
     }
 
     public void sorterpåAnnet() {
+        sb = new StringBuilder();
         ArrayList<Annet> bmlist = beregninger.separateAnnet(Salg);
+        salgliste.removeAll(salgliste);
+
         for (int i = 0; i < bmlist.size(); i++) {
-            listView.removeAllViews();
-            salgliste = null;
-            Annet bm = (Annet) bmlist.get(i);
-            sb.append(bm.getDato()).append("   ").append(bm.getBelop());
+            Annet bm = bmlist.get(i);
+            sb.append(bm.getDato()).append("   ").append(bm.getKunde()).append("  Beløp: ").append(bm.getBelop());
             salgliste.add(sb.toString());
             sb.delete(0, sb.length());
-            ArrayAdapter<String> arrayAdapter = new ArrayAdapter(this.getContext(), android.R.layout.simple_list_item_1, salgliste);
-            listView.setAdapter(arrayAdapter);
         }
+        ArrayAdapter<String> arrayAdapter = new ArrayAdapter(this.getContext(), android.R.layout.simple_list_item_1, salgliste);
+        listView.setAdapter(arrayAdapter);
     }
 
     public void sorterpåalle() {
+        sb = new StringBuilder();
+        salgliste.removeAll(salgliste);
         if (Salg != null) {
             for (int i = 0; i < Salg.size(); i++) {
                 if (Salg.get(i) instanceof BondensMarked) {
                     BondensMarked bm = (BondensMarked) Salg.get(i);
-                    sb.append(bm.getDato()).append("   ").append(bm.getBelop());
+                    sb.append(bm.getDato()).append("   ").append("BM").append("  Beløp: ").append(bm.getBelop());
                     salgliste.add(sb.toString());
                     sb.delete(0, sb.length());
                 } else if (Salg.get(i) instanceof Hjemme) {

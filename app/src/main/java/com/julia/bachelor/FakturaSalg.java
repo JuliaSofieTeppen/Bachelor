@@ -3,6 +3,7 @@ package com.julia.bachelor;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
@@ -20,7 +21,9 @@ import java.util.Arrays;
 import java.util.List;
 
 public class FakturaSalg extends Activity implements AdapterView.OnItemSelectedListener {
-    static List<Honning> honningtyper;
+    private static final String KEY_BUNDLE = "Bundle";
+    private static final String KEY_HONNING = "Honning";
+    static ArrayList<Honning> honningtyper;
     Spinner betaling;
     String betalingsmetode;
     Spinner moms;
@@ -50,6 +53,10 @@ public class FakturaSalg extends Activity implements AdapterView.OnItemSelectedL
         layout = findViewById(R.id.scroll);
         betaling = findViewById(R.id.FSbetalmet);
         verdier = new ArrayList<>(Arrays.asList(som1kg, som05kg, som025kg, lyng1kg, lyng05kg, lyng025kg, ingf05kg, ingf025kg, flytende));
+
+        Intent intent = getIntent();
+        Bundle bundle = intent.getBundleExtra(KEY_BUNDLE);
+        honningtyper = (ArrayList<Honning>) bundle.getSerializable(KEY_HONNING);
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
         setBetalingsmetodespinner();
         setMomsspinner(sharedPreferences);

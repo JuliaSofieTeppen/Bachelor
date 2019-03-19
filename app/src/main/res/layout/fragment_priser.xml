@@ -12,7 +12,9 @@
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        tools:layout_editor_absoluteX="6dp"
+        tools:layout_editor_absoluteY="84dp">
 
         <android.support.constraint.ConstraintLayout
             android:layout_width="match_parent"
@@ -23,9 +25,10 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="37dp"
-                android:layout_marginTop="16dp"
+                android:layout_marginTop="28dp"
                 android:layout_marginEnd="37dp"
                 android:text="Priser oversikt hjemme"
+                android:textColor="@android:color/holo_orange_light"
                 android:textSize="30dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -36,22 +39,22 @@
                 android:layout_width="369dp"
                 android:layout_height="0dp"
                 android:layout_marginStart="8dp"
-                android:layout_marginTop="16dp"
+                android:layout_marginTop="28dp"
                 android:layout_marginEnd="8dp"
                 android:background="?android:attr/listDivider"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.833"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textView3" />
 
             <TextView
                 android:id="@+id/kg1"
                 android:layout_width="wrap_content"
-                android:layout_height="17dp"
+                android:layout_height="24dp"
                 android:layout_marginStart="20dp"
                 android:layout_marginTop="36dp"
                 android:layout_marginEnd="8dp"
                 android:text="1 kg"
+                android:textSize="16sp"
                 app:layout_constraintEnd_toStartOf="@+id/kg1pris"
                 app:layout_constraintHorizontal_bias="0.095"
                 app:layout_constraintStart_toStartOf="parent"
@@ -60,13 +63,14 @@
             <TextView
                 android:id="@+id/kg05"
                 android:layout_width="wrap_content"
-                android:layout_height="0dp"
+                android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="36dp"
                 android:layout_marginEnd="8dp"
                 android:text="1/2 kg"
+                android:textSize="16sp"
                 app:layout_constraintEnd_toStartOf="@+id/kg05pris"
-                app:layout_constraintHorizontal_bias="0.149"
+                app:layout_constraintHorizontal_bias="0.114"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/kg1" />
 
@@ -75,11 +79,12 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
-                android:layout_marginTop="32dp"
+                android:layout_marginTop="44dp"
                 android:layout_marginEnd="8dp"
                 android:text="1/4 kg"
+                android:textSize="16sp"
                 app:layout_constraintEnd_toStartOf="@+id/kg025pris"
-                app:layout_constraintHorizontal_bias="0.173"
+                app:layout_constraintHorizontal_bias="0.123"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/kg05" />
 
@@ -87,62 +92,78 @@
                 android:id="@+id/ingf05kg"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="28dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="40dp"
+                android:layout_marginEnd="184dp"
                 android:text="Ingefær 1/2"
-                app:layout_constraintBaseline_toBaselineOf="@+id/kg1"
-                app:layout_constraintEnd_toStartOf="@+id/ingf05kgpris" />
+                android:textSize="16sp"
+                app:layout_constraintEnd_toStartOf="@+id/ingf05kgpris"
+                app:layout_constraintHorizontal_bias="1.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/kg025" />
 
             <TextView
                 android:id="@+id/ing025kg"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="28dp"
+                android:layout_marginStart="44dp"
+                android:layout_marginTop="48dp"
                 android:text="Ingefær 1/4"
-                app:layout_constraintBaseline_toBaselineOf="@+id/kg05"
-                app:layout_constraintEnd_toStartOf="@+id/ingf025kgpris" />
+                android:textSize="16sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/ingf05kg" />
 
             <TextView
                 android:id="@+id/flyt"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="48dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="44dp"
+                android:layout_marginEnd="204dp"
                 android:text="Flytende"
-                app:layout_constraintBaseline_toBaselineOf="@+id/kg025"
-                app:layout_constraintEnd_toStartOf="@+id/flytpris" />
+                android:textSize="16sp"
+                app:layout_constraintEnd_toStartOf="@+id/flytpris"
+                app:layout_constraintHorizontal_bias="0.923"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/ing025kg" />
 
             <TextView
                 android:id="@+id/kg1pris"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="56dp"
+                android:layout_marginEnd="36dp"
                 android:text="150kr"
+                android:textSize="18sp"
                 app:layout_constraintBaseline_toBaselineOf="@+id/kg1"
-                app:layout_constraintEnd_toStartOf="@+id/ingf05kg" />
+                app:layout_constraintEnd_toEndOf="parent" />
 
             <TextView
                 android:id="@+id/kg05pris"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="64dp"
+                android:layout_marginEnd="36dp"
                 android:text="80kr"
+                android:textSize="18sp"
                 app:layout_constraintBaseline_toBaselineOf="@+id/kg05"
-                app:layout_constraintEnd_toStartOf="@+id/ing025kg" />
+                app:layout_constraintEnd_toEndOf="parent" />
 
             <TextView
                 android:id="@+id/kg025pris"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="64dp"
+                android:layout_marginEnd="36dp"
                 android:text="60kr"
+                android:textSize="18sp"
                 app:layout_constraintBaseline_toBaselineOf="@+id/kg025"
-                app:layout_constraintEnd_toStartOf="@+id/flyt" />
+                app:layout_constraintEnd_toEndOf="parent" />
 
             <TextView
                 android:id="@+id/ingf05kgpris"
                 android:layout_width="wrap_content"
                 android:layout_height="21dp"
-                android:layout_marginEnd="32dp"
+                android:layout_marginEnd="36dp"
                 android:text="90kr"
+                android:textSize="18sp"
                 app:layout_constraintBaseline_toBaselineOf="@+id/ingf05kg"
                 app:layout_constraintEnd_toEndOf="parent" />
 
@@ -150,8 +171,9 @@
                 android:id="@+id/ingf025kgpris"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="32dp"
+                android:layout_marginEnd="36dp"
                 android:text="60kr"
+                android:textSize="18sp"
                 app:layout_constraintBaseline_toBaselineOf="@+id/ing025kg"
                 app:layout_constraintEnd_toEndOf="parent" />
 
@@ -159,117 +181,11 @@
                 android:id="@+id/flytpris"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="32dp"
+                android:layout_marginEnd="36dp"
                 android:text="40kr"
+                android:textSize="18sp"
                 app:layout_constraintBaseline_toBaselineOf="@+id/flyt"
                 app:layout_constraintEnd_toEndOf="parent" />
-
-            <View
-                android:id="@+id/divider2"
-                android:layout_width="368dp"
-                android:layout_height="0dp"
-                android:layout_marginStart="8dp"
-                android:layout_marginTop="36dp"
-                android:layout_marginEnd="8dp"
-                android:background="?android:attr/listDivider"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/kg025" />
-
-            <TextView
-                android:id="@+id/textView16"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:layout_marginTop="28dp"
-                android:layout_marginEnd="8dp"
-                android:text="Pollenering"
-                android:textSize="20dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/divider2" />
-
-            <TextView
-                android:id="@+id/textView17"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:layout_marginTop="36dp"
-                android:layout_marginEnd="8dp"
-                android:text="Bifolk"
-                android:textSize="20dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.011"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/divider3" />
-
-            <View
-                android:id="@+id/divider3"
-                android:layout_width="364dp"
-                android:layout_height="1dp"
-                android:layout_marginStart="8dp"
-                android:layout_marginTop="36dp"
-                android:layout_marginEnd="8dp"
-                android:background="?android:attr/listDivider"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.419"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView16" />
-
-            <View
-                android:id="@+id/divider4"
-                android:layout_width="364dp"
-                android:layout_height="0dp"
-                android:layout_marginStart="8dp"
-                android:layout_marginTop="32dp"
-                android:layout_marginEnd="8dp"
-                android:background="?android:attr/listDivider"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.516"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView17" />
-
-            <TextView
-                android:id="@+id/textView18"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:layout_marginTop="32dp"
-                android:layout_marginEnd="8dp"
-                android:text="Droninger"
-                android:textSize="20dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.026"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/divider4" />
-
-            <TextView
-                android:id="@+id/textView19"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:layout_marginTop="24dp"
-                android:layout_marginEnd="8dp"
-                android:text="Voks"
-                android:textSize="20dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.022"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/divider5" />
-
-            <View
-                android:id="@+id/divider5"
-                android:layout_width="366dp"
-                android:layout_height="0dp"
-                android:layout_marginStart="8dp"
-                android:layout_marginTop="28dp"
-                android:layout_marginEnd="8dp"
-                android:background="?android:attr/listDivider"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.448"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView18" />
 
             <android.support.constraint.ConstraintLayout
                 android:layout_width="303dp"
@@ -282,8 +198,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.466"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView19"
-                app:layout_constraintVertical_bias="1.0">
+                app:layout_constraintTop_toBottomOf="@+id/flyt">
 
             </android.support.constraint.ConstraintLayout>
         </android.support.constraint.ConstraintLayout>

@@ -83,7 +83,9 @@ public class SalgAnnet extends Activity implements AdapterView.OnItemSelectedLis
                 if (tell == 0) {
                     Toast.makeText(this, "Legg til minst et produkt", Toast.LENGTH_SHORT).show();
                 } else {
-                    //TODO send alle verdier til databasen
+                    Database.executeOnDB("http://www.honningbier.no/PHP/AnnetIn.php/?Kunde="+KundeNavn.getText().toString()+
+                            "&Dato=" + Dato.getText().toString() + "&Varer=" + getVarer() + "&Belop=" + Pris.getText().toString()+
+                            "&Betaling=" + betaling.getSelectedItem().toString());
                     Toast.makeText(this, "Annet salg lagret", Toast.LENGTH_SHORT).show();
                     finish();
                 }
@@ -93,6 +95,18 @@ public class SalgAnnet extends Activity implements AdapterView.OnItemSelectedLis
         } else {
             Toast.makeText(this, "Ugyldig dato", Toast.LENGTH_SHORT).show();
         }
+    }
+
+    public String getVarer() {
+        String[] names = {"Bifolk","Voks","Pollinering","Dronninger"};
+        StringBuilder stringBuilder = new StringBuilder();
+        for (int i = 0; i < verdier.size(); i++) {
+            if (verdier.get(i).getText().toString().equals("")) {
+            }else{
+                stringBuilder.append(names[i] + "-" + verdier.get(i).getText().toString()+",");
+            }
+        }
+        return stringBuilder.toString();
     }
 
 

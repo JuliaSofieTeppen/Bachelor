@@ -69,8 +69,10 @@ public class Hovedside extends Fragment {
                     @Override
                     public boolean onMenuItemClick(MenuItem item) {
                         if (item.getTitle().equals("Bondens Marked")) {
+                            Bundle bundle = new Bundle();
+                            bundle.putSerializable(KEY_HONNING, honning);
                             Intent myIntent = new Intent(rootView.getContext(), BmSalg.class);
-                            myIntent.putExtra("BM", 1); //Optional parameters
+                            myIntent.putExtra(KEY_BUNDLE, bundle); //Optional parameters
                             rootView.getContext().startActivity(myIntent);
                         } else if (item.getTitle().equals("Hjemme salg")) {
                             Bundle bundle = new Bundle();
@@ -79,12 +81,13 @@ public class Hovedside extends Fragment {
                             myIntent.putExtra(KEY_BUNDLE, bundle); //Optional parameters
                             rootView.getContext().startActivity(myIntent);
                         } else if (item.getTitle().equals("Videre salg")) {
+                            Bundle bundle = new Bundle();
+                            bundle.putSerializable(KEY_HONNING, honning);
                             Intent myIntent = new Intent(rootView.getContext(), FakturaSalg.class);
-                            myIntent.putExtra("Videresalg", 1); //Optional parameters
+                            myIntent.putExtra(KEY_BUNDLE, bundle); //Optional parameters
                             rootView.getContext().startActivity(myIntent);
                         } else {
                             Intent myIntent = new Intent(rootView.getContext(), SalgAnnet.class);
-                            myIntent.putExtra("Salgannet", 1); //Optional parameters
                             rootView.getContext().startActivity(myIntent);
                         }
                         return true;
@@ -171,6 +174,7 @@ public class Hovedside extends Fragment {
             return beholdning.get(0);
         }catch (IndexOutOfBoundsException e){
             Toast.makeText(this.getContext(), "Internett ikke tilkoblet", Toast.LENGTH_SHORT).show();
+            addbutton.setVisibility(View.GONE);
         }
         return null;
     }

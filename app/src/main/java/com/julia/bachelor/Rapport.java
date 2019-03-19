@@ -10,15 +10,21 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Spinner;
+import android.widget.Switch;
+import android.widget.Toast;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class Rapport extends Fragment {
     private static final String KEY_ALLSALG = "AllSalg";
-    static StringBuilder sb;
     ListView listView;
     Spinner datoer;
     Spinner salgtyper;
+    static StringBuilder sb;
+    ArrayList<Object> Salg;
+    ArrayList<String> salgliste;
+    Beregninger beregninger;
 
     public Rapport() {
     }
@@ -40,9 +46,11 @@ public class Rapport extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.rapport, container, false);
 
-        ArrayList<Object> Salg = (ArrayList<Object>) getArguments().getSerializable(KEY_ALLSALG);
+        beregninger = new Beregninger(this.getContext());
+        Salg = (ArrayList<Object>) getArguments().getSerializable(KEY_ALLSALG);
+
         listView = rootView.findViewById(R.id.salgitems);
-        ArrayList<String> salgliste = new ArrayList<>();
+        salgliste = new ArrayList<>();
 
         datoer = rootView.findViewById(R.id.dagmånedår);
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this.getContext(), R.array.datoer, android.R.layout.simple_spinner_item);
@@ -54,12 +62,133 @@ public class Rapport extends Fragment {
         sadapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         salgtyper.setAdapter(sadapter);
 
+        salgtyper.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                selectsalgtyper(position);
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+        //---------------------------------------
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                //TODO sett inn position der fordi ...fordi
+                Intent i = new Intent(getContext(), SalgItem.class);
+                startActivity(i);
+            }
+        });
+        return rootView;
+    }
+
+    private void selectdagmånedår() {
+        switch (datoer.getSelectedItemPosition()) {
+            case 1:
+                //sorter på dag
+                break;
+            case 2:
+                //sorter på måned
+                break;
+            case 3:
+                //sorter på år
+                break;
+        }
+    }
+
+    private void selectsalgtyper(int posisjon) {
+            switch (posisjon) {
+                case 0:
+                    sorterpåalle();
+                    break;
+                case 1:
+                    sorterpåBondensMarked();
+                    break;
+                case 2:
+                    sorterpåHjemme();
+                    break;
+                case 3:
+                    sorterpåvideresalg();
+                    break;
+                case 4:
+                    sorterpåAnnet();
+                    break;
+
+        }
+    }
+
+    public void sorterpåBondensMarked() {
         sb = new StringBuilder();
+        ArrayList<BondensMarked> bmlist = beregninger.separateBondensMarked(Salg);
+        salgliste.removeAll(salgliste);
+
+        for (int i = 0; i < bmlist.size(); i++) {
+            BondensMarked bm = bmlist.get(i);
+            sb.append(bm.getDato()).append("   ").append("BM").append("  Beløp: ").append(bm.getBelop());
+            salgliste.add(sb.toString());
+            sb.delete(0, sb.length());
+        }
+        ArrayAdapter<String> arrayAdapter = new ArrayAdapter(this.getContext(), android.R.layout.simple_list_item_1, salgliste);
+        listView.setAdapter(arrayAdapter);
+    }
+
+    public void sorterpåHjemme() {
+        sb = new StringBuilder();
+        ArrayList<Hjemme> bmlist = beregninger.separateHjemme(Salg);
+        salgliste.removeAll(salgliste);
+
+        for (int i = 0; i < bmlist.size(); i++) {
+            Hjemme bm = bmlist.get(i);
+            sb.append(bm.getDato()).append("   ").append(bm.getKunde()).append("  Beløp: ").append(bm.getBelop());
+            salgliste.add(sb.toString());
+            sb.delete(0, sb.length());
+        }
+
+        ArrayAdapter<String> arrayAdapter = new ArrayAdapter(this.getContext(), android.R.layout.simple_list_item_1, salgliste);
+        listView.setAdapter(arrayAdapter);
+    }
+
+    public void sorterpåvideresalg() {
+        sb = new StringBuilder();
+        ArrayList<Videresalg> bmlist = beregninger.separateVideresalg(Salg);
+        salgliste.removeAll(salgliste);
+
+        for (int i = 0; i < bmlist.size(); i++) {
+            Videresalg bm = bmlist.get(i);
+            sb.append(bm.getDato()).append("   ").append(bm.getKunde()).append("  Beløp: ").append(bm.getBelop());
+            salgliste.add(sb.toString());
+            sb.delete(0, sb.length());
+        }
+        ArrayAdapter<String> arrayAdapter = new ArrayAdapter(this.getContext(), android.R.layout.simple_list_item_1, salgliste);
+        listView.setAdapter(arrayAdapter);
+    }
+
+    public void sorterpåAnnet() {
+        sb = new StringBuilder();
+        ArrayList<Annet> bmlist = beregninger.separateAnnet(Salg);
+        salgliste.removeAll(salgliste);
+
+        for (int i = 0; i < bmlist.size(); i++) {
+            Annet bm = bmlist.get(i);
+            sb.append(bm.getDato()).append("   ").append(bm.getKunde()).append("  Beløp: ").append(bm.getBelop());
+            salgliste.add(sb.toString());
+            sb.delete(0, sb.length());
+        }
+        ArrayAdapter<String> arrayAdapter = new ArrayAdapter(this.getContext(), android.R.layout.simple_list_item_1, salgliste);
+        listView.setAdapter(arrayAdapter);
+    }
+
+    public void sorterpåalle() {
+        sb = new StringBuilder();
+        salgliste.removeAll(salgliste);
         if (Salg != null) {
             for (int i = 0; i < Salg.size(); i++) {
                 if (Salg.get(i) instanceof BondensMarked) {
                     BondensMarked bm = (BondensMarked) Salg.get(i);
-                    sb.append(bm.getDato()).append("   ").append(bm.getBelop());
+                    sb.append(bm.getDato()).append("   ").append("BM").append("  Beløp: ").append(bm.getBelop());
                     salgliste.add(sb.toString());
                     sb.delete(0, sb.length());
                 } else if (Salg.get(i) instanceof Hjemme) {
@@ -88,15 +217,5 @@ public class Rapport extends Fragment {
         }
         ArrayAdapter<String> arrayAdapter = new ArrayAdapter(this.getContext(), android.R.layout.simple_list_item_1, salgliste);
         listView.setAdapter(arrayAdapter);
-        //---------------------------------------
-        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                //TODO sett inn position der fordi ...fordi
-                Intent i = new Intent(getContext(), SalgItem.class);
-                startActivity(i);
-            }
-        });
-        return rootView;
     }
 }

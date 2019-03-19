@@ -159,6 +159,7 @@ public class Hovedside extends Fragment {
             return beholdning.get(0);
         }catch (IndexOutOfBoundsException e){
             Toast.makeText(this.getContext(), "Internett ikke tilkoblet", Toast.LENGTH_SHORT).show();
+            addbutton.setVisibility(View.GONE);
         }
         return null;
     }

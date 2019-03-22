@@ -181,7 +181,7 @@ public class HjemmeSalg extends Activity implements AdapterView.OnItemSelectedLi
             Toast.makeText(this, "Skriv inn navn på kunde", Toast.LENGTH_SHORT).show();
         } else {
             if (!(oversikt.getText().toString().equals(""))) {
-                // TODO update beholdning
+                // TODO update beholdnings
                 insertValues();
                 Toast.makeText(this, "Hjemmesalg lagret", Toast.LENGTH_SHORT).show();
                 finish();

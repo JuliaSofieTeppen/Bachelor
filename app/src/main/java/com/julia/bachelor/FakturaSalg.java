@@ -91,7 +91,7 @@ public class FakturaSalg extends Activity implements AdapterView.OnItemSelectedL
             if (tell == 0) {
                 Toast.makeText(this, "Legg til minst et produkt", Toast.LENGTH_SHORT).show();
             } else {
-                // TODO update beholdning
+                // TODO update beholdnings
                 insertValues();
                 Toast.makeText(this, "Videre salg lagret", Toast.LENGTH_SHORT).show();
                 finish();

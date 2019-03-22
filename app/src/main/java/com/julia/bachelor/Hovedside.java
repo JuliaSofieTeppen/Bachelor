@@ -29,7 +29,7 @@ public class Hovedside extends Fragment {
     Button addbutton;
     TextView info, navn;
     List arraylist;
-    ArrayList<Beholdning> beholdning;
+    ArrayList<Beholdning> beholdnings;
     ArrayList<Salg> salg;
     ArrayList<Honning> honning;
 
@@ -97,7 +97,7 @@ public class Hovedside extends Fragment {
             }
         });
         try {
-            beholdning = (ArrayList<Beholdning>) (getArguments().getSerializable(KEY_BEHOLDNING));
+            beholdnings = (ArrayList<Beholdning>) (getArguments().getSerializable(KEY_BEHOLDNING));
             salg = (ArrayList<Salg>) (getArguments().getSerializable(KEY_BEHOLDNINGUT));
             honning = (ArrayList<Honning>) (getArguments().getSerializable(KEY_HONNING));
             info.setText(setValueString());
@@ -134,7 +134,7 @@ public class Hovedside extends Fragment {
     }
 
     String buildNameString() {
-        if (beholdning == null || salg == null || honning == null || honning.size() == 0)
+        if (beholdnings == null || salg == null || honning == null || honning.size() == 0)
             return "Error getting content";
         StringBuilder sb = new StringBuilder();
         try {
@@ -148,7 +148,7 @@ public class Hovedside extends Fragment {
     }
 
     String buildValueString() {
-        if (beholdning == null || salg == null || honning == null || honning.size() == 0)
+        if (beholdnings == null || salg == null || honning == null || honning.size() == 0)
             return "Error getting content";
         StringBuilder sb = new StringBuilder();
         try{
@@ -171,12 +171,31 @@ public class Hovedside extends Fragment {
     Beholdning findCurrentBeholdning() {
         // TODO make this method find the newest Beholdning object
         try {
-            return beholdning.get(0);
+            Beholdning beholdning= beholdnings.get(beholdnings.size()-1);
+            for(Beholdning beholdninger : beholdnings){
+                if(greaterThan(beholdning, beholdninger)){
+
+                }
+            }
+            return beholdning;
         }catch (IndexOutOfBoundsException e){
             Toast.makeText(this.getContext(), "Internett ikke tilkoblet", Toast.LENGTH_SHORT).show();
             addbutton.setVisibility(View.GONE);
         }
         return null;
+    }
+    boolean greaterThan(Beholdning current, Beholdning next){
+        String[] dateCurrent = current.getDato().split("\\.");
+        String[] dateNext = next.getDato().split("\\.");
+        if(dateCurrent.length!=3 || dateNext.length!=3) throw new IndexOutOfBoundsException();
+        if(Integer.parseInt(dateCurrent[0]) <= Integer.parseInt(dateNext[0])){
+            return true;
+        }else if(Integer.parseInt(dateCurrent[1]) <= Integer.parseInt(dateNext[1])){
+            return true;
+        }else if(Integer.parseInt(dateCurrent[2]) < Integer.parseInt(dateNext[2])){
+            return true;
+        }
+        return false;
     }
 
     @Override

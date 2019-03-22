@@ -57,7 +57,7 @@ public class BmSalg extends Activity {
             if (tell == 0) {
                 Toast.makeText(this, "Legg til minst et produkt", Toast.LENGTH_SHORT).show();
             } else {
-                // TODO update beholdning
+                // TODO update beholdnings
                 insertValues();
                 Toast.makeText(this, "Bondens marked salg lagret", Toast.LENGTH_SHORT).show();
                 finish();

@@ -31,41 +31,41 @@ class Beregninger implements Template {
         return date.matches(regex);
     }
 
-    ArrayList<Annet> separateAnnet(ArrayList<Object> list){
-        ArrayList<Annet> annet = new ArrayList<>();
+    ArrayList<Object> separateAnnet(ArrayList<Object> list){
+        ArrayList<Object> annet = new ArrayList<>();
         for(Object object : list){
             if(object instanceof Annet){
-                annet.add((Annet) object);
+                annet.add( object);
             }
         }
         return annet;
     }
 
-    ArrayList<Hjemme> separateHjemme(ArrayList<Object> list){
-        ArrayList<Hjemme> hjemme = new ArrayList<>();
+    ArrayList<Object> separateHjemme(ArrayList<Object> list){
+        ArrayList<Object> hjemme = new ArrayList<>();
         for(Object object : list){
             if(object instanceof Hjemme){
-                hjemme.add((Hjemme) object);
+                hjemme.add(object);
             }
         }
         return hjemme;
     }
 
-    ArrayList<BondensMarked> separateBondensMarked(ArrayList<Object> list){
-        ArrayList<BondensMarked> bondensMarked = new ArrayList<>();
+    ArrayList<Object> separateBondensMarked(ArrayList<Object> list){
+        ArrayList<Object> bondensMarked = new ArrayList<>();
         for(Object object : list){
             if(object instanceof BondensMarked){
-                bondensMarked.add((BondensMarked) object);
+                bondensMarked.add(object);
             }
         }
         return bondensMarked;
     }
 
-    ArrayList<Videresalg> separateVideresalg(ArrayList<Object> list){
-        ArrayList<Videresalg> videresalg = new ArrayList<>();
+    ArrayList<Object> separateVideresalg(ArrayList<Object> list){
+        ArrayList<Object> videresalg = new ArrayList<>();
         for(Object object : list){
             if(object instanceof Videresalg){
-                videresalg.add((Videresalg) object);
+                videresalg.add(object);
             }
         }
         return videresalg;
@@ -165,10 +165,12 @@ class Beregninger implements Template {
     @Override
     public double sumList(ArrayList<Object> list) {
         double total = 0;
+        /*
         total += sumAnnet(separateAnnet(list));
         total += sumHjemme(separateHjemme(list));
         total += sumBm(separateBondensMarked(list));
         total += sumVideresalg(separateVideresalg(list));
+        */
         return total;
     }
 

@@ -13,11 +13,14 @@ import android.widget.Spinner;
 import android.widget.Switch;
 import android.widget.Toast;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
 public class Rapport extends Fragment {
     private static final String KEY_ALLSALG = "AllSalg";
+    private static final String KEY_OBJECT = "Object";
+    private static final String KEY_BUNDLE = "Bundle";
     ListView listView;
     Spinner datoer;
     Spinner salgtyper;
@@ -25,6 +28,7 @@ public class Rapport extends Fragment {
     ArrayList<Object> Salg;
     ArrayList<String> salgliste;
     Beregninger beregninger;
+    ArrayList<Object> dynamicList;
 
     public Rapport() {
     }
@@ -48,7 +52,8 @@ public class Rapport extends Fragment {
 
         beregninger = new Beregninger(this.getContext());
         Salg = (ArrayList<Object>) getArguments().getSerializable(KEY_ALLSALG);
-
+        dynamicList = new ArrayList<>();
+        dynamicList.addAll(Salg);
         listView = rootView.findViewById(R.id.salgitems);
         salgliste = new ArrayList<>();
 
@@ -56,6 +61,18 @@ public class Rapport extends Fragment {
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this.getContext(), R.array.datoer, android.R.layout.simple_spinner_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         datoer.setAdapter(adapter);
+
+        datoer.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                selectdagmånedår(position);
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
 
         salgtyper = rootView.findViewById(R.id.salgtyper);
         ArrayAdapter<CharSequence> sadapter = ArrayAdapter.createFromResource(this.getContext(), R.array.Salg, android.R.layout.simple_spinner_item);
@@ -77,24 +94,26 @@ public class Rapport extends Fragment {
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                //TODO sett inn position der fordi ...fordi
-                Intent i = new Intent(getContext(), SalgItem.class);
-                startActivity(i);
+                Bundle bundle = new Bundle();
+                bundle.putSerializable(KEY_OBJECT,(Serializable) dynamicList.get(position));
+                Intent myIntent = new Intent(Rapport.this.getContext(), SalgItem.class);
+                myIntent.putExtra(KEY_BUNDLE, bundle);
+                startActivity(myIntent);
             }
         });
         return rootView;
     }
 
-    private void selectdagmånedår() {
-        switch (datoer.getSelectedItemPosition()) {
+    private void selectdagmånedår(int position) {
+        switch (position) {
+            case 0:
+                Toast.makeText(this.getContext(),"sorter på dag", Toast.LENGTH_SHORT).show();
+                break;
             case 1:
-                //sorter på dag
+                Toast.makeText(this.getContext(),"sorter på måned", Toast.LENGTH_SHORT).show();
                 break;
             case 2:
-                //sorter på måned
-                break;
-            case 3:
-                //sorter på år
+                Toast.makeText(this.getContext(),"sorter på år", Toast.LENGTH_SHORT).show();
                 break;
         }
     }
@@ -122,11 +141,11 @@ public class Rapport extends Fragment {
 
     public void sorterpåBondensMarked() {
         sb = new StringBuilder();
-        ArrayList<BondensMarked> bmlist = beregninger.separateBondensMarked(Salg);
+        dynamicList = beregninger.separateBondensMarked(Salg);
         salgliste.removeAll(salgliste);
 
-        for (int i = 0; i < bmlist.size(); i++) {
-            BondensMarked bm = bmlist.get(i);
+        for (int i = 0; i < dynamicList.size(); i++) {
+            BondensMarked bm = (BondensMarked) dynamicList.get(i);
             sb.append(bm.getDato()).append("   ").append("BM").append("  Beløp: ").append(bm.getBelop());
             salgliste.add(sb.toString());
             sb.delete(0, sb.length());
@@ -137,11 +156,11 @@ public class Rapport extends Fragment {
 
     public void sorterpåHjemme() {
         sb = new StringBuilder();
-        ArrayList<Hjemme> bmlist = beregninger.separateHjemme(Salg);
+        dynamicList = beregninger.separateHjemme(Salg);
         salgliste.removeAll(salgliste);
 
-        for (int i = 0; i < bmlist.size(); i++) {
-            Hjemme bm = bmlist.get(i);
+        for (int i = 0; i < dynamicList.size(); i++) {
+            Hjemme bm = (Hjemme)dynamicList.get(i);
             sb.append(bm.getDato()).append("   ").append(bm.getKunde()).append("  Beløp: ").append(bm.getBelop());
             salgliste.add(sb.toString());
             sb.delete(0, sb.length());
@@ -153,11 +172,11 @@ public class Rapport extends Fragment {
 
     public void sorterpåvideresalg() {
         sb = new StringBuilder();
-        ArrayList<Videresalg> bmlist = beregninger.separateVideresalg(Salg);
+        dynamicList = beregninger.separateVideresalg(Salg);
         salgliste.removeAll(salgliste);
 
-        for (int i = 0; i < bmlist.size(); i++) {
-            Videresalg bm = bmlist.get(i);
+        for (int i = 0; i < dynamicList.size(); i++) {
+            Videresalg bm = (Videresalg) dynamicList.get(i);
             sb.append(bm.getDato()).append("   ").append(bm.getKunde()).append("  Beløp: ").append(bm.getBelop());
             salgliste.add(sb.toString());
             sb.delete(0, sb.length());
@@ -168,11 +187,11 @@ public class Rapport extends Fragment {
 
     public void sorterpåAnnet() {
         sb = new StringBuilder();
-        ArrayList<Annet> bmlist = beregninger.separateAnnet(Salg);
+        dynamicList = beregninger.separateAnnet(Salg);
         salgliste.removeAll(salgliste);
 
-        for (int i = 0; i < bmlist.size(); i++) {
-            Annet bm = bmlist.get(i);
+        for (int i = 0; i < dynamicList.size(); i++) {
+            Annet bm =(Annet) dynamicList.get(i);
             sb.append(bm.getDato()).append("   ").append(bm.getKunde()).append("  Beløp: ").append(bm.getBelop());
             salgliste.add(sb.toString());
             sb.delete(0, sb.length());
@@ -183,6 +202,8 @@ public class Rapport extends Fragment {
 
     public void sorterpåalle() {
         sb = new StringBuilder();
+        dynamicList.clear();
+        dynamicList.addAll(Salg);
         salgliste.removeAll(salgliste);
         if (Salg != null) {
             for (int i = 0; i < Salg.size(); i++) {

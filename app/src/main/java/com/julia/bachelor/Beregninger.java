@@ -178,12 +178,13 @@ class Beregninger implements Template {
     public double mvaHoy(ArrayList<Object> list) {
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
         double mva = ((double)sharedPreferences.getInt("ikkeferdig", 25))/100.0;
-        ArrayList<Videresalg> videresalgs = separateVideresalg(list);
+        ArrayList<Object> videresalgs =separateVideresalg(list);
         double avgift = 0;
-        for(Videresalg videresalg : videresalgs){
-            avgift += videresalg.getMoms()*videresalg.getBelop();
+        for(Object videresalg : videresalgs){
+            Videresalg v = (Videresalg)videresalg;
+            avgift += v.getMoms()*v.getBelop();
         }
-        avgift += sumAnnet(separateAnnet(list));
+        //avgift += sumAnnet(separateAnnet(list));
         return avgift;
     }
 
@@ -191,13 +192,7 @@ class Beregninger implements Template {
     public double mvaLav(ArrayList<Object> list) {
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
         double mva = ((double)sharedPreferences.getInt("ferdigprodukt", 15))/100.0;
-        ArrayList<Videresalg> videresalgs = separateVideresalg(list);
-        double avgift = 0;
-        for(Videresalg videresalg : videresalgs){
-            avgift += videresalg.getMoms()*videresalg.getBelop();
-        }
-        avgift += sumAnnet(separateAnnet(list));
-        return avgift;
+        return mva;
     }
 
     //følgende metode er litt usikker

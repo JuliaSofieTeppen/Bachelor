@@ -14,6 +14,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 public class Hovedside extends Fragment {
@@ -121,81 +123,46 @@ public class Hovedside extends Fragment {
     }
 
     String setValueString() {
-        Beholdning beholdning = findCurrentBeholdning();
-        return beholdning.getSommer() + "\n" +
-                beholdning.getSommerH() + " \n" +
-                beholdning.getSommerK() + " \n" +
-                beholdning.getLyng() + " \n" +
-                beholdning.getLyngH() + " \n" +
-                beholdning.getLyngK() + " \n" +
-                beholdning.getIngeferH() + " \n" +
-                beholdning.getIngeferK() + " \n" +
-                beholdning.getFlytende() + " \n";
-    }
-
-    String buildNameString() {
-        if (beholdnings == null || salg == null || honning == null || honning.size() == 0)
-            return "Error getting content";
-        StringBuilder sb = new StringBuilder();
+        Beholdning beholdning=null;
         try {
-            for (int i = 0; i < honning.size(); i++) {
-                sb.append(honning.get(i).getType()).append("\n");
-            }
-        } catch (IndexOutOfBoundsException e) {
+                beholdning = findCurrentBeholdning();
+        }catch (NullPointerException e){
             e.printStackTrace();
         }
-        return sb.toString();
-    }
-
-    String buildValueString() {
-        if (beholdnings == null || salg == null || honning == null || honning.size() == 0)
-            return "Error getting content";
-        StringBuilder sb = new StringBuilder();
-        try{
-            Beholdning beholdning = findCurrentBeholdning();
-            sb.append(beholdning.getSommer()).append("\n");
-            sb.append(beholdning.getSommerH()).append("\n");
-            sb.append(beholdning.getSommerK()).append("\n");
-            sb.append(beholdning.getLyng()).append("\n");
-            sb.append(beholdning.getLyngH()).append("\n");
-            sb.append(beholdning.getLyngK()).append("\n");
-            sb.append(beholdning.getIngeferH()).append("\n");
-            sb.append(beholdning.getIngeferK()).append("\n");
-            sb.append(beholdning.getFlytende()).append("\n");
-        } catch (IndexOutOfBoundsException e) {
-            e.printStackTrace();
-        }
-        return sb.toString();
+        return beholdning==null? ":/" :
+               beholdning.getSommer() + "\n" +
+               beholdning.getSommerH() + " \n" +
+               beholdning.getSommerK() + " \n" +
+               beholdning.getLyng() + " \n" +
+               beholdning.getLyngH() + " \n" +
+               beholdning.getLyngK() + " \n" +
+               beholdning.getIngeferH() + " \n" +
+               beholdning.getIngeferK() + " \n" +
+               beholdning.getFlytende() + " \n";
     }
 
     Beholdning findCurrentBeholdning() {
-        // TODO make this method find the newest Beholdning object
+        Beholdning current = null;
         try {
-            Beholdning beholdning= beholdnings.get(beholdnings.size()-1);
-            for(Beholdning beholdninger : beholdnings){
-                if(greaterThan(beholdning, beholdninger)){
-
+            current= beholdnings.get(beholdnings.size()-1);
+            for(Beholdning beholdning : beholdnings){
+                if(greaterThan(current, beholdning)){
+                    current = beholdning;
                 }
             }
-            return beholdning;
+            return current;
         }catch (IndexOutOfBoundsException e){
             Toast.makeText(this.getContext(), "Internett ikke tilkoblet", Toast.LENGTH_SHORT).show();
             addbutton.setVisibility(View.GONE);
         }
-        return null;
+        if(current== null) throw new NullPointerException("Possible problem with connection");
+        return current;
     }
+
     boolean greaterThan(Beholdning current, Beholdning next){
-        String[] dateCurrent = current.getDato().split("\\.");
-        String[] dateNext = next.getDato().split("\\.");
-        if(dateCurrent.length!=3 || dateNext.length!=3) throw new IndexOutOfBoundsException();
-        if(Integer.parseInt(dateCurrent[0]) <= Integer.parseInt(dateNext[0])){
-            return true;
-        }else if(Integer.parseInt(dateCurrent[1]) <= Integer.parseInt(dateNext[1])){
-            return true;
-        }else if(Integer.parseInt(dateCurrent[2]) < Integer.parseInt(dateNext[2])){
-            return true;
-        }
-        return false;
+        ArrayList<String> dates = new ArrayList<>(Arrays.asList(current.getDato(), next.getDato()));
+        Collections.sort(dates);
+        return !dates.get(0).equals(current.getDato());
     }
 
     @Override

@@ -29,7 +29,7 @@ public class Hovedside extends Fragment {
     private static final String KEY_HONNING = "Honning";
     private static final String KEY_BUNDLE = "Bundle";
     Button addbutton;
-    TextView info, navn;
+    TextView info, navn,dato;
     List arraylist;
     ArrayList<Beholdning> beholdnings;
     ArrayList<Salg> salg;
@@ -61,6 +61,7 @@ public class Hovedside extends Fragment {
         info = rootView.findViewById(R.id.Info);
         navn = rootView.findViewById(R.id.navn);
         arraylist = new ArrayList();
+        dato = rootView.findViewById(R.id.dato);
 
         addbutton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -104,6 +105,7 @@ public class Hovedside extends Fragment {
             honning = (ArrayList<Honning>) (getArguments().getSerializable(KEY_HONNING));
             info.setText(setValueString());
             navn.setText(setNameString());
+            dato.setText(findCurrentBeholdning().getDato());
         } catch (NullPointerException e) {
             e.printStackTrace();
         }
@@ -162,7 +164,7 @@ public class Hovedside extends Fragment {
     boolean greaterThan(Beholdning current, Beholdning next){
         ArrayList<String> dates = new ArrayList<>(Arrays.asList(current.getDato(), next.getDato()));
         Collections.sort(dates);
-        return !dates.get(0).equals(current.getDato());
+        return !dates.get(1).equals(current.getDato());
     }
 
     @Override

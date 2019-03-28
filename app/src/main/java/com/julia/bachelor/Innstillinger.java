@@ -193,7 +193,9 @@ public class Innstillinger extends Fragment {
     }
 
     public boolean checkifchanged(){
-
+        for(int i = 0; i<HjemmeVerdier.size();i++){
+            HjemmeVerdier.get(i).getText().toString();
+        }
         return false;
     }
 }

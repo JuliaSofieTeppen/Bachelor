@@ -26,11 +26,13 @@ public class Innstillinger extends Fragment {
     SharedPreferences.Editor editor;
     EditText ferdigprodukt, ikkeferdig;
     Button momslagre;
-    EditText enkghjemme,halvkghjemme,kvartkghjemme,
-            enkgbm,halvkgbm,kvartkgbm,
-            enkgfak,halvkgfak,kvartkgfak;
+    EditText enkghjemme,halvkghjemme,kvartkghjemme,enkgbm,halvkgbm,kvartkgbm,enkgfak,halvkgfak,kvartkgfak,
+            ingfhalvkghjemme,ingfkvartkghjemme,ingfhalvkgbm,ingfkvartkgbm,ingfhalvkgfak,ingfkvartkgfak,
+            flythjemme,flytbm,flytfak;
     List<Honning> honningtype;
-    List<EditText> verdier;
+    List<EditText> BMverdier;
+    List<EditText> HjemmeVerdier;
+    List<EditText> FakturaVerdier;
 
     public Innstillinger() {
     }
@@ -60,6 +62,15 @@ public class Innstillinger extends Fragment {
         enkg = rootView.findViewById(R.id.enkg);
         halvkg = rootView.findViewById(R.id.halvkg);
         kvartkg = rootView.findViewById(R.id.kvartkg);
+        ingfhalvkghjemme = rootView.findViewById(R.id.ingfhalvkghjemme);
+        ingfhalvkgbm = rootView.findViewById(R.id.ingfhalvkgbm);
+        ingfhalvkgfak = rootView.findViewById(R.id.ingfhalvkgfak);
+        ingfkvartkghjemme = rootView.findViewById(R.id.ingfkvartkghjemme);
+        ingfkvartkgbm = rootView.findViewById(R.id.ingfkvartkgbm);
+        ingfkvartkgfak = rootView.findViewById(R.id.ingfkvartkgfak);
+        flythjemme = rootView.findViewById(R.id.flythjemme);
+        flytbm = rootView.findViewById(R.id.flytbm);
+        flytfak = rootView.findViewById(R.id.flytfak);
         Ingf05kg = rootView.findViewById(R.id.ingf05kg);
         Ingf025kg = rootView.findViewById(R.id.ingf025kg);
         flyt = rootView.findViewById(R.id.flyt);
@@ -71,18 +82,27 @@ public class Innstillinger extends Fragment {
         sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this.getContext());
         editor = sharedPreferences.edit();
 
-        verdier = new ArrayList<>(Arrays.asList(enkghjemme,enkgbm,enkgfak,halvkghjemme,halvkgbm,
-                halvkgfak,kvartkghjemme,kvartkgbm,kvartkgfak));
+        BMverdier = new ArrayList<>(Arrays.asList(enkgbm,halvkgbm,kvartkgbm,ingfhalvkgbm,ingfkvartkgbm,flytbm));
+        HjemmeVerdier = new ArrayList<>(Arrays.asList(enkghjemme,halvkghjemme,kvartkghjemme,ingfhalvkghjemme,ingfkvartkghjemme,flythjemme));
+        FakturaVerdier = new ArrayList<>(Arrays.asList(enkgfak,halvkgfak,kvartkgfak,ingfhalvkgfak,ingfkvartkgfak,flytfak));
 
         Main main = new Main();
         honningtype = main.Fåhonningtyper();
 
         try {
             if (honningtype != null) {
-                for (int i = 0; i < honningtype.size(); i=i+3) {
-                    verdier.get(i).setText(honningtype.get(i+3).getHjemmePris());
-                    verdier.get(i+1).setText(honningtype.get(i+3).getBondensMarkedPris());
-                    verdier.get(i+2).setText(honningtype.get(i+3).getHjemmePris());
+                String s;
+                for (int i = 0; i < BMverdier.size(); i++) {
+                    s = Integer.toString(honningtype.get(i+3).getBondensMarkedPris());
+                    BMverdier.get(i).setText(s);
+                }
+                for (int i = 0; i < HjemmeVerdier.size(); i++) {
+                    s= Integer.toString(honningtype.get(i+3).getHjemmePris());
+                    HjemmeVerdier.get(i).setText(s);
+                }
+                for (int i = 0; i < FakturaVerdier.size(); i++) {
+                    s = Integer.toString(honningtype.get(i+3).getFakturaPris());
+                    FakturaVerdier.get(i).setText(s);
                 }
             }
         } catch (NullPointerException e) {
@@ -170,5 +190,10 @@ public class Innstillinger extends Fragment {
     }
     public void lagre(View view){
 
+    }
+
+    public boolean checkifchanged(){
+
+        return false;
     }
 }

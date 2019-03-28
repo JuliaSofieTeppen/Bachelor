@@ -2,7 +2,6 @@ package com.julia.bachelor;
 
 import android.app.Fragment;
 import android.content.Intent;
-import android.media.MediaRecorder;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,29 +10,28 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Spinner;
-import android.widget.Switch;
 import android.widget.Toast;
 
+import com.julia.bachelor.helperClass.Annet;
+import com.julia.bachelor.helperClass.BondensMarked;
+import com.julia.bachelor.helperClass.Hjemme;
+import com.julia.bachelor.helperClass.Videresalg;
+
 import java.io.Serializable;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
 
 public class Rapport extends Fragment {
     private static final String KEY_ALLSALG = "AllSalg";
     private static final String KEY_OBJECT = "Object";
     private static final String KEY_BUNDLE = "Bundle";
+    static StringBuilder sb;
     ListView listView;
     Spinner datoer;
     Spinner salgtyper;
-    static StringBuilder sb;
     ArrayList<Object> Salg;
     ArrayList<String> salgliste;
     Beregninger beregninger;
     ArrayList<Object> dynamicList;
-
 
     public Rapport() {
     }
@@ -66,16 +64,14 @@ public class Rapport extends Fragment {
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this.getContext(), R.array.datoer, android.R.layout.simple_spinner_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         datoer.setAdapter(adapter);
-
         datoer.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                selectdagmånedår(position);
+                selectdagmanedar(position);
             }
 
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
-
             }
         });
 
@@ -83,7 +79,6 @@ public class Rapport extends Fragment {
         ArrayAdapter<CharSequence> sadapter = ArrayAdapter.createFromResource(this.getContext(), R.array.Salg, android.R.layout.simple_spinner_item);
         sadapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         salgtyper.setAdapter(sadapter);
-
         salgtyper.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
@@ -92,15 +87,13 @@ public class Rapport extends Fragment {
 
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
-
             }
         });
-        //---------------------------------------
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Bundle bundle = new Bundle();
-                bundle.putSerializable(KEY_OBJECT,(Serializable) dynamicList.get(position));
+                bundle.putSerializable(KEY_OBJECT, (Serializable) dynamicList.get(position));
                 Intent myIntent = new Intent(Rapport.this.getContext(), SalgItem.class);
                 myIntent.putExtra(KEY_BUNDLE, bundle);
                 startActivity(myIntent);
@@ -109,48 +102,48 @@ public class Rapport extends Fragment {
         return rootView;
     }
 
-    private void selectdagmånedår(int position) {
+    private void selectdagmanedar(int position) {
         switch (position) {
             case 0:
-                Toast.makeText(this.getContext(),"sorter på dag", Toast.LENGTH_SHORT).show();
-
+                Toast.makeText(this.getContext(), "sorter på dag", Toast.LENGTH_SHORT).show();
                 break;
             case 1:
-                Toast.makeText(this.getContext(),"sorter på måned", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this.getContext(), "sorter på måned", Toast.LENGTH_SHORT).show();
                 break;
             case 2:
-                Toast.makeText(this.getContext(),"sorter på år", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this.getContext(), "sorter på år", Toast.LENGTH_SHORT).show();
                 break;
         }
     }
-
-
+    void sortMonth(){
+    }
 
     private void selectsalgtyper(int posisjon) {
-            switch (posisjon) {
-                case 0:
-                    sorterpåalle();
-                    break;
-                case 1:
-                    sorterpåBondensMarked();
-                    break;
-                case 2:
-                    sorterpåHjemme();
-                    break;
-                case 3:
-                    sorterpåvideresalg();
-                    break;
-                case 4:
-                    sorterpåAnnet();
-                    break;
+        switch (posisjon) {
+            case 0:
+                sorterpaalle();
+                break;
+            case 1:
+                sorterpaBondensMarked();
+                break;
+            case 2:
+                sorterpaHjemme();
+                break;
+            case 3:
+                sorterpavideresalg();
+                break;
+            case 4:
+                sorterpaAnnet();
+                break;
 
         }
     }
 
-    public void sorterpåBondensMarked() {
+    @SuppressWarnings("unchecked")
+    public void sorterpaBondensMarked() {
         sb = new StringBuilder();
         dynamicList = beregninger.separateBondensMarked(Salg);
-        salgliste.removeAll(salgliste);
+        salgliste.clear();
 
         for (int i = 0; i < dynamicList.size(); i++) {
             BondensMarked bm = (BondensMarked) dynamicList.get(i);
@@ -162,26 +155,26 @@ public class Rapport extends Fragment {
         listView.setAdapter(arrayAdapter);
     }
 
-    public void sorterpåHjemme() {
+    @SuppressWarnings("unchecked")
+    public void sorterpaHjemme() {
         sb = new StringBuilder();
         dynamicList = beregninger.separateHjemme(Salg);
-        salgliste.removeAll(salgliste);
-
+        salgliste.clear();
         for (int i = 0; i < dynamicList.size(); i++) {
-            Hjemme bm = (Hjemme)dynamicList.get(i);
+            Hjemme bm = (Hjemme) dynamicList.get(i);
             sb.append(bm.getDato()).append("   ").append(bm.getKunde()).append("  Beløp: ").append(bm.getBelop());
             salgliste.add(sb.toString());
             sb.delete(0, sb.length());
         }
-
         ArrayAdapter<String> arrayAdapter = new ArrayAdapter(this.getContext(), android.R.layout.simple_list_item_1, salgliste);
         listView.setAdapter(arrayAdapter);
     }
 
-    public void sorterpåvideresalg() {
+    @SuppressWarnings("unchecked")
+    public void sorterpavideresalg() {
         sb = new StringBuilder();
         dynamicList = beregninger.separateVideresalg(Salg);
-        salgliste.removeAll(salgliste);
+        salgliste.clear();
 
         for (int i = 0; i < dynamicList.size(); i++) {
             Videresalg bm = (Videresalg) dynamicList.get(i);
@@ -193,13 +186,14 @@ public class Rapport extends Fragment {
         listView.setAdapter(arrayAdapter);
     }
 
-    public void sorterpåAnnet() {
+    @SuppressWarnings("unchecked")
+    public void sorterpaAnnet() {
         sb = new StringBuilder();
         dynamicList = beregninger.separateAnnet(Salg);
-        salgliste.removeAll(salgliste);
+        salgliste.clear();
 
         for (int i = 0; i < dynamicList.size(); i++) {
-            Annet bm =(Annet) dynamicList.get(i);
+            Annet bm = (Annet) dynamicList.get(i);
             sb.append(bm.getDato()).append("   ").append(bm.getKunde()).append("  Beløp: ").append(bm.getBelop());
             salgliste.add(sb.toString());
             sb.delete(0, sb.length());
@@ -208,11 +202,12 @@ public class Rapport extends Fragment {
         listView.setAdapter(arrayAdapter);
     }
 
-    public void sorterpåalle() {
+    @SuppressWarnings("unchecked")
+    public void sorterpaalle() {
         sb = new StringBuilder();
         dynamicList.clear();
         dynamicList.addAll(Salg);
-        salgliste.removeAll(salgliste);
+        salgliste.clear();
         if (Salg != null) {
             for (int i = 0; i < Salg.size(); i++) {
                 if (Salg.get(i) instanceof BondensMarked) {

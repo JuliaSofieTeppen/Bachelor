@@ -13,6 +13,10 @@ import android.widget.PopupMenu;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.julia.bachelor.helperClass.Beholdning;
+import com.julia.bachelor.helperClass.Honning;
+import com.julia.bachelor.helperClass.Salg;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;

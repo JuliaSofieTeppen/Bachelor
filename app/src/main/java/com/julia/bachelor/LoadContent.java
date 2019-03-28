@@ -7,6 +7,14 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.widget.ImageView;
 
+import com.julia.bachelor.helperClass.Annet;
+import com.julia.bachelor.helperClass.Beholdning;
+import com.julia.bachelor.helperClass.BondensMarked;
+import com.julia.bachelor.helperClass.Hjemme;
+import com.julia.bachelor.helperClass.Honning;
+import com.julia.bachelor.helperClass.Salg;
+import com.julia.bachelor.helperClass.Videresalg;
+
 import java.util.ArrayList;
 
 public class LoadContent extends Activity {
@@ -19,12 +27,12 @@ public class LoadContent extends Activity {
     private static final String KEY_VIDERESALG = "Videresalg";
     private static final String KEY_BUNDLE = "Bundle";
 
-    static ArrayList<Annet> Annet;
-    static ArrayList<Beholdning> Beholdning;
-    static ArrayList<Salg> Salg;
+    static ArrayList<com.julia.bachelor.helperClass.Annet> Annet;
+    static ArrayList<com.julia.bachelor.helperClass.Beholdning> Beholdning;
+    static ArrayList<com.julia.bachelor.helperClass.Salg> Salg;
     static ArrayList<BondensMarked> Bm;
-    static ArrayList<Hjemme> Hjemme;
-    static ArrayList<Honning> Honning;
+    static ArrayList<com.julia.bachelor.helperClass.Hjemme> Hjemme;
+    static ArrayList<com.julia.bachelor.helperClass.Honning> Honning;
     static ArrayList<Videresalg> Videresalg;
 
     @Override
@@ -91,7 +99,7 @@ public class LoadContent extends Activity {
         Honning = honning;
     }
 
-    public void setVideresalg(ArrayList<com.julia.bachelor.Videresalg> videresalg) {
+    public void setVideresalg(ArrayList<com.julia.bachelor.helperClass.Videresalg> videresalg) {
         Videresalg = videresalg;
     }
 }

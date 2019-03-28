@@ -1,5 +1,10 @@
 package com.julia.bachelor;
 
+import com.julia.bachelor.helperClass.Annet;
+import com.julia.bachelor.helperClass.BondensMarked;
+import com.julia.bachelor.helperClass.Hjemme;
+import com.julia.bachelor.helperClass.Videresalg;
+
 import java.util.ArrayList;
 
 /**

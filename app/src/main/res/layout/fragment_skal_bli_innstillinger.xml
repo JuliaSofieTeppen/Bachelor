@@ -109,7 +109,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
-                android:visibility="gone"
+                android:visibility="visible"
                 app:layout_constraintTop_toBottomOf="@+id/endrepris"
                 tools:layout_editor_absoluteX="0dp">
 
@@ -133,7 +133,7 @@
                     android:layout_marginStart="8dp"
                     android:layout_marginEnd="8dp"
                     android:background="#ffe0a3"
-                    android:visibility="gone"
+                    android:visibility="visible"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/enkg">
@@ -146,7 +146,7 @@
                         android:layout_marginTop="44dp"
                         android:layout_marginEnd="110dp"
                         android:text="Hjemme"
-                        app:layout_constraintEnd_toStartOf="@+id/editText31"
+                        app:layout_constraintEnd_toStartOf="@+id/enkgbm"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
 
@@ -158,7 +158,7 @@
                         android:layout_marginTop="36dp"
                         android:layout_marginEnd="58dp"
                         android:text="Bondens marked"
-                        app:layout_constraintEnd_toStartOf="@+id/editText31"
+                        app:layout_constraintEnd_toStartOf="@+id/enkgbm"
                         app:layout_constraintHorizontal_bias="1.0"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/textView132" />
@@ -171,13 +171,13 @@
                         android:layout_marginTop="32dp"
                         android:layout_marginEnd="116dp"
                         android:text="Faktura"
-                        app:layout_constraintEnd_toStartOf="@+id/editText31"
+                        app:layout_constraintEnd_toStartOf="@+id/enkgbm"
                         app:layout_constraintHorizontal_bias="1.0"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/textView133" />
 
                     <EditText
-                        android:id="@+id/editText31"
+                        android:id="@+id/enkgbm"
                         android:layout_width="88dp"
                         android:layout_height="43dp"
                         android:layout_marginEnd="8dp"
@@ -187,7 +187,7 @@
                         app:layout_constraintEnd_toEndOf="parent" />
 
                     <EditText
-                        android:id="@+id/editText32"
+                        android:id="@+id/enkgfak"
                         android:layout_width="88dp"
                         android:layout_height="43dp"
                         android:layout_marginEnd="8dp"
@@ -197,7 +197,7 @@
                         app:layout_constraintEnd_toEndOf="parent" />
 
                     <EditText
-                        android:id="@+id/editText33"
+                        android:id="@+id/enkghjemme"
                         android:layout_width="88dp"
                         android:layout_height="43dp"
                         android:layout_marginEnd="8dp"
@@ -214,7 +214,7 @@
                     android:layout_marginStart="8dp"
                     android:layout_marginEnd="8dp"
                     android:background="#ffe0a3"
-                    android:visibility="gone"
+                    android:visibility="visible"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/halvkg">
@@ -227,7 +227,7 @@
                         android:layout_marginTop="28dp"
                         android:layout_marginEnd="110dp"
                         android:text="Hjemme"
-                        app:layout_constraintEnd_toStartOf="@+id/editText11"
+                        app:layout_constraintEnd_toStartOf="@+id/halvkghjemme"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
 
@@ -239,7 +239,7 @@
                         android:layout_marginTop="40dp"
                         android:layout_marginEnd="58dp"
                         android:text="Bondens marked"
-                        app:layout_constraintEnd_toStartOf="@+id/editText10"
+                        app:layout_constraintEnd_toStartOf="@+id/halvkgbm"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/textView14" />
 
@@ -251,12 +251,12 @@
                         android:layout_marginTop="28dp"
                         android:layout_marginEnd="116dp"
                         android:text="Faktura"
-                        app:layout_constraintEnd_toStartOf="@+id/editText9"
+                        app:layout_constraintEnd_toStartOf="@+id/halvkgfak"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/textView15" />
 
                     <EditText
-                        android:id="@+id/editText9"
+                        android:id="@+id/halvkgfak"
                         android:layout_width="88dp"
                         android:layout_height="43dp"
                         android:layout_marginEnd="8dp"
@@ -266,7 +266,7 @@
                         app:layout_constraintEnd_toEndOf="parent" />
 
                     <EditText
-                        android:id="@+id/editText10"
+                        android:id="@+id/halvkgbm"
                         android:layout_width="88dp"
                         android:layout_height="43dp"
                         android:layout_marginEnd="8dp"
@@ -276,7 +276,7 @@
                         app:layout_constraintEnd_toEndOf="parent" />
 
                     <EditText
-                        android:id="@+id/editText11"
+                        android:id="@+id/halvkghjemme"
                         android:layout_width="88dp"
                         android:layout_height="43dp"
                         android:layout_marginEnd="8dp"
@@ -424,7 +424,7 @@
                     android:layout_marginStart="8dp"
                     android:layout_marginEnd="8dp"
                     android:background="#ffe0a3"
-                    android:visibility="gone"
+                    android:visibility="visible"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/kvartkg">
@@ -437,7 +437,7 @@
                         android:layout_marginTop="16dp"
                         android:layout_marginEnd="110dp"
                         android:text="Hjemme"
-                        app:layout_constraintEnd_toStartOf="@+id/editText8"
+                        app:layout_constraintEnd_toStartOf="@+id/kvartkghjemme"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
 
@@ -446,7 +446,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="8dp"
-                        android:layout_marginTop="32dp"
+                        android:layout_marginTop="36dp"
                         android:text="Bondens Marked"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/textView11" />
@@ -456,13 +456,13 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="8dp"
-                        android:layout_marginTop="20dp"
+                        android:layout_marginTop="44dp"
                         android:text="Faktura"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/textView12" />
 
                     <EditText
-                        android:id="@+id/editText6"
+                        android:id="@+id/kvartkgfak"
                         android:layout_width="88dp"
                         android:layout_height="43dp"
                         android:layout_marginEnd="8dp"
@@ -472,7 +472,7 @@
                         app:layout_constraintEnd_toEndOf="parent" />
 
                     <EditText
-                        android:id="@+id/editText7"
+                        android:id="@+id/kvartkgbm"
                         android:layout_width="88dp"
                         android:layout_height="43dp"
                         android:layout_marginEnd="8dp"
@@ -482,7 +482,7 @@
                         app:layout_constraintEnd_toEndOf="parent" />
 
                     <EditText
-                        android:id="@+id/editText8"
+                        android:id="@+id/kvartkghjemme"
                         android:layout_width="88dp"
                         android:layout_height="43dp"
                         android:layout_marginEnd="8dp"

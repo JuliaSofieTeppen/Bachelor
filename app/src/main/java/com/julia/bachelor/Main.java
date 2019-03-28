@@ -179,6 +179,9 @@ public class Main extends Activity implements NavigationDrawerFragment.Navigatio
         String regex = "^\\d{4}\\.(0?[1-9]|1[012])\\.(0?[1-9]|[12][0-9]|3[01])$";
         return date.matches(regex);
     }
+    public List<Honning> Fåhonningtyper(){
+        return Honning;
+    }
 
     private void setSalg() {
         AllSalg = new ArrayList<>();

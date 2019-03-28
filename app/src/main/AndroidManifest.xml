@@ -33,7 +33,7 @@
             android:name=".Main"
             android:label="@string/title_activity_main" />
         <provider
-            android:name=".GenericFileProvider"
+            android:name="android.support.v4.content.FileProvider"
             android:authorities="${applicationId}.com.julia.bachelor.GenericFileProvider"
             android:exported="false"
             android:grantUriPermissions="true">

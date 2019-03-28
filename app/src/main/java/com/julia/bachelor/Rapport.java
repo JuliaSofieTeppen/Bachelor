@@ -2,6 +2,7 @@ package com.julia.bachelor;
 
 import android.app.Fragment;
 import android.content.Intent;
+import android.media.MediaRecorder;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -18,7 +19,11 @@ import com.julia.bachelor.helperClass.Hjemme;
 import com.julia.bachelor.helperClass.Videresalg;
 
 import java.io.Serializable;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
 
 public class Rapport extends Fragment {
     private static final String KEY_ALLSALG = "AllSalg";

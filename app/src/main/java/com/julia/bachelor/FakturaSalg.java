@@ -18,8 +18,11 @@ import android.widget.Toast;
 
 import com.julia.bachelor.helperClass.Honning;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Date;
 import java.util.List;
 
 public class FakturaSalg extends Activity implements AdapterView.OnItemSelectedListener {
@@ -62,6 +65,10 @@ public class FakturaSalg extends Activity implements AdapterView.OnItemSelectedL
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
         setBetalingsmetodespinner();
         setMomsspinner(sharedPreferences);
+
+        DateFormat dateFormat = new SimpleDateFormat("yyyy.MM.dd");
+        Date date = new Date();
+        dato.setText(dateFormat.format(date));
 
     }
 

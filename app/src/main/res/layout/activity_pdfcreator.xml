@@ -25,6 +25,7 @@
         android:layout_height="wrap_content"
         android:layout_marginEnd="20dp"
         android:ems="10"
+        android:hint="YYYY.MM.dd"
         android:inputType="date"
         app:layout_constraintBaseline_toBaselineOf="@+id/textView29"
         app:layout_constraintEnd_toEndOf="parent" />
@@ -46,6 +47,7 @@
         android:layout_marginStart="36dp"
         android:layout_marginTop="40dp"
         android:text="Sluttdato:"
+        android:hint="YYYY.MM.dd"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView28" />
 
@@ -76,6 +78,7 @@
         android:layout_height="wrap_content"
         android:layout_marginEnd="20dp"
         android:ems="10"
+        android:hint="YYYY.MM.dd"
         android:inputType="date"
         app:layout_constraintBaseline_toBaselineOf="@+id/textView28"
         app:layout_constraintEnd_toEndOf="parent" />

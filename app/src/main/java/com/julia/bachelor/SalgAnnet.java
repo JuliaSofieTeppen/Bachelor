@@ -12,8 +12,11 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Date;
 
 public class SalgAnnet extends Activity implements AdapterView.OnItemSelectedListener {
     String betalingsmetode;
@@ -46,6 +49,10 @@ public class SalgAnnet extends Activity implements AdapterView.OnItemSelectedLis
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         betaling.setAdapter(adapter);
         betaling.setOnItemSelectedListener(this);
+
+        DateFormat dateFormat = new SimpleDateFormat("yyyy.MM.dd");
+        Date date = new Date();
+        Dato.setText(dateFormat.format(date));
     }
 
     @Override

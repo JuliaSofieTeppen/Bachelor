@@ -115,13 +115,7 @@ public class Rapport extends Fragment {
                 break;
         }
     }
-    //       ____  \ \
-    //     _/_   \_/  /
-    //   /           /
-    //  |          /
-    //  |_||_|--|_|
     void sortMonth(){
-
     }
 
     private void selectsalgtyper(int posisjon) {

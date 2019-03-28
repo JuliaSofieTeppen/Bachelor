@@ -1,5 +1,6 @@
 package com.julia.bachelor;
 
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.app.Fragment;
@@ -12,6 +13,10 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
 public class Innstillinger extends Fragment {
 
     // TODO: Rename parameter arguments, choose names that match
@@ -21,6 +26,11 @@ public class Innstillinger extends Fragment {
     SharedPreferences.Editor editor;
     EditText ferdigprodukt, ikkeferdig;
     Button momslagre;
+    EditText enkghjemme,halvkghjemme,kvartkghjemme,
+            enkgbm,halvkgbm,kvartkgbm,
+            enkgfak,halvkgfak,kvartkgfak;
+    List<Honning> honningtype;
+    List<EditText> verdier;
 
     public Innstillinger() {
     }
@@ -37,8 +47,16 @@ public class Innstillinger extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-
         final View rootView = inflater.inflate(R.layout.fragment_skal_bli_innstillinger, container, false);
+        enkghjemme = rootView.findViewById(R.id.enkghjemme);
+        halvkghjemme = rootView.findViewById(R.id.halvkghjemme);
+        kvartkghjemme = rootView.findViewById(R.id.kvartkghjemme);
+        enkgbm = rootView.findViewById(R.id.enkgbm);
+        halvkgbm = rootView.findViewById(R.id.halvkgbm);
+        kvartkgbm = rootView.findViewById(R.id.kvartkgbm);
+        enkgfak = rootView.findViewById(R.id.enkgfak);
+        halvkgfak = rootView.findViewById(R.id.halvkgfak);
+        kvartkgfak = rootView.findViewById(R.id.kvartkgfak);
         enkg = rootView.findViewById(R.id.enkg);
         halvkg = rootView.findViewById(R.id.halvkg);
         kvartkg = rootView.findViewById(R.id.kvartkg);
@@ -52,6 +70,25 @@ public class Innstillinger extends Fragment {
         momslagre = rootView.findViewById(R.id.momslagre);
         sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this.getContext());
         editor = sharedPreferences.edit();
+
+        verdier = new ArrayList<>(Arrays.asList(enkghjemme,enkgbm,enkgfak,halvkghjemme,halvkgbm,
+                halvkgfak,kvartkghjemme,kvartkgbm,kvartkgfak));
+
+        Main main = new Main();
+        honningtype = main.Fåhonningtyper();
+
+        try {
+            if (honningtype != null) {
+                for (int i = 0; i < honningtype.size(); i=i+3) {
+                    verdier.get(i).setText(honningtype.get(i+3).getHjemmePris());
+                    verdier.get(i+1).setText(honningtype.get(i+3).getBondensMarkedPris());
+                    verdier.get(i+2).setText(honningtype.get(i+3).getHjemmePris());
+                }
+            }
+        } catch (NullPointerException e) {
+            e.printStackTrace();
+        }
+
         momslagre.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -130,5 +167,8 @@ public class Innstillinger extends Fragment {
         } else {
             exe.setVisibility(View.VISIBLE);
         }
+    }
+    public void lagre(View view){
+
     }
 }

@@ -2,6 +2,7 @@ package com.julia.bachelor;
 
 import android.app.Fragment;
 import android.content.Intent;
+import android.media.MediaRecorder;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,7 +15,10 @@ import android.widget.Switch;
 import android.widget.Toast;
 
 import java.io.Serializable;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 public class Rapport extends Fragment {
@@ -29,6 +33,7 @@ public class Rapport extends Fragment {
     ArrayList<String> salgliste;
     Beregninger beregninger;
     ArrayList<Object> dynamicList;
+
 
     public Rapport() {
     }
@@ -108,6 +113,7 @@ public class Rapport extends Fragment {
         switch (position) {
             case 0:
                 Toast.makeText(this.getContext(),"sorter på dag", Toast.LENGTH_SHORT).show();
+
                 break;
             case 1:
                 Toast.makeText(this.getContext(),"sorter på måned", Toast.LENGTH_SHORT).show();
@@ -117,6 +123,8 @@ public class Rapport extends Fragment {
                 break;
         }
     }
+
+
 
     private void selectsalgtyper(int posisjon) {
             switch (posisjon) {

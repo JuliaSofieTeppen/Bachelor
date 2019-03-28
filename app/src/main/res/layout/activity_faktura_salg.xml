@@ -382,6 +382,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="20dp"
                     android:ems="10"
+                    android:hint="YYYY.MM.dd"
                     android:inputType="date"
                     app:layout_constraintBaseline_toBaselineOf="@+id/textView72"
                     app:layout_constraintEnd_toEndOf="parent" />

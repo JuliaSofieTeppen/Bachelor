@@ -7,6 +7,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
+import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
@@ -40,6 +41,8 @@ import java.io.OutputStream;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.Date;
 
 public class PdfCreatorActivity extends AppCompatActivity {
@@ -181,23 +184,28 @@ public class PdfCreatorActivity extends AppCompatActivity {
         annettable.addCell("MVA");
 
         for(Object salg : solgt){
-            if(salg instanceof BondensMarked){
-
-            }else if(salg instanceof Hjemme){
+            if(salg instanceof BondensMarked) {
+            }else if(salg instanceof Hjemme) {
                 Hjemme hjemmeSalg = (Hjemme) salg;
-                hjemmetable.addCell(hjemmeSalg.getDato());
-                hjemmetable.addCell(Integer.toString(hjemmeSalg.getBelop()));
-                hjemmetable.addCell(Double.toString(sharedPreferences.getInt("ferdigprodukt",15)));
-            }else if(salg instanceof Videresalg){
+                if(greaterThan(hjemmeSalg.getDato(), Startdato.getText().toString())&& !greaterThan(hjemmeSalg.getDato(),Sluttdato.getText().toString())){
+                    hjemmetable.addCell(hjemmeSalg.getDato());
+                    hjemmetable.addCell(Integer.toString(hjemmeSalg.getBelop()));
+                    hjemmetable.addCell(Double.toString(sharedPreferences.getInt("ferdigprodukt",15)));
+                }
+            }else if(salg instanceof Videresalg) {
                 Videresalg videresalg = (Videresalg) salg;
-                videretable.addCell(videresalg.getDato());
-                videretable.addCell(Integer.toString(videresalg.getBelop()));
-                videretable.addCell(Double.toString(videresalg.getMoms()));
-            }else if(salg instanceof Annet){
+                if(greaterThan(videresalg.getDato(), Startdato.getText().toString())&& !greaterThan(videresalg.getDato(),Sluttdato.getText().toString())){
+                    videretable.addCell(videresalg.getDato());
+                    videretable.addCell(Integer.toString(videresalg.getBelop()));
+                    videretable.addCell(Double.toString(videresalg.getMoms()));
+                }
+            }else if(salg instanceof Annet) {
                 Annet annet = (Annet) salg;
-                annettable.addCell(annet.getDato());
-                annettable.addCell(Integer.toString(annet.getBelop()));
-                annettable.addCell(Double.toString(sharedPreferences.getInt("ikkeferdig",25)));
+                if(greaterThan(annet.getDato(), Startdato.getText().toString())&& !greaterThan(annet.getDato(),Sluttdato.getText().toString())){
+                    annettable.addCell(annet.getDato());
+                    annettable.addCell(Integer.toString(annet.getBelop()));
+                    annettable.addCell(Double.toString(sharedPreferences.getInt("ikkeferdig",25)));
+                }
             }else{
                 Toast.makeText(this, "Noe gikk galt", Toast.LENGTH_SHORT).show();
             }
@@ -229,7 +237,6 @@ public class PdfCreatorActivity extends AppCompatActivity {
         previewPdf();
 
     }
-
     private void previewPdf() {
         File file;
         file = new File(Environment.getExternalStorageDirectory()+"/Documents/"+Lagresom.getText().toString() + ".pdf");
@@ -237,7 +244,8 @@ public class PdfCreatorActivity extends AppCompatActivity {
         if(file.exists()) {
             Intent target = new Intent(Intent.ACTION_VIEW);
             target.setDataAndType(FileProvider.getUriForFile(this, this.getApplicationContext().getPackageName() + ".com.julia.bachelor.GenericFileProvider", file), "application/pdf");
-            target.setFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
+            target.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
+            target.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
 
             Intent intent = Intent.createChooser(target, "Open File");
             try {
@@ -266,4 +274,19 @@ public class PdfCreatorActivity extends AppCompatActivity {
         }
         return false;
     }
+    boolean greaterThan(String current, String next){
+        SimpleDateFormat punktum = new SimpleDateFormat("yyyy.MM.dd");
+        SimpleDateFormat bindestrek = new SimpleDateFormat("yyyy-MM-dd");
+        try {
+            Date date1 = bindestrek.parse(current);
+            Date date2 = punktum.parse(next);
+            if(date1.after(date2)){
+                return true;
+            }
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
+
 }

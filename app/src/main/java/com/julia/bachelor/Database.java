@@ -2,6 +2,8 @@ package com.julia.bachelor;
 
 import android.os.AsyncTask;
 
+import com.julia.bachelor.helperClass.*;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -26,8 +28,6 @@ class Database {
         task.execute(url);
     }
 
-    // TODO add method for updating BeholdningUt
-
     static void getAnnetValues() {
         AnnetTask task = new AnnetTask();
         task.execute("http://www.honningbier.no/PHP/AnnetOut.php");
@@ -36,6 +36,12 @@ class Database {
     static void getBeholdningValues() {
         BeholdningTask task = new BeholdningTask();
         task.execute("http://www.honningbier.no/PHP/BeholdningOut.php");
+    }
+
+    // TODO fix method for updating BeholdningUt
+    static void updateBeholdningUt(Beholdning... beholdnings) {
+        BeholdningTask task = new BeholdningTask();
+        task.execute("http://www.honningbier.no/PHP/BeholdningUtUpdate.php");
     }
 
     static void getBeholdningUtValues() {
@@ -62,8 +68,17 @@ class Database {
         VideresalgTask task = new VideresalgTask();
         task.execute("http://www.honningbier.no/PHP/VideresalgOut.php");
     }
+/*
+    void sortMonth() {
+        CustomObj customObj = new CustomObj();
+        for (Object obj : all) {
+            customObj.add(obj);
+        }
+    }
 
-    private static class AnnetTask extends AsyncTask<String, Void, String> {
+*/
+
+    private static class AnnetTask extends AsyncTask<String, Integer, String> {
         @Override
         protected String doInBackground(String... urls) {
             // Get strings from bufferedReader.
@@ -104,6 +119,11 @@ class Database {
             } catch (Exception e) {
                 return "Noe gikk feil: " + e.toString();
             }
+        }
+
+        @Override
+        protected void onProgressUpdate(Integer... values) {
+            super.onProgressUpdate(values);
         }
 
         @Override

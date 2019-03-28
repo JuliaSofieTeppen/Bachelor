@@ -1,8 +1,8 @@
-package com.julia.bachelor;
+package com.julia.bachelor.helperClass;
 
 import java.io.Serializable;
 
-class Honning implements Serializable {
+public class Honning implements Serializable {
 
     private long _ID;
     private String Type;
@@ -11,54 +11,54 @@ class Honning implements Serializable {
     private int BondensMarkedPris;
     private int FakturaPris;
 
-    Honning() {
+    public Honning() {
     }
 
-    long get_ID() {
+    public long get_ID() {
         return _ID;
     }
 
-    void set_ID(long _ID) {
+    public void set_ID(long _ID) {
         this._ID = _ID;
     }
 
-    String getType() {
+    public String getType() {
         return Type;
     }
 
-    void setType(String type) {
+    public void setType(String type) {
         Type = type;
     }
 
-    double getStorrelse() {
+    public double getStorrelse() {
         return Storrelse;
     }
 
-    void setStorrelse(double storrelse) {
+    public void setStorrelse(double storrelse) {
         Storrelse = storrelse;
     }
 
-    int getHjemmePris() {
+    public int getHjemmePris() {
         return HjemmePris;
     }
 
-    void setHjemmePris(int hjemmePris) {
+    public void setHjemmePris(int hjemmePris) {
         HjemmePris = hjemmePris;
     }
 
-    int getBondensMarkedPris() {
+    public int getBondensMarkedPris() {
         return BondensMarkedPris;
     }
 
-    void setBondensMarkedPris(int bondensMarkedPris) {
+    public void setBondensMarkedPris(int bondensMarkedPris) {
         BondensMarkedPris = bondensMarkedPris;
     }
 
-    int getFakturaPris() {
+    public int getFakturaPris() {
         return FakturaPris;
     }
 
-    void setFakturaPris(int fakturaPris) {
+    public void setFakturaPris(int fakturaPris) {
         FakturaPris = fakturaPris;
     }
 }

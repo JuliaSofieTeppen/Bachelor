@@ -10,6 +10,14 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.julia.bachelor.helperClass.Annet;
+import com.julia.bachelor.helperClass.Beholdning;
+import com.julia.bachelor.helperClass.BondensMarked;
+import com.julia.bachelor.helperClass.Hjemme;
+import com.julia.bachelor.helperClass.Honning;
+import com.julia.bachelor.helperClass.Salg;
+import com.julia.bachelor.helperClass.Videresalg;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -25,13 +33,13 @@ public class Main extends Activity implements NavigationDrawerFragment.Navigatio
     private static final String KEY_BUNDLE = "Bundle";
     private static final String KEY_ALLSALG = "AllSalg";
 
-    static ArrayList<Honning> Honning;
-    static ArrayList<Annet> Annet;
-    static ArrayList<Hjemme> Hjemme;
+    static ArrayList<com.julia.bachelor.helperClass.Honning> Honning;
+    static ArrayList<com.julia.bachelor.helperClass.Annet> Annet;
+    static ArrayList<com.julia.bachelor.helperClass.Hjemme> Hjemme;
     static ArrayList<BondensMarked> Bm;
-    static ArrayList<Videresalg> Videresalg;
-    static ArrayList<Beholdning> Beholdning;
-    static ArrayList<Salg> Salg;
+    static ArrayList<com.julia.bachelor.helperClass.Videresalg> Videresalg;
+    static ArrayList<com.julia.bachelor.helperClass.Beholdning> Beholdning;
+    static ArrayList<com.julia.bachelor.helperClass.Salg> Salg;
     static ArrayList<Object> AllSalg;
 
     EditText dato, som1kg, som05kg, som025kg, lyng1kg, lyng05kg, lyng025kg, ingf05kg, ingf025kg, flytende;

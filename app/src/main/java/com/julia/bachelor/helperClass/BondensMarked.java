@@ -1,17 +1,15 @@
-package com.julia.bachelor;
+package com.julia.bachelor.helperClass;
 
 import java.io.Serializable;
 
-public class Hjemme implements SalgTemplate, Serializable {
+public class BondensMarked implements Serializable {
 
     private long _ID;
-    private String Kunde;
     private String Dato;
     private String Varer;
     private int Belop;
-    private String Betaling;
 
-    Hjemme() {
+    public BondensMarked() {
     }
 
     public long get_ID() {
@@ -20,14 +18,6 @@ public class Hjemme implements SalgTemplate, Serializable {
 
     public void set_ID(long _ID) {
         this._ID = _ID;
-    }
-
-    public String getKunde() {
-        return Kunde;
-    }
-
-    public void setKunde(String kunde) {
-        Kunde = kunde;
     }
 
     public String getDato() {
@@ -52,13 +42,5 @@ public class Hjemme implements SalgTemplate, Serializable {
 
     public void setBelop(int belop) {
         Belop = belop;
-    }
-
-    public String getBetaling() {
-        return Betaling;
-    }
-
-    public void setBetaling(String betaling) {
-        Betaling = betaling;
     }
 }

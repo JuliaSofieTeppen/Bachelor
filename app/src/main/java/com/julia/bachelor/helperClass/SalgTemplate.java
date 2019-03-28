@@ -1,4 +1,4 @@
-package com.julia.bachelor;
+package com.julia.bachelor.helperClass;
 
 interface SalgTemplate {
     long get_ID();

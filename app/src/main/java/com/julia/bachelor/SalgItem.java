@@ -7,6 +7,11 @@ import android.view.MenuItem;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.julia.bachelor.helperClass.Annet;
+import com.julia.bachelor.helperClass.BondensMarked;
+import com.julia.bachelor.helperClass.Hjemme;
+import com.julia.bachelor.helperClass.Videresalg;
+
 public class SalgItem extends Activity {
     private static final String KEY_OBJECT = "Object";
     private static final String KEY_BUNDLE = "Bundle";

@@ -38,6 +38,7 @@ public class Rapport extends Fragment {
     Beregninger beregninger;
     ArrayList<Object> dynamicList;
 
+
     public Rapport() {
     }
 

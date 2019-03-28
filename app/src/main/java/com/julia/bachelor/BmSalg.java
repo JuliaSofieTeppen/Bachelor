@@ -10,8 +10,11 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Date;
 import java.util.List;
 
 public class BmSalg extends Activity {
@@ -41,6 +44,10 @@ public class BmSalg extends Activity {
         Intent intent = getIntent();
         Bundle bundle = intent.getBundleExtra(KEY_BUNDLE);
         honningtyper = (ArrayList<Honning>) bundle.getSerializable(KEY_HONNING);
+
+        DateFormat dateFormat = new SimpleDateFormat("yyyy.MM.dd");
+        Date date = new Date();
+        dato.setText(dateFormat.format(date));
     }
 
     public void lagre(View v) {

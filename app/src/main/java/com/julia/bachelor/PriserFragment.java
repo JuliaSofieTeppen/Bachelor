@@ -47,7 +47,7 @@ public class PriserFragment extends Fragment {
         flyt = rootView.findViewById(R.id.flytpris);
         verdier = new ArrayList<>(Arrays.asList(kg1, kg05, kg025, ingf05kg, ingf025kg, flyt));
         Main main = new Main();
-        honningtype = main.Fåhonningtyper();
+        honningtype = main.getHonningTyper();
         try {
             if (honningtype != null) {
                 for (int i = 0; i < verdier.size(); i++) {

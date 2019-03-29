@@ -1,4 +1,5 @@
 package com.julia.bachelor.helperClass;
+
 import java.io.Serializable;
 
 public class Videresalg implements SalgTemplate, Serializable {

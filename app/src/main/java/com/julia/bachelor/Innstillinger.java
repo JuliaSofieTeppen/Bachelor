@@ -1,9 +1,8 @@
 package com.julia.bachelor;
 
-import android.content.Intent;
+import android.app.Fragment;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.app.Fragment;
 import android.preference.PreferenceManager;
 import android.support.constraint.ConstraintLayout;
 import android.view.LayoutInflater;
@@ -28,9 +27,9 @@ public class Innstillinger extends Fragment {
     SharedPreferences.Editor editor;
     EditText ferdigprodukt, ikkeferdig;
     Button momslagre;
-    EditText enkghjemme,halvkghjemme,kvartkghjemme,
-            enkgbm,halvkgbm,kvartkgbm,
-            enkgfak,halvkgfak,kvartkgfak;
+    EditText enkghjemme, halvkghjemme, kvartkghjemme,
+            enkgbm, halvkgbm, kvartkgbm,
+            enkgfak, halvkgfak, kvartkgfak;
     List<Honning> honningtype;
     List<EditText> verdier;
 
@@ -73,18 +72,18 @@ public class Innstillinger extends Fragment {
         sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this.getContext());
         editor = sharedPreferences.edit();
 
-        verdier = new ArrayList<>(Arrays.asList(enkghjemme,enkgbm,enkgfak,halvkghjemme,halvkgbm,
-                halvkgfak,kvartkghjemme,kvartkgbm,kvartkgfak));
+        verdier = new ArrayList<>(Arrays.asList(enkghjemme, enkgbm, enkgfak, halvkghjemme, halvkgbm,
+                halvkgfak, kvartkghjemme, kvartkgbm, kvartkgfak));
 
         Main main = new Main();
-        honningtype = main.Fåhonningtyper();
+        honningtype = main.getHonningTyper();
 
         try {
             if (honningtype != null) {
-                for (int i = 0; i < honningtype.size(); i=i+3) {
-                    verdier.get(i).setText(honningtype.get(i+3).getHjemmePris());
-                    verdier.get(i+1).setText(honningtype.get(i+3).getBondensMarkedPris());
-                    verdier.get(i+2).setText(honningtype.get(i+3).getHjemmePris());
+                for (int i = 0; i < honningtype.size(); i = i + 3) {
+                    verdier.get(i).setText(honningtype.get(i + 3).getHjemmePris());
+                    verdier.get(i + 1).setText(honningtype.get(i + 3).getBondensMarkedPris());
+                    verdier.get(i + 2).setText(honningtype.get(i + 3).getHjemmePris());
                 }
             }
         } catch (NullPointerException e) {
@@ -170,7 +169,8 @@ public class Innstillinger extends Fragment {
             exe.setVisibility(View.VISIBLE);
         }
     }
-    public void lagre(View view){
+
+    public void lagre(View view) {
 
     }
 }

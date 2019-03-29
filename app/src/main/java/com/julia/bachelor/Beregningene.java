@@ -1,5 +1,10 @@
 package com.julia.bachelor;
 
+import com.julia.bachelor.helperClass.Annet;
+import com.julia.bachelor.helperClass.BondensMarked;
+import com.julia.bachelor.helperClass.Hjemme;
+import com.julia.bachelor.helperClass.Videresalg;
+
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -7,12 +12,13 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.Iterator;
+import java.util.Locale;
 
 class Beregningene implements Template {
 
+    private static final SimpleDateFormat DATO_FORMAT = new java.text.SimpleDateFormat("yyyy-mm-dd", Locale.US);
     private final double SATSH = 0.25;
     private final double SATSL = 0.15;
-    private static final SimpleDateFormat DATO_FORMAT = new java.text.SimpleDateFormat("yyyy-mm-dd");
 
     public Beregningene() {
 

@@ -12,8 +12,11 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Date;
 
 public class SalgAnnet extends Activity implements AdapterView.OnItemSelectedListener {
     String betalingsmetode;
@@ -31,7 +34,7 @@ public class SalgAnnet extends Activity implements AdapterView.OnItemSelectedLis
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_salg_annet);
-        getActionBar().setDisplayHomeAsUpEnabled(true);
+        if (getActionBar() != null) getActionBar().setDisplayHomeAsUpEnabled(true);
         betaling = findViewById(R.id.sabetalingsmetode);
         AntBifolk = findViewById(R.id.antbifolk);
         AntVoks = findViewById(R.id.antvoks);
@@ -46,6 +49,10 @@ public class SalgAnnet extends Activity implements AdapterView.OnItemSelectedLis
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         betaling.setAdapter(adapter);
         betaling.setOnItemSelectedListener(this);
+
+        DateFormat dateFormat = new SimpleDateFormat("yyyy.MM.dd");
+        Date date = new Date();
+        Dato.setText(dateFormat.format(date));
     }
 
     @Override
@@ -83,8 +90,9 @@ public class SalgAnnet extends Activity implements AdapterView.OnItemSelectedLis
                 if (tell == 0) {
                     Toast.makeText(this, "Legg til minst et produkt", Toast.LENGTH_SHORT).show();
                 } else {
-                    //TODO send alle verdier til databasen
-                    //  db.executeOnDB("www.honningbier.no/PHP/Beholdning.php/?");
+                    Database.executeOnDB("http://www.honningbier.no/PHP/AnnetIn.php/?Kunde="+KundeNavn.getText().toString()+
+                            "&Dato=" + Dato.getText().toString() + "&Varer=" + getVarer() + "&Belop=" + Pris.getText().toString()+
+                            "&Betaling=" + betaling.getSelectedItem().toString());
                     Toast.makeText(this, "Annet salg lagret", Toast.LENGTH_SHORT).show();
                     finish();
                 }
@@ -96,6 +104,18 @@ public class SalgAnnet extends Activity implements AdapterView.OnItemSelectedLis
         }
     }
 
+    public String getVarer() {
+        String[] names = {"Bifolk","Voks","Pollinering","Dronninger"};
+        StringBuilder stringBuilder = new StringBuilder();
+        for (int i = 0; i < verdier.size(); i++) {
+            if (verdier.get(i).getText().toString().equals("")) {
+            }else{
+                stringBuilder.append(names[i] + "-" + verdier.get(i).getText().toString()+",");
+            }
+        }
+        return stringBuilder.toString();
+    }
+
 
     @Override
     public void onBackPressed() {
@@ -103,26 +123,38 @@ public class SalgAnnet extends Activity implements AdapterView.OnItemSelectedLis
     }
 
     public void goback() {
-        //TODO check fields before poppopen skal syntes.
-        //android.app.AlertDialog.Builder builder = new android.app.AlertDialog.Builder(FakturaSalg.this,R.style.AlertDialog);
-        final AlertDialog.Builder builder = new AlertDialog.Builder(SalgAnnet.this);
-        builder.setMessage("Vil du gå tilbake?");
-        builder.setCancelable(true);
-        builder.setNegativeButton("Yes", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                finish();
-            }
-        });
-        builder.setPositiveButton("No", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                dialog.cancel();
-            }
-        });
-        AlertDialog alertDialog = builder.create();
-        alertDialog.show();
-
+        if (ValueInField()) {
+            //android.app.AlertDialog.Builder builder = new android.app.AlertDialog.Builder(FakturaSalg.this,R.style.AlertDialog);
+            final AlertDialog.Builder builder = new AlertDialog.Builder(SalgAnnet.this);
+            builder.setMessage("Vil du gå tilbake?");
+            builder.setCancelable(true);
+            builder.setNegativeButton("Ja", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    finish();
+                }
+            });
+            builder.setPositiveButton("Nei", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    dialog.cancel();
+                }
+            });
+            AlertDialog alertDialog = builder.create();
+            alertDialog.show();
+        } else {
+            finish();
+        }
     }
+
+    public boolean ValueInField() {
+        for (EditText verdi : verdier) {
+            if (!(verdi.getText().toString().equals(""))) {
+                return true;
+            }
+        }
+        return false;
+    }
+
 
 }

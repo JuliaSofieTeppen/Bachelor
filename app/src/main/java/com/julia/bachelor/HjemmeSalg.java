@@ -3,6 +3,7 @@ package com.julia.bachelor;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
@@ -13,6 +14,8 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.julia.bachelor.helperClass.Honning;
+
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -21,48 +24,39 @@ import java.util.List;
 import java.util.Locale;
 
 public class HjemmeSalg extends Activity implements AdapterView.OnItemSelectedListener {
-    static List<Honning> honningtype;
+    private static final String KEY_BUNDLE = "Bundle";
+    private static final String KEY_HONNING = "Honning";
+    static ArrayList<Honning> honningtype;
     String betalingsmetode;
     List<Integer> telling;
-    TextView oversikt;
+    TextView oversikt, oversikttall, total;
     EditText kundenavn;
-    TextView oversikttall;
-    Database database;
-    TextView total;
     Spinner betaling;
     int kr;
 
     @Override
+    @SuppressWarnings("unchecked")
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_hjemme_salg);
         kr = 0;
-        database = new Database();
-        database.getHonningType();
-        getActionBar().setDisplayHomeAsUpEnabled(true);
+        if (getActionBar() != null) getActionBar().setDisplayHomeAsUpEnabled(true);
         oversikt = findViewById(R.id.oversikt);
         oversikttall = findViewById(R.id.oversikttall);
         betaling = findViewById(R.id.betalingsmetode);
         kundenavn = findViewById(R.id.kundenavn);
         total = findViewById(R.id.total);
         telling = new ArrayList<>();
-        setTelling();
-
+        Intent intent = getIntent();
+        Bundle bundle = intent.getBundleExtra(KEY_BUNDLE);
+        honningtype = (ArrayList<Honning>) bundle.getSerializable(KEY_HONNING);
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.betalingsmetode, android.R.layout.simple_spinner_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         betaling.setAdapter(adapter);
         betaling.setOnItemSelectedListener(this);
+        setTelling();
     }
 
-    public String reverseDate(String date) {
-        String[] strings = date.split("\\.");
-        date = "";
-        for (int i = strings.length - 1; i >= 0; i--) {
-            date += strings[i];
-            date += i >= 1 ? "." : "";
-        }
-        return date;
-    }
 
     String getVarer() {
         StringBuilder varer = new StringBuilder();
@@ -81,12 +75,12 @@ public class HjemmeSalg extends Activity implements AdapterView.OnItemSelectedLi
     }
 
     void insertValues() {
-        database.executeOnDB("http://www.honningbier.no/PHP/HjemmeIn.php/?Kunde=" + kundenavn.getText().toString() +
+        Database.executeOnDB("http://www.honningbier.no/PHP/HjemmeIn.php/?Kunde=" + kundenavn.getText().toString() +
                 "&Dato=" + getDate() + "&Varer=" + getVarer() + "&Belop=" + kr + "&Betaling=" + betalingsmetode);
     }
 
     void setTelling() {
-        for (int c = 0; c < 9; c++) {
+        for (int c = 0; c < honningtype.size(); c++) {
             telling.add(0);
         }
     }
@@ -103,7 +97,7 @@ public class HjemmeSalg extends Activity implements AdapterView.OnItemSelectedLi
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        this.finish();
+        goback();
         return true;
     }
 
@@ -160,8 +154,6 @@ public class HjemmeSalg extends Activity implements AdapterView.OnItemSelectedLi
         kr = kr + honningtype.get(8).getHjemmePris();
         setText();
     }
-    //TODO hvordan kan vi legge til flere verdier/ slette honningtyper (dynamisk oppsett)
-    // case, for dynamisk oppsett
 
     public void setText() {
         StringBuilder sb = new StringBuilder();
@@ -178,10 +170,6 @@ public class HjemmeSalg extends Activity implements AdapterView.OnItemSelectedLi
         total.setText(text);
     }
 
-    public void setArrays(ArrayList<Honning> type) {
-        honningtype = type;
-    }
-
     public void slettliste(View v) {
         for (int i = 0; i < telling.size(); i++) {
             telling.set(i, 0);
@@ -195,6 +183,7 @@ public class HjemmeSalg extends Activity implements AdapterView.OnItemSelectedLi
             Toast.makeText(this, "Skriv inn navn på kunde", Toast.LENGTH_SHORT).show();
         } else {
             if (!(oversikt.getText().toString().equals(""))) {
+                // TODO update beholdnings
                 insertValues();
                 Toast.makeText(this, "Hjemmesalg lagret", Toast.LENGTH_SHORT).show();
                 finish();
@@ -210,26 +199,35 @@ public class HjemmeSalg extends Activity implements AdapterView.OnItemSelectedLi
     }
 
     public void goback() {
-        //TODO check fields before poppopen skal syntes.
-        //android.app.AlertDialog.Builder builder = new android.app.AlertDialog.Builder(FakturaSalg.this,R.style.AlertDialog);
-        final AlertDialog.Builder builder = new AlertDialog.Builder(HjemmeSalg.this);
-        builder.setMessage("Vil du gå tilbake?");
-        builder.setCancelable(true);
-        builder.setNegativeButton("Yes", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                finish();
-            }
-        });
-        builder.setPositiveButton("No", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                dialog.cancel();
-            }
-        });
-        AlertDialog alertDialog = builder.create();
-        alertDialog.show();
-
+        if (ValueInField()) {
+            final AlertDialog.Builder builder = new AlertDialog.Builder(HjemmeSalg.this);
+            builder.setMessage("Vil du gå tilbake?");
+            builder.setCancelable(true);
+            builder.setNegativeButton("Ja", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    finish();
+                }
+            });
+            builder.setPositiveButton("Nei", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    dialog.cancel();
+                }
+            });
+            AlertDialog alertDialog = builder.create();
+            alertDialog.show();
+        } else {
+            finish();
+        }
     }
 
+    public boolean ValueInField() {
+        for (int i = 0; i < telling.size(); i++) {
+            if (!(telling.get(i).equals(0))) {
+                return true;
+            }
+        }
+        return false;
+    }
 }

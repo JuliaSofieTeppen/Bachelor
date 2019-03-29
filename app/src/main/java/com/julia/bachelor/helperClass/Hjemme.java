@@ -1,6 +1,8 @@
-package com.julia.bachelor;
+package com.julia.bachelor.helperClass;
 
-public class Hjemme implements Salg {
+import java.io.Serializable;
+
+public class Hjemme implements SalgTemplate, Serializable {
 
     private long _ID;
     private String Kunde;
@@ -9,15 +11,7 @@ public class Hjemme implements Salg {
     private int Belop;
     private String Betaling;
 
-    Hjemme() {
-    }
-
-    public Hjemme(String kunde, String dato, String varer, int belop, String betaling) {
-        Kunde = kunde;
-        Dato = dato;
-        Varer = varer;
-        Belop = belop;
-        Betaling = betaling;
+    public Hjemme() {
     }
 
     public long get_ID() {

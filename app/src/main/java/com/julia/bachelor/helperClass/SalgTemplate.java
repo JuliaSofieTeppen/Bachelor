@@ -1,6 +1,6 @@
-package com.julia.bachelor;
+package com.julia.bachelor.helperClass;
 
-interface Salg {
+interface SalgTemplate {
     long get_ID();
 
     void set_ID(long _ID);

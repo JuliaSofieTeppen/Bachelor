@@ -3,9 +3,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#ffeece"
+    android:background="#cccc"
     android:choiceMode="singleChoice"
-    android:listSelector="#ffd6bc"
     android:divider="@android:color/transparent"
     android:dividerHeight="0dp"
     tools:context=".NavigationDrawerFragment" />

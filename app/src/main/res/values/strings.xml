@@ -1,22 +1,36 @@
 <resources>
-    <string name="app_name">Zum</string>
+    <string name="app_name">JTR</string>
     <string name="title_activity_main">Zum</string>
-    <string name="title_section1">Salg</string>
-    <string name="title_section2">Beholdning</string>
-    <string name="title_section3">Priser</string>
-    <string name="title_section4">Innstillinger</string>
-
+    <string name="title_section1">Hovedside</string>
+    <string name="title_section2">Rapporter</string>
+    <string name="title_section3">Legg til Beholdning</string>
+    <string name="title_section4">Priser</string>
+    <string name="title_section5">Innstillinger</string>
+    <string name="title_section6">Eksporter</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
-
     <string name="action_example">Example action</string>
-
     <string name="action_settings">Innstillinger</string>
-
+    <string name="toto">10001</string>
     <string-array name="betalingsmetode">
         <item>Kontant</item>
         <item>Kort</item>
         <item>Vipps</item>
     </string-array>
+    <string-array name="datoer">
+        <item>Dag</item>
+        <item>Måned</item>
+        <item>År</item>
+    </string-array>
+    <string-array name="Salg">
+        <item>Alle</item>
+        <item>Bondens marked</item>
+        <item>Hjemme salg</item>
+        <item>Videre salg</item>
+        <item>Annet</item>
+    </string-array>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 
 </resources>

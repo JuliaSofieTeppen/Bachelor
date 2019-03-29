@@ -1,6 +1,7 @@
-package com.julia.bachelor;
+package com.julia.bachelor.helperClass;
+import java.io.Serializable;
 
-class Videresalg implements Salg {
+public class Videresalg implements SalgTemplate, Serializable {
 
     private long _ID;
     private String Kunde;
@@ -10,16 +11,7 @@ class Videresalg implements Salg {
     private String Betaling;
     private double Moms;
 
-    Videresalg() {
-    }
-
-    Videresalg(String kunde, String dato, String varer, int belop, String betaling, double moms) {
-        Kunde = kunde;
-        Dato = dato;
-        Varer = varer;
-        Belop = belop;
-        Betaling = betaling;
-        Moms = moms;
+    public Videresalg() {
     }
 
     public long get_ID() {
@@ -70,11 +62,11 @@ class Videresalg implements Salg {
         Betaling = betaling;
     }
 
-    double getMoms() {
+    public double getMoms() {
         return Moms;
     }
 
-    void setMoms(double moms) {
+    public void setMoms(double moms) {
         Moms = moms;
     }
 }

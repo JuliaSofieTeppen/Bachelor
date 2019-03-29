@@ -10,8 +10,6 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
 import com.julia.bachelor.helperClass.Honning;
 
 import java.text.DateFormat;
@@ -20,15 +18,16 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 
 public class BmSalg extends Activity {
-    static List<Honning> honningtyper;
     private static final String KEY_BUNDLE = "Bundle";
     private static final String KEY_HONNING = "Honning";
+    static List<Honning> honningtyper;
     EditText dato, som1kg, som05kg, som025kg, lyng1kg, lyng05kg, lyng025kg, ingf05kg, ingf025kg, flytende;
     List<EditText> verdier;
 
-    @Override
+    @Override @SuppressWarnings("unchecked")
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_bm_salg);
@@ -49,7 +48,7 @@ public class BmSalg extends Activity {
         Bundle bundle = intent.getBundleExtra(KEY_BUNDLE);
         honningtyper = (ArrayList<Honning>) bundle.getSerializable(KEY_HONNING);
 
-        DateFormat dateFormat = new SimpleDateFormat("yyyy.MM.dd");
+        DateFormat dateFormat = new SimpleDateFormat("yyyy.MM.dd", Locale.US);
         Date date = new Date();
         dato.setText(dateFormat.format(date));
     }

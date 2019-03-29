@@ -2,7 +2,13 @@ package com.julia.bachelor;
 
 import android.os.AsyncTask;
 
-import com.julia.bachelor.helperClass.*;
+import com.julia.bachelor.helperClass.Annet;
+import com.julia.bachelor.helperClass.Beholdning;
+import com.julia.bachelor.helperClass.BondensMarked;
+import com.julia.bachelor.helperClass.Hjemme;
+import com.julia.bachelor.helperClass.Honning;
+import com.julia.bachelor.helperClass.Salg;
+import com.julia.bachelor.helperClass.Videresalg;
 
 import org.json.JSONArray;
 import org.json.JSONException;

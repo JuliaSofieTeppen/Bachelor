@@ -1,9 +1,8 @@
 package com.julia.bachelor;
 
-import android.content.Intent;
+import android.app.Fragment;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.app.Fragment;
 import android.preference.PreferenceManager;
 import android.support.constraint.ConstraintLayout;
 import android.view.LayoutInflater;
@@ -87,13 +86,13 @@ public class Innstillinger extends Fragment {
         lagre = rootView.findViewById(R.id.lagre);
         sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this.getContext());
         editor = sharedPreferences.edit();
-
         BMverdier = new ArrayList<>(Arrays.asList(enkgbm,halvkgbm,kvartkgbm,ingfhalvkgbm,ingfkvartkgbm,flytbm));
         HjemmeVerdier = new ArrayList<>(Arrays.asList(enkghjemme,halvkghjemme,kvartkghjemme,ingfhalvkghjemme,ingfkvartkghjemme,flythjemme));
         FakturaVerdier = new ArrayList<>(Arrays.asList(enkgfak,halvkgfak,kvartkgfak,ingfhalvkgfak,ingfkvartkgfak,flytfak));
 
+
         Main main = new Main();
-        honningtype = main.Fåhonningtyper();
+        honningtype = main.getHonningTyper();
 
         try {
             if (honningtype != null) {
@@ -211,5 +210,4 @@ public class Innstillinger extends Fragment {
             exe.setVisibility(View.VISIBLE);
         }
     }
-
 }

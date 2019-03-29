@@ -17,6 +17,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
+import java.util.Locale;
 
 public class SalgAnnet extends Activity implements AdapterView.OnItemSelectedListener {
     String betalingsmetode;
@@ -50,7 +51,7 @@ public class SalgAnnet extends Activity implements AdapterView.OnItemSelectedLis
         betaling.setAdapter(adapter);
         betaling.setOnItemSelectedListener(this);
 
-        DateFormat dateFormat = new SimpleDateFormat("yyyy.MM.dd");
+        DateFormat dateFormat = new SimpleDateFormat("yyyy.MM.dd", Locale.US);
         Date date = new Date();
         Dato.setText(dateFormat.format(date));
     }
@@ -90,8 +91,8 @@ public class SalgAnnet extends Activity implements AdapterView.OnItemSelectedLis
                 if (tell == 0) {
                     Toast.makeText(this, "Legg til minst et produkt", Toast.LENGTH_SHORT).show();
                 } else {
-                    Database.executeOnDB("http://www.honningbier.no/PHP/AnnetIn.php/?Kunde="+KundeNavn.getText().toString()+
-                            "&Dato=" + Dato.getText().toString() + "&Varer=" + getVarer() + "&Belop=" + Pris.getText().toString()+
+                    Database.executeOnDB("http://www.honningbier.no/PHP/AnnetIn.php/?Kunde=" + KundeNavn.getText().toString() +
+                            "&Dato=" + Dato.getText().toString() + "&Varer=" + getVarer() + "&Belop=" + Pris.getText().toString() +
                             "&Betaling=" + betaling.getSelectedItem().toString());
                     Toast.makeText(this, "Annet salg lagret", Toast.LENGTH_SHORT).show();
                     finish();
@@ -105,12 +106,11 @@ public class SalgAnnet extends Activity implements AdapterView.OnItemSelectedLis
     }
 
     public String getVarer() {
-        String[] names = {"Bifolk","Voks","Pollinering","Dronninger"};
+        String[] names = {"Bifolk", "Voks", "Pollinering", "Dronninger"};
         StringBuilder stringBuilder = new StringBuilder();
         for (int i = 0; i < verdier.size(); i++) {
-            if (verdier.get(i).getText().toString().equals("")) {
-            }else{
-                stringBuilder.append(names[i] + "-" + verdier.get(i).getText().toString()+",");
+            if (!verdier.get(i).getText().toString().equals("")) {
+                stringBuilder.append(names[i]).append("-").append(verdier.get(i).getText().toString()).append(",");
             }
         }
         return stringBuilder.toString();

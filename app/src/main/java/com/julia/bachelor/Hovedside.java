@@ -32,8 +32,9 @@ public class Hovedside extends Fragment {
     private static final String KEY_BEHOLDNINGUT = "Salg";
     private static final String KEY_HONNING = "Honning";
     private static final String KEY_BUNDLE = "Bundle";
+
     Button addbutton;
-    TextView info, navn,dato;
+    TextView info, navn, dato;
     List arraylist;
     ArrayList<Beholdning> beholdnings;
     ArrayList<Salg> salg;
@@ -130,23 +131,24 @@ public class Hovedside extends Fragment {
     }
 
     String setValueString() {
-        Beholdning beholdning=null;
+      
+        Beholdning beholdning = null;
 
         try {
-                beholdning = findCurrentBeholdning();
-        }catch (NullPointerException e){
+            beholdning = findCurrentBeholdning();
+        } catch (NullPointerException e) {
             e.printStackTrace();
         }
-        return beholdning==null? ":/" :
-               beholdning.getSommer() + "\n" +
-               beholdning.getSommerH() + " \n" +
-               beholdning.getSommerK() + " \n" +
-               beholdning.getLyng() + " \n" +
-               beholdning.getLyngH() + " \n" +
-               beholdning.getLyngK() + " \n" +
-               beholdning.getIngeferH() + " \n" +
-               beholdning.getIngeferK() + " \n" +
-               beholdning.getFlytende() + " \n";
+        return beholdning == null ? ":/" :
+                beholdning.getSommer() + "\n" +
+                        beholdning.getSommerH() + " \n" +
+                        beholdning.getSommerK() + " \n" +
+                        beholdning.getLyng() + " \n" +
+                        beholdning.getLyngH() + " \n" +
+                        beholdning.getLyngK() + " \n" +
+                        beholdning.getIngeferH() + " \n" +
+                        beholdning.getIngeferK() + " \n" +
+                        beholdning.getFlytende() + " \n";
     }
 
     Beholdning findCurrentBeholdning() {
@@ -160,18 +162,19 @@ public class Hovedside extends Fragment {
                 if(greaterThan(current, beholdnings.get(i))){
                     current = beholdnings.get(i);
                     beholdningUt = salg.get(i);
+
                 }
             }
             return current;
-        }catch (IndexOutOfBoundsException e){
+        } catch (IndexOutOfBoundsException e) {
             Toast.makeText(this.getContext(), "Internett ikke tilkoblet", Toast.LENGTH_SHORT).show();
             addbutton.setVisibility(View.GONE);
         }
-        if(current== null) throw new NullPointerException("Possible problem with connection");
+        if (current == null) throw new NullPointerException("Possible problem with connection");
         return current;
     }
 
-    boolean greaterThan(Beholdning current, Beholdning next){
+    boolean greaterThan(Beholdning current, Beholdning next) {
         ArrayList<String> dates = new ArrayList<>(Arrays.asList(current.getDato(), next.getDato()));
         Collections.sort(dates);
         return !dates.get(1).equals(current.getDato());

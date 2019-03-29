@@ -16,8 +16,6 @@ import android.widget.ScrollView;
 import android.widget.Spinner;
 import android.widget.Toast;
 
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
 import com.julia.bachelor.helperClass.Honning;
 
 import java.text.DateFormat;
@@ -26,6 +24,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 
 public class FakturaSalg extends Activity implements AdapterView.OnItemSelectedListener {
     private static final String KEY_BUNDLE = "Bundle";
@@ -39,6 +38,7 @@ public class FakturaSalg extends Activity implements AdapterView.OnItemSelectedL
     ScrollView layout;
 
     @Override
+    @SuppressWarnings("unchecked")
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_faktura_salg);
@@ -68,7 +68,7 @@ public class FakturaSalg extends Activity implements AdapterView.OnItemSelectedL
         setBetalingsmetodespinner();
         setMomsspinner(sharedPreferences);
 
-        DateFormat dateFormat = new SimpleDateFormat("yyyy.MM.dd");
+        DateFormat dateFormat = new SimpleDateFormat("yyyy.MM.dd", Locale.US);
         Date date = new Date();
         dato.setText(dateFormat.format(date));
 

@@ -1,6 +1,6 @@
-package com.julia.bachelor;
+package com.julia.bachelor.helperClass;
 
-class BeholdningUt implements java.io.Serializable{
+public class Salg implements java.io.Serializable {
     private long _ID;
     private int Sommer;
     private int SommerH;
@@ -13,94 +13,94 @@ class BeholdningUt implements java.io.Serializable{
     private int Flytende;
     private String Dato;
 
-    BeholdningUt() {
+    public Salg() {
     }
 
-    long get_ID() {
+    public long get_ID() {
         return _ID;
     }
 
-    void set_ID(long _ID) {
+    public void set_ID(long _ID) {
         this._ID = _ID;
     }
 
-    int getSommer() {
+    public int getSommer() {
         return Sommer;
     }
 
-    void setSommer(int sommer) {
+    public void setSommer(int sommer) {
         Sommer = sommer;
     }
 
-    int getSommerH() {
+    public int getSommerH() {
         return SommerH;
     }
 
-    void setSommerH(int sommerH) {
+    public void setSommerH(int sommerH) {
         SommerH = sommerH;
     }
 
-    int getSommerK() {
+    public int getSommerK() {
         return SommerK;
     }
 
-    void setSommerK(int sommerK) {
+    public void setSommerK(int sommerK) {
         SommerK = sommerK;
     }
 
-    int getLyng() {
+    public int getLyng() {
         return Lyng;
     }
 
-    void setLyng(int lyng) {
+    public void setLyng(int lyng) {
         Lyng = lyng;
     }
 
-    int getLyngH() {
+    public int getLyngH() {
         return LyngH;
     }
 
-    void setLyngH(int lyngH) {
+    public void setLyngH(int lyngH) {
         LyngH = lyngH;
     }
 
-    int getLyngK() {
+    public int getLyngK() {
         return LyngK;
     }
 
-    void setLyngK(int lyngK) {
+    public void setLyngK(int lyngK) {
         LyngK = lyngK;
     }
 
-    int getIngeferH() {
+    public int getIngeferH() {
         return IngeferH;
     }
 
-    void setIngeferH(int ingeferH) {
+    public void setIngeferH(int ingeferH) {
         IngeferH = ingeferH;
     }
 
-    int getIngeferK() {
+    public int getIngeferK() {
         return IngeferK;
     }
 
-    void setIngeferK(int ingeferK) {
+    public void setIngeferK(int ingeferK) {
         IngeferK = ingeferK;
     }
 
-    int getFlytende() {
+    public int getFlytende() {
         return Flytende;
     }
 
-    void setFlytende(int flytende) {
+    public void setFlytende(int flytende) {
         Flytende = flytende;
     }
 
-    String getDato() {
+    public String getDato() {
         return Dato;
     }
 
-    void setDato(String dato) {
+    public void setDato(String dato) {
         Dato = dato;
     }
 }

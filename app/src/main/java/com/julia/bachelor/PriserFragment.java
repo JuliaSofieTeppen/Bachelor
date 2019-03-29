@@ -7,18 +7,15 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.julia.bachelor.helperClass.Honning;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
 public class PriserFragment extends Fragment {
     private static final String ARG_SECTION_NUMBER = "section_number";
-    TextView kg1;
-    TextView kg05;
-    TextView kg025;
-    TextView ingf05kg;
-    TextView ingf025kg;
-    TextView flyt;
+    TextView kg1, kg05, kg025, ingf05kg, ingf025kg, flyt;
     List<TextView> verdier;
     List<Honning> honningtype;
 
@@ -37,7 +34,8 @@ public class PriserFragment extends Fragment {
         return fragment;
     }
 
-    @Override @SuppressWarnings("unchecked")
+    @Override
+    @SuppressWarnings("unchecked")
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_priser, container, false);
@@ -48,18 +46,18 @@ public class PriserFragment extends Fragment {
         ingf025kg = rootView.findViewById(R.id.ingf025kgpris);
         flyt = rootView.findViewById(R.id.flytpris);
         verdier = new ArrayList<>(Arrays.asList(kg1, kg05, kg025, ingf05kg, ingf025kg, flyt));
-        honningtype = new ArrayList<>();
+        Main main = new Main();
+        honningtype = main.Fåhonningtyper();
         try {
-            honningtype = (ArrayList<Honning>) (getArguments().getSerializable("params"));
-            for(int i = 0; i<verdier.size();i++){
-                String s = "" + honningtype.get(i+3).getHjemmePris()+ "kr";
-                verdier.get(i).setText(s);
+            if (honningtype != null) {
+                for (int i = 0; i < verdier.size(); i++) {
+                    String s = "" + honningtype.get(i + 3).getHjemmePris() + "kr";
+                    verdier.get(i).setText(s);
+                }
             }
         } catch (NullPointerException e) {
             e.printStackTrace();
         }
         return rootView;
     }
-
-
 }

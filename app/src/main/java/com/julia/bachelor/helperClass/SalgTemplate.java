@@ -1,8 +1,6 @@
-package com.julia.bachelor;
+package com.julia.bachelor.helperClass;
 
-import java.io.Serializable;
-
-interface Salg {
+interface SalgTemplate {
     long get_ID();
 
     void set_ID(long _ID);

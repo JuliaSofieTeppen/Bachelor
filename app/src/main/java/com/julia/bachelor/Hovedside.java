@@ -39,6 +39,7 @@ public class Hovedside extends Fragment {
     ArrayList<Beholdning> beholdnings;
     ArrayList<Salg> salg;
     ArrayList<Honning> honning;
+    Salg beholdningUt;
 
     public Hovedside() {
     }
@@ -130,7 +131,9 @@ public class Hovedside extends Fragment {
     }
 
     String setValueString() {
+      
         Beholdning beholdning = null;
+
         try {
             beholdning = findCurrentBeholdning();
         } catch (NullPointerException e) {
@@ -150,11 +153,16 @@ public class Hovedside extends Fragment {
 
     Beholdning findCurrentBeholdning() {
         Beholdning current = null;
+        beholdningUt = null;
         try {
-            current = beholdnings.get(beholdnings.size() - 1);
-            for (Beholdning beholdning : beholdnings) {
-                if (greaterThan(current, beholdning)) {
-                    current = beholdning;
+            current= beholdnings.get(beholdnings.size()-1);
+            beholdningUt = salg.get(salg.size()-1);
+            int i = 0;
+            for(i=0; i<beholdnings.size(); i++){
+                if(greaterThan(current, beholdnings.get(i))){
+                    current = beholdnings.get(i);
+                    beholdningUt = salg.get(i);
+
                 }
             }
             return current;

@@ -191,4 +191,5 @@ public class Main extends Activity implements NavigationDrawerFragment.Navigatio
         AllSalg.addAll(Videresalg);
         AllSalg.addAll(Annet);
     }
+
 }

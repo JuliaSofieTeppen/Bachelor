@@ -6,7 +6,6 @@ public class Honning implements Serializable {
 
     private long _ID;
     private String Type;
-    private double Storrelse;
     private int HjemmePris;
     private int BondensMarkedPris;
     private int FakturaPris;
@@ -28,14 +27,6 @@ public class Honning implements Serializable {
 
     public void setType(String type) {
         Type = type;
-    }
-
-    public double getStorrelse() {
-        return Storrelse;
-    }
-
-    public void setStorrelse(double storrelse) {
-        Storrelse = storrelse;
     }
 
     public int getHjemmePris() {

@@ -131,7 +131,7 @@ public class HovedsideFragment extends Fragment {
     }
 
     String setValueString() {
-      
+
         Beholdning beholdning = null;
 
         try {
@@ -140,26 +140,26 @@ public class HovedsideFragment extends Fragment {
             e.printStackTrace();
         }
         return beholdning == null ? ":/" :
-                beholdning.getSommer() + "\n" +
-                        beholdning.getSommerH() + " \n" +
-                        beholdning.getSommerK() + " \n" +
-                        beholdning.getLyng() + " \n" +
-                        beholdning.getLyngH() + " \n" +
-                        beholdning.getLyngK() + " \n" +
-                        beholdning.getIngeferH() + " \n" +
-                        beholdning.getIngeferK() + " \n" +
-                        beholdning.getFlytende() + " \n";
+                (beholdning.getSommer() - beholdningUt.getSommer()) + "\n" +
+                        (beholdning.getSommerH() - beholdningUt.getSommerH()) + " \n" +
+                        (beholdning.getSommerK() - beholdningUt.getSommerK()) + " \n" +
+                        (beholdning.getLyng() - beholdningUt.getLyng()) + " \n" +
+                        (beholdning.getLyngH() - beholdningUt.getLyngH()) + " \n" +
+                        (beholdning.getLyngK() - beholdningUt.getLyngK()) + " \n" +
+                        (beholdning.getIngeferH() - beholdningUt.getIngeferH()) + " \n" +
+                        (beholdning.getIngeferK() - beholdningUt.getIngeferK()) + " \n" +
+                        (beholdning.getFlytende() - beholdningUt.getFlytende()) + " \n";
     }
 
     Beholdning findCurrentBeholdning() {
         Beholdning current = null;
         beholdningUt = null;
         try {
-            current= beholdnings.get(beholdnings.size()-1);
-            beholdningUt = salg.get(salg.size()-1);
-            int i = 0;
-            for(i=0; i<beholdnings.size(); i++){
-                if(greaterThan(current, beholdnings.get(i))){
+            current = beholdnings.get(beholdnings.size() - 1);
+            beholdningUt = salg.get(salg.size() - 1);
+            int i;
+            for (i = 0; i < beholdnings.size(); i++) {
+                if (greaterThan(current, beholdnings.get(i))) {
                     current = beholdnings.get(i);
                     beholdningUt = salg.get(i);
 

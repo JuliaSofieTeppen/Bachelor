@@ -1,6 +1,8 @@
 package com.julia.bachelor.helperClass;
 
-public class SortedObjects {
+import java.io.Serializable;
+
+public class SortedObjects implements Serializable {
     private String Varer;
     private int Belop;
     /**
@@ -10,7 +12,7 @@ public class SortedObjects {
     private String dato;
 
     public SortedObjects() {
-        Varer = "1-0,2-0,3-0,4-0,5-0,6-0,7-0";
+        Varer = "1-0,2-0,3-0,4-0,5-0,6-0,7-0,8-0,9-0";
         Belop = 0;
         Betaling = new int[2];
     }
@@ -40,10 +42,10 @@ public class SortedObjects {
         String[] OriginalPair = Varer.split(",");
         int[] newValues = new int[addPair.length];
         for (int i = 0; i < addPair.length; i++) { // {1-2, 2-2, 3-2, 4-2, 5-2, 6-2, 7-2}
-            String[] add = addPair[i].split("-"); // {1,2} {2,2}
-            String[] original = OriginalPair[i].split("-"); // {1,2} {2,2}
-            int count = Integer.parseInt(add[1]) + Integer.parseInt(original[1]);
-            newValues[i] = count;
+           // String[] add = addPair[i].split("-"); // {1,2} {2,2}
+           // String[] original = OriginalPair[i].split("-"); // {1,2} {2,2}
+            //int count = Integer.parseInt(add[1]) + Integer.parseInt(original[1]);
+            //newValues[i] = count;
         }
         StringBuilder sb = new StringBuilder();
         for (int j = 0; j < newValues.length; j++) {

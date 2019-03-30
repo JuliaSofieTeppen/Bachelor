@@ -380,7 +380,6 @@ class Database {
                         JSONObject jsonobject = jsonArray.getJSONObject(i);
                         honning.set_ID(jsonobject.getLong("ID"));
                         honning.setType(jsonobject.getString("Type"));
-                        honning.setStorrelse(jsonobject.getDouble("Storrelse"));
                         honning.setHjemmePris(jsonobject.getInt("HjemmePris"));
                         honning.setBondensMarkedPris(jsonobject.getInt("BMPris"));
                         honning.setFakturaPris(jsonobject.getInt("FakturaPris"));

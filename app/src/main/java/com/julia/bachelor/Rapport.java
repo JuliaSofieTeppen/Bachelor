@@ -15,10 +15,12 @@ import android.widget.Toast;
 import com.julia.bachelor.helperClass.Annet;
 import com.julia.bachelor.helperClass.BondensMarked;
 import com.julia.bachelor.helperClass.Hjemme;
+import com.julia.bachelor.helperClass.SortedObjects;
 import com.julia.bachelor.helperClass.Videresalg;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class Rapport extends Fragment {
     private static final String KEY_ALLSALG = "AllSalg";
@@ -26,12 +28,11 @@ public class Rapport extends Fragment {
     private static final String KEY_BUNDLE = "Bundle";
     static StringBuilder sb;
     ListView listView;
-    Spinner datoer;
-    Spinner salgtyper;
-    ArrayList<Object> Salg;
+    Spinner datoer, salgtyper;
+    ArrayList<Object> Salg, dynamicList;
     ArrayList<String> salgliste;
     Beregninger beregninger;
-    ArrayList<Object> dynamicList;
+
 
     public Rapport() {
     }
@@ -108,6 +109,7 @@ public class Rapport extends Fragment {
                 Toast.makeText(this.getContext(), "sorter på dag", Toast.LENGTH_SHORT).show();
                 break;
             case 1:
+                sortMonth();
                 Toast.makeText(this.getContext(), "sorter på måned", Toast.LENGTH_SHORT).show();
                 break;
             case 2:
@@ -117,6 +119,55 @@ public class Rapport extends Fragment {
     }
 
     void sortMonth() {
+        HashMap<String, SortedObjects> sorted = new HashMap<>();
+        for (int i = 0; i < Salg.size(); i++) {
+            String date;
+            if (Salg.get(i) instanceof Hjemme) {
+                Hjemme hjemme = (Hjemme) Salg.get(i);
+                date = getMonth(hjemme.getDato());
+            } else if (Salg.get(i) instanceof BondensMarked) {
+                BondensMarked bondensMarked = (BondensMarked) Salg.get(i);
+                date = getMonth(bondensMarked.getDato());
+            } else if (Salg.get(i) instanceof Videresalg) {
+                Videresalg videresalg = (Videresalg) Salg.get(i);
+                date = getMonth(videresalg.getDato());
+            } else if (Salg.get(i) instanceof Annet) {
+                Annet annet = (Annet) Salg.get(i);
+                date = getMonth(annet.getDato());
+            } else continue;
+            if (!sorted.containsKey(date)) {
+                SortedObjects sortedObjects = new SortedObjects();
+                sortedObjects.add(Salg.get(i));
+                sortedObjects.setDato(date);
+                sorted.put(date, sortedObjects);
+            } else {
+                SortedObjects d = sorted.get(date);
+                if (d != null) d.add(Salg.get(i));
+            }
+        }
+        dynamicList.clear();
+        dynamicList.addAll(sorted.values());
+        salgliste.clear();
+        sb = new StringBuilder();
+        for (Object o : dynamicList) {
+            SortedObjects sortedObjects = (SortedObjects) o;
+            sb.append(sortedObjects.getDato()).append("").append("Month").append("  Beløp: ").append(sortedObjects.getBelop());
+            salgliste.add(sb.toString());
+            sb.delete(0, sb.length());
+        }
+        updateList();
+    }
+
+    String getMonth(String date) {
+        // yyyy.MM.dd
+        String[] dates = date.split("-");
+        return dates[0] + "-" + dates[1];
+    }
+
+    @SuppressWarnings("unchecked")
+    void updateList() {
+        ArrayAdapter<String> arrayAdapter = new ArrayAdapter(this.getContext(), android.R.layout.simple_list_item_1, salgliste);
+        listView.setAdapter(arrayAdapter);
     }
 
     private void selectsalgtyper(int posisjon) {
@@ -140,7 +191,6 @@ public class Rapport extends Fragment {
         }
     }
 
-    @SuppressWarnings("unchecked")
     public void sorterpaBondensMarked() {
         sb = new StringBuilder();
         dynamicList = beregninger.separateBondensMarked(Salg);
@@ -152,11 +202,9 @@ public class Rapport extends Fragment {
             salgliste.add(sb.toString());
             sb.delete(0, sb.length());
         }
-        ArrayAdapter<String> arrayAdapter = new ArrayAdapter(this.getContext(), android.R.layout.simple_list_item_1, salgliste);
-        listView.setAdapter(arrayAdapter);
+        updateList();
     }
 
-    @SuppressWarnings("unchecked")
     public void sorterpaHjemme() {
         sb = new StringBuilder();
         dynamicList = beregninger.separateHjemme(Salg);
@@ -167,11 +215,9 @@ public class Rapport extends Fragment {
             salgliste.add(sb.toString());
             sb.delete(0, sb.length());
         }
-        ArrayAdapter<String> arrayAdapter = new ArrayAdapter(this.getContext(), android.R.layout.simple_list_item_1, salgliste);
-        listView.setAdapter(arrayAdapter);
+        updateList();
     }
 
-    @SuppressWarnings("unchecked")
     public void sorterpavideresalg() {
         sb = new StringBuilder();
         dynamicList = beregninger.separateVideresalg(Salg);
@@ -183,11 +229,9 @@ public class Rapport extends Fragment {
             salgliste.add(sb.toString());
             sb.delete(0, sb.length());
         }
-        ArrayAdapter<String> arrayAdapter = new ArrayAdapter(this.getContext(), android.R.layout.simple_list_item_1, salgliste);
-        listView.setAdapter(arrayAdapter);
+        updateList();
     }
 
-    @SuppressWarnings("unchecked")
     public void sorterpaAnnet() {
         sb = new StringBuilder();
         dynamicList = beregninger.separateAnnet(Salg);
@@ -199,11 +243,9 @@ public class Rapport extends Fragment {
             salgliste.add(sb.toString());
             sb.delete(0, sb.length());
         }
-        ArrayAdapter<String> arrayAdapter = new ArrayAdapter(this.getContext(), android.R.layout.simple_list_item_1, salgliste);
-        listView.setAdapter(arrayAdapter);
+        updateList();
     }
 
-    @SuppressWarnings("unchecked")
     public void sorterpaalle() {
         sb = new StringBuilder();
         dynamicList.clear();
@@ -240,7 +282,6 @@ public class Rapport extends Fragment {
         } else {
             sb.append("Beklager kan ikke laste innhold.");
         }
-        ArrayAdapter<String> arrayAdapter = new ArrayAdapter(this.getContext(), android.R.layout.simple_list_item_1, salgliste);
-        listView.setAdapter(arrayAdapter);
+        updateList();
     }
 }

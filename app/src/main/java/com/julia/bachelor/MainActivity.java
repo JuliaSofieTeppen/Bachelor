@@ -22,7 +22,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-public class Main extends Activity implements NavigationDrawerFragment.NavigationDrawerCallbacks {
+public class MainActivity extends Activity implements NavigationDrawerFragment.NavigationDrawerCallbacks {
     private static final String KEY_ANNET = "Annet";
     private static final String KEY_BEHOLDNING = "Beholdning";
     private static final String KEY_BEHOLDNINGUT = "BeholdningUt";
@@ -79,7 +79,7 @@ public class Main extends Activity implements NavigationDrawerFragment.Navigatio
         setArrays();
         FragmentManager fragmentManager = getFragmentManager();
         fragmentManager.beginTransaction()
-                .replace(R.id.container, Hovedside.newInstance(position + 1, Beholdning, Salg, Honning))
+                .replace(R.id.container, HovedsideFragment.newInstance(position + 1, Beholdning, Salg, Honning))
                 .commit();
     }
 
@@ -88,7 +88,7 @@ public class Main extends Activity implements NavigationDrawerFragment.Navigatio
             case 1:
                 break;
             case 2:
-                Rapport myf = Rapport.newInstance(AllSalg);
+                RapportFragment myf = RapportFragment.newInstance(AllSalg);
                 FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
                 fragmentTransaction.replace(R.id.container, myf);
                 fragmentTransaction.addToBackStack(null);
@@ -96,7 +96,7 @@ public class Main extends Activity implements NavigationDrawerFragment.Navigatio
                 break;
 
             case 3:
-                AddBeholdning fragment = AddBeholdning.newInstance();
+                AddBeholdningFragment fragment = AddBeholdningFragment.newInstance();
                 FragmentTransaction fragmentt = getFragmentManager().beginTransaction();
                 fragmentt.replace(R.id.container, fragment);
                 fragmentt.addToBackStack(null);
@@ -112,7 +112,7 @@ public class Main extends Activity implements NavigationDrawerFragment.Navigatio
                 break;
 
             case 5:
-                Innstillinger insfragment = Innstillinger.newInstance(2);
+                SettingFragment insfragment = SettingFragment.newInstance(2);
                 FragmentTransaction insfragmentt = getFragmentManager().beginTransaction();
                 insfragmentt.replace(R.id.container, insfragment);
                 insfragmentt.addToBackStack(null);

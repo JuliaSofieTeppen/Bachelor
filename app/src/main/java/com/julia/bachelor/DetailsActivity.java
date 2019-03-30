@@ -12,7 +12,7 @@ import com.julia.bachelor.helperClass.BondensMarked;
 import com.julia.bachelor.helperClass.Hjemme;
 import com.julia.bachelor.helperClass.Videresalg;
 
-public class SalgItem extends Activity {
+public class DetailsActivity extends Activity {
     private static final String KEY_OBJECT = "Object";
     private static final String KEY_BUNDLE = "Bundle";
     static Object object;

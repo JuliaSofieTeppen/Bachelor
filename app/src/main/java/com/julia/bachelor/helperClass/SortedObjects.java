@@ -3,13 +3,36 @@ package com.julia.bachelor.helperClass;
 public class SortedObjects {
     private String Varer;
     private int Belop;
+    /**
+     * Betaling[0] = Kontant, Betaling[1] = kort.
+     **/
     private int[] Betaling;
+    private String dato;
 
     public SortedObjects() {
         Varer = "1-0,2-0,3-0,4-0,5-0,6-0,7-0";
         Belop = 0;
-        // Betaling[0] = Kontant, Betaling[1] = kort.
         Betaling = new int[2];
+    }
+
+    public String getDato() {
+        return dato;
+    }
+
+    public void setDato(String dato) {
+        this.dato = dato;
+    }
+
+    public String getVarer() {
+        return Varer;
+    }
+
+    public int getBelop() {
+        return Belop;
+    }
+
+    public int[] getBetaling() {
+        return Betaling;
     }
 
     private String addVarer(String varer) {
@@ -24,7 +47,7 @@ public class SortedObjects {
         }
         StringBuilder sb = new StringBuilder();
         for (int j = 0; j < newValues.length; j++) {
-            sb.append(j + 1).append("-").append(newValues[j]);
+            sb.append(j + 1).append("-").append(newValues[j]).append(",");
         }
         return sb.toString();
     }

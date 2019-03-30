@@ -22,7 +22,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-public class Rapport extends Fragment {
+public class RapportFragment extends Fragment {
     private static final String KEY_ALLSALG = "AllSalg";
     private static final String KEY_OBJECT = "Object";
     private static final String KEY_BUNDLE = "Bundle";
@@ -34,15 +34,15 @@ public class Rapport extends Fragment {
     Beregninger beregninger;
 
 
-    public Rapport() {
+    public RapportFragment() {
     }
 
     /**
      * Returns a new instance of this fragment for the given section
      * number.
      */
-    public static Rapport newInstance(ArrayList<Object> salg) {
-        Rapport fragment = new Rapport();
+    public static RapportFragment newInstance(ArrayList<Object> salg) {
+        RapportFragment fragment = new RapportFragment();
         Bundle args = new Bundle();
         args.putSerializable(KEY_ALLSALG, salg);
         fragment.setArguments(args);
@@ -95,7 +95,7 @@ public class Rapport extends Fragment {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Bundle bundle = new Bundle();
                 bundle.putSerializable(KEY_OBJECT, (Serializable) dynamicList.get(position));
-                Intent myIntent = new Intent(Rapport.this.getContext(), SalgItem.class);
+                Intent myIntent = new Intent(RapportFragment.this.getContext(), DetailsActivity.class);
                 myIntent.putExtra(KEY_BUNDLE, bundle);
                 startActivity(myIntent);
             }

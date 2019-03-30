@@ -23,7 +23,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 
-public class HjemmeSalg extends Activity implements AdapterView.OnItemSelectedListener {
+public class HjemmesalgActivity extends Activity implements AdapterView.OnItemSelectedListener {
     private static final String KEY_BUNDLE = "Bundle";
     private static final String KEY_HONNING = "Honning";
     static ArrayList<Honning> honningtype;
@@ -200,7 +200,7 @@ public class HjemmeSalg extends Activity implements AdapterView.OnItemSelectedLi
 
     public void goback() {
         if (ValueInField()) {
-            final AlertDialog.Builder builder = new AlertDialog.Builder(HjemmeSalg.this);
+            final AlertDialog.Builder builder = new AlertDialog.Builder(HjemmesalgActivity.this);
             builder.setMessage("Vil du gå tilbake?");
             builder.setCancelable(true);
             builder.setNegativeButton("Ja", new DialogInterface.OnClickListener() {

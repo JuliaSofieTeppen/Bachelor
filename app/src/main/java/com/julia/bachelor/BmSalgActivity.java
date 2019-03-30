@@ -20,7 +20,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 
-public class BmSalg extends Activity {
+public class BmSalgActivity extends Activity {
     private static final String KEY_BUNDLE = "Bundle";
     private static final String KEY_HONNING = "Honning";
     static List<Honning> honningtyper;
@@ -90,8 +90,8 @@ public class BmSalg extends Activity {
 
     public void goback() {
         if (ValueInField()) {
-            //android.app.AlertDialog.Builder builder = new android.app.AlertDialog.Builder(FakturaSalg.this,R.style.AlertDialog);
-            final AlertDialog.Builder builder = new AlertDialog.Builder(BmSalg.this);
+            //android.app.AlertDialog.Builder builder = new android.app.AlertDialog.Builder(VideresalgActivity.this,R.style.AlertDialog);
+            final AlertDialog.Builder builder = new AlertDialog.Builder(BmSalgActivity.this);
             builder.setMessage("Vil du gå tilbake?");
             builder.setCancelable(true);
             builder.setNegativeButton("Ja", new DialogInterface.OnClickListener() {

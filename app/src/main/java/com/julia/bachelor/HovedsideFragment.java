@@ -22,7 +22,7 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
-public class Hovedside extends Fragment {
+public class HovedsideFragment extends Fragment {
     /**
      * The fragment argument representing the section number for this
      * fragment.
@@ -41,15 +41,15 @@ public class Hovedside extends Fragment {
     ArrayList<Honning> honning;
     Salg beholdningUt;
 
-    public Hovedside() {
+    public HovedsideFragment() {
     }
 
     /**
      * Returns a new instance of this fragment for the given section
      * number.
      */
-    public static Hovedside newInstance(int sectionNumber, ArrayList<Beholdning> Beholdning, ArrayList<Salg> Salg, ArrayList<Honning> Honning) {
-        Hovedside fragment = new Hovedside();
+    public static HovedsideFragment newInstance(int sectionNumber, ArrayList<Beholdning> Beholdning, ArrayList<Salg> Salg, ArrayList<Honning> Honning) {
+        HovedsideFragment fragment = new HovedsideFragment();
         Bundle args = new Bundle();
         args.putInt(ARG_SECTION_NUMBER, sectionNumber);
         args.putSerializable(KEY_BEHOLDNING, Beholdning);
@@ -80,23 +80,23 @@ public class Hovedside extends Fragment {
                         if (item.getTitle().equals("Bondens Marked")) {
                             Bundle bundle = new Bundle();
                             bundle.putSerializable(KEY_HONNING, honning);
-                            Intent myIntent = new Intent(rootView.getContext(), BmSalg.class);
+                            Intent myIntent = new Intent(rootView.getContext(), BmSalgActivity.class);
                             myIntent.putExtra(KEY_BUNDLE, bundle); //Optional parameters
                             rootView.getContext().startActivity(myIntent);
                         } else if (item.getTitle().equals("Hjemme salg")) {
                             Bundle bundle = new Bundle();
                             bundle.putSerializable(KEY_HONNING, honning);
-                            Intent myIntent = new Intent(rootView.getContext(), HjemmeSalg.class);
+                            Intent myIntent = new Intent(rootView.getContext(), HjemmesalgActivity.class);
                             myIntent.putExtra(KEY_BUNDLE, bundle); //Optional parameters
                             rootView.getContext().startActivity(myIntent);
                         } else if (item.getTitle().equals("Videre salg")) {
                             Bundle bundle = new Bundle();
                             bundle.putSerializable(KEY_HONNING, honning);
-                            Intent myIntent = new Intent(rootView.getContext(), FakturaSalg.class);
+                            Intent myIntent = new Intent(rootView.getContext(), VideresalgActivity.class);
                             myIntent.putExtra(KEY_BUNDLE, bundle); //Optional parameters
                             rootView.getContext().startActivity(myIntent);
                         } else {
-                            Intent myIntent = new Intent(rootView.getContext(), SalgAnnet.class);
+                            Intent myIntent = new Intent(rootView.getContext(), AnnetSalgActivity.class);
                             rootView.getContext().startActivity(myIntent);
                         }
                         return true;
@@ -183,7 +183,7 @@ public class Hovedside extends Fragment {
     @Override
     public void onAttach(Activity activity) {
         super.onAttach(activity);
-        ((Main) activity).onSectionAttached(
+        ((MainActivity) activity).onSectionAttached(
                 getArguments().getInt(ARG_SECTION_NUMBER));
     }
 }

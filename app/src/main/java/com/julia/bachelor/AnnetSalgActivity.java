@@ -19,7 +19,7 @@ import java.util.Arrays;
 import java.util.Date;
 import java.util.Locale;
 
-public class SalgAnnet extends Activity implements AdapterView.OnItemSelectedListener {
+public class AnnetSalgActivity extends Activity implements AdapterView.OnItemSelectedListener {
     String betalingsmetode;
     Spinner betaling;
     EditText AntBifolk;
@@ -124,8 +124,8 @@ public class SalgAnnet extends Activity implements AdapterView.OnItemSelectedLis
 
     public void goback() {
         if (ValueInField()) {
-            //android.app.AlertDialog.Builder builder = new android.app.AlertDialog.Builder(FakturaSalg.this,R.style.AlertDialog);
-            final AlertDialog.Builder builder = new AlertDialog.Builder(SalgAnnet.this);
+            //android.app.AlertDialog.Builder builder = new android.app.AlertDialog.Builder(VideresalgActivity.this,R.style.AlertDialog);
+            final AlertDialog.Builder builder = new AlertDialog.Builder(AnnetSalgActivity.this);
             builder.setMessage("Vil du gå tilbake?");
             builder.setCancelable(true);
             builder.setNegativeButton("Ja", new DialogInterface.OnClickListener() {

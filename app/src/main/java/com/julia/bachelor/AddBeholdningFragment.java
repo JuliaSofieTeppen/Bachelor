@@ -12,15 +12,15 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-public class AddBeholdning extends Fragment {
+public class AddBeholdningFragment extends Fragment {
     EditText dato, som1kg, som05kg, som025kg, lyng1kg, lyng05kg, lyng025kg, ingf05kg, ingf025kg, flytende;
     List<EditText> verdier;
 
-    public AddBeholdning() {
+    public AddBeholdningFragment() {
     }
 
-    public static AddBeholdning newInstance() {
-        return new AddBeholdning();
+    public static AddBeholdningFragment newInstance() {
+        return new AddBeholdningFragment();
     }
 
     @Override

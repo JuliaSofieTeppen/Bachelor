@@ -12,15 +12,13 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.julia.bachelor.helperClass.BondensMarked;
-import com.julia.bachelor.helperClass.Hjemme;
 import com.julia.bachelor.helperClass.Honning;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-public class Innstillinger extends Fragment {
+public class SettingFragment extends Fragment {
 
     // TODO: Rename parameter arguments, choose names that match
     private static final String ARG_SECTION_NUMBER = "section_number";
@@ -38,12 +36,12 @@ public class Innstillinger extends Fragment {
     List<EditText> FakturaVerdier;
     Button lagre;
 
-    public Innstillinger() {
+    public SettingFragment() {
     }
 
     // TODO: Rename and change types and number of parameters
-    public static Innstillinger newInstance(int sectionNumber) {
-        Innstillinger fragment = new Innstillinger();
+    public static SettingFragment newInstance(int sectionNumber) {
+        SettingFragment fragment = new SettingFragment();
         Bundle args = new Bundle();
         args.putInt(ARG_SECTION_NUMBER, sectionNumber);
         fragment.setArguments(args);
@@ -91,7 +89,7 @@ public class Innstillinger extends Fragment {
         FakturaVerdier = new ArrayList<>(Arrays.asList(enkgfak,halvkgfak,kvartkgfak,ingfhalvkgfak,ingfkvartkgfak,flytfak));
 
 
-        Main main = new Main();
+        MainActivity main = new MainActivity();
         honningtype = main.getHonningTyper();
 
         try {
@@ -128,7 +126,7 @@ public class Innstillinger extends Fragment {
 
                     }
                 }
-                Toast.makeText(Innstillinger.this.getContext(),"Endringer lagret", Toast.LENGTH_SHORT).show();
+                Toast.makeText(SettingFragment.this.getContext(),"Endringer lagret", Toast.LENGTH_SHORT).show();
             }
         });
         momslagre.setOnClickListener(new View.OnClickListener() {

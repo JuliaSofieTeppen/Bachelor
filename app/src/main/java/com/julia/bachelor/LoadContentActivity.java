@@ -17,7 +17,7 @@ import com.julia.bachelor.helperClass.Videresalg;
 
 import java.util.ArrayList;
 
-public class LoadContent extends Activity {
+public class LoadContentActivity extends Activity {
     private static final String KEY_ANNET = "Annet";
     private static final String KEY_BEHOLDNING = "Beholdning";
     private static final String KEY_BEHOLDNINGUT = "BeholdningUt";
@@ -58,7 +58,7 @@ public class LoadContent extends Activity {
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-                Intent intent = new Intent(LoadContent.this, Main.class);
+                Intent intent = new Intent(LoadContentActivity.this, MainActivity.class);
                 Bundle bundle = new Bundle();
                 bundle.putSerializable(KEY_HONNING, Honning);
                 bundle.putSerializable(KEY_ANNET, Annet);
@@ -68,7 +68,7 @@ public class LoadContent extends Activity {
                 bundle.putSerializable(KEY_HJEMME, Hjemme);
                 bundle.putSerializable(KEY_VIDERESALG, Videresalg);
                 intent.putExtra(KEY_BUNDLE, bundle);
-                LoadContent.this.startActivity(intent);
+                LoadContentActivity.this.startActivity(intent);
                 finish();
             }
 

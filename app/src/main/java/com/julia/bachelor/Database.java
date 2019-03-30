@@ -135,7 +135,7 @@ class Database {
         @Override
         protected void onPostExecute(String s) {
             super.onPostExecute(s);
-            LoadContent load = new LoadContent();
+            LoadContentActivity load = new LoadContentActivity();
             load.setAnnet(Annet);
         }
     }
@@ -191,7 +191,7 @@ class Database {
         @Override
         protected void onPostExecute(String s) {
             super.onPostExecute(s);
-            LoadContent load = new LoadContent();
+            LoadContentActivity load = new LoadContentActivity();
             load.setBeholdning(Beholdning);
         }
     }
@@ -247,7 +247,7 @@ class Database {
         @Override
         protected void onPostExecute(String s) {
             super.onPostExecute(s);
-            LoadContent load = new LoadContent();
+            LoadContentActivity load = new LoadContentActivity();
             load.setBeholdningUt(Salg);
         }
     }
@@ -296,7 +296,7 @@ class Database {
         @Override
         protected void onPostExecute(String s) {
             super.onPostExecute(s);
-            LoadContent load = new LoadContent();
+            LoadContentActivity load = new LoadContentActivity();
             load.setBM(BM);
         }
     }
@@ -347,7 +347,7 @@ class Database {
         @Override
         protected void onPostExecute(String s) {
             super.onPostExecute(s);
-            LoadContent load = new LoadContent();
+            LoadContentActivity load = new LoadContentActivity();
             load.setHjemme(Hjemme);
         }
     }
@@ -398,7 +398,7 @@ class Database {
         @Override
         protected void onPostExecute(String s) {
             super.onPostExecute(s);
-            LoadContent load = new LoadContent();
+            LoadContentActivity load = new LoadContentActivity();
             load.setHonning(Honning);
         }
     }
@@ -450,7 +450,7 @@ class Database {
         @Override
         protected void onPostExecute(String s) {
             super.onPostExecute(s);
-            LoadContent load = new LoadContent();
+            LoadContentActivity load = new LoadContentActivity();
             load.setVideresalg(Videresalg);
         }
     }

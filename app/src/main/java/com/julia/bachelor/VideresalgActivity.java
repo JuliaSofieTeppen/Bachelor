@@ -26,7 +26,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 
-public class FakturaSalg extends Activity implements AdapterView.OnItemSelectedListener {
+public class VideresalgActivity extends Activity implements AdapterView.OnItemSelectedListener {
     private static final String KEY_BUNDLE = "Bundle";
     private static final String KEY_HONNING = "Honning";
     static ArrayList<Honning> honningtyper;
@@ -141,7 +141,7 @@ public class FakturaSalg extends Activity implements AdapterView.OnItemSelectedL
 
     public void goback() {
         if (ValueInField()) {
-            final AlertDialog.Builder builder = new AlertDialog.Builder(FakturaSalg.this);
+            final AlertDialog.Builder builder = new AlertDialog.Builder(VideresalgActivity.this);
             builder.setMessage("Vil du gå tilbake?");
             builder.setCancelable(true);
             builder.setNegativeButton("Ja", new DialogInterface.OnClickListener() {

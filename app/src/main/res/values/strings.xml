@@ -9,9 +9,7 @@
     <string name="title_section6">Eksporter</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
-    <string name="action_example">Example action</string>
     <string name="action_settings">Innstillinger</string>
-    <string name="toto">10001</string>
     <string-array name="betalingsmetode">
         <item>Kontant</item>
         <item>Kort</item>
@@ -30,7 +28,40 @@
         <item>Annet</item>
     </string-array>
 
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <string name="bondens_marked">Bondens Marked</string>
+    <string name="hjemmesalg">Hjemmesalg</string>
+    <string name="videresalg">Videresalg</string>
+    <string name="annet">Annet</string>
+    <string name="hovedside">Hovedside</string>
+    <string name="rapporter">Rapporter</string>
+    <string name="legg_til_beholdning">Legg til beholdning</string>
+    <string name="priser">Priser</string>
+    <string name="verkt_y">Verktøy</string>
+    <string name="innstillinger">Innstillinger</string>
+    <string name="eksporter">Eksporter</string>
+    <string name="error">Problemer med innlasting av innhold</string>
+    <string name="plus">+</string>
+    <string name="beholdning">Beholdning</string>
+    <string name="lagre">Lagre</string>
+    <string name="ferdig_produkt">Ferdig produkt</string>
+    <string name="ikke_ferdig_produkt">Ikke ferdig produkt</string>
+    <string name="Halvkg">1/2 kg</string>
+    <string name="hjemme">Hjemme</string>
+    <string name="endre_moms">Endre moms</string>
+    <string name="endre_priser">Endre Priser</string>
+    <string name="honning">Honning</string>
+    <string name="helkg">1 kg</string>
+    <string name="kvartkg"> 1/4 kg</string>
+    <string name="spesialvare">Spesialvare</string>
+    <string name="flytende">Flytende</string>
+    <string name="ingeferHalv">Ingefær 1/2 kg</string>
+    <string name="ingeferKvart">Ingefær 1/4 kg</string>
+    <string name="moms_ferdig_produkt">Moms ferdig produkt</string>
+    <string name="prisKg">Pris 1 kg</string>
+    <string name="prisHalvkg">Pris 1/2</string>
+    <string name="prisKvartkg">Pris 1/4</string>
+    <string name="pris">Pris</string>
+    <string name="moms_ikke_ferdig">Moms ikke ferdig</string>
 
 </resources>

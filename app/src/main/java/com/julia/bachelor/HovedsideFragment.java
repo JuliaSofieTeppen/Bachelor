@@ -62,7 +62,7 @@ public class HovedsideFragment extends Fragment {
     @Override
     @SuppressWarnings("unchecked")
     public View onCreateView(final LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        final View rootView = inflater.inflate(R.layout.hovedside, container, false);
+        final View rootView = inflater.inflate(R.layout.fragment_hovedside, container, false);
         addbutton = rootView.findViewById(R.id.addbutton);
         info = rootView.findViewById(R.id.Info);
         navn = rootView.findViewById(R.id.navn);

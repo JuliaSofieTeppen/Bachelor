@@ -51,7 +51,7 @@ public class SettingFragment extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        final View rootView = inflater.inflate(R.layout.fragment_skal_bli_innstillinger, container, false);
+        final View rootView = inflater.inflate(R.layout.fragment_innstillinger, container, false);
         enkghjemme = rootView.findViewById(R.id.enkghjemme);
         halvkghjemme = rootView.findViewById(R.id.halvkghjemme);
         kvartkghjemme = rootView.findViewById(R.id.kvartkghjemme);

@@ -52,7 +52,7 @@ public class RapportFragment extends Fragment {
     @Override
     @SuppressWarnings("unchecked")
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View rootView = inflater.inflate(R.layout.rapport, container, false);
+        View rootView = inflater.inflate(R.layout.fragment_rapport, container, false);
 
         beregninger = new Beregninger(this.getContext());
         Salg = (ArrayList<Object>) getArguments().getSerializable(KEY_ALLSALG);

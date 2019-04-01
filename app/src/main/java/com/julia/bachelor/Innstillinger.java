@@ -1,9 +1,8 @@
 package com.julia.bachelor;
 
-import android.content.Intent;
+import android.app.Fragment;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.app.Fragment;
 import android.preference.PreferenceManager;
 import android.support.constraint.ConstraintLayout;
 import android.view.LayoutInflater;
@@ -13,8 +12,6 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.julia.bachelor.helperClass.BondensMarked;
-import com.julia.bachelor.helperClass.Hjemme;
 import com.julia.bachelor.helperClass.Honning;
 
 import java.util.ArrayList;
@@ -93,7 +90,7 @@ public class Innstillinger extends Fragment {
         FakturaVerdier = new ArrayList<>(Arrays.asList(enkgfak,halvkgfak,kvartkgfak,ingfhalvkgfak,ingfkvartkgfak,flytfak));
 
         Main main = new Main();
-        honningtype = main.Fåhonningtyper();
+        honningtype = main.getHonningTyper();
 
         try {
             if (honningtype != null) {
@@ -212,4 +209,7 @@ public class Innstillinger extends Fragment {
         }
     }
 
+    public void lagre(View view) {
+
+    }
 }

@@ -32,7 +32,7 @@ class Beregninger implements Template {
     }
 
 
-    static void copyArrays(Object obj){
+    static void copyArrays(Object obj) {
 
     }
 
@@ -41,40 +41,40 @@ class Beregninger implements Template {
         return date.matches(regex);
     }
 
-    ArrayList<Object> separateAnnet(ArrayList<Object> list){
+    ArrayList<Object> separateAnnet(ArrayList<Object> list) {
         ArrayList<Object> annet = new ArrayList<>();
-        for(Object object : list){
-            if(object instanceof Annet){
-                annet.add( object);
+        for (Object object : list) {
+            if (object instanceof Annet) {
+                annet.add(object);
             }
         }
         return annet;
     }
 
-    ArrayList<Object> separateHjemme(ArrayList<Object> list){
+    ArrayList<Object> separateHjemme(ArrayList<Object> list) {
         ArrayList<Object> hjemme = new ArrayList<>();
-        for(Object object : list){
-            if(object instanceof Hjemme){
+        for (Object object : list) {
+            if (object instanceof Hjemme) {
                 hjemme.add(object);
             }
         }
         return hjemme;
     }
 
-    ArrayList<Object> separateBondensMarked(ArrayList<Object> list){
+    ArrayList<Object> separateBondensMarked(ArrayList<Object> list) {
         ArrayList<Object> bondensMarked = new ArrayList<>();
-        for(Object object : list){
-            if(object instanceof BondensMarked){
+        for (Object object : list) {
+            if (object instanceof BondensMarked) {
                 bondensMarked.add(object);
             }
         }
         return bondensMarked;
     }
 
-    ArrayList<Object> separateVideresalg(ArrayList<Object> list){
+    ArrayList<Object> separateVideresalg(ArrayList<Object> list) {
         ArrayList<Object> videresalg = new ArrayList<>();
-        for(Object object : list){
-            if(object instanceof Videresalg){
+        for (Object object : list) {
+            if (object instanceof Videresalg) {
                 videresalg.add(object);
             }
         }
@@ -187,12 +187,12 @@ class Beregninger implements Template {
     @Override
     public double mvaHoy(ArrayList<Object> list) {
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
-        double mva = ((double)sharedPreferences.getInt("ikkeferdig", 25))/100.0;
-        ArrayList<Object> videresalgs =separateVideresalg(list);
+        double mva = ((double) sharedPreferences.getInt("ikkeferdig", 25)) / 100.0;
+        ArrayList<Object> videresalgs = separateVideresalg(list);
         double avgift = 0;
-        for(Object videresalg : videresalgs){
-            Videresalg v = (Videresalg)videresalg;
-            avgift += v.getMoms()*v.getBelop();
+        for (Object videresalg : videresalgs) {
+            Videresalg v = (Videresalg) videresalg;
+            avgift += v.getMoms() * v.getBelop();
         }
         //avgift += sumAnnet(separateAnnet(list));
         return avgift;
@@ -201,7 +201,7 @@ class Beregninger implements Template {
     @Override
     public double mvaLav(ArrayList<Object> list) {
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
-        double mva = ((double)sharedPreferences.getInt("ferdigprodukt", 15))/100.0;
+        double mva = ((double) sharedPreferences.getInt("ferdigprodukt", 15)) / 100.0;
         return mva;
     }
 
@@ -228,11 +228,8 @@ class Beregninger implements Template {
      * 3. versjon som tar i mot både String og Integer deretter sorterer dem.
      */
     public void sortBelop_3(ArrayList<Object> list) {//ok
-
         ArrayList liste = new ArrayList<>();
-        for (int i = 0; i < list.size(); i++) {
-            liste.add(list.get(i));
-        }
+        liste.addAll(list);
         Collections.sort(liste);
     }
 

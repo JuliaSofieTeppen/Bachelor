@@ -34,39 +34,50 @@ public class SalgItem extends Activity {
         Bundle bundle = intent.getBundleExtra(KEY_BUNDLE);
         object = bundle.getSerializable(KEY_OBJECT);
 
-
+        String text;
         if (object instanceof BondensMarked) {
            BondensMarked bm = (BondensMarked)object;
-           total.setText(Integer.toString(bm.getBelop()));
-           Kundenavn.setText("Bondens Marked");
+           text=Integer.toString(bm.getBelop());
+           total.setText(text);
+           text = "Bondens Marked";
+           Kundenavn.setText(text);
            setVerdier(bm.getVarer());
         } else if (object instanceof Hjemme) {
             Hjemme hm = (Hjemme) object;
-            total.setText(Integer.toString(hm.getBelop()));
+            text =Integer.toString(hm.getBelop());
+            total.setText(text);
             if(hm.getBetaling().equals("Kort")){
-                betalingkroner.setText("0 kr \n \n" + hm.getBelop()+" kr");
+                text = "0 kr \n \n" + hm.getBelop()+" kr";
+                betalingkroner.setText(text);
             }else{
-                betalingkroner.setText(hm.getBelop()+" kr \n \n0 kr");
+                text = hm.getBelop()+" kr \n \n0 kr";
+                betalingkroner.setText(text);
             }
             Kundenavn.setText(hm.getKunde());
             setHjemmesalgVerdier(hm.getVarer());
         } else if (object instanceof Videresalg) {
             Videresalg vi = (Videresalg) object;
-            total.setText(Integer.toString(vi.getBelop()));
+            text = Integer.toString(vi.getBelop());
+            total.setText(text);
             if(vi.getBetaling().equals("Kontant")){
-                betalingkroner.setText(vi.getBelop()+" kr \n \n0 kr");
+                text=vi.getBelop()+" kr \n \n0 kr";
+                betalingkroner.setText(text);
             }else{
-                betalingkroner.setText("0 kr \n \n" + vi.getBelop()+" kr");
+                text="0 kr \n \n" + vi.getBelop()+" kr";
+                betalingkroner.setText(text);
             }
             Kundenavn.setText(vi.getKunde());
             setVerdier(vi.getVarer());
         } else if (object instanceof Annet) {
             Annet an = (Annet)object;
-            total.setText(Integer.toString(an.getBelop()));
+            text=Integer.toString(an.getBelop());
+            total.setText(text);
             if(an.getBetaling().equals("Kontant")){
-                betalingkroner.setText(an.getBelop()+" kr \n \n0 kr");
+                text = an.getBelop()+" kr \n \n0 kr";
+                betalingkroner.setText(text);
             }else{
-                betalingkroner.setText("0 kr \n \n" + an.getBelop()+" kr");
+                text = "0 kr \n \n" + an.getBelop()+" kr";
+                betalingkroner.setText(text);
             }
             navnetext.setText("Bifolk\n\nVoks\n\nPollinering\n\nDronninger");
             setVerdier(an.getVarer());
@@ -78,8 +89,8 @@ public class SalgItem extends Activity {
     public void setVerdier(String verdilinje){
         String text = "";
         String[] verdier = verdilinje.split(",");
-        for(int i = 0; i < verdier.length; i++){
-            String[] verd = verdier[i].split("-");
+        for (String aVerdier : verdier) {
+            String[] verd = aVerdier.split("-");
             text += verd[1] + "\n\n";
         }
         solgteprodukter.setText(text);
@@ -89,13 +100,13 @@ public class SalgItem extends Activity {
         int[]a = new int[9];
         int o = 0;
         String text = "";
-        for(int i = 0; i < verdier.length; i++){
+        for (String aVerdier : verdier) {
             String[] s = verdier[o].split("-");
-            a[Integer.parseInt(s[0])-1] += Integer.parseInt(s[1]);
+            a[Integer.parseInt(s[0]) - 1] += Integer.parseInt(s[1]);
             o++;
         }
-        for(int i = 0; i < a.length; i++){
-            text += Integer.toString(a[i]) + "\n\n";
+        for (int anA : a) {
+            text += Integer.toString(anA) + "\n\n";
         }
         solgteprodukter.setText(text);
     }

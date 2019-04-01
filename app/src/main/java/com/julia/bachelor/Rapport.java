@@ -115,7 +115,8 @@ public class Rapport extends Fragment {
                 break;
         }
     }
-    void sortMonth(){
+
+    void sortMonth() {
     }
 
     private void selectsalgtyper(int posisjon) {

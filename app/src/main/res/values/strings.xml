@@ -64,5 +64,12 @@
     <string name="pris">Pris</string>
     <string name="moms_ikke_ferdig">Moms ikke ferdig</string>
     <string name="space"> </string>
+    <string name="nullkr">0kr</string>
+    <string name="priser_oversikt">Pris oversikt hjemme</string>
+    <string name="addbeholdning">Legg inn varebeholdning</string>
+    <string name="sommer">Sommer</string>
+    <string name="lyng">Lyng</string>
+    <string name="med_ingefer">Med ingefær</string>
+    <string name="dato">Dato</string>
 
 </resources>

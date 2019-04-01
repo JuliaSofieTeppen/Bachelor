@@ -58,10 +58,11 @@
     <string name="ingeferHalv">Ingefær 1/2 kg</string>
     <string name="ingeferKvart">Ingefær 1/4 kg</string>
     <string name="moms_ferdig_produkt">Moms ferdig produkt</string>
-    <string name="prisKg">Pris 1 kg</string>
+    <string name="prisKg">1 kg</string>
     <string name="prisHalvkg">Pris 1/2</string>
     <string name="prisKvartkg">Pris 1/4</string>
     <string name="pris">Pris</string>
     <string name="moms_ikke_ferdig">Moms ikke ferdig</string>
+    <string name="space"> </string>
 
 </resources>

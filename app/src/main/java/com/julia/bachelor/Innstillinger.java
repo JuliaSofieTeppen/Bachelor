@@ -12,6 +12,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.julia.bachelor.helperClass.BondensMarked;
+import com.julia.bachelor.helperClass.Hjemme;
 import com.julia.bachelor.helperClass.Honning;
 
 import java.util.ArrayList;
@@ -84,10 +86,10 @@ public class Innstillinger extends Fragment {
         lagre = rootView.findViewById(R.id.lagre);
         sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this.getContext());
         editor = sharedPreferences.edit();
-
         BMverdier = new ArrayList<>(Arrays.asList(enkgbm,halvkgbm,kvartkgbm,ingfhalvkgbm,ingfkvartkgbm,flytbm));
         HjemmeVerdier = new ArrayList<>(Arrays.asList(enkghjemme,halvkghjemme,kvartkghjemme,ingfhalvkghjemme,ingfkvartkghjemme,flythjemme));
         FakturaVerdier = new ArrayList<>(Arrays.asList(enkgfak,halvkgfak,kvartkgfak,ingfhalvkgfak,ingfkvartkgfak,flytfak));
+
 
         Main main = new Main();
         honningtype = main.getHonningTyper();
@@ -207,9 +209,5 @@ public class Innstillinger extends Fragment {
         } else {
             exe.setVisibility(View.VISIBLE);
         }
-    }
-
-    public void lagre(View view) {
-
     }
 }

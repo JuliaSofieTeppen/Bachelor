@@ -161,6 +161,7 @@ public class Hovedside extends Fragment {
                 if(greaterThan(current, beholdnings.get(i))){
                     current = beholdnings.get(i);
                     beholdningUt = salg.get(i);
+
                 }
             }
             return current;

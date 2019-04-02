@@ -74,15 +74,6 @@ class Database {
         VideresalgTask task = new VideresalgTask();
         task.execute("http://www.honningbier.no/PHP/VideresalgOut.php");
     }
-/*
-    void sortMonth() {
-        CustomObj customObj = new CustomObj();
-        for (Object obj : all) {
-            customObj.add(obj);
-        }
-    }
-
-*/
 
     private static class AnnetTask extends AsyncTask<String, Integer, String> {
         @Override

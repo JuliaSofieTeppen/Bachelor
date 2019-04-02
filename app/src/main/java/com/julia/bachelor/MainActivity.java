@@ -201,13 +201,28 @@ public class MainActivity extends Activity implements NavigationDrawerFragment.N
         AllSalg.addAll(Annet);
     }
 
-    private static class BeholdningUtTask extends AsyncTask<String, Void, String> {
+    void fetch(){
+        FetchDataTask task = new FetchDataTask();
+        String[] urls = {
+                "http://www.honningbier.no/PHP/AnnetOut.php",
+                "http://www.honningbier.no/PHP/BeholdningOut.php",
+                "http://www.honningbier.no/PHP/SalgOut.php",
+                "http://www.honningbier.no/PHP/BondensMarkedOut.php",
+                "http://www.honningbier.no/PHP/HjemmeOut.php",
+                "http://www.honningbier.no/PHP/HonningOut.php",
+                "http://www.honningbier.no/PHP/VideresalgOut.php"
+        };
+        task.execute(urls);
+    }
+
+    private static class FetchDataTask extends AsyncTask<String, int[], String> {
         @Override
         protected String doInBackground(String... urls) {
             // Get strings from bufferedReader.
             String nextLine;
             StringBuilder output = new StringBuilder();
             try {
+
                 URL url = new URL(urls[0]);
                 HttpURLConnection conn = (HttpURLConnection) url.openConnection();
                 conn.setRequestMethod("GET");

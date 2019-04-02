@@ -33,6 +33,7 @@
     <string name="hjemmesalg">Hjemmesalg</string>
     <string name="videresalg">Videresalg</string>
     <string name="annet">Annet</string>
+
     <string name="hovedside">Hovedside</string>
     <string name="rapporter">Rapporter</string>
     <string name="legg_til_beholdning">Legg til beholdning</string>
@@ -58,9 +59,6 @@
     <string name="ingeferHalv">Ingefær 1/2 kg</string>
     <string name="ingeferKvart">Ingefær 1/4 kg</string>
     <string name="moms_ferdig_produkt">Moms ferdig produkt</string>
-    <string name="prisKg">1 kg</string>
-    <string name="prisHalvkg">Pris 1/2</string>
-    <string name="prisKvartkg">Pris 1/4</string>
     <string name="pris">Pris</string>
     <string name="moms_ikke_ferdig">Moms ikke ferdig</string>
     <string name="space"> </string>
@@ -71,5 +69,7 @@
     <string name="lyng">Lyng</string>
     <string name="med_ingefer">Med ingefær</string>
     <string name="dato">Dato</string>
-
+    <string name="date">yyyy.mm.dd</string>
+    <string translatable="false" name="antall">antall</string>
+    <string name="solgte_produkter">Solgte produkter</string>
 </resources>

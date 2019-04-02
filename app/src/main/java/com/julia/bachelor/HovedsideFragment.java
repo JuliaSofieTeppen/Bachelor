@@ -83,13 +83,13 @@ public class HovedsideFragment extends Fragment {
                             Intent myIntent = new Intent(rootView.getContext(), BmSalgActivity.class);
                             myIntent.putExtra(KEY_BUNDLE, bundle); //Optional parameters
                             rootView.getContext().startActivity(myIntent);
-                        } else if (item.getTitle().equals("Hjemme salg")) {
+                        } else if (item.getTitle().equals("Hjemmesalg")) {
                             Bundle bundle = new Bundle();
                             bundle.putSerializable(KEY_HONNING, honning);
                             Intent myIntent = new Intent(rootView.getContext(), HjemmesalgActivity.class);
                             myIntent.putExtra(KEY_BUNDLE, bundle); //Optional parameters
                             rootView.getContext().startActivity(myIntent);
-                        } else if (item.getTitle().equals("Videre salg")) {
+                        } else if (item.getTitle().equals("Videresalg")) {
                             Bundle bundle = new Bundle();
                             bundle.putSerializable(KEY_HONNING, honning);
                             Intent myIntent = new Intent(rootView.getContext(), VideresalgActivity.class);

@@ -135,6 +135,7 @@ public class RapportFragment extends Fragment {
                 Annet annet = (Annet) Salg.get(i);
                 date = getMonth(annet.getDato());
             } else continue;
+            // sorted is a hash map where i use the date as the key. date is a string
             if (!sorted.containsKey(date)) {
                 SortedObjects sortedObjects = new SortedObjects();
                 sortedObjects.add(Salg.get(i));

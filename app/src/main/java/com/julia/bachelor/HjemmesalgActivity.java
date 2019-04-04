@@ -61,9 +61,7 @@ public class HjemmesalgActivity extends Activity implements AdapterView.OnItemSe
     String getVarer() {
         StringBuilder varer = new StringBuilder();
         for (int i = 0; i < honningtype.size(); i++) {
-            if (!telling.get(i).equals(0)) {
-                varer.append(honningtype.get(i).get_ID()).append("-").append(telling.get(i)).append(",");
-            }
+            varer.append(honningtype.get(i).get_ID()).append("-").append(telling.get(i)).append(",");
         }
         return varer.toString();
     }

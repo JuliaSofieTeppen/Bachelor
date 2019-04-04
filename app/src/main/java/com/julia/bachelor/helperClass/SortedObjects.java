@@ -5,6 +5,7 @@ import java.io.Serializable;
 public class SortedObjects implements Serializable {
     private String Varer;
     private int Belop;
+    private static final String KONTANT = "Kontant";
     /**
      * Betaling[0] = Kontant, Betaling[1] = kort.
      **/
@@ -59,12 +60,12 @@ public class SortedObjects implements Serializable {
             Hjemme h = (Hjemme) obj;
             Varer = addVarer(h.getVarer());
             Belop += h.getBelop();
-            Betaling[h.getBetaling().equals("Kontant") ? 0 : 1] += Belop;
+            Betaling[h.getBetaling().equals(KONTANT) ? 0 : 1] += Belop;
         } else if (obj instanceof Videresalg) {
             Videresalg h = (Videresalg) obj;
             Varer = addVarer(h.getVarer());
             Belop += h.getBelop();
-            Betaling[h.getBetaling().equals("Kontant") ? 0 : 1] += Belop;
+            Betaling[h.getBetaling().equals(KONTANT) ? 0 : 1] += Belop;
         } else if (obj instanceof BondensMarked) {
             BondensMarked h = (BondensMarked) obj;
             Varer = addVarer(h.getVarer());
@@ -74,7 +75,7 @@ public class SortedObjects implements Serializable {
             Annet h = (Annet) obj;
             Varer = addVarer(h.getVarer());
             Belop += h.getBelop();
-            Betaling[h.getBetaling().equals("Kontant") ? 0 : 1] += Belop;
+            Betaling[h.getBetaling().equals(KONTANT) ? 0 : 1] += Belop;
         }
     }
 }

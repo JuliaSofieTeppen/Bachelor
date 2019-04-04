@@ -1,4 +1,4 @@
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
     <string name="app_name">JTR</string>
     <string name="title_activity_main">Zum</string>
     <string name="title_section1">Hovedside</string>
@@ -53,11 +53,11 @@
     <string name="endre_priser">Endre Priser</string>
     <string name="honning">Honning</string>
     <string name="helkg">1kg</string>
-    <string name="kvartkg"> 1/4 kg</string>
+    <string name="kvartkg" tools:ignore="TypographyFractions"> 1/4 kg</string>
     <string name="spesialvare">Spesialvare</string>
     <string name="flytende">Flytende</string>
-    <string name="ingeferHalv">Ingefær 1/2 kg</string>
-    <string name="ingeferKvart">Ingefær 1/4 kg</string>
+    <string name="ingeferHalv" tools:ignore="TypographyFractions">Ingefær 1/2 kg</string>
+    <string name="ingeferKvart" tools:ignore="TypographyFractions">Ingefær 1/4 kg</string>
     <string name="moms_ferdig_produkt">Moms ferdig produkt</string>
     <string name="pris">Pris</string>
     <string name="moms_ikke_ferdig">Moms ikke ferdig</string>

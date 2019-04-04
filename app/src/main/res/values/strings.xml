@@ -47,12 +47,12 @@
     <string name="lagre">Lagre</string>
     <string name="ferdig_produkt">Ferdig produkt</string>
     <string name="ikke_ferdig_produkt">Ikke ferdig produkt</string>
-    <string name="Halvkg">1/2 kg</string>
+    <string name="Halvkg">1/2kg</string>
     <string name="hjemme">Hjemme</string>
     <string name="endre_moms">Endre moms</string>
     <string name="endre_priser">Endre Priser</string>
     <string name="honning">Honning</string>
-    <string name="helkg">1 kg</string>
+    <string name="helkg">1kg</string>
     <string name="kvartkg"> 1/4 kg</string>
     <string name="spesialvare">Spesialvare</string>
     <string name="flytende">Flytende</string>
@@ -69,7 +69,48 @@
     <string name="lyng">Lyng</string>
     <string name="med_ingefer">Med ingefær</string>
     <string name="dato">Dato</string>
-    <string name="date">yyyy.mm.dd</string>
+    <string name="date">YYYY.MM.dd</string>
     <string translatable="false" name="antall">antall</string>
     <string name="solgte_produkter">Solgte produkter</string>
+    <string name="salg_bondens_marked">Salg Bondens marked</string>
+    <string name="med_ingefærkvartkg">med ingefær 1/4kg</string>
+    <string name="med_ingefærhalvkg">med ingefær 1/2kg</string>
+    <string name="navn">Navn</string>
+    <string name="beløp">Beløp</string>
+    <string name="betaling">Betaling</string>
+    <string name="moms">Moms</string>
+    <string name="selg">Selg</string>
+    <string name="betalingsmetode">Betalingsmetode</string>
+    <string name="slett">Slett</string>
+    <string name="bie">Bie</string>
+    <string name="create_pdf">Create PDF</string>
+
+    <string name="HS_sommerenkg">Sommer \n 1kg</string>
+    <string name="HS_sommerhalvkg">Sommer \n 1/2kg</string>
+    <string name="HS_sommerkvartkg">Sommer \n 1/4kg</string>
+    <string name="HS_lyngenkg">Lyng \n 1kg</string>
+    <string name="HS_lynghalvkg">Lyng \n 1/2kg</string>
+    <string name="HS_lyngkvartkg">Lyng \n 1/4kg</string>
+    <string name="HS_med_Ingefærhalvkg">Med ingefær \n 1/2kg</string>
+    <string name="HS_med_Ingefærkvartkg">Med ingefær \n 1/4kg</string>
+    <string name="startdato">Startdato:</string>
+    <string name="sluttdato">Sluttdato:</string>
+    <string name="lagre_som">Lagre som:</string>
+    <string name="fakturaoversikt">FakturaOversikt</string>
+    <string name="annet_salg">Annet salg</string>
+    <string name="bifolk">Bifolk</string>
+    <string name="voks">Voks</string>
+    <string name="pollenering">Pollenering</string>
+    <string name="dronninger">Dronninger</string>
+    <string name="_0_kr_n_n0_kr">0 kr    0 kr</string>
+    <string name="kunde">Kunde</string>
+    <string name="kontantbetaling_n_nkortbetaling">Kontantbetaling    Kortbetaling</string>
+    <string name="_0">0</string>
+    <string name="totalt">TOTALT</string>
+    <string name="SalgItem_VerdierNavn">Sommerhonning 1kg   Sommerhonning 1/2kg   Sommerhonning 1/4kg   Lynghonning 1kg   Lynghonning1/2kg   Lynghonning 1/4kg    Sommer med Ingefær 1/2kg   Sommer med ingefær 1/4kg   Flytende</string>
+    <string name="SalgItem_verdier">0  0  0  0  0  0  0  0  0</string>
+    <string name="kr">Kr</string>
+    <string name="kundens_navn">Kundens navn</string>
+    <string name="salg">Salg</string>
+
 </resources>

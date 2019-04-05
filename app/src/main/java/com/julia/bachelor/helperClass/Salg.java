@@ -1,6 +1,8 @@
 package com.julia.bachelor.helperClass;
 
-public class Salg implements java.io.Serializable {
+import java.io.Serializable;
+
+public class Salg implements BeholdningTemplate, Serializable {
     private long _ID;
     private int Sommer;
     private int SommerH;
@@ -13,8 +15,7 @@ public class Salg implements java.io.Serializable {
     private int Flytende;
     private String Dato;
 
-    public Salg() {
-    }
+    public Salg() { }
 
     public long get_ID() {
         return _ID;

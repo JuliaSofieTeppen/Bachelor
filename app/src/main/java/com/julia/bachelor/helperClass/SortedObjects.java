@@ -2,20 +2,46 @@ package com.julia.bachelor.helperClass;
 
 import java.io.Serializable;
 
-public class SortedObjects implements Serializable {
-    private String Varer;
-    private int Belop;
+public class SortedObjects implements SalgTemplate, Serializable {
     private static final String KONTANT = "Kontant";
+    private String Varer;
+    private String AnnetVarer;
+    private int Belop;
     /**
-     * Betaling[0] = Kontant, Betaling[1] = kort.
+     * Betaling[0] = Kontant, Betaling[1] = Kort.
      **/
     private int[] Betaling;
     private String dato;
 
     public SortedObjects() {
         Varer = "1-0,2-0,3-0,4-0,5-0,6-0,7-0,8-0,9-0";
+        AnnetVarer = "1-0,2-0,3-0,4-0";
         Belop = 0;
         Betaling = new int[2];
+    }
+
+    public String getAnnetVarer() {
+        return AnnetVarer;
+    }
+
+    @Override
+    public long get_ID() {
+        return 0;
+    }
+
+    @Override
+    public void set_ID(long _ID) {
+
+    }
+
+    @Override
+    public String getKunde() {
+        return null;
+    }
+
+    @Override
+    public void setKunde(String kunde) {
+
     }
 
     public String getDato() {
@@ -30,12 +56,32 @@ public class SortedObjects implements Serializable {
         return Varer;
     }
 
+    @Override
+    public void setVarer(String varer) {
+
+    }
+
     public int getBelop() {
         return Belop;
     }
 
-    public int[] getBetaling() {
+    @Override
+    public void setBelop(int belop) {
+
+    }
+
+    @Override
+    public String getBetaling() {
+        return null;
+    }
+
+    public int[] getBetalings() {
         return Betaling;
+    }
+
+    @Override
+    public void setBetaling(String betaling) {
+
     }
 
     private String addVarer(String varer) {
@@ -43,8 +89,8 @@ public class SortedObjects implements Serializable {
         String[] OriginalPair = Varer.split(",");
         int[] newValues = new int[addPair.length];
         for (int i = 0; i < addPair.length; i++) { // {1-2, 2-2, 3-2, 4-2, 5-2, 6-2, 7-2}
-           // String[] add = addPair[i].split("-"); // {1,2} {2,2}
-           // String[] original = OriginalPair[i].split("-"); // {1,2} {2,2}
+            // String[] add = addPair[i].split("-"); // {1,2} {2,2}
+            // String[] original = OriginalPair[i].split("-"); // {1,2} {2,2}
             //int count = Integer.parseInt(add[1]) + Integer.parseInt(original[1]);
             //newValues[i] = count;
         }
@@ -55,27 +101,12 @@ public class SortedObjects implements Serializable {
         return sb.toString();
     }
 
-    public void add(Object obj) {
-        if (obj instanceof Hjemme) {
-            Hjemme h = (Hjemme) obj;
-            Varer = addVarer(h.getVarer());
-            Belop += h.getBelop();
-            Betaling[h.getBetaling().equals(KONTANT) ? 0 : 1] += Belop;
-        } else if (obj instanceof Videresalg) {
-            Videresalg h = (Videresalg) obj;
-            Varer = addVarer(h.getVarer());
-            Belop += h.getBelop();
-            Betaling[h.getBetaling().equals(KONTANT) ? 0 : 1] += Belop;
-        } else if (obj instanceof BondensMarked) {
-            BondensMarked h = (BondensMarked) obj;
-            Varer = addVarer(h.getVarer());
-            Belop += h.getBelop();
-            Betaling[1] += Belop;
-        } else if (obj instanceof Annet) {
-            Annet h = (Annet) obj;
-            Varer = addVarer(h.getVarer());
-            Belop += h.getBelop();
-            Betaling[h.getBetaling().equals(KONTANT) ? 0 : 1] += Belop;
+    public void add(SalgTemplate obj) {
+        if (obj instanceof Annet) {
+        } else {
+            Varer = obj.getVarer();
+            Belop += obj.getBelop();
+            Betaling[obj.getBetaling().equals(KONTANT) ? 0 : 1] += obj.getBelop();
         }
     }
 }

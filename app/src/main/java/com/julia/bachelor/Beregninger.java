@@ -7,6 +7,7 @@ import android.preference.PreferenceManager;
 import com.julia.bachelor.helperClass.Annet;
 import com.julia.bachelor.helperClass.BondensMarked;
 import com.julia.bachelor.helperClass.Hjemme;
+import com.julia.bachelor.helperClass.SalgTemplate;
 import com.julia.bachelor.helperClass.Videresalg;
 
 import java.text.ParseException;
@@ -31,19 +32,14 @@ class Beregninger implements Template {
         this.context = context;
     }
 
-
-    static void copyArrays(Object obj) {
-
-    }
-
     static boolean checkDate(String date) {
         String regex = "^\\d{4}\\.(0?[1-9]|1[012])\\.(0?[1-9]|[12][0-9]|3[01])$";
         return date.matches(regex);
     }
 
-    ArrayList<Object> separateAnnet(ArrayList<Object> list) {
-        ArrayList<Object> annet = new ArrayList<>();
-        for (Object object : list) {
+    ArrayList<SalgTemplate> separateAnnet(ArrayList<SalgTemplate> list) {
+        ArrayList<SalgTemplate> annet = new ArrayList<>();
+        for (SalgTemplate object : list) {
             if (object instanceof Annet) {
                 annet.add(object);
             }
@@ -51,9 +47,9 @@ class Beregninger implements Template {
         return annet;
     }
 
-    ArrayList<Object> separateHjemme(ArrayList<Object> list) {
-        ArrayList<Object> hjemme = new ArrayList<>();
-        for (Object object : list) {
+    ArrayList<SalgTemplate> separateHjemme(ArrayList<SalgTemplate> list) {
+        ArrayList<SalgTemplate> hjemme = new ArrayList<>();
+        for (SalgTemplate object : list) {
             if (object instanceof Hjemme) {
                 hjemme.add(object);
             }
@@ -61,9 +57,9 @@ class Beregninger implements Template {
         return hjemme;
     }
 
-    ArrayList<Object> separateBondensMarked(ArrayList<Object> list) {
-        ArrayList<Object> bondensMarked = new ArrayList<>();
-        for (Object object : list) {
+    ArrayList<SalgTemplate> separateBondensMarked(ArrayList<SalgTemplate> list) {
+        ArrayList<SalgTemplate> bondensMarked = new ArrayList<>();
+        for (SalgTemplate object : list) {
             if (object instanceof BondensMarked) {
                 bondensMarked.add(object);
             }
@@ -71,9 +67,9 @@ class Beregninger implements Template {
         return bondensMarked;
     }
 
-    ArrayList<Object> separateVideresalg(ArrayList<Object> list) {
-        ArrayList<Object> videresalg = new ArrayList<>();
-        for (Object object : list) {
+    ArrayList<SalgTemplate> separateVideresalg(ArrayList<SalgTemplate> list) {
+        ArrayList<SalgTemplate> videresalg = new ArrayList<>();
+        for (SalgTemplate object : list) {
             if (object instanceof Videresalg) {
                 videresalg.add(object);
             }
@@ -185,10 +181,10 @@ class Beregninger implements Template {
     }
 
     @Override
-    public double mvaHoy(ArrayList<Object> list) {
+    public double mvaHoy(ArrayList<SalgTemplate> list) {
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
         double mva = ((double) sharedPreferences.getInt("ikkeferdig", 25)) / 100.0;
-        ArrayList<Object> videresalgs = separateVideresalg(list);
+        ArrayList<SalgTemplate> videresalgs = separateVideresalg(list);
         double avgift = 0;
         for (Object videresalg : videresalgs) {
             Videresalg v = (Videresalg) videresalg;

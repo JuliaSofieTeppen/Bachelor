@@ -8,11 +8,10 @@ import android.os.Handler;
 import android.widget.ImageView;
 
 import com.julia.bachelor.helperClass.Annet;
-import com.julia.bachelor.helperClass.Beholdning;
+import com.julia.bachelor.helperClass.BeholdningTemplate;
 import com.julia.bachelor.helperClass.BondensMarked;
 import com.julia.bachelor.helperClass.Hjemme;
 import com.julia.bachelor.helperClass.Honning;
-import com.julia.bachelor.helperClass.Salg;
 import com.julia.bachelor.helperClass.Videresalg;
 
 import java.util.ArrayList;
@@ -28,8 +27,8 @@ public class LoadContentActivity extends Activity {
     private static final String KEY_BUNDLE = "Bundle";
 
     static ArrayList<com.julia.bachelor.helperClass.Annet> Annet;
-    static ArrayList<com.julia.bachelor.helperClass.Beholdning> Beholdning;
-    static ArrayList<com.julia.bachelor.helperClass.Salg> Salg;
+    static ArrayList<BeholdningTemplate> Beholdning;
+    static ArrayList<BeholdningTemplate> Salg;
     static ArrayList<BondensMarked> Bm;
     static ArrayList<com.julia.bachelor.helperClass.Hjemme> Hjemme;
     static ArrayList<com.julia.bachelor.helperClass.Honning> Honning;
@@ -79,11 +78,11 @@ public class LoadContentActivity extends Activity {
         Annet = annet;
     }
 
-    public void setBeholdning(ArrayList<Beholdning> beholdnings) {
+    public void setBeholdning(ArrayList<BeholdningTemplate> beholdnings) {
         Beholdning = beholdnings;
     }
 
-    public void setBeholdningUt(ArrayList<Salg> salgs) {
+    public void setBeholdningUt(ArrayList<BeholdningTemplate> salgs) {
         Salg = salgs;
     }
 

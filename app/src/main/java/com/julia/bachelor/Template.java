@@ -3,6 +3,7 @@ package com.julia.bachelor;
 import com.julia.bachelor.helperClass.Annet;
 import com.julia.bachelor.helperClass.BondensMarked;
 import com.julia.bachelor.helperClass.Hjemme;
+import com.julia.bachelor.helperClass.SalgTemplate;
 import com.julia.bachelor.helperClass.Videresalg;
 
 import java.util.ArrayList;
@@ -31,7 +32,7 @@ interface Template {
      * Some of the objects will be using sats = 25% and some sats = 15%
      * Therefore there should be two methods for calculating this.
      */
-    double mvaHoy(ArrayList<Object> list);
+    double mvaHoy(ArrayList<SalgTemplate> list);
 
     double mvaLav(ArrayList<Object> list);
 

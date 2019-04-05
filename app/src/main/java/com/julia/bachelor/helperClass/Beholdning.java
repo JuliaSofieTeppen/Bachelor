@@ -1,6 +1,8 @@
 package com.julia.bachelor.helperClass;
 
-public class Beholdning implements java.io.Serializable {
+import java.io.Serializable;
+
+public class Beholdning implements BeholdningTemplate, Serializable {
 
     private long _ID;
     private int Sommer;
@@ -14,8 +16,7 @@ public class Beholdning implements java.io.Serializable {
     private int Flytende;
     private String Dato;
 
-    public Beholdning() {
-    }
+    public Beholdning() { }
 
     public long get_ID() {
         return _ID;

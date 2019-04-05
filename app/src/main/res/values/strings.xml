@@ -41,7 +41,7 @@
     <string name="verkt_y">Verktøy</string>
     <string name="innstillinger">Innstillinger</string>
     <string name="eksporter">Eksporter</string>
-    <string name="error">Problemer med innlasting av innhold</string>
+    <string name="error">Problemer med innlasting av\n innhold</string>
     <string name="plus">+</string>
     <string name="beholdning">Beholdning</string>
     <string name="lagre">Lagre</string>

@@ -3,6 +3,7 @@ package com.julia.bachelor;
 import com.julia.bachelor.helperClass.Annet;
 import com.julia.bachelor.helperClass.BondensMarked;
 import com.julia.bachelor.helperClass.Hjemme;
+import com.julia.bachelor.helperClass.SalgTemplate;
 import com.julia.bachelor.helperClass.Videresalg;
 
 import java.text.ParseException;
@@ -119,14 +120,14 @@ class Beregningene implements Template {
     }
 
     @Override
-    public double mvaHoy(ArrayList<Object> list) {//ok
+    public double mvaHoy(ArrayList<SalgTemplate> list) {//ok
 
-        Iterator<Object> itererer = list.iterator();
+        Iterator<SalgTemplate> itererer = list.iterator();
         double total = 0.0;
 
         while (itererer.hasNext()) {
 
-            double tall = (double) itererer.next();
+            double tall = (double) itererer.next().getBelop();
 
             if (tall > 0) {
 

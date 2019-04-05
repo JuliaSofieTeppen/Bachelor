@@ -22,13 +22,7 @@ import java.util.Locale;
 public class AnnetSalgActivity extends Activity implements AdapterView.OnItemSelectedListener {
     String betalingsmetode;
     Spinner betaling;
-    EditText AntBifolk;
-    EditText AntVoks;
-    EditText AntPollenering;
-    EditText AntDronninger;
-    EditText KundeNavn;
-    EditText Dato;
-    EditText Pris;
+    EditText AntBifolk, AntVoks, AntPollenering, AntDronninger, KundeNavn, Dato, Pris;
     ArrayList<EditText> verdier;
 
     @Override
@@ -56,30 +50,13 @@ public class AnnetSalgActivity extends Activity implements AdapterView.OnItemSel
         Dato.setText(dateFormat.format(date));
     }
 
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        goback();
-        return true;
-    }
 
-    @Override
-    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-        betalingsmetode = parent.getItemAtPosition(position).toString();
-    }
-
-    @Override
-    public void onNothingSelected(AdapterView<?> parent) {
-
-    }
-
-    public boolean checkDate(String date) {
-        String regex = "^\\d{4}\\.(0?[1-9]|1[012])\\.(0?[1-9]|[12][0-9]|3[01])$";
-        return date.matches(regex);
-    }
-
+    /**
+     * Saves the sale data in the database
+     **/
     public void SAlagre(View view) {
         int tell = 0;
-        if (checkDate(Dato.getText().toString())) {
+        if (Beregninger.checkDate(Dato.getText().toString())) {
             if (!(Pris.getText().toString().equals("") || KundeNavn.getText().toString().equals(""))) {
                 for (EditText verdi : verdier) {
                     if (verdi.getText().toString().equals("")) {
@@ -116,10 +93,13 @@ public class AnnetSalgActivity extends Activity implements AdapterView.OnItemSel
         return stringBuilder.toString();
     }
 
-
-    @Override
-    public void onBackPressed() {
-        goback();
+    public boolean ValueInField() {
+        for (EditText verdi : verdier) {
+            if (!(verdi.getText().toString().equals(""))) {
+                return true;
+            }
+        }
+        return false;
     }
 
     public void goback() {
@@ -147,14 +127,23 @@ public class AnnetSalgActivity extends Activity implements AdapterView.OnItemSel
         }
     }
 
-    public boolean ValueInField() {
-        for (EditText verdi : verdier) {
-            if (!(verdi.getText().toString().equals(""))) {
-                return true;
-            }
-        }
-        return false;
+    @Override
+    public void onBackPressed() {
+        goback();
     }
 
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        goback();
+        return true;
+    }
 
+    @Override
+    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+        betalingsmetode = parent.getItemAtPosition(position).toString();
+    }
+
+    @Override
+    public void onNothingSelected(AdapterView<?> parent) {
+    }
 }

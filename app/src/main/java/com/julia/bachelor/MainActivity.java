@@ -12,7 +12,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.julia.bachelor.helperClass.Annet;
-import com.julia.bachelor.helperClass.Beholdning;
+import com.julia.bachelor.helperClass.BeholdningTemplate;
 import com.julia.bachelor.helperClass.BondensMarked;
 import com.julia.bachelor.helperClass.Hjemme;
 import com.julia.bachelor.helperClass.Honning;
@@ -47,8 +47,8 @@ public class MainActivity extends Activity implements NavigationDrawerFragment.N
     static ArrayList<com.julia.bachelor.helperClass.Hjemme> Hjemme;
     static ArrayList<BondensMarked> Bm;
     static ArrayList<com.julia.bachelor.helperClass.Videresalg> Videresalg;
-    static ArrayList<com.julia.bachelor.helperClass.Beholdning> Beholdning;
-    static ArrayList<com.julia.bachelor.helperClass.Salg> Salg;
+    static ArrayList<com.julia.bachelor.helperClass.BeholdningTemplate> Beholdning;
+    static ArrayList<com.julia.bachelor.helperClass.BeholdningTemplate> Salg;
     static ArrayList<Object> AllSalg;
 
     EditText dato, som1kg, som05kg, som025kg, lyng1kg, lyng05kg, lyng025kg, ingf05kg, ingf025kg, flytende;
@@ -76,8 +76,8 @@ public class MainActivity extends Activity implements NavigationDrawerFragment.N
         Hjemme = (ArrayList<Hjemme>) bundle.getSerializable(KEY_HJEMME);
         Bm = (ArrayList<BondensMarked>) bundle.getSerializable(KEY_BONDENSMARKED);
         Videresalg = (ArrayList<Videresalg>) bundle.getSerializable(KEY_VIDERESALG);
-        Beholdning = (ArrayList<Beholdning>) bundle.getSerializable(KEY_BEHOLDNING);
-        Salg = (ArrayList<Salg>) bundle.getSerializable(KEY_BEHOLDNINGUT);
+        Beholdning = (ArrayList<BeholdningTemplate>) bundle.getSerializable(KEY_BEHOLDNING);
+        Salg = (ArrayList<BeholdningTemplate>) bundle.getSerializable(KEY_BEHOLDNINGUT);
         if (Videresalg == null || Hjemme == null || Annet == null || Bm == null) return;
         setSalg();
     }

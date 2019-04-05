@@ -4,6 +4,7 @@ import android.os.AsyncTask;
 
 import com.julia.bachelor.helperClass.Annet;
 import com.julia.bachelor.helperClass.Beholdning;
+import com.julia.bachelor.helperClass.BeholdningTemplate;
 import com.julia.bachelor.helperClass.BondensMarked;
 import com.julia.bachelor.helperClass.Hjemme;
 import com.julia.bachelor.helperClass.Honning;
@@ -22,8 +23,8 @@ import java.util.ArrayList;
 
 class Database {
     private static ArrayList<Annet> Annet = new ArrayList<>();
-    private static ArrayList<Beholdning> Beholdning = new ArrayList<>();
-    private static ArrayList<Salg> Salg = new ArrayList<>();
+    private static ArrayList<BeholdningTemplate> Beholdning = new ArrayList<>();
+    private static ArrayList<BeholdningTemplate> Salg = new ArrayList<>();
     private static ArrayList<BondensMarked> BM = new ArrayList<>();
     private static ArrayList<Hjemme> Hjemme = new ArrayList<>();
     private static ArrayList<Honning> Honning = new ArrayList<>();
@@ -155,7 +156,7 @@ class Database {
                     // Convert string to JSONArray containing JSONObjects.
                     JSONArray jsonArray = new JSONArray(output.toString());
                     for (int i = 0; i < jsonArray.length(); i++) {
-                        Beholdning beholdning = new Beholdning();
+                        BeholdningTemplate beholdning = new Beholdning();
                         JSONObject jsonobject = jsonArray.getJSONObject(i);
                         beholdning.set_ID(jsonobject.getLong("ID"));
                         beholdning.setSommer(jsonobject.getInt("Sommer"));
@@ -211,7 +212,7 @@ class Database {
                     // Convert string to JSONArray containing JSONObjects.
                     JSONArray jsonArray = new JSONArray(output.toString());
                     for (int i = 0; i < jsonArray.length(); i++) {
-                        Salg salg = new Salg();
+                        BeholdningTemplate salg = new Salg();
                         JSONObject jsonobject = jsonArray.getJSONObject(i);
                         salg.set_ID(jsonobject.getLong("ID"));
                         salg.setSommer(jsonobject.getInt("Sommer"));

@@ -15,6 +15,7 @@ import android.widget.Toast;
 import com.julia.bachelor.helperClass.Annet;
 import com.julia.bachelor.helperClass.BondensMarked;
 import com.julia.bachelor.helperClass.Hjemme;
+import com.julia.bachelor.helperClass.SalgTemplate;
 import com.julia.bachelor.helperClass.SortedObjects;
 import com.julia.bachelor.helperClass.Videresalg;
 
@@ -29,7 +30,7 @@ public class RapportFragment extends Fragment {
     static StringBuilder sb;
     ListView listView;
     Spinner datoer, salgtyper;
-    ArrayList<Object> Salg, dynamicList;
+    ArrayList<SalgTemplate> Salg, dynamicList;
     ArrayList<String> salgliste;
     Beregninger beregninger;
 
@@ -55,7 +56,7 @@ public class RapportFragment extends Fragment {
         View rootView = inflater.inflate(R.layout.fragment_rapport, container, false);
 
         beregninger = new Beregninger(this.getContext());
-        Salg = (ArrayList<Object>) getArguments().getSerializable(KEY_ALLSALG);
+        Salg = (ArrayList<SalgTemplate>) getArguments().getSerializable(KEY_ALLSALG);
         dynamicList = new ArrayList<>();
         dynamicList.addAll(Salg);
         listView = rootView.findViewById(R.id.salgitems);

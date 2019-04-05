@@ -36,7 +36,7 @@ public class SortedObjects implements SalgTemplate, Serializable {
 
     @Override
     public String getKunde() {
-        return null;
+        return "";
     }
 
     @Override
@@ -75,12 +75,22 @@ public class SortedObjects implements SalgTemplate, Serializable {
         return null;
     }
 
+    @Override
+    public void setBetaling(String betaling) {
+
+    }
+
     public int[] getBetalings() {
         return Betaling;
     }
 
     @Override
-    public void setBetaling(String betaling) {
+    public double getMoms() {
+        return 0.15;
+    }
+
+    @Override
+    public void setMoms(double moms) {
 
     }
 

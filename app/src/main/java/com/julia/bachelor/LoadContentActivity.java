@@ -12,6 +12,7 @@ import com.julia.bachelor.helperClass.BeholdningTemplate;
 import com.julia.bachelor.helperClass.BondensMarked;
 import com.julia.bachelor.helperClass.Hjemme;
 import com.julia.bachelor.helperClass.Honning;
+import com.julia.bachelor.helperClass.SalgTemplate;
 import com.julia.bachelor.helperClass.Videresalg;
 
 import java.util.ArrayList;
@@ -26,13 +27,13 @@ public class LoadContentActivity extends Activity {
     private static final String KEY_VIDERESALG = "Videresalg";
     private static final String KEY_BUNDLE = "Bundle";
 
-    static ArrayList<com.julia.bachelor.helperClass.Annet> Annet;
+    static ArrayList<SalgTemplate> Annet;
     static ArrayList<BeholdningTemplate> Beholdning;
     static ArrayList<BeholdningTemplate> Salg;
-    static ArrayList<BondensMarked> Bm;
-    static ArrayList<com.julia.bachelor.helperClass.Hjemme> Hjemme;
-    static ArrayList<com.julia.bachelor.helperClass.Honning> Honning;
-    static ArrayList<Videresalg> Videresalg;
+    static ArrayList<SalgTemplate> Bm;
+    static ArrayList<SalgTemplate> Hjemme;
+    static ArrayList<Honning> Honning;
+    static ArrayList<SalgTemplate> Videresalg;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -71,10 +72,10 @@ public class LoadContentActivity extends Activity {
                 finish();
             }
 
-        }, 3000);
+        }, 6000);
     }
 
-    public void setAnnet(ArrayList<Annet> annet) {
+    public void setAnnet(ArrayList<SalgTemplate> annet) {
         Annet = annet;
     }
 
@@ -86,11 +87,11 @@ public class LoadContentActivity extends Activity {
         Salg = salgs;
     }
 
-    public void setBM(ArrayList<BondensMarked> bondensMarkeds) {
+    public void setBM(ArrayList<SalgTemplate> bondensMarkeds) {
         Bm = bondensMarkeds;
     }
 
-    public void setHjemme(ArrayList<Hjemme> hjemmes) {
+    public void setHjemme(ArrayList<SalgTemplate> hjemmes) {
         Hjemme = hjemmes;
     }
 
@@ -98,7 +99,7 @@ public class LoadContentActivity extends Activity {
         Honning = honning;
     }
 
-    public void setVideresalg(ArrayList<com.julia.bachelor.helperClass.Videresalg> videresalg) {
+    public void setVideresalg(ArrayList<SalgTemplate> videresalg) {
         Videresalg = videresalg;
     }
 }

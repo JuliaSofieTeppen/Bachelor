@@ -104,11 +104,11 @@
     <string name="dronninger">Dronninger</string>
     <string name="_0_kr_n_n0_kr">0 kr    0 kr</string>
     <string name="kunde">Kunde</string>
-    <string name="kontantbetaling_n_nkortbetaling">Kontantbetaling    Kortbetaling</string>
+    <string name="kontantbetaling_n_nkortbetaling">Kontantbetaling\n\nKortbetaling</string>
     <string name="_0">0</string>
     <string name="totalt">TOTALT</string>
-    <string name="SalgItem_VerdierNavn">Sommerhonning 1kg   Sommerhonning 1/2kg   Sommerhonning 1/4kg   Lynghonning 1kg   Lynghonning1/2kg   Lynghonning 1/4kg    Sommer med Ingefær 1/2kg   Sommer med ingefær 1/4kg   Flytende</string>
-    <string name="SalgItem_verdier">0  0  0  0  0  0  0  0  0</string>
+    <string name="SalgItem_VerdierNavn">Sommerhonning 1kg\n\nSommerhonning 1/2kg\n\nSommerhonning 1/4kg\n\nLynghonning 1kg\n\nLynghonning1/2kg\n\nLynghonning 1/4kg\n\nSommer med Ingefær 1/2kg\n\nSommer med ingefær 1/4kg\n\nFlytende</string>
+    <string name="SalgItem_verdier">0\n0\n0\n0\n0\n0\n0\n0\n0</string>
     <string name="kr">Kr</string>
     <string name="kundens_navn">Kundens navn</string>
     <string name="salg">Salg</string>

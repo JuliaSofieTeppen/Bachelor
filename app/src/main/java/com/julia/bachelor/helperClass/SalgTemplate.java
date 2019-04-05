@@ -24,4 +24,8 @@ public interface SalgTemplate {
     String getBetaling();
 
     void setBetaling(String betaling);
+
+    double getMoms();
+
+    void setMoms(double moms);
 }

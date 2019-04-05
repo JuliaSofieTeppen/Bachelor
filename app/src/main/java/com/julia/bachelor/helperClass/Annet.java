@@ -61,4 +61,14 @@ public class Annet implements SalgTemplate, Serializable {
     public void setBetaling(String betaling) {
         Betaling = betaling;
     }
+
+    @Override
+    public void setMoms(double moms) {
+
+    }
+
+    @Override
+    public double getMoms() {
+        return 0.25;
+    }
 }

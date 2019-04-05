@@ -158,8 +158,6 @@ public class HovedsideFragment extends Fragment {
             for (int i = 0; i < beholdning.size(); i++) {
                 if (greaterThan(current, beholdning.get(i))) {
                     current = beholdning.get(i);
-                    //beholdningUt = salg.get(i);
-
                 }
             }
             return current;

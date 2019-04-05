@@ -42,7 +42,7 @@ public class RapportFragment extends Fragment {
      * Returns a new instance of this fragment for the given section
      * number.
      */
-    public static RapportFragment newInstance(ArrayList<Object> salg) {
+    public static RapportFragment newInstance(ArrayList<SalgTemplate> salg) {
         RapportFragment fragment = new RapportFragment();
         Bundle args = new Bundle();
         args.putSerializable(KEY_ALLSALG, salg);

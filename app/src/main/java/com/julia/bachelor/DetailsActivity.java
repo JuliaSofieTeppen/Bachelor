@@ -91,6 +91,7 @@ public class DetailsActivity extends Activity {
             betalingkroner.setText(text);
             text = "Periode: " + sortedObjects.getDato();
             Kundenavn.setText(text);
+            setVerdier(sortedObjects.getVarer());
         } else {
             Toast.makeText(this, "Noe gikk galt", Toast.LENGTH_SHORT).show();
         }

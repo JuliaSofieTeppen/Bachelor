@@ -9,6 +9,7 @@ import com.julia.bachelor.helperClass.BondensMarked;
 import com.julia.bachelor.helperClass.Hjemme;
 import com.julia.bachelor.helperClass.Honning;
 import com.julia.bachelor.helperClass.Salg;
+import com.julia.bachelor.helperClass.SalgTemplate;
 import com.julia.bachelor.helperClass.Videresalg;
 
 import org.json.JSONArray;
@@ -22,13 +23,13 @@ import java.net.URL;
 import java.util.ArrayList;
 
 class Database {
-    private static ArrayList<Annet> Annet = new ArrayList<>();
+    private static ArrayList<SalgTemplate> Annet = new ArrayList<>();
     private static ArrayList<BeholdningTemplate> Beholdning = new ArrayList<>();
     private static ArrayList<BeholdningTemplate> Salg = new ArrayList<>();
-    private static ArrayList<BondensMarked> BM = new ArrayList<>();
-    private static ArrayList<Hjemme> Hjemme = new ArrayList<>();
+    private static ArrayList<SalgTemplate> BM = new ArrayList<>();
+    private static ArrayList<SalgTemplate> Hjemme = new ArrayList<>();
     private static ArrayList<Honning> Honning = new ArrayList<>();
-    private static ArrayList<Videresalg> Videresalg = new ArrayList<>();
+    private static ArrayList<SalgTemplate> Videresalg = new ArrayList<>();
 
     static void executeOnDB(String url) {
         ExecuteOnDB task = new ExecuteOnDB();
@@ -418,7 +419,7 @@ class Database {
                     // Convert string to JSONArray containing JSONObjects.
                     JSONArray jsonArray = new JSONArray(output.toString());
                     for (int i = 0; i < jsonArray.length(); i++) {
-                        Videresalg videresalg = new Videresalg();
+                        SalgTemplate videresalg = new Videresalg();
                         JSONObject jsonobject = jsonArray.getJSONObject(i);
                         videresalg.set_ID(jsonobject.getLong("ID"));
                         videresalg.setKunde(jsonobject.getString("Kunde"));

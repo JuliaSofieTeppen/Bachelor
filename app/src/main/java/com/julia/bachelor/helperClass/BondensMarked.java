@@ -71,4 +71,14 @@ public class BondensMarked implements SalgTemplate, Serializable {
     public void setBetaling(String betaling) {
 
     }
+
+    @Override
+    public void setMoms(double moms) {
+
+    }
+
+    @Override
+    public double getMoms() {
+        return 0.15;
+    }
 }

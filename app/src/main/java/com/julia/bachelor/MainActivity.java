@@ -11,13 +11,10 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.julia.bachelor.helperClass.Annet;
 import com.julia.bachelor.helperClass.BeholdningTemplate;
-import com.julia.bachelor.helperClass.BondensMarked;
-import com.julia.bachelor.helperClass.Hjemme;
 import com.julia.bachelor.helperClass.Honning;
 import com.julia.bachelor.helperClass.Salg;
-import com.julia.bachelor.helperClass.Videresalg;
+import com.julia.bachelor.helperClass.SalgTemplate;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -42,14 +39,14 @@ public class MainActivity extends Activity implements NavigationDrawerFragment.N
     private static final String KEY_BUNDLE = "Bundle";
     private static final String KEY_ALLSALG = "AllSalg";
 
-    static ArrayList<com.julia.bachelor.helperClass.Honning> Honning;
-    static ArrayList<com.julia.bachelor.helperClass.Annet> Annet;
-    static ArrayList<com.julia.bachelor.helperClass.Hjemme> Hjemme;
-    static ArrayList<BondensMarked> Bm;
-    static ArrayList<com.julia.bachelor.helperClass.Videresalg> Videresalg;
-    static ArrayList<com.julia.bachelor.helperClass.BeholdningTemplate> Beholdning;
-    static ArrayList<com.julia.bachelor.helperClass.BeholdningTemplate> Salg;
-    static ArrayList<Object> AllSalg;
+    static ArrayList<Honning> Honning;
+    static ArrayList<SalgTemplate> Annet;
+    static ArrayList<SalgTemplate> Hjemme;
+    static ArrayList<SalgTemplate> Bm;
+    static ArrayList<SalgTemplate> Videresalg;
+    static ArrayList<BeholdningTemplate> Beholdning;
+    static ArrayList<BeholdningTemplate> Salg;
+    static ArrayList<SalgTemplate> AllSalg;
 
     EditText dato, som1kg, som05kg, som025kg, lyng1kg, lyng05kg, lyng025kg, ingf05kg, ingf025kg, flytende;
     List<EditText> verdier;
@@ -72,10 +69,10 @@ public class MainActivity extends Activity implements NavigationDrawerFragment.N
         Intent intent = getIntent();
         Bundle bundle = intent.getBundleExtra(KEY_BUNDLE);
         Honning = (ArrayList<Honning>) bundle.getSerializable(KEY_HONNING);
-        Annet = (ArrayList<Annet>) bundle.getSerializable(KEY_ANNET);
-        Hjemme = (ArrayList<Hjemme>) bundle.getSerializable(KEY_HJEMME);
-        Bm = (ArrayList<BondensMarked>) bundle.getSerializable(KEY_BONDENSMARKED);
-        Videresalg = (ArrayList<Videresalg>) bundle.getSerializable(KEY_VIDERESALG);
+        Annet = (ArrayList<SalgTemplate>) bundle.getSerializable(KEY_ANNET);
+        Hjemme = (ArrayList<SalgTemplate>) bundle.getSerializable(KEY_HJEMME);
+        Bm = (ArrayList<SalgTemplate>) bundle.getSerializable(KEY_BONDENSMARKED);
+        Videresalg = (ArrayList<SalgTemplate>) bundle.getSerializable(KEY_VIDERESALG);
         Beholdning = (ArrayList<BeholdningTemplate>) bundle.getSerializable(KEY_BEHOLDNING);
         Salg = (ArrayList<BeholdningTemplate>) bundle.getSerializable(KEY_BEHOLDNINGUT);
         if (Videresalg == null || Hjemme == null || Annet == null || Bm == null) return;
@@ -223,8 +220,7 @@ public class MainActivity extends Activity implements NavigationDrawerFragment.N
             StringBuilder output = new StringBuilder();
             try {
 
-                URL url = new URL(urls[0]);
-                HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+                URL url = new URL(urls[0]);                HttpURLConnection conn = (HttpURLConnection) url.openConnection();
                 conn.setRequestMethod("GET");
                 conn.setRequestProperty("Accept", "application/json");
                 if (conn.getResponseCode() != 200) {

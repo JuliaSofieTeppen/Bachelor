@@ -52,7 +52,8 @@
                     android:hint="@string/antall"
                     android:inputType="number"
                     app:layout_constraintBaseline_toBaselineOf="@+id/textView93"
-                    app:layout_constraintEnd_toEndOf="parent" />
+                    app:layout_constraintEnd_toEndOf="parent"
+                    tools:ignore="Autofill"/>
 
                 <TextView
                     android:id="@+id/textView102"
@@ -76,7 +77,8 @@
                     android:hint="@string/antall"
                     android:inputType="number"
                     app:layout_constraintBaseline_toBaselineOf="@+id/textView97"
-                    app:layout_constraintEnd_toEndOf="parent" />
+                    app:layout_constraintEnd_toEndOf="parent"
+                    tools:ignore="Autofill"/>
 
                 <TextView
                     android:id="@+id/textView96"
@@ -100,7 +102,8 @@
                     android:hint="@string/antall"
                     android:inputType="number"
                     app:layout_constraintBaseline_toBaselineOf="@+id/textView101"
-                    app:layout_constraintEnd_toEndOf="parent" />
+                    app:layout_constraintEnd_toEndOf="parent"
+                    tools:ignore="Autofill"/>
 
                 <TextView
                     android:id="@+id/textView93"
@@ -137,7 +140,8 @@
                     android:hint="@string/antall"
                     android:inputType="number"
                     app:layout_constraintBaseline_toBaselineOf="@+id/textView92"
-                    app:layout_constraintEnd_toEndOf="parent" />
+                    app:layout_constraintEnd_toEndOf="parent"
+                    tools:ignore="Autofill"/>
 
                 <TextView
                     android:id="@+id/textView94"
@@ -187,7 +191,8 @@
                     android:hint="@string/antall"
                     android:inputType="number"
                     app:layout_constraintBaseline_toBaselineOf="@+id/textView102"
-                    app:layout_constraintEnd_toEndOf="parent" />
+                    app:layout_constraintEnd_toEndOf="parent"
+                    tools:ignore="Autofill"/>
 
                 <EditText
                     android:id="@+id/Binf05kg"
@@ -198,7 +203,8 @@
                     android:hint="@string/antall"
                     android:inputType="number"
                     app:layout_constraintBaseline_toBaselineOf="@+id/textView100"
-                    app:layout_constraintEnd_toEndOf="parent" />
+                    app:layout_constraintEnd_toEndOf="parent"
+                    tools:ignore="Autofill"/>
 
                 <TextView
                     android:id="@+id/textView100"
@@ -235,7 +241,8 @@
                     android:hint="@string/antall"
                     android:inputType="number"
                     app:layout_constraintBaseline_toBaselineOf="@+id/textView94"
-                    app:layout_constraintEnd_toEndOf="parent" />
+                    app:layout_constraintEnd_toEndOf="parent"
+                    tools:ignore="Autofill"/>
 
                 <TextView
                     android:id="@+id/textView101"
@@ -259,7 +266,8 @@
                     android:hint="@string/antall"
                     android:inputType="number"
                     app:layout_constraintBaseline_toBaselineOf="@+id/textView96"
-                    app:layout_constraintEnd_toEndOf="parent" />
+                    app:layout_constraintEnd_toEndOf="parent"
+                    tools:ignore="Autofill"/>
 
                 <TextView
                     android:id="@+id/textView97"
@@ -283,7 +291,8 @@
                     android:hint="@string/antall"
                     android:inputType="number"
                     app:layout_constraintBaseline_toBaselineOf="@+id/textView98"
-                    app:layout_constraintEnd_toEndOf="parent" />
+                    app:layout_constraintEnd_toEndOf="parent"
+                    tools:ignore="Autofill"/>
 
                 <TextView
                     android:id="@+id/textView98"
@@ -349,7 +358,8 @@
                     android:hint="@string/date"
                     android:inputType="date"
                     app:layout_constraintBaseline_toBaselineOf="@+id/textView90"
-                    app:layout_constraintEnd_toEndOf="parent" />
+                    app:layout_constraintEnd_toEndOf="parent"
+                    tools:ignore="Autofill"/>
 
                 <TextView
                     android:id="@+id/textView90"

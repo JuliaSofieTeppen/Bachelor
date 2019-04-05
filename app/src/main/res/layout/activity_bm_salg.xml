@@ -22,8 +22,8 @@
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="28dp"
                 android:layout_marginEnd="8dp"
-                android:text="Salg Bondens marked"
-                android:textSize="28dp"
+                android:text="@string/salg_bondens_marked"
+                android:textSize="28sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.181"
                 app:layout_constraintStart_toStartOf="parent"
@@ -48,9 +48,11 @@
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="8dp"
                     android:ems="10"
+                    android:hint="@string/space"
                     android:inputType="number"
                     app:layout_constraintBaseline_toBaselineOf="@+id/textView53"
-                    app:layout_constraintEnd_toEndOf="parent" />
+                    app:layout_constraintEnd_toEndOf="parent"
+                    tools:ignore="Autofill"/>
 
                 <TextView
                     android:id="@+id/textView58"
@@ -59,7 +61,7 @@
                     android:layout_marginStart="8dp"
                     android:layout_marginTop="24dp"
                     android:layout_marginEnd="8dp"
-                    android:text="med ingefær 1/4kg"
+                    android:text="@string/med_ingefærkvartkg"
                     app:layout_constraintEnd_toStartOf="@+id/BMSlyn05kg"
                     app:layout_constraintHorizontal_bias="0.424"
                     app:layout_constraintStart_toStartOf="parent"
@@ -71,9 +73,11 @@
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="8dp"
                     android:ems="10"
+                    android:hint="@string/space"
                     android:inputType="number"
                     app:layout_constraintBaseline_toBaselineOf="@+id/textView52"
-                    app:layout_constraintEnd_toEndOf="parent" />
+                    app:layout_constraintEnd_toEndOf="parent"
+                    tools:ignore="Autofill"/>
 
                 <TextView
                     android:id="@+id/textView59"
@@ -82,7 +86,7 @@
                     android:layout_marginStart="8dp"
                     android:layout_marginTop="28dp"
                     android:layout_marginEnd="8dp"
-                    android:text="Flytende"
+                    android:text="@string/flytende"
                     app:layout_constraintEnd_toStartOf="@+id/BMSlyn025kg"
                     app:layout_constraintHorizontal_bias="0.22"
                     app:layout_constraintStart_toStartOf="parent"
@@ -95,7 +99,7 @@
                     android:layout_marginStart="8dp"
                     android:layout_marginTop="28dp"
                     android:layout_marginEnd="8dp"
-                    android:text="Annet"
+                    android:text="@string/annet"
                     android:textSize="18sp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.034"
@@ -109,11 +113,12 @@
                     android:layout_marginStart="8dp"
                     android:layout_marginTop="24dp"
                     android:layout_marginEnd="8dp"
-                    android:text="1kg"
+                    android:text="@string/helkg"
                     app:layout_constraintEnd_toStartOf="@+id/kundenavn"
                     app:layout_constraintHorizontal_bias="0.189"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/textView55" />
+                    app:layout_constraintTop_toBottomOf="@+id/textView55"
+                    tools:ignore="Autofill"/>
 
                 <EditText
                     android:id="@+id/BMSlyn05kg"
@@ -121,9 +126,11 @@
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="8dp"
                     android:ems="10"
+                    android:hint="@string/space"
                     android:inputType="number"
                     app:layout_constraintBaseline_toBaselineOf="@+id/textVie"
-                    app:layout_constraintEnd_toEndOf="parent" />
+                    app:layout_constraintEnd_toEndOf="parent"
+                    tools:ignore="Autofill"/>
 
                 <TextView
                     android:id="@+id/textView52"
@@ -132,7 +139,7 @@
                     android:layout_marginStart="8dp"
                     android:layout_marginTop="16dp"
                     android:layout_marginEnd="8dp"
-                    android:text="1kg"
+                    android:text="@string/helkg"
                     app:layout_constraintEnd_toStartOf="@+id/BMSsom1kg"
                     app:layout_constraintHorizontal_bias="0.223"
                     app:layout_constraintStart_toStartOf="parent"
@@ -144,9 +151,11 @@
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="8dp"
                     android:ems="10"
+                    android:hint="@string/space"
                     android:inputType="number"
                     app:layout_constraintBaseline_toBaselineOf="@+id/textView58"
-                    app:layout_constraintEnd_toEndOf="parent" />
+                    app:layout_constraintEnd_toEndOf="parent"
+                    tools:ignore="Autofill"/>
 
                 <TextView
                     android:id="@+id/textVi"
@@ -155,7 +164,7 @@
                     android:layout_marginStart="8dp"
                     android:layout_marginTop="24dp"
                     android:layout_marginEnd="8dp"
-                    android:text="1/4 kg"
+                    android:text="@string/kvartkg"
                     app:layout_constraintEnd_toStartOf="@+id/BMSlyn025kg"
                     app:layout_constraintHorizontal_bias="0.193"
                     app:layout_constraintStart_toStartOf="parent"
@@ -167,9 +176,11 @@
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="8dp"
                     android:ems="10"
+                    android:hint="@string/space"
                     android:inputType="number"
                     app:layout_constraintBaseline_toBaselineOf="@+id/textView57"
-                    app:layout_constraintEnd_toEndOf="parent" />
+                    app:layout_constraintEnd_toEndOf="parent"
+                    tools:ignore="Autofill"/>
 
                 <TextView
                     android:id="@+id/textView51"
@@ -178,7 +189,7 @@
                     android:layout_marginStart="20dp"
                     android:layout_marginTop="30dp"
                     android:layout_marginEnd="8dp"
-                    android:text="Sommer"
+                    android:text="@string/sommer"
                     android:textSize="18sp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.0"
@@ -191,9 +202,11 @@
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="8dp"
                     android:ems="10"
+                    android:hint="@string/space"
                     android:inputType="number"
                     app:layout_constraintBaseline_toBaselineOf="@+id/textView"
-                    app:layout_constraintEnd_toEndOf="parent" />
+                    app:layout_constraintEnd_toEndOf="parent"
+                    tools:ignore="Autofill"/>
 
                 <EditText
                     android:id="@+id/BMSflyt"
@@ -201,9 +214,11 @@
                     android:layout_height="42dp"
                     android:layout_marginEnd="8dp"
                     android:ems="10"
+                    android:hint="@string/space"
                     android:inputType="number"
                     app:layout_constraintBaseline_toBaselineOf="@+id/textView59"
-                    app:layout_constraintEnd_toEndOf="parent" />
+                    app:layout_constraintEnd_toEndOf="parent"
+                    tools:ignore="Autofill"/>
 
                 <TextView
                     android:id="@+id/textView54"
@@ -212,7 +227,7 @@
                     android:layout_marginStart="8dp"
                     android:layout_marginTop="28dp"
                     android:layout_marginEnd="8dp"
-                    android:text="1/4 kg"
+                    android:text="@string/kvartkg"
                     app:layout_constraintEnd_toStartOf="@+id/BMSsom025kg"
                     app:layout_constraintHorizontal_bias="0.236"
                     app:layout_constraintStart_toStartOf="parent"
@@ -225,7 +240,7 @@
                     android:layout_marginStart="8dp"
                     android:layout_marginTop="24dp"
                     android:layout_marginEnd="8dp"
-                    android:text="Lyng"
+                    android:text="@string/lyng"
                     android:textSize="18sp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.033"
@@ -239,7 +254,7 @@
                     android:layout_marginStart="8dp"
                     android:layout_marginTop="28dp"
                     android:layout_marginEnd="8dp"
-                    android:text="1/2 kg"
+                    android:text="@string/Halvkg"
                     app:layout_constraintEnd_toStartOf="@+id/BMSlyn05kg"
                     app:layout_constraintHorizontal_bias="0.201"
                     app:layout_constraintStart_toStartOf="parent"
@@ -251,9 +266,11 @@
                     android:layout_height="42dp"
                     android:layout_marginEnd="8dp"
                     android:ems="10"
+                    android:hint="@string/space"
                     android:inputType="number"
                     app:layout_constraintBaseline_toBaselineOf="@+id/textVi"
-                    app:layout_constraintEnd_toEndOf="parent" />
+                    app:layout_constraintEnd_toEndOf="parent"
+                    tools:ignore="Autofill"/>
 
                 <TextView
                     android:id="@+id/textView57"
@@ -262,7 +279,7 @@
                     android:layout_marginStart="8dp"
                     android:layout_marginTop="28dp"
                     android:layout_marginEnd="8dp"
-                    android:text="med Ingefær 1/2kg"
+                    android:text="@string/med_ingefærhalvkg"
                     app:layout_constraintEnd_toStartOf="@+id/kundenavn"
                     app:layout_constraintHorizontal_bias="0.413"
                     app:layout_constraintStart_toStartOf="parent"
@@ -274,9 +291,11 @@
                     android:layout_height="42dp"
                     android:layout_marginEnd="8dp"
                     android:ems="10"
+                    android:hint="@string/space"
                     android:inputType="number"
                     app:layout_constraintBaseline_toBaselineOf="@+id/textView54"
-                    app:layout_constraintEnd_toEndOf="parent" />
+                    app:layout_constraintEnd_toEndOf="parent"
+                    tools:ignore="Autofill"/>
 
                 <TextView
                     android:id="@+id/textView53"
@@ -285,7 +304,7 @@
                     android:layout_marginStart="8dp"
                     android:layout_marginTop="24dp"
                     android:layout_marginEnd="8dp"
-                    android:text="1/2 kg"
+                    android:text="@string/Halvkg"
                     app:layout_constraintEnd_toStartOf="@+id/BMSsom05kg"
                     app:layout_constraintHorizontal_bias="0.235"
                     app:layout_constraintStart_toStartOf="parent"
@@ -311,10 +330,11 @@
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="8dp"
                     android:ems="10"
-                    android:hint="YYYY.MM.dd"
+                    android:hint="@string/date"
                     android:inputType="date"
                     app:layout_constraintBaseline_toBaselineOf="@+id/textView50"
-                    app:layout_constraintEnd_toEndOf="parent" />
+                    app:layout_constraintEnd_toEndOf="parent"
+                    tools:ignore="Autofill"/>
 
                 <TextView
                     android:id="@+id/textView50"
@@ -324,7 +344,7 @@
                     android:layout_marginTop="14dp"
                     android:layout_marginEnd="8dp"
                     android:layout_marginBottom="8dp"
-                    android:text="Dato"
+                    android:text="@string/dato"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toStartOf="@+id/BMSdato"
                     app:layout_constraintHorizontal_bias="0.327"
@@ -351,7 +371,7 @@
                 android:layout_marginEnd="8dp"
                 android:background="#ffbb00"
                 android:onClick="lagre"
-                android:text="Lagre"
+                android:text="@string/lagre"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.494"
                 app:layout_constraintStart_toStartOf="parent"

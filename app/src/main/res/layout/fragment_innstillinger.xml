@@ -11,7 +11,8 @@ tools:context=".SettingFragment">
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:layout_editor_absoluteX="16dp"
-        tools:layout_editor_absoluteY="87dp">
+        tools:layout_editor_absoluteY="87dp"
+        tools:ignore="UselessParent">
 
         <android.support.constraint.ConstraintLayout
             android:layout_width="match_parent"
@@ -186,7 +187,8 @@ tools:context=".SettingFragment">
                         android:hint="@string/helkg"
                         android:inputType="number"
                         app:layout_constraintBaseline_toBaselineOf="@+id/textView133"
-                        app:layout_constraintEnd_toEndOf="parent" />
+                        app:layout_constraintEnd_toEndOf="parent"
+                        tools:ignore="Autofill" />
 
                     <EditText
                         android:id="@+id/enkgfak"
@@ -197,7 +199,8 @@ tools:context=".SettingFragment">
                         android:hint="@string/helkg"
                         android:inputType="number"
                         app:layout_constraintBaseline_toBaselineOf="@+id/textView134"
-                        app:layout_constraintEnd_toEndOf="parent" />
+                        app:layout_constraintEnd_toEndOf="parent"
+                        tools:ignore="Autofill" />
 
                     <EditText
                         android:id="@+id/enkghjemme"
@@ -208,7 +211,8 @@ tools:context=".SettingFragment">
                         android:hint="@string/helkg"
                         android:inputType="number"
                         app:layout_constraintBaseline_toBaselineOf="@+id/textView132"
-                        app:layout_constraintEnd_toEndOf="parent" />
+                        app:layout_constraintEnd_toEndOf="parent"
+                        tools:ignore="Autofill" />
                 </android.support.constraint.ConstraintLayout>
 
                 <android.support.constraint.ConstraintLayout
@@ -270,7 +274,8 @@ tools:context=".SettingFragment">
                         android:hint="@string/Halvkg"
                         android:inputType="number"
                         app:layout_constraintBaseline_toBaselineOf="@+id/textView47"
-                        app:layout_constraintEnd_toEndOf="parent" />
+                        app:layout_constraintEnd_toEndOf="parent"
+                        tools:ignore="Autofill" />
 
                     <EditText
                         android:id="@+id/halvkgbm"
@@ -281,7 +286,8 @@ tools:context=".SettingFragment">
                         android:hint="@string/Halvkg"
                         android:inputType="number"
                         app:layout_constraintBaseline_toBaselineOf="@+id/textView15"
-                        app:layout_constraintEnd_toEndOf="parent" />
+                        app:layout_constraintEnd_toEndOf="parent"
+                        tools:ignore="Autofill" />
 
                     <EditText
                         android:id="@+id/halvkghjemme"
@@ -292,7 +298,8 @@ tools:context=".SettingFragment">
                         android:hint="@string/Halvkg"
                         android:inputType="number"
                         app:layout_constraintBaseline_toBaselineOf="@+id/textView14"
-                        app:layout_constraintEnd_toEndOf="parent" />
+                        app:layout_constraintEnd_toEndOf="parent"
+                        tools:ignore="Autofill" />
                 </android.support.constraint.ConstraintLayout>
 
                 <android.support.constraint.ConstraintLayout
@@ -404,7 +411,8 @@ tools:context=".SettingFragment">
                         android:hint="@string/Halvkg"
                         android:inputType="number"
                         app:layout_constraintBaseline_toBaselineOf="@+id/textView116"
-                        app:layout_constraintEnd_toEndOf="parent" />
+                        app:layout_constraintEnd_toEndOf="parent"
+                        tools:ignore="Autofill" />
 
                     <EditText
                         android:id="@+id/ingfhalvkgbm"
@@ -415,7 +423,8 @@ tools:context=".SettingFragment">
                         android:hint="@string/Halvkg"
                         android:inputType="number"
                         app:layout_constraintBaseline_toBaselineOf="@+id/textView115"
-                        app:layout_constraintEnd_toEndOf="parent" />
+                        app:layout_constraintEnd_toEndOf="parent"
+                        tools:ignore="Autofill" />
 
                     <EditText
                         android:id="@+id/ingfhalvkghjemme"
@@ -426,7 +435,8 @@ tools:context=".SettingFragment">
                         android:hint="@string/Halvkg"
                         android:inputType="number"
                         app:layout_constraintBaseline_toBaselineOf="@+id/textView114"
-                        app:layout_constraintEnd_toEndOf="parent" />
+                        app:layout_constraintEnd_toEndOf="parent"
+                        tools:ignore="Autofill" />
                 </android.support.constraint.ConstraintLayout>
 
                 <android.support.constraint.ConstraintLayout
@@ -483,7 +493,8 @@ tools:context=".SettingFragment">
                         android:hint="@string/kvartkg"
                         android:inputType="number"
                         app:layout_constraintBaseline_toBaselineOf="@+id/textView13"
-                        app:layout_constraintEnd_toEndOf="parent" />
+                        app:layout_constraintEnd_toEndOf="parent"
+                        tools:ignore="Autofill" />
 
                     <EditText
                         android:id="@+id/kvartkgbm"
@@ -494,7 +505,8 @@ tools:context=".SettingFragment">
                         android:hint="@string/kvartkg"
                         android:inputType="number"
                         app:layout_constraintBaseline_toBaselineOf="@+id/textView12"
-                        app:layout_constraintEnd_toEndOf="parent" />
+                        app:layout_constraintEnd_toEndOf="parent"
+                        tools:ignore="Autofill" />
 
                     <EditText
                         android:id="@+id/kvartkghjemme"
@@ -505,7 +517,8 @@ tools:context=".SettingFragment">
                         android:hint="@string/kvartkg"
                         android:inputType="number"
                         app:layout_constraintBaseline_toBaselineOf="@+id/textView11"
-                        app:layout_constraintEnd_toEndOf="parent" />
+                        app:layout_constraintEnd_toEndOf="parent"
+                        tools:ignore="Autofill" />
 
                 </android.support.constraint.ConstraintLayout>
 
@@ -659,7 +672,8 @@ tools:context=".SettingFragment">
                         android:hint="@string/kvartkg"
                         android:inputType="number"
                         app:layout_constraintBaseline_toBaselineOf="@+id/textView128"
-                        app:layout_constraintEnd_toEndOf="parent" />
+                        app:layout_constraintEnd_toEndOf="parent"
+                        tools:ignore="Autofill" />
 
                     <EditText
                         android:id="@+id/ingfkvartkgbm"
@@ -670,7 +684,8 @@ tools:context=".SettingFragment">
                         android:hint="@string/kvartkg"
                         android:inputType="number"
                         app:layout_constraintBaseline_toBaselineOf="@+id/textView127"
-                        app:layout_constraintEnd_toEndOf="parent" />
+                        app:layout_constraintEnd_toEndOf="parent"
+                        tools:ignore="Autofill" />
 
                     <EditText
                         android:id="@+id/ingfkvartkghjemme"
@@ -681,7 +696,8 @@ tools:context=".SettingFragment">
                         android:hint="@string/kvartkg"
                         android:inputType="number"
                         app:layout_constraintBaseline_toBaselineOf="@+id/textView126"
-                        app:layout_constraintEnd_toEndOf="parent" />
+                        app:layout_constraintEnd_toEndOf="parent"
+                        tools:ignore="Autofill" />
                 </android.support.constraint.ConstraintLayout>
 
                 <android.support.constraint.ConstraintLayout
@@ -743,7 +759,8 @@ tools:context=".SettingFragment">
                         android:hint="@string/flytende"
                         android:inputType="number"
                         app:layout_constraintBaseline_toBaselineOf="@+id/textView131"
-                        app:layout_constraintEnd_toEndOf="parent" />
+                        app:layout_constraintEnd_toEndOf="parent"
+                        tools:ignore="Autofill" />
 
                     <EditText
                         android:id="@+id/flytbm"
@@ -754,7 +771,8 @@ tools:context=".SettingFragment">
                         android:hint="@string/flytende"
                         android:inputType="number"
                         app:layout_constraintBaseline_toBaselineOf="@+id/textView130"
-                        app:layout_constraintEnd_toEndOf="parent" />
+                        app:layout_constraintEnd_toEndOf="parent"
+                        tools:ignore="Autofill" />
 
                     <EditText
                         android:id="@+id/flythjemme"
@@ -765,7 +783,8 @@ tools:context=".SettingFragment">
                         android:hint="@string/flytende"
                         android:inputType="number"
                         app:layout_constraintBaseline_toBaselineOf="@+id/textView129"
-                        app:layout_constraintEnd_toEndOf="parent" />
+                        app:layout_constraintEnd_toEndOf="parent"
+                        tools:ignore="Autofill" />
                 </android.support.constraint.ConstraintLayout>
 
                 <android.support.constraint.ConstraintLayout
@@ -857,7 +876,8 @@ tools:context=".SettingFragment">
                         android:hint="@string/space"
                         android:inputType="number"
                         app:layout_constraintBaseline_toBaselineOf="@+id/textview"
-                        app:layout_constraintEnd_toEndOf="parent" />
+                        app:layout_constraintEnd_toEndOf="parent"
+                        tools:ignore="Autofill" />
                 </android.support.constraint.ConstraintLayout>
 
                 <android.support.constraint.ConstraintLayout
@@ -894,7 +914,8 @@ tools:context=".SettingFragment">
                         android:hint="@string/space"
                         android:inputType="number"
                         app:layout_constraintBaseline_toBaselineOf="@+id/textView135"
-                        app:layout_constraintEnd_toEndOf="parent" />
+                        app:layout_constraintEnd_toEndOf="parent"
+                        tools:ignore="Autofill" />
                 </android.support.constraint.ConstraintLayout>
 
                 <Button

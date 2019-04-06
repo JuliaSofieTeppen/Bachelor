@@ -19,7 +19,6 @@ import com.julia.bachelor.helperClass.Honning;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
-import java.util.List;
 
 public class HovedsideFragment extends Fragment {
     /**
@@ -34,7 +33,6 @@ public class HovedsideFragment extends Fragment {
 
     Button addbutton;
     TextView info, navn, dato;
-    List arraylist;
     ArrayList<BeholdningTemplate> beholdnings;
     ArrayList<BeholdningTemplate> salg;
     ArrayList<Honning> honning;
@@ -65,7 +63,7 @@ public class HovedsideFragment extends Fragment {
         info = rootView.findViewById(R.id.Info);
         navn = rootView.findViewById(R.id.navn);
         dato = rootView.findViewById(R.id.dato);
-        arraylist = new ArrayList();
+
         addbutton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -162,7 +160,6 @@ public class HovedsideFragment extends Fragment {
             Toast.makeText(this.getContext(), "Internett ikke tilkoblet", Toast.LENGTH_SHORT).show();
             addbutton.setVisibility(View.GONE);
         }
-        // TODO check if its possible to do this better
         if (current == null) throw new NullPointerException("Possible problem with connection");
         return current;
     }
@@ -173,7 +170,7 @@ public class HovedsideFragment extends Fragment {
         return !dates.get(1).equals(current.getDato());
     }
 
-    @Override
+    @Override @SuppressWarnings("deprecation")
     public void onAttach(Activity activity) {
         super.onAttach(activity);
         ((MainActivity) activity).onSectionAttached(

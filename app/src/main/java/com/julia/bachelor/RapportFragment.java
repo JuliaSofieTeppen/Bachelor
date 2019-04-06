@@ -216,7 +216,7 @@ public class RapportFragment extends Fragment {
             date = getYear(salg.getDato());
             // sorted is a hash map where i use the date as the key. date is a string
             if (!sorted.containsKey(date)) {
-                SortedObjects sortedObjects = new SortedObjects(true);
+                SortedObjects sortedObjects = new SortedObjects(false);
                 sortedObjects.add(Salg.get(i));
                 sortedObjects.setDato(date);
                 sorted.put(date, sortedObjects);

@@ -24,7 +24,7 @@ public class BondensMarked implements SalgTemplate, Serializable {
 
     @Override
     public String getKunde() {
-        return "BM";
+        return "Bondens Marked";
     }
 
     @Override

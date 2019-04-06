@@ -21,7 +21,7 @@ public class SortedObjects implements SalgTemplate, Serializable {
         Betaling = new int[2];
         this.sortMethod = sortMethod;
     }
-
+    // should be called from DetailsActivity
     public String getAnnetVarer() {
         return AnnetVarer;
     }
@@ -95,7 +95,7 @@ public class SortedObjects implements SalgTemplate, Serializable {
     public void setMoms(double moms) {
 
     }
-
+    // TODO fix this method
     private String addVarer(String varer) {
         String[] addPair = varer.split(",");
         String[] OriginalPair = Varer.split(",");

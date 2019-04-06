@@ -13,7 +13,7 @@ import android.widget.Toast;
 
 import com.julia.bachelor.helperClass.BeholdningTemplate;
 import com.julia.bachelor.helperClass.Honning;
-import com.julia.bachelor.helperClass.Salg;
+import com.julia.bachelor.helperClass.SalgFactory;
 import com.julia.bachelor.helperClass.SalgTemplate;
 
 import org.json.JSONArray;
@@ -47,6 +47,15 @@ public class MainActivity extends Activity implements NavigationDrawerFragment.N
     static ArrayList<BeholdningTemplate> Beholdning;
     static ArrayList<BeholdningTemplate> Salg;
     static ArrayList<SalgTemplate> AllSalg;
+    private static String[] urls = {
+            "http://www.honningbier.no/PHP/AnnetOut.php",
+            "http://www.honningbier.no/PHP/BeholdningOut.php",
+            "http://www.honningbier.no/PHP/SalgOut.php",
+            "http://www.honningbier.no/PHP/BondensMarkedOut.php",
+            "http://www.honningbier.no/PHP/HjemmeOut.php",
+            "http://www.honningbier.no/PHP/HonningOut.php",
+            "http://www.honningbier.no/PHP/VideresalgOut.php"
+    };
 
     EditText dato, som1kg, som05kg, som025kg, lyng1kg, lyng05kg, lyng025kg, ingf05kg, ingf025kg, flytende;
     List<EditText> verdier;
@@ -198,7 +207,7 @@ public class MainActivity extends Activity implements NavigationDrawerFragment.N
         AllSalg.addAll(Annet);
     }
 
-    void fetch(){
+    void fetch() {
         FetchDataTask task = new FetchDataTask();
         String[] urls = {
                 "http://www.honningbier.no/PHP/AnnetOut.php",
@@ -219,44 +228,102 @@ public class MainActivity extends Activity implements NavigationDrawerFragment.N
             String nextLine;
             StringBuilder output = new StringBuilder();
             try {
-
-                URL url = new URL(urls[0]);                HttpURLConnection conn = (HttpURLConnection) url.openConnection();
-                conn.setRequestMethod("GET");
-                conn.setRequestProperty("Accept", "application/json");
-                if (conn.getResponseCode() != 200) {
-                    throw new RuntimeException("Failed: HTTP error code: " + conn.getResponseCode());
-                }
-                // Get the string containing values from db.
-                BufferedReader bufferedReader = new BufferedReader(new InputStreamReader((conn.getInputStream())));
-                while ((nextLine = bufferedReader.readLine()) != null) {
-                    output.append(nextLine);
-                }
-                conn.disconnect();
-                try {
-                    // Convert string to JSONArray containing JSONObjects.
-                    JSONArray jsonArray = new JSONArray(output.toString());
-                    for (int i = 0; i < jsonArray.length(); i++) {
-                        Salg salg = new Salg();
-                        JSONObject jsonobject = jsonArray.getJSONObject(i);
-                        salg.set_ID(jsonobject.getLong("ID"));
-                        salg.setSommer(jsonobject.getInt("Sommer"));
-                        salg.setSommerH(jsonobject.getInt("SommerHalv"));
-                        salg.setSommerK(jsonobject.getInt("SommerKvart"));
-                        salg.setLyng(jsonobject.getInt("Lyng"));
-                        salg.setLyngH(jsonobject.getInt("LyngHalv"));
-                        salg.setLyngK(jsonobject.getInt("LyngKvart"));
-                        salg.setIngeferH(jsonobject.getInt("IngeferHalv"));
-                        salg.setIngeferK(jsonobject.getInt("IngeferKvart"));
-                        salg.setFlytende(jsonobject.getInt("Flytende"));
-                        salg.setDato(jsonobject.getString("Dato"));
-                        Salg.add(salg);
+                for (String url1 : urls) {
+                    URL url = new URL(url1);
+                    HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+                    conn.setRequestMethod("GET");
+                    conn.setRequestProperty("Accept", "application/json");
+                    if (conn.getResponseCode() != 200) {
+                        throw new RuntimeException("Failed: HTTP error code: " + conn.getResponseCode());
                     }
-                } catch (JSONException e) {
-                    e.printStackTrace();
+                    // Get the string containing values from db.
+                    BufferedReader bufferedReader = new BufferedReader(new InputStreamReader((conn.getInputStream())));
+                    while ((nextLine = bufferedReader.readLine()) != null) {
+                        output.append(nextLine);
+                    }
+                    conn.disconnect();
+                    if (url1.equalsIgnoreCase(urls[0]) || url1.equalsIgnoreCase(urls[3]) || url1.equalsIgnoreCase(urls[4]) || url1.equalsIgnoreCase(urls[6])) {
+                        setSaleValues(output.toString(), url1);
+                    } else if (url1.equalsIgnoreCase(urls[1]) || url1.equalsIgnoreCase(urls[2])) {
+                        setBeholdnigValues(output.toString(), url1);
+                    } else {
+                        setHoneyValues(output.toString());
+                    }
                 }
                 return "Done!";
             } catch (Exception e) {
                 return "Noe gikk feil: " + e.toString();
+            }
+        }
+
+        void setSaleValues(String output, String url) {
+            try {
+                // Convert string to JSONArray containing JSONObjects.
+                JSONArray jsonArray = new JSONArray(output);
+                for (int i = 0; i < jsonArray.length(); i++) {
+                    SalgFactory factory = new SalgFactory();
+                    SalgTemplate salgObject = factory.getSalgObject(url);
+                    JSONObject jsonobject = jsonArray.getJSONObject(i);
+                    salgObject.set_ID(jsonobject.getLong("ID"));
+                    salgObject.setKunde(jsonobject.getString("Kunde"));
+                    salgObject.setDato(jsonobject.getString("Dato"));
+                    salgObject.setVarer(jsonobject.getString("Varer"));
+                    salgObject.setBelop(jsonobject.getInt("Belop"));
+                    salgObject.setBetaling(jsonobject.getString("Betaling"));
+                    if (url.equalsIgnoreCase(urls[6]))
+                        salgObject.setMoms(jsonobject.getDouble("Moms"));
+                    AllSalg.add(salgObject);
+                }
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+        }
+
+        void setBeholdnigValues(String output, String url) {
+            try {
+                // Convert string to JSONArray containing JSONObjects.
+                JSONArray jsonArray = new JSONArray(output);
+                for (int i = 0; i < jsonArray.length(); i++) {
+                    SalgFactory factory = new SalgFactory();
+                    BeholdningTemplate beholdning = factory.getBeholdningObject(url);
+                    JSONObject jsonobject = jsonArray.getJSONObject(i);
+                    beholdning.set_ID(jsonobject.getLong("ID"));
+                    beholdning.setSommer(jsonobject.getInt("Sommer"));
+                    beholdning.setSommerH(jsonobject.getInt("SommerHalv"));
+                    beholdning.setSommerK(jsonobject.getInt("SommerKvart"));
+                    beholdning.setLyng(jsonobject.getInt("Lyng"));
+                    beholdning.setLyngH(jsonobject.getInt("LyngHalv"));
+                    beholdning.setLyngK(jsonobject.getInt("LyngKvart"));
+                    beholdning.setIngeferH(jsonobject.getInt("IngeferHalv"));
+                    beholdning.setIngeferK(jsonobject.getInt("IngeferKvart"));
+                    beholdning.setFlytende(jsonobject.getInt("Flytende"));
+                    beholdning.setDato(jsonobject.getString("Dato"));
+                    if (url.equalsIgnoreCase(urls[1]))
+                        Beholdning.add(beholdning);
+                    else
+                        Salg.add(beholdning);
+                }
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+        }
+
+        void setHoneyValues(String output) {
+            try {
+                // Convert string to JSONArray containing JSONObjects.
+                JSONArray jsonArray = new JSONArray(output.toString());
+                for (int i = 0; i < jsonArray.length(); i++) {
+                    Honning honning = new Honning();
+                    JSONObject jsonobject = jsonArray.getJSONObject(i);
+                    honning.set_ID(jsonobject.getLong("ID"));
+                    honning.setType(jsonobject.getString("Type"));
+                    honning.setHjemmePris(jsonobject.getInt("HjemmePris"));
+                    honning.setBondensMarkedPris(jsonobject.getInt("BMPris"));
+                    honning.setFakturaPris(jsonobject.getInt("FakturaPris"));
+                    Honning.add(honning);
+                }
+            } catch (JSONException e) {
+                e.printStackTrace();
             }
         }
     }

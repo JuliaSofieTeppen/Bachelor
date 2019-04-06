@@ -7,17 +7,19 @@ public class SortedObjects implements SalgTemplate, Serializable {
     private String Varer;
     private String AnnetVarer;
     private int Belop;
+    boolean sortMethod;
     /**
      * Betaling[0] = Kontant, Betaling[1] = Kort.
      **/
     private int[] Betaling;
     private String dato;
 
-    public SortedObjects() {
+    public SortedObjects(boolean sortMethod) {
         Varer = "1-0,2-0,3-0,4-0,5-0,6-0,7-0,8-0,9-0";
         AnnetVarer = "1-0,2-0,3-0,4-0";
         Belop = 0;
         Betaling = new int[2];
+        this.sortMethod = sortMethod;
     }
 
     public String getAnnetVarer() {
@@ -36,7 +38,7 @@ public class SortedObjects implements SalgTemplate, Serializable {
 
     @Override
     public String getKunde() {
-        return "";
+        return sortMethod ? "Month" : "Year";
     }
 
     @Override

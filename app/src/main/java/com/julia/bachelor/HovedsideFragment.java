@@ -15,7 +15,6 @@ import android.widget.Toast;
 
 import com.julia.bachelor.helperClass.BeholdningTemplate;
 import com.julia.bachelor.helperClass.Honning;
-import com.julia.bachelor.helperClass.Salg;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -39,7 +38,6 @@ public class HovedsideFragment extends Fragment {
     ArrayList<BeholdningTemplate> beholdnings;
     ArrayList<BeholdningTemplate> salg;
     ArrayList<Honning> honning;
-    Salg beholdningUt;
 
     public HovedsideFragment() {
     }
@@ -66,9 +64,8 @@ public class HovedsideFragment extends Fragment {
         addbutton = rootView.findViewById(R.id.addbutton);
         info = rootView.findViewById(R.id.Info);
         navn = rootView.findViewById(R.id.navn);
-        arraylist = new ArrayList();
         dato = rootView.findViewById(R.id.dato);
-
+        arraylist = new ArrayList();
         addbutton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -132,12 +129,14 @@ public class HovedsideFragment extends Fragment {
 
     String setValueString() {
         BeholdningTemplate beholdning = null;
+        BeholdningTemplate beholdningUt = null;
         try {
             beholdning = findCurrentBeholdning(beholdnings);
+            beholdningUt = findCurrentBeholdning(salg);
         } catch (NullPointerException e) {
             e.printStackTrace();
         }
-        return beholdning == null ? ":/" :
+        return beholdning == null || beholdningUt == null ? ":/" :
                 (beholdning.getSommer() - beholdningUt.getSommer()) + "\n" +
                         (beholdning.getSommerH() - beholdningUt.getSommerH()) + " \n" +
                         (beholdning.getSommerK() - beholdningUt.getSommerK()) + " \n" +
@@ -151,10 +150,8 @@ public class HovedsideFragment extends Fragment {
 
     BeholdningTemplate findCurrentBeholdning(ArrayList<BeholdningTemplate> beholdning) {
         BeholdningTemplate current = null;
-        beholdningUt = null;
         try {
             current = beholdning.get(beholdning.size() - 1);
-            //beholdningUt = salg.get(salg.size() - 1);
             for (int i = 0; i < beholdning.size(); i++) {
                 if (greaterThan(current, beholdning.get(i))) {
                     current = beholdning.get(i);

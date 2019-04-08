@@ -311,7 +311,7 @@ public class MainActivity extends Activity implements NavigationDrawerFragment.N
         void setHoneyValues(String output) {
             try {
                 // Convert string to JSONArray containing JSONObjects.
-                JSONArray jsonArray = new JSONArray(output.toString());
+                JSONArray jsonArray = new JSONArray(output);
                 for (int i = 0; i < jsonArray.length(); i++) {
                     Honning honning = new Honning();
                     JSONObject jsonobject = jsonArray.getJSONObject(i);

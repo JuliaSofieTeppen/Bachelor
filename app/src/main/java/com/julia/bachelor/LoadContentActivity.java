@@ -7,13 +7,9 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.widget.ImageView;
 
-import com.julia.bachelor.helperClass.Annet;
 import com.julia.bachelor.helperClass.BeholdningTemplate;
-import com.julia.bachelor.helperClass.BondensMarked;
-import com.julia.bachelor.helperClass.Hjemme;
 import com.julia.bachelor.helperClass.Honning;
 import com.julia.bachelor.helperClass.SalgTemplate;
-import com.julia.bachelor.helperClass.Videresalg;
 
 import java.util.ArrayList;
 

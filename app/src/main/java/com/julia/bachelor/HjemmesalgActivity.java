@@ -66,15 +66,9 @@ public class HjemmesalgActivity extends Activity implements AdapterView.OnItemSe
         return varer.toString();
     }
 
-    String getDate() {
-        DateFormat dateFormat = new SimpleDateFormat("yyyy.MM.dd", Locale.US);
-        Date now = new Date();
-        return dateFormat.format(now);
-    }
-
     void insertValues() {
         Database.executeOnDB("http://www.honningbier.no/PHP/HjemmeIn.php/?Kunde=" + kundenavn.getText().toString() +
-                "&Dato=" + getDate() + "&Varer=" + getVarer() + "&Belop=" + kr + "&Betaling=" + betalingsmetode);
+                "&Dato=" + Beregninger.getDate() + "&Varer=" + getVarer() + "&Belop=" + kr + "&Betaling=" + betalingsmetode);
     }
 
     void setTelling() {

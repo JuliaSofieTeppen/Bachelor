@@ -59,7 +59,7 @@ public class AnnetSalgActivity extends Activity implements AdapterView.OnItemSel
         if (Beregninger.checkDate(Dato.getText().toString())) {
             if (!(Pris.getText().toString().equals("") || KundeNavn.getText().toString().equals(""))) {
                 for (EditText verdi : verdier) {
-                    if (verdi.getText().toString().equals("")) {
+                    if (verdi.getText().toString().equals("") || verdi.getText().toString().equals("0")) {
                         verdi.setText("0");
                     } else {
                         tell++;

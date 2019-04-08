@@ -30,6 +30,7 @@ import com.itextpdf.text.Paragraph;
 import com.itextpdf.text.pdf.PdfPTable;
 import com.itextpdf.text.pdf.PdfWriter;
 import com.julia.bachelor.helperClass.Annet;
+import com.julia.bachelor.helperClass.BondensMarked;
 import com.julia.bachelor.helperClass.Hjemme;
 import com.julia.bachelor.helperClass.Videresalg;
 
@@ -195,11 +196,13 @@ public class PdfCreatorActivity extends AppCompatActivity {
                 }
             }else if(salg instanceof Annet) {
                 Annet annet = (Annet) salg;
-                if(greaterThan(annet.getDato(), Startdato.getText().toString())&& !greaterThan(annet.getDato(),Sluttdato.getText().toString())){
+                if(greaterThan(annet.getDato(), Startdato.getText().toString())&& !greaterThan(annet.getDato(),Sluttdato.getText().toString())) {
                     annettable.addCell(annet.getDato());
                     annettable.addCell(Integer.toString(annet.getBelop()));
-                    annettable.addCell(Double.toString(sharedPreferences.getInt("ikkeferdig",25)));
+                    annettable.addCell(Double.toString(sharedPreferences.getInt("ikkeferdig", 25)));
                 }
+            }else if(salg instanceof BondensMarked){
+
             }else{
                 Toast.makeText(this, "Noe gikk galt", Toast.LENGTH_SHORT).show();
             }
@@ -234,7 +237,6 @@ public class PdfCreatorActivity extends AppCompatActivity {
     private void previewPdf() {
         File file;
         file = new File(Environment.getExternalStorageDirectory()+"/Documents/"+Lagresom.getText().toString() + ".pdf");
-        Toast.makeText(getApplicationContext(), file.toString() , Toast.LENGTH_LONG).show();
         if(file.exists()) {
             Intent target = new Intent(Intent.ACTION_VIEW);
             target.setDataAndType(FileProvider.getUriForFile(this, this.getApplicationContext().getPackageName() + ".com.julia.bachelor.GenericFileProvider", file), "application/pdf");

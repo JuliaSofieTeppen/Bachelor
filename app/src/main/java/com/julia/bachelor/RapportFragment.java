@@ -55,7 +55,6 @@ public class RapportFragment extends Fragment {
         beregninger = new Beregninger(this.getContext());
         dynamicList = new ArrayList<>();
         salgliste = new ArrayList<>();
-        dynamicList.addAll(Salg);
 
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this.getContext(), R.array.datoer, android.R.layout.simple_spinner_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -101,7 +100,6 @@ public class RapportFragment extends Fragment {
     private void selectdagmanedar(int position) {
         switch (position) {
             case 0:
-                sorterpaalle();
                 Toast.makeText(this.getContext(), "sorter på dag", Toast.LENGTH_SHORT).show();
                 break;
             case 1:

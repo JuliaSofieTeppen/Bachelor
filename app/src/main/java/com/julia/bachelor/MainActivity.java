@@ -67,6 +67,7 @@ public class MainActivity extends Activity implements NavigationDrawerFragment.N
         /*
          * Fragment managing the behaviors, interactions and presentation of the navigation drawer.
          */
+        fetch();
         NavigationDrawerFragment mNavigationDrawerFragment = (NavigationDrawerFragment) getFragmentManager().findFragmentById(R.id.navigation_drawer);
         // Set up the drawer.
         mNavigationDrawerFragment.setUp(R.id.navigation_drawer, (DrawerLayout) findViewById(R.id.drawer_layout));

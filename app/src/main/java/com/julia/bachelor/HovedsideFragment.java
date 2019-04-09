@@ -4,6 +4,8 @@ import android.app.Activity;
 import android.app.Fragment;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
@@ -19,6 +21,7 @@ import com.julia.bachelor.helperClass.Honning;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.Date;
 
 public class HovedsideFragment extends Fragment {
     /**
@@ -30,6 +33,7 @@ public class HovedsideFragment extends Fragment {
     private static final String KEY_BEHOLDNINGUT = "Salg";
     private static final String KEY_HONNING = "Honning";
     private static final String KEY_BUNDLE = "Bundle";
+    private SwipeRefreshLayout mSwipeRefreshLayout;
 
     Button addbutton;
     TextView info, navn, dato;
@@ -63,6 +67,21 @@ public class HovedsideFragment extends Fragment {
         info = rootView.findViewById(R.id.Info);
         navn = rootView.findViewById(R.id.navn);
         dato = rootView.findViewById(R.id.dato);
+
+        mSwipeRefreshLayout = rootView.findViewById(R.id.container);
+        mSwipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                fetch();
+                new Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        setValueString();
+                        mSwipeRefreshLayout.setRefreshing(false);
+                    }
+                }, 8000);
+            }
+        });
 
         addbutton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -106,7 +125,6 @@ public class HovedsideFragment extends Fragment {
             honning = (ArrayList<Honning>) (getArguments().getSerializable(KEY_HONNING));
             info.setText(setValueString());
             navn.setText(setNameString());
-            dato.setText(findCurrentBeholdning(beholdnings).getDato());
         } catch (NullPointerException e) {
             e.printStackTrace();
         }
@@ -131,10 +149,11 @@ public class HovedsideFragment extends Fragment {
         try {
             beholdning = findCurrentBeholdning(beholdnings);
             beholdningUt = findCurrentBeholdning(salg);
+            dato.setText(beholdning.getDato());
         } catch (NullPointerException e) {
             e.printStackTrace();
         }
-        return beholdning == null || beholdningUt == null ? ":/" :
+        return beholdning == null || beholdningUt == null ? "" :
                 (beholdning.getSommer() - beholdningUt.getSommer()) + "\n" +
                         (beholdning.getSommerH() - beholdningUt.getSommerH()) + " \n" +
                         (beholdning.getSommerK() - beholdningUt.getSommerK()) + " \n" +
@@ -170,10 +189,22 @@ public class HovedsideFragment extends Fragment {
         return !dates.get(1).equals(current.getDato());
     }
 
-    @Override @SuppressWarnings("deprecation")
+    @Override
+    @SuppressWarnings("deprecation")
     public void onAttach(Activity activity) {
         super.onAttach(activity);
         ((MainActivity) activity).onSectionAttached(
                 getArguments().getInt(ARG_SECTION_NUMBER));
     }
+
+    private void fetch() {
+        MainActivity.FetchDataTask task = new MainActivity.FetchDataTask();
+        String[] urls = {
+                "http://www.honningbier.no/PHP/BeholdningOut.php",
+                "http://www.honningbier.no/PHP/SalgOut.php",
+                "http://www.honningbier.no/PHP/HonningOut.php"
+        };
+        task.execute(urls);
+    }
+
 }

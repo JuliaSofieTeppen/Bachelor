@@ -7,14 +7,17 @@ import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.widget.DrawerLayout;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.julia.bachelor.helperClass.Beholdning;
 import com.julia.bachelor.helperClass.BeholdningTemplate;
 import com.julia.bachelor.helperClass.Honning;
 import com.julia.bachelor.helperClass.SalgFactory;
 import com.julia.bachelor.helperClass.SalgTemplate;
+import com.julia.bachelor.helperClass.Videresalg;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -22,6 +25,7 @@ import org.json.JSONObject;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
+import java.lang.reflect.Array;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.ArrayList;
@@ -67,6 +71,7 @@ public class MainActivity extends Activity implements NavigationDrawerFragment.N
         /*
          * Fragment managing the behaviors, interactions and presentation of the navigation drawer.
          */
+        fetch();
         NavigationDrawerFragment mNavigationDrawerFragment = (NavigationDrawerFragment) getFragmentManager().findFragmentById(R.id.navigation_drawer);
         // Set up the drawer.
         mNavigationDrawerFragment.setUp(R.id.navigation_drawer, (DrawerLayout) findViewById(R.id.drawer_layout));
@@ -207,7 +212,7 @@ public class MainActivity extends Activity implements NavigationDrawerFragment.N
         AllSalg.addAll(Annet);
     }
 
-    void fetch() {
+    static void fetch() {
         FetchDataTask task = new FetchDataTask();
         String[] urls = {
                 "http://www.honningbier.no/PHP/AnnetOut.php",
@@ -221,14 +226,15 @@ public class MainActivity extends Activity implements NavigationDrawerFragment.N
         task.execute(urls);
     }
 
-    private static class FetchDataTask extends AsyncTask<String, int[], String> {
+    public static class FetchDataTask extends AsyncTask<String, Integer, String> {
+        Integer progress;
         @Override
         protected String doInBackground(String... urls) {
             // Get strings from bufferedReader.
             String nextLine;
-            StringBuilder output = new StringBuilder();
             try {
                 for (String url1 : urls) {
+                    StringBuilder output = new StringBuilder();
                     URL url = new URL(url1);
                     HttpURLConnection conn = (HttpURLConnection) url.openConnection();
                     conn.setRequestMethod("GET");
@@ -260,6 +266,7 @@ public class MainActivity extends Activity implements NavigationDrawerFragment.N
             try {
                 // Convert string to JSONArray containing JSONObjects.
                 JSONArray jsonArray = new JSONArray(output);
+                ArrayList<SalgTemplate> salg = new ArrayList<>();
                 for (int i = 0; i < jsonArray.length(); i++) {
                     SalgFactory factory = new SalgFactory();
                     SalgTemplate salgObject = factory.getSalgObject(url);
@@ -270,9 +277,9 @@ public class MainActivity extends Activity implements NavigationDrawerFragment.N
                     salgObject.setVarer(jsonobject.getString("Varer"));
                     salgObject.setBelop(jsonobject.getInt("Belop"));
                     salgObject.setBetaling(jsonobject.getString("Betaling"));
-                    if (url.equalsIgnoreCase(urls[6]))
-                        //salgObject.setMoms(jsonobject.getDouble("Moms"));
-                    AllSalg.add(salgObject);
+                    if (salgObject instanceof com.julia.bachelor.helperClass.Videresalg)
+                        salgObject.setMoms(jsonobject.getDouble("Moms"));
+                        salg.add(salgObject);
                 }
             } catch (JSONException e) {
                 e.printStackTrace();
@@ -283,6 +290,7 @@ public class MainActivity extends Activity implements NavigationDrawerFragment.N
             try {
                 // Convert string to JSONArray containing JSONObjects.
                 JSONArray jsonArray = new JSONArray(output);
+                Beholdning.clear();
                 for (int i = 0; i < jsonArray.length(); i++) {
                     SalgFactory factory = new SalgFactory();
                     BeholdningTemplate beholdning = factory.getBeholdningObject(url);
@@ -298,7 +306,7 @@ public class MainActivity extends Activity implements NavigationDrawerFragment.N
                     beholdning.setIngeferK(jsonobject.getInt("IngeferKvart"));
                     beholdning.setFlytende(jsonobject.getInt("Flytende"));
                     beholdning.setDato(jsonobject.getString("Dato"));
-                    if (url.equalsIgnoreCase(urls[1]))
+                    if (beholdning instanceof com.julia.bachelor.helperClass.Beholdning)
                         Beholdning.add(beholdning);
                     else
                         Salg.add(beholdning);
@@ -326,5 +334,17 @@ public class MainActivity extends Activity implements NavigationDrawerFragment.N
                 e.printStackTrace();
             }
         }
+
+        @Override
+        protected void onPostExecute(String s) {
+            super.onPostExecute(s);
+        }
+
+        @Override
+        protected void onProgressUpdate(Integer... progress) {
+            super.onProgressUpdate();
+            this.progress = progress[0];
+        }
     }
 }
+

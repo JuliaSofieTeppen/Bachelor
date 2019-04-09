@@ -10,12 +10,14 @@ import com.julia.bachelor.helperClass.Hjemme;
 import com.julia.bachelor.helperClass.SalgTemplate;
 import com.julia.bachelor.helperClass.Videresalg;
 
+import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.Date;
 import java.util.Iterator;
 import java.util.Locale;
 
@@ -265,6 +267,11 @@ class Beregninger implements Template {
 
             a[j + 1] = verdi;
         }
+    }
+    static String getDate() {
+        DateFormat dateFormat = new SimpleDateFormat("yyyy.MM.dd", Locale.US);
+        Date now = new Date();
+        return dateFormat.format(now);
     }
 }
 

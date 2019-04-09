@@ -93,7 +93,7 @@ public class VideresalgActivity extends Activity implements AdapterView.OnItemSe
         int tell = 0;
         if (checkDate(dato.getText().toString())) {
             for (EditText verdi : verdier) {
-                if (verdi.getText().toString().equals("")) {
+                if (verdi.getText().toString().equals("") || verdi.getText().toString().equals("0")) {
                     verdi.setText("0");
                 } else {
                     tell++;

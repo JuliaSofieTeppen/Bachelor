@@ -27,7 +27,6 @@ public class AddBeholdningFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
         View rootView = inflater.inflate(R.layout.fragment_add_beholdning, container, false);
-        // TODO use current date as default
         dato = rootView.findViewById(R.id.Bdato);
         som1kg = rootView.findViewById(R.id.Bsom1kg);
         som05kg = rootView.findViewById(R.id.Bsom05kg);
@@ -39,6 +38,8 @@ public class AddBeholdningFragment extends Fragment {
         ingf025kg = rootView.findViewById(R.id.Binf025kg);
         flytende = rootView.findViewById(R.id.Bflyt);
         verdier = new ArrayList<>(Arrays.asList(som1kg, som05kg, som025kg, lyng1kg, lyng05kg, lyng025kg, ingf05kg, ingf025kg, flytende));
+
+        dato.setText(Beregninger.getDate());
         return rootView;
     }
 

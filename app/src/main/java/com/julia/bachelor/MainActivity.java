@@ -15,6 +15,7 @@ import com.julia.bachelor.helperClass.BeholdningTemplate;
 import com.julia.bachelor.helperClass.Honning;
 import com.julia.bachelor.helperClass.SalgFactory;
 import com.julia.bachelor.helperClass.SalgTemplate;
+import com.julia.bachelor.helperClass.Videresalg;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -22,6 +23,7 @@ import org.json.JSONObject;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
+import java.lang.reflect.Array;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.ArrayList;
@@ -208,7 +210,7 @@ public class MainActivity extends Activity implements NavigationDrawerFragment.N
         AllSalg.addAll(Annet);
     }
 
-    void fetch() {
+    static void fetch() {
         FetchDataTask task = new FetchDataTask();
         String[] urls = {
                 "http://www.honningbier.no/PHP/AnnetOut.php",
@@ -222,7 +224,8 @@ public class MainActivity extends Activity implements NavigationDrawerFragment.N
         task.execute(urls);
     }
 
-    private static class FetchDataTask extends AsyncTask<String, int[], String> {
+    public static class FetchDataTask extends AsyncTask<String, Integer, String> {
+        Integer progress;
         @Override
         protected String doInBackground(String... urls) {
             // Get strings from bufferedReader.
@@ -271,9 +274,9 @@ public class MainActivity extends Activity implements NavigationDrawerFragment.N
                     salgObject.setVarer(jsonobject.getString("Varer"));
                     salgObject.setBelop(jsonobject.getInt("Belop"));
                     salgObject.setBetaling(jsonobject.getString("Betaling"));
-                    if (url.equalsIgnoreCase(urls[6]))
+                    if (salgObject instanceof com.julia.bachelor.helperClass.Videresalg)
                         salgObject.setMoms(jsonobject.getDouble("Moms"));
-                    AllSalg.add(salgObject);
+                        AllSalg.add(salgObject);
                 }
             } catch (JSONException e) {
                 e.printStackTrace();
@@ -284,6 +287,7 @@ public class MainActivity extends Activity implements NavigationDrawerFragment.N
             try {
                 // Convert string to JSONArray containing JSONObjects.
                 JSONArray jsonArray = new JSONArray(output);
+                Beholdning.clear();
                 for (int i = 0; i < jsonArray.length(); i++) {
                     SalgFactory factory = new SalgFactory();
                     BeholdningTemplate beholdning = factory.getBeholdningObject(url);
@@ -312,7 +316,7 @@ public class MainActivity extends Activity implements NavigationDrawerFragment.N
         void setHoneyValues(String output) {
             try {
                 // Convert string to JSONArray containing JSONObjects.
-                JSONArray jsonArray = new JSONArray(output.toString());
+                JSONArray jsonArray = new JSONArray(output);
                 for (int i = 0; i < jsonArray.length(); i++) {
                     Honning honning = new Honning();
                     JSONObject jsonobject = jsonArray.getJSONObject(i);
@@ -327,5 +331,12 @@ public class MainActivity extends Activity implements NavigationDrawerFragment.N
                 e.printStackTrace();
             }
         }
+
+        @Override
+        protected void onProgressUpdate(Integer... progress) {
+            super.onProgressUpdate();
+            this.progress = progress[0];
+        }
     }
 }
+

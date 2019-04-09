@@ -73,7 +73,6 @@ public class HovedsideFragment extends Fragment {
             @Override
             public void onRefresh() {
                 fetch();
-              //  int progress = MainActivity.FetchDataTask.progress[0];
                 new Handler().postDelayed(new Runnable() {
                     @Override
                     public void run() {
@@ -207,6 +206,5 @@ public class HovedsideFragment extends Fragment {
         };
         task.execute(urls);
     }
-
 
 }

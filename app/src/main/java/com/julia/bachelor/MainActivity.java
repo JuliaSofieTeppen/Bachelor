@@ -7,10 +7,12 @@ import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.widget.DrawerLayout;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.julia.bachelor.helperClass.Beholdning;
 import com.julia.bachelor.helperClass.BeholdningTemplate;
 import com.julia.bachelor.helperClass.Honning;
 import com.julia.bachelor.helperClass.SalgFactory;
@@ -230,9 +232,9 @@ public class MainActivity extends Activity implements NavigationDrawerFragment.N
         protected String doInBackground(String... urls) {
             // Get strings from bufferedReader.
             String nextLine;
-            StringBuilder output = new StringBuilder();
             try {
                 for (String url1 : urls) {
+                    StringBuilder output = new StringBuilder();
                     URL url = new URL(url1);
                     HttpURLConnection conn = (HttpURLConnection) url.openConnection();
                     conn.setRequestMethod("GET");
@@ -264,6 +266,7 @@ public class MainActivity extends Activity implements NavigationDrawerFragment.N
             try {
                 // Convert string to JSONArray containing JSONObjects.
                 JSONArray jsonArray = new JSONArray(output);
+                ArrayList<SalgTemplate> salg = new ArrayList<>();
                 for (int i = 0; i < jsonArray.length(); i++) {
                     SalgFactory factory = new SalgFactory();
                     SalgTemplate salgObject = factory.getSalgObject(url);
@@ -276,7 +279,7 @@ public class MainActivity extends Activity implements NavigationDrawerFragment.N
                     salgObject.setBetaling(jsonobject.getString("Betaling"));
                     if (salgObject instanceof com.julia.bachelor.helperClass.Videresalg)
                         salgObject.setMoms(jsonobject.getDouble("Moms"));
-                        AllSalg.add(salgObject);
+                        salg.add(salgObject);
                 }
             } catch (JSONException e) {
                 e.printStackTrace();
@@ -303,7 +306,7 @@ public class MainActivity extends Activity implements NavigationDrawerFragment.N
                     beholdning.setIngeferK(jsonobject.getInt("IngeferKvart"));
                     beholdning.setFlytende(jsonobject.getInt("Flytende"));
                     beholdning.setDato(jsonobject.getString("Dato"));
-                    if (url.equalsIgnoreCase(urls[1]))
+                    if (beholdning instanceof com.julia.bachelor.helperClass.Beholdning)
                         Beholdning.add(beholdning);
                     else
                         Salg.add(beholdning);
@@ -330,6 +333,11 @@ public class MainActivity extends Activity implements NavigationDrawerFragment.N
             } catch (JSONException e) {
                 e.printStackTrace();
             }
+        }
+
+        @Override
+        protected void onPostExecute(String s) {
+            super.onPostExecute(s);
         }
 
         @Override

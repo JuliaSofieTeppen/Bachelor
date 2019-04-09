@@ -131,8 +131,7 @@ public class Hovedside extends Fragment {
     }
 
     String setValueString() {
-      
-        Beholdning beholdning = null;
+        Beholdning beholdning=null;
 
         try {
             beholdning = findCurrentBeholdning();

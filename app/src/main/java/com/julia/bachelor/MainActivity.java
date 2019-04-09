@@ -7,17 +7,14 @@ import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.widget.DrawerLayout;
-import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.julia.bachelor.helperClass.Beholdning;
 import com.julia.bachelor.helperClass.BeholdningTemplate;
 import com.julia.bachelor.helperClass.Honning;
 import com.julia.bachelor.helperClass.SalgFactory;
 import com.julia.bachelor.helperClass.SalgTemplate;
-import com.julia.bachelor.helperClass.Videresalg;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -25,7 +22,6 @@ import org.json.JSONObject;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
-import java.lang.reflect.Array;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.ArrayList;
@@ -64,16 +60,26 @@ public class MainActivity extends Activity implements NavigationDrawerFragment.N
     EditText dato, som1kg, som05kg, som025kg, lyng1kg, lyng05kg, lyng025kg, ingf05kg, ingf025kg, flytende;
     List<EditText> verdier;
 
+    static void fetch() {
+        FetchDataTask task = new FetchDataTask();
+        String[] urls = {
+                "http://www.honningbier.no/PHP/AnnetOut.php",
+                "http://www.honningbier.no/PHP/BeholdningOut.php",
+                "http://www.honningbier.no/PHP/SalgOut.php",
+                "http://www.honningbier.no/PHP/BondensMarkedOut.php",
+                "http://www.honningbier.no/PHP/HjemmeOut.php",
+                "http://www.honningbier.no/PHP/HonningOut.php",
+                "http://www.honningbier.no/PHP/VideresalgOut.php"
+        };
+        task.execute(urls);
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
         fetch();
-
-    }
-
-    void setNavigation() {
         /*
          * Fragment managing the behaviors, interactions and presentation of the navigation drawer.
          */
@@ -214,20 +220,6 @@ public class MainActivity extends Activity implements NavigationDrawerFragment.N
         AllSalg.addAll(Hjemme);
         AllSalg.addAll(Videresalg);
         AllSalg.addAll(Annet);
-    }
-
-    static void fetch() {
-        FetchDataTask task = new FetchDataTask();
-        String[] urls = {
-                "http://www.honningbier.no/PHP/AnnetOut.php",
-                "http://www.honningbier.no/PHP/BeholdningOut.php",
-                "http://www.honningbier.no/PHP/SalgOut.php",
-                "http://www.honningbier.no/PHP/BondensMarkedOut.php",
-                "http://www.honningbier.no/PHP/HjemmeOut.php",
-                "http://www.honningbier.no/PHP/HonningOut.php",
-                "http://www.honningbier.no/PHP/VideresalgOut.php"
-        };
-        task.execute(urls);
     }
 
     public static class FetchDataTask extends AsyncTask<String, Integer, String> {

@@ -271,12 +271,12 @@ public class MainActivity extends Activity implements NavigationDrawerFragment.N
                     salgObject.setBelop(jsonobject.getInt("Belop"));
                     salgObject.setBetaling(jsonobject.getString("Betaling"));
                     if (url.equalsIgnoreCase(urls[6]))
-                        salgObject.setMoms(jsonobject.getDouble("Moms"));
+                        //salgObject.setMoms(jsonobject.getDouble("Moms"));
                     AllSalg.add(salgObject);
                 }
             } catch (JSONException e) {
                 e.printStackTrace();
-            }
+            } // hei 🙂
         }
 
         void setBeholdnigValues(String output, String url) {

@@ -114,8 +114,8 @@ class Beregninger implements Template {
     }
 
     @Override
-    public double sumAnnet(ArrayList<Annet> list) {//ok
-        Iterator<Annet> itererer = list.iterator();
+    public double sumAnnet(ArrayList<SalgTemplate> list) {//ok
+        Iterator<SalgTemplate> itererer = list.iterator();
         int total = 0;
         while (itererer.hasNext()) {
             int tall = itererer.next().getBelop();
@@ -127,8 +127,8 @@ class Beregninger implements Template {
     }
 
     @Override
-    public double sumHjemme(ArrayList<Hjemme> list) {//ok
-        Iterator<Hjemme> itererer = list.iterator();
+    public double sumHjemme(ArrayList<SalgTemplate> list) {//ok
+        Iterator<SalgTemplate> itererer = list.iterator();
         int total = 0;
         while (itererer.hasNext()) {
             int tall = itererer.next().getBelop();
@@ -145,8 +145,8 @@ class Beregninger implements Template {
     }
 
     @Override
-    public double sumBm(ArrayList<BondensMarked> list) {//ok
-        Iterator<BondensMarked> itererer = list.iterator();
+    public double sumBm(ArrayList<SalgTemplate> list) {//ok
+        Iterator<SalgTemplate> itererer = list.iterator();
         int total = 0;
         while (itererer.hasNext()) {
             int tall = itererer.next().getBelop();
@@ -158,8 +158,8 @@ class Beregninger implements Template {
     }
 
     @Override
-    public double sumVideresalg(ArrayList<Videresalg> list) {//ok
-        Iterator<Videresalg> itererer = list.iterator();//.listIterator();
+    public double sumVideresalg(ArrayList<SalgTemplate> list) {//ok
+        Iterator<SalgTemplate> itererer = list.iterator();//.listIterator();
         int total = 0;
         while (itererer.hasNext()) {
             int tall = itererer.next().getBelop();
@@ -171,14 +171,14 @@ class Beregninger implements Template {
     }
 
     @Override
-    public double sumList(ArrayList<Object> list) {
+    public double sumList(ArrayList<SalgTemplate> list) {
         double total = 0;
-        /*
+
         total += sumAnnet(separateAnnet(list));
         total += sumHjemme(separateHjemme(list));
         total += sumBm(separateBondensMarked(list));
         total += sumVideresalg(separateVideresalg(list));
-        */
+
         return total;
     }
 
@@ -199,50 +199,9 @@ class Beregninger implements Template {
     @Override
     public double mvaLav(ArrayList<Object> list) {
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
-        double mva = ((double) sharedPreferences.getInt("ferdigprodukt", 15)) / 100.0;
-        return mva;
+        return ((double) sharedPreferences.getInt("ferdigprodukt", 15)) / 100.0;
     }
 
-    //følgende metode er litt usikker
-    @Override
-    public void sortBelop(ArrayList<Object> list) {//ok
-
-        double[] a = new double[list.size()];
-        for (int i = 0; i < list.size(); i++) {
-            // gitt at hashcode metoden fungerer riktig
-            a[i] = list.get(i).hashCode();
-        }
-        Arrays.sort(a);
-    }
-
-    /**
-     * 2. versjon som tar i mot både String og Integer deretter sorterer dem.
-     */
-    public void sortBelop_2(ArrayList list) {//ok
-        Collections.sort(list);
-    }
-
-    /**
-     * 3. versjon som tar i mot både String og Integer deretter sorterer dem.
-     */
-    public void sortBelop_3(ArrayList<Object> list) {//ok
-        ArrayList liste = new ArrayList<>();
-        liste.addAll(list);
-        Collections.sort(liste);
-    }
-
-    @Override
-    public void sortKunde(ArrayList<Object> list) {//ok
-
-        String[] a = new String[list.size()];
-
-        for (int i = 0; i < list.size(); i++) {
-
-            a[i] = list.get(i).toString();
-        }
-
-        Arrays.sort(a);
-    }
 
     /**
      * 2. versjon som tar i mot String objekter deretter sorterer dem.

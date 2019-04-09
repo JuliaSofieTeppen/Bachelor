@@ -202,8 +202,6 @@ public class PdfCreatorActivity extends AppCompatActivity {
                     annettable.addCell(Integer.toString(annet.getBelop()));
                     annettable.addCell(Double.toString(sharedPreferences.getInt("ikkeferdig", 25)));
                 }
-            }else if(salg instanceof BondensMarked){
-
             }else{
                 Toast.makeText(this, "Noe gikk galt", Toast.LENGTH_SHORT).show();
             }

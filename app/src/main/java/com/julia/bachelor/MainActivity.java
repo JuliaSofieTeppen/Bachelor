@@ -68,14 +68,18 @@ public class MainActivity extends Activity implements NavigationDrawerFragment.N
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        fetch();
+
+    }
+
+    void setNavigation() {
         /*
          * Fragment managing the behaviors, interactions and presentation of the navigation drawer.
          */
-        fetch();
         NavigationDrawerFragment mNavigationDrawerFragment = (NavigationDrawerFragment) getFragmentManager().findFragmentById(R.id.navigation_drawer);
         // Set up the drawer.
         mNavigationDrawerFragment.setUp(R.id.navigation_drawer, (DrawerLayout) findViewById(R.id.drawer_layout));
-
     }
 
     @SuppressWarnings("unchecked")
@@ -228,6 +232,7 @@ public class MainActivity extends Activity implements NavigationDrawerFragment.N
 
     public static class FetchDataTask extends AsyncTask<String, Integer, String> {
         Integer progress;
+
         @Override
         protected String doInBackground(String... urls) {
             // Get strings from bufferedReader.
@@ -279,7 +284,7 @@ public class MainActivity extends Activity implements NavigationDrawerFragment.N
                     salgObject.setBetaling(jsonobject.getString("Betaling"));
                     if (salgObject instanceof com.julia.bachelor.helperClass.Videresalg)
                         salgObject.setMoms(jsonobject.getDouble("Moms"));
-                        salg.add(salgObject);
+                    salg.add(salgObject);
                 }
             } catch (JSONException e) {
                 e.printStackTrace();

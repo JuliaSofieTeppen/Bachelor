@@ -291,6 +291,7 @@ public class MainActivity extends Activity implements NavigationDrawerFragment.N
                 // Convert string to JSONArray containing JSONObjects.
                 JSONArray jsonArray = new JSONArray(output);
                 Beholdning.clear();
+                Salg.clear();
                 for (int i = 0; i < jsonArray.length(); i++) {
                     SalgFactory factory = new SalgFactory();
                     BeholdningTemplate beholdning = factory.getBeholdningObject(url);
@@ -338,6 +339,9 @@ public class MainActivity extends Activity implements NavigationDrawerFragment.N
         @Override
         protected void onPostExecute(String s) {
             super.onPostExecute(s);
+            HovedsideFragment hovedsideFragment = new HovedsideFragment();
+            hovedsideFragment.setValueString();
+            hovedsideFragment.mSwipeRefreshLayout.setRefreshing(false);
         }
 
         @Override

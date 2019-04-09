@@ -33,13 +33,13 @@ public class HovedsideFragment extends Fragment {
     private static final String KEY_BEHOLDNINGUT = "Salg";
     private static final String KEY_HONNING = "Honning";
     private static final String KEY_BUNDLE = "Bundle";
-    private SwipeRefreshLayout mSwipeRefreshLayout;
+    public static SwipeRefreshLayout mSwipeRefreshLayout;
 
     Button addbutton;
     TextView info, navn, dato;
-    ArrayList<BeholdningTemplate> beholdnings;
-    ArrayList<BeholdningTemplate> salg;
-    ArrayList<Honning> honning;
+    static ArrayList<BeholdningTemplate> beholdnings;
+    static ArrayList<BeholdningTemplate> salg;
+    static ArrayList<Honning> honning;
 
     public HovedsideFragment() {
     }
@@ -70,16 +70,10 @@ public class HovedsideFragment extends Fragment {
 
         mSwipeRefreshLayout = rootView.findViewById(R.id.container);
         mSwipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+
             @Override
             public void onRefresh() {
-                fetch();
-                new Handler().postDelayed(new Runnable() {
-                    @Override
-                    public void run() {
-                        setValueString();
-                        mSwipeRefreshLayout.setRefreshing(false);
-                    }
-                }, 8000);
+                MainActivity.fetch();
             }
         });
 
@@ -168,7 +162,7 @@ public class HovedsideFragment extends Fragment {
     BeholdningTemplate findCurrentBeholdning(ArrayList<BeholdningTemplate> beholdning) {
         BeholdningTemplate current = null;
         try {
-            current = beholdning.get(beholdning.size() - 1);
+            current = beholdning.get(beholdning.size()-1);
             for (int i = 0; i < beholdning.size(); i++) {
                 if (greaterThan(current, beholdning.get(i))) {
                     current = beholdning.get(i);
@@ -176,7 +170,7 @@ public class HovedsideFragment extends Fragment {
             }
             return current;
         } catch (IndexOutOfBoundsException e) {
-            Toast.makeText(this.getContext(), "Internett ikke tilkoblet", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this.getContext(), "Internett ikke tilkoblet" + e.toString(), Toast.LENGTH_SHORT).show();
             addbutton.setVisibility(View.GONE);
         }
         if (current == null) throw new NullPointerException("Possible problem with connection");
@@ -196,15 +190,4 @@ public class HovedsideFragment extends Fragment {
         ((MainActivity) activity).onSectionAttached(
                 getArguments().getInt(ARG_SECTION_NUMBER));
     }
-
-    private void fetch() {
-        MainActivity.FetchDataTask task = new MainActivity.FetchDataTask();
-        String[] urls = {
-                "http://www.honningbier.no/PHP/BeholdningOut.php",
-                "http://www.honningbier.no/PHP/SalgOut.php",
-                "http://www.honningbier.no/PHP/HonningOut.php"
-        };
-        task.execute(urls);
-    }
-
 }

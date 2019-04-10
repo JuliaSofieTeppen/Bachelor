@@ -15,11 +15,9 @@ public class LoadContentFragment extends Fragment {
 
     private static final String ARG_SECTION_NUMBER = "section_number";
 
-
     public LoadContentFragment() {
         // Required empty public constructor
     }
-
 
     // TODO: Rename and change types and number of parameters
     public static LoadContentFragment newInstance(int sectionNumber) {
@@ -28,14 +26,6 @@ public class LoadContentFragment extends Fragment {
         args.putInt(ARG_SECTION_NUMBER, sectionNumber);
         fragment.setArguments(args);
         return fragment;
-    }
-
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-
-        }
     }
 
     @Override

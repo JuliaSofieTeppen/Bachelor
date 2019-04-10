@@ -4,7 +4,6 @@ import android.app.Activity;
 import android.app.Fragment;
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Handler;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
@@ -13,17 +12,13 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.PopupMenu;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import com.julia.bachelor.helperClass.Beholdning;
 import com.julia.bachelor.helperClass.BeholdningTemplate;
 import com.julia.bachelor.helperClass.Honning;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
-import java.util.Date;
 
 public class HovedsideFragment extends Fragment {
     /**
@@ -31,17 +26,16 @@ public class HovedsideFragment extends Fragment {
      * fragment.
      */
     private static final String ARG_SECTION_NUMBER = "section_number";
-    private static final String KEY_BEHOLDNING = "Beholdning";
+    //private static final String KEY_BEHOLDNING = "Beholdning";
     private static final String KEY_BEHOLDNINGUT = "Salg";
     private static final String KEY_HONNING = "Honning";
     private static final String KEY_BUNDLE = "Bundle";
-    public static SwipeRefreshLayout mSwipeRefreshLayout;
-
-    Button addbutton;
-    TextView info, navn, dato;
+    public SwipeRefreshLayout mSwipeRefreshLayout;
     static ArrayList<BeholdningTemplate> beholdnings;
     static ArrayList<BeholdningTemplate> salg;
     static ArrayList<Honning> honning;
+    Button addbutton;
+    TextView info, navn, dato;
 
     public HovedsideFragment() {
     }
@@ -50,7 +44,7 @@ public class HovedsideFragment extends Fragment {
      * Returns a new instance of this fragment for the given section
      * number.
      */
-    public static HovedsideFragment newInstance(int sectionNumber,ArrayList<BeholdningTemplate> Salg, ArrayList<Honning> Honning) {
+    public static HovedsideFragment newInstance(int sectionNumber, ArrayList<BeholdningTemplate> Salg, ArrayList<Honning> Honning) {
         HovedsideFragment fragment = new HovedsideFragment();
         Bundle args = new Bundle();
         args.putInt(ARG_SECTION_NUMBER, sectionNumber);
@@ -115,14 +109,16 @@ public class HovedsideFragment extends Fragment {
         });
         try {
             ArrayList<BeholdningTemplate> beholdningTemplates = (ArrayList<BeholdningTemplate>) (getArguments().getSerializable(KEY_BEHOLDNINGUT));
-            beholdnings = Beregninger.separateBeholdning(beholdningTemplates);
-            salg = Beregninger.separateSalg(beholdningTemplates);
+            if (beholdningTemplates != null) {
+                beholdnings = Beregninger.separateBeholdning(beholdningTemplates);
+                salg = Beregninger.separateSalg(beholdningTemplates);
+            }
             honning = (ArrayList<Honning>) (getArguments().getSerializable(KEY_HONNING));
             info.setText(setValueString());
             navn.setText(setNameString());
         } catch (IndexOutOfBoundsException e) {
             e.printStackTrace();
-        }catch (NullPointerException e){
+        } catch (NullPointerException e) {
             e.printStackTrace();
         }
         return rootView;
@@ -165,7 +161,7 @@ public class HovedsideFragment extends Fragment {
     BeholdningTemplate findCurrentBeholdning(ArrayList<BeholdningTemplate> beholdning) {
         BeholdningTemplate current = null;
         try {
-            current = beholdning.get(beholdning.size()-1);
+            current = beholdning.get(beholdning.size() - 1);
             for (int i = 0; i < beholdning.size(); i++) {
                 if (greaterThan(current, beholdning.get(i))) {
                     current = beholdning.get(i);

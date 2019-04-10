@@ -197,13 +197,11 @@ public class PdfCreatorActivity extends AppCompatActivity {
                 }
             }else if(salg instanceof Annet) {
                 Annet annet = (Annet) salg;
-                if(greaterThan(annet.getDato(), Startdato.getText().toString())&& !greaterThan(annet.getDato(),Sluttdato.getText().toString())) {
+                if (greaterThan(annet.getDato(), Startdato.getText().toString()) && !greaterThan(annet.getDato(), Sluttdato.getText().toString())) {
                     annettable.addCell(annet.getDato());
                     annettable.addCell(Integer.toString(annet.getBelop()));
-                    annettable.addCell(Double.toString(sharedPreferences.getInt("ikkeferdig", 25)));
+                    annettable.addCell(Double.toString(sharedPreferences.getInt("ikkeferdig", 25))); //TODO swap with getMoms
                 }
-            }else if(salg instanceof BondensMarked){
-
             }else{
                 Toast.makeText(this, "Noe gikk galt", Toast.LENGTH_SHORT).show();
             }

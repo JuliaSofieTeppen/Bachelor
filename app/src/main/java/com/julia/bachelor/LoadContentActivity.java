@@ -5,30 +5,21 @@ import android.content.Intent;
 import android.graphics.drawable.AnimationDrawable;
 import android.os.Bundle;
 import android.os.Handler;
-import android.support.v4.app.Fragment;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
 import android.widget.ImageView;
 
-import com.julia.bachelor.helperClass.Annet;
 import com.julia.bachelor.helperClass.BeholdningTemplate;
-import com.julia.bachelor.helperClass.BondensMarked;
-import com.julia.bachelor.helperClass.Hjemme;
 import com.julia.bachelor.helperClass.Honning;
 import com.julia.bachelor.helperClass.SalgTemplate;
-import com.julia.bachelor.helperClass.Videresalg;
 
 import java.util.ArrayList;
 
-public class LoadContentActivity extends Fragment {
+public class LoadContentActivity extends Activity {
     private static final String KEY_ANNET = "Annet";
     private static final String KEY_BEHOLDNING = "Beholdning";
     private static final String KEY_BEHOLDNINGUT = "BeholdningUt";
     private static final String KEY_BONDENSMARKED = "Bondensmarked";
     private static final String KEY_HJEMME = "Hjemme";
     private static final String KEY_HONNING = "Honning";
-    private static final String ARG_SECTION_NUMBER = "section_number";
     private static final String KEY_VIDERESALG = "Videresalg";
     private static final String KEY_BUNDLE = "Bundle";
 
@@ -43,15 +34,11 @@ public class LoadContentActivity extends Fragment {
     public LoadContentActivity(){
 
     }
-    public static LoadContentActivity newInstance(int sectionNumber) {
-        LoadContentActivity fragment = new LoadContentActivity();
-        Bundle args = new Bundle();
-        args.putInt(ARG_SECTION_NUMBER, sectionNumber);
-        fragment.setArguments(args);
-        return fragment;
-    }
-    public View onCreateView(final LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        final View rootView = inflater.inflate(R.layout.activity_load_content, container, false);
+
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
         Database.getAnnetValues();
         Database.getBeholdningValues();
         Database.getBeholdningUtValues();
@@ -59,7 +46,7 @@ public class LoadContentActivity extends Fragment {
         Database.getHjemmeValues();
         Database.getHonningType();
         Database.getVideresalgValues();
-        ImageView bee = rootView.findViewById(R.id.LoadingBeeImage);
+        ImageView bee = findViewById(R.id.LoadingBeeImage);
         bee.setBackgroundResource(R.drawable.animation);
         AnimationDrawable anim = (AnimationDrawable) bee.getBackground();
         anim.start();
@@ -70,7 +57,7 @@ public class LoadContentActivity extends Fragment {
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-                Intent intent = new Intent(LoadContentActivity.this.getContext(), MainActivity.class);
+                Intent intent = new Intent(LoadContentActivity.this, MainActivity.class);
                 Bundle bundle = new Bundle();
                 bundle.putSerializable(KEY_HONNING, Honning);
                 bundle.putSerializable(KEY_ANNET, Annet);
@@ -84,7 +71,6 @@ public class LoadContentActivity extends Fragment {
             }
 
         }, 6000);
-        return rootView;
     }
 
     public void setAnnet(ArrayList<SalgTemplate> annet) {
@@ -113,13 +99,5 @@ public class LoadContentActivity extends Fragment {
 
     public void setVideresalg(ArrayList<SalgTemplate> videresalg) {
         Videresalg = videresalg;
-    }
-
-    @Override
-    @SuppressWarnings("deprecation")
-    public void onAttach(Activity activity) {
-        super.onAttach(activity);
-        ((MainActivity) activity).onSectionAttached(
-                getArguments().getInt(ARG_SECTION_NUMBER));
     }
 }

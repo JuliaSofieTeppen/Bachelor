@@ -102,7 +102,7 @@ public class VideresalgActivity extends Activity implements AdapterView.OnItemSe
             if (tell == 0) {
                 Toast.makeText(this, "Legg til minst et produkt", Toast.LENGTH_SHORT).show();
             } else {
-                // TODO update beholdnings
+                // TODO update beholdning
                 insertValues();
                 Toast.makeText(this, "Videre salg lagret", Toast.LENGTH_SHORT).show();
                 finish();

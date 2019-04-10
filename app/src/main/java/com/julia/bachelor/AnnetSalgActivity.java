@@ -50,7 +50,6 @@ public class AnnetSalgActivity extends Activity implements AdapterView.OnItemSel
         Dato.setText(dateFormat.format(date));
     }
 
-
     /**
      * Saves the sale data in the database
      **/

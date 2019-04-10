@@ -19,8 +19,7 @@ public class PriserFragment extends Fragment {
     List<TextView> verdier;
     List<Honning> honningtype;
 
-    public PriserFragment() {
-    }
+    public PriserFragment() {}
 
     /**
      * Returns a new instance of this fragment for the given section

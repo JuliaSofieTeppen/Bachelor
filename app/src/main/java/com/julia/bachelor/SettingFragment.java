@@ -27,9 +27,9 @@ public class SettingFragment extends Fragment {
     SharedPreferences.Editor editor;
     EditText ferdigprodukt, ikkeferdig;
     Button momslagre;
-    EditText enkghjemme,halvkghjemme,kvartkghjemme,enkgbm,halvkgbm,kvartkgbm,enkgfak,halvkgfak,kvartkgfak,
-            ingfhalvkghjemme,ingfkvartkghjemme,ingfhalvkgbm,ingfkvartkgbm,ingfhalvkgfak,ingfkvartkgfak,
-            flythjemme,flytbm,flytfak;
+    EditText enkghjemme, halvkghjemme, kvartkghjemme, enkgbm, halvkgbm, kvartkgbm, enkgfak, halvkgfak, kvartkgfak,
+            ingfhalvkghjemme, ingfkvartkghjemme, ingfhalvkgbm, ingfkvartkgbm, ingfhalvkgfak, ingfkvartkgfak,
+            flythjemme, flytbm, flytfak;
     List<Honning> honningtype;
     List<EditText> BMverdier;
     List<EditText> HjemmeVerdier;
@@ -84,9 +84,9 @@ public class SettingFragment extends Fragment {
         lagre = rootView.findViewById(R.id.lagre);
         sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this.getContext());
         editor = sharedPreferences.edit();
-        BMverdier = new ArrayList<>(Arrays.asList(enkgbm,halvkgbm,kvartkgbm,ingfhalvkgbm,ingfkvartkgbm,flytbm));
-        HjemmeVerdier = new ArrayList<>(Arrays.asList(enkghjemme,halvkghjemme,kvartkghjemme,ingfhalvkghjemme,ingfkvartkghjemme,flythjemme));
-        FakturaVerdier = new ArrayList<>(Arrays.asList(enkgfak,halvkgfak,kvartkgfak,ingfhalvkgfak,ingfkvartkgfak,flytfak));
+        BMverdier = new ArrayList<>(Arrays.asList(enkgbm, halvkgbm, kvartkgbm, ingfhalvkgbm, ingfkvartkgbm, flytbm));
+        HjemmeVerdier = new ArrayList<>(Arrays.asList(enkghjemme, halvkghjemme, kvartkghjemme, ingfhalvkghjemme, ingfkvartkghjemme, flythjemme));
+        FakturaVerdier = new ArrayList<>(Arrays.asList(enkgfak, halvkgfak, kvartkgfak, ingfhalvkgfak, ingfkvartkgfak, flytfak));
 
 
         MainActivity main = new MainActivity();
@@ -96,15 +96,15 @@ public class SettingFragment extends Fragment {
             if (honningtype != null) {
                 String s;
                 for (int i = 0; i < BMverdier.size(); i++) {
-                    s = Integer.toString(honningtype.get(i+3).getBondensMarkedPris());
+                    s = Integer.toString(honningtype.get(i + 3).getBondensMarkedPris());
                     BMverdier.get(i).setText(s);
                 }
                 for (int i = 0; i < HjemmeVerdier.size(); i++) {
-                    s= Integer.toString(honningtype.get(i+3).getHjemmePris());
+                    s = Integer.toString(honningtype.get(i + 3).getHjemmePris());
                     HjemmeVerdier.get(i).setText(s);
                 }
                 for (int i = 0; i < FakturaVerdier.size(); i++) {
-                    s = Integer.toString(honningtype.get(i+3).getFakturaPris());
+                    s = Integer.toString(honningtype.get(i + 3).getFakturaPris());
                     FakturaVerdier.get(i).setText(s);
                 }
             }
@@ -116,17 +116,17 @@ public class SettingFragment extends Fragment {
             public void onClick(View v) {
                 for (int i = 0; i < HjemmeVerdier.size(); i++) {
                     if (HjemmeVerdier.get(i).getText().toString().equals(Integer.toString(honningtype.get(i + 3).getHjemmePris()))) {
-                        Database.executeOnDB("http://www.honningbier.no/PHP/HonningUpdate.php/?ID=" + honningtype.get(i+3).get_ID() + "&HjemmePris=" + HjemmeVerdier.get(i).getText().toString());
+                        Database.executeOnDB("http://www.honningbier.no/PHP/HonningUpdate.php/?ID=" + honningtype.get(i + 3).get_ID() + "&HjemmePris=" + HjemmeVerdier.get(i).getText().toString());
                     }
                     if (BMverdier.get(i).getText().toString().equals(Integer.toString(honningtype.get(i + 3).getBondensMarkedPris()))) {
-                        Database.executeOnDB("http://www.honningbier.no/PHP/HonningUpdate.php/?ID=" + honningtype.get(i+3).get_ID() + "&BondensMarkedPris=" + BMverdier.get(i).getText().toString());
+                        Database.executeOnDB("http://www.honningbier.no/PHP/HonningUpdate.php/?ID=" + honningtype.get(i + 3).get_ID() + "&BondensMarkedPris=" + BMverdier.get(i).getText().toString());
                     }
                     if (FakturaVerdier.get(i).getText().toString().equals(Integer.toString(honningtype.get(i + 3).getFakturaPris()))) {
-                        Database.executeOnDB("http://www.honningbier.no/PHP/HonningUpdate.php/?ID=" + honningtype.get(i+3).get_ID() + "&FakturaPris=" + FakturaVerdier.get(i).getText().toString());
+                        Database.executeOnDB("http://www.honningbier.no/PHP/HonningUpdate.php/?ID=" + honningtype.get(i + 3).get_ID() + "&FakturaPris=" + FakturaVerdier.get(i).getText().toString());
 
                     }
                 }
-                Toast.makeText(SettingFragment.this.getContext(),"Endringer lagret", Toast.LENGTH_SHORT).show();
+                Toast.makeText(SettingFragment.this.getContext(), "Endringer lagret", Toast.LENGTH_SHORT).show();
             }
         });
         momslagre.setOnClickListener(new View.OnClickListener() {

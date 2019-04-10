@@ -16,8 +16,7 @@ public class AddBeholdningFragment extends Fragment {
     EditText dato, som1kg, som05kg, som025kg, lyng1kg, lyng05kg, lyng025kg, ingf05kg, ingf025kg, flytende;
     List<EditText> verdier;
 
-    public AddBeholdningFragment() {
-    }
+    public AddBeholdningFragment() {}
 
     public static AddBeholdningFragment newInstance() {
         return new AddBeholdningFragment();

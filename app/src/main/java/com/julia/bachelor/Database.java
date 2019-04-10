@@ -49,7 +49,7 @@ class Database {
     // TODO fix method for updating BeholdningUt
     static void updateBeholdningUt(Beholdning... beholdnings) {
         BeholdningTask task = new BeholdningTask();
-        task.execute("http://www.honningbier.no/PHP/BeholdningUtUpdate.php");
+        task.execute("http://www.honningbier.no/PHP/BeholdningUtUpdate.php/?");
     }
 
     static void getBeholdningUtValues() {

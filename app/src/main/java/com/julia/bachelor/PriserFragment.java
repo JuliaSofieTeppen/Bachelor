@@ -47,12 +47,13 @@ public class PriserFragment extends Fragment {
         flyt = rootView.findViewById(R.id.flytpris);
         verdier = new ArrayList<>(Arrays.asList(kg1, kg05, kg025, ingf05kg, ingf025kg, flyt));
 
-        Main main = new Main();
+        MainActivity main = new MainActivity();
         honningtype = main.getHonningTyper();
         try {
             if (honningtype != null) {
                 for (int i = 0; i < verdier.size(); i++) {
-                    verdier.get(i).setText("" + honningtype.get(i + 3).getHjemmePris() + "kr");
+                    String text = "" + honningtype.get(i + 3).getHjemmePris() + "kr";
+                    verdier.get(i).setText(text);
                 }
             }
         } catch (NullPointerException e) {

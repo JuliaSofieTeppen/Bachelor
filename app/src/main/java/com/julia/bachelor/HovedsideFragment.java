@@ -4,6 +4,8 @@ import android.app.Activity;
 import android.app.Fragment;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
@@ -13,16 +15,15 @@ import android.widget.PopupMenu;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.julia.bachelor.helperClass.Beholdning;
+import com.julia.bachelor.helperClass.BeholdningTemplate;
 import com.julia.bachelor.helperClass.Honning;
-import com.julia.bachelor.helperClass.Salg;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
-import java.util.List;
+import java.util.Date;
 
-public class Hovedside extends Fragment {
+public class HovedsideFragment extends Fragment {
     /**
      * The fragment argument representing the section number for this
      * fragment.
@@ -32,24 +33,23 @@ public class Hovedside extends Fragment {
     private static final String KEY_BEHOLDNINGUT = "Salg";
     private static final String KEY_HONNING = "Honning";
     private static final String KEY_BUNDLE = "Bundle";
+    private SwipeRefreshLayout mSwipeRefreshLayout;
 
     Button addbutton;
     TextView info, navn, dato;
-    List arraylist;
-    ArrayList<Beholdning> beholdnings;
-    ArrayList<Salg> salg;
+    ArrayList<BeholdningTemplate> beholdnings;
+    ArrayList<BeholdningTemplate> salg;
     ArrayList<Honning> honning;
-    Salg beholdningUt;
 
-    public Hovedside() {
+    public HovedsideFragment() {
     }
 
     /**
      * Returns a new instance of this fragment for the given section
      * number.
      */
-    public static Hovedside newInstance(int sectionNumber, ArrayList<Beholdning> Beholdning, ArrayList<Salg> Salg, ArrayList<Honning> Honning) {
-        Hovedside fragment = new Hovedside();
+    public static HovedsideFragment newInstance(int sectionNumber, ArrayList<BeholdningTemplate> Beholdning, ArrayList<BeholdningTemplate> Salg, ArrayList<Honning> Honning) {
+        HovedsideFragment fragment = new HovedsideFragment();
         Bundle args = new Bundle();
         args.putInt(ARG_SECTION_NUMBER, sectionNumber);
         args.putSerializable(KEY_BEHOLDNING, Beholdning);
@@ -62,12 +62,26 @@ public class Hovedside extends Fragment {
     @Override
     @SuppressWarnings("unchecked")
     public View onCreateView(final LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        final View rootView = inflater.inflate(R.layout.hovedside, container, false);
+        final View rootView = inflater.inflate(R.layout.fragment_hovedside, container, false);
         addbutton = rootView.findViewById(R.id.addbutton);
         info = rootView.findViewById(R.id.Info);
         navn = rootView.findViewById(R.id.navn);
-        arraylist = new ArrayList();
         dato = rootView.findViewById(R.id.dato);
+
+        mSwipeRefreshLayout = rootView.findViewById(R.id.container);
+        mSwipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                fetch();
+                new Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        setValueString();
+                        mSwipeRefreshLayout.setRefreshing(false);
+                    }
+                }, 8000);
+            }
+        });
 
         addbutton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -80,23 +94,23 @@ public class Hovedside extends Fragment {
                         if (item.getTitle().equals("Bondens Marked")) {
                             Bundle bundle = new Bundle();
                             bundle.putSerializable(KEY_HONNING, honning);
-                            Intent myIntent = new Intent(rootView.getContext(), BmSalg.class);
+                            Intent myIntent = new Intent(rootView.getContext(), BmSalgActivity.class);
                             myIntent.putExtra(KEY_BUNDLE, bundle); //Optional parameters
                             rootView.getContext().startActivity(myIntent);
-                        } else if (item.getTitle().equals("Hjemme salg")) {
+                        } else if (item.getTitle().equals("Hjemmesalg")) {
                             Bundle bundle = new Bundle();
                             bundle.putSerializable(KEY_HONNING, honning);
-                            Intent myIntent = new Intent(rootView.getContext(), HjemmeSalg.class);
-                            myIntent.putExtra(KEY_BUNDLE, bundle); //Optional parameters
+                            Intent myIntent = new Intent(rootView.getContext(), HjemmesalgActivity.class);
+                            myIntent.putExtra(KEY_BUNDLE, bundle);
                             rootView.getContext().startActivity(myIntent);
-                        } else if (item.getTitle().equals("Videre salg")) {
+                        } else if (item.getTitle().equals("Videresalg")) {
                             Bundle bundle = new Bundle();
                             bundle.putSerializable(KEY_HONNING, honning);
-                            Intent myIntent = new Intent(rootView.getContext(), FakturaSalg.class);
-                            myIntent.putExtra(KEY_BUNDLE, bundle); //Optional parameters
+                            Intent myIntent = new Intent(rootView.getContext(), VideresalgActivity.class);
+                            myIntent.putExtra(KEY_BUNDLE, bundle);
                             rootView.getContext().startActivity(myIntent);
                         } else {
-                            Intent myIntent = new Intent(rootView.getContext(), SalgAnnet.class);
+                            Intent myIntent = new Intent(rootView.getContext(), AnnetSalgActivity.class);
                             rootView.getContext().startActivity(myIntent);
                         }
                         return true;
@@ -106,12 +120,11 @@ public class Hovedside extends Fragment {
             }
         });
         try {
-            beholdnings = (ArrayList<Beholdning>) (getArguments().getSerializable(KEY_BEHOLDNING));
-            salg = (ArrayList<Salg>) (getArguments().getSerializable(KEY_BEHOLDNINGUT));
+            beholdnings = (ArrayList<BeholdningTemplate>) (getArguments().getSerializable(KEY_BEHOLDNING));
+            salg = (ArrayList<BeholdningTemplate>) (getArguments().getSerializable(KEY_BEHOLDNINGUT));
             honning = (ArrayList<Honning>) (getArguments().getSerializable(KEY_HONNING));
             info.setText(setValueString());
             navn.setText(setNameString());
-            dato.setText(findCurrentBeholdning().getDato());
         } catch (NullPointerException e) {
             e.printStackTrace();
         }
@@ -131,37 +144,34 @@ public class Hovedside extends Fragment {
     }
 
     String setValueString() {
-        Beholdning beholdning=null;
-
+        BeholdningTemplate beholdning = null;
+        BeholdningTemplate beholdningUt = null;
         try {
-            beholdning = findCurrentBeholdning();
+            beholdning = findCurrentBeholdning(beholdnings);
+            beholdningUt = findCurrentBeholdning(salg);
+            dato.setText(beholdning.getDato());
         } catch (NullPointerException e) {
             e.printStackTrace();
         }
-        return beholdning == null ? ":/" :
-                beholdning.getSommer() + "\n" +
-                        beholdning.getSommerH() + " \n" +
-                        beholdning.getSommerK() + " \n" +
-                        beholdning.getLyng() + " \n" +
-                        beholdning.getLyngH() + " \n" +
-                        beholdning.getLyngK() + " \n" +
-                        beholdning.getIngeferH() + " \n" +
-                        beholdning.getIngeferK() + " \n" +
-                        beholdning.getFlytende() + " \n";
+        return beholdning == null || beholdningUt == null ? "" :
+                (beholdning.getSommer() - beholdningUt.getSommer()) + "\n" +
+                        (beholdning.getSommerH() - beholdningUt.getSommerH()) + " \n" +
+                        (beholdning.getSommerK() - beholdningUt.getSommerK()) + " \n" +
+                        (beholdning.getLyng() - beholdningUt.getLyng()) + " \n" +
+                        (beholdning.getLyngH() - beholdningUt.getLyngH()) + " \n" +
+                        (beholdning.getLyngK() - beholdningUt.getLyngK()) + " \n" +
+                        (beholdning.getIngeferH() - beholdningUt.getIngeferH()) + " \n" +
+                        (beholdning.getIngeferK() - beholdningUt.getIngeferK()) + " \n" +
+                        (beholdning.getFlytende() - beholdningUt.getFlytende()) + " \n";
     }
 
-    Beholdning findCurrentBeholdning() {
-        Beholdning current = null;
-        beholdningUt = null;
+    BeholdningTemplate findCurrentBeholdning(ArrayList<BeholdningTemplate> beholdning) {
+        BeholdningTemplate current = null;
         try {
-            current= beholdnings.get(beholdnings.size()-1);
-            beholdningUt = salg.get(salg.size()-1);
-            int i = 0;
-            for(i=0; i<beholdnings.size(); i++){
-                if(greaterThan(current, beholdnings.get(i))){
-                    current = beholdnings.get(i);
-                    beholdningUt = salg.get(i);
-
+            current = beholdning.get(beholdning.size() - 1);
+            for (int i = 0; i < beholdning.size(); i++) {
+                if (greaterThan(current, beholdning.get(i))) {
+                    current = beholdning.get(i);
                 }
             }
             return current;
@@ -173,16 +183,28 @@ public class Hovedside extends Fragment {
         return current;
     }
 
-    boolean greaterThan(Beholdning current, Beholdning next) {
+    boolean greaterThan(BeholdningTemplate current, BeholdningTemplate next) {
         ArrayList<String> dates = new ArrayList<>(Arrays.asList(current.getDato(), next.getDato()));
         Collections.sort(dates);
         return !dates.get(1).equals(current.getDato());
     }
 
     @Override
+    @SuppressWarnings("deprecation")
     public void onAttach(Activity activity) {
         super.onAttach(activity);
-        ((Main) activity).onSectionAttached(
+        ((MainActivity) activity).onSectionAttached(
                 getArguments().getInt(ARG_SECTION_NUMBER));
     }
+
+    private void fetch() {
+        MainActivity.FetchDataTask task = new MainActivity.FetchDataTask();
+        String[] urls = {
+                "http://www.honningbier.no/PHP/BeholdningOut.php",
+                "http://www.honningbier.no/PHP/SalgOut.php",
+                "http://www.honningbier.no/PHP/HonningOut.php"
+        };
+        task.execute(urls);
+    }
+
 }

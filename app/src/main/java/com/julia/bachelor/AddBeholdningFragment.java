@@ -12,22 +12,21 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-public class AddBeholdning extends Fragment {
+public class AddBeholdningFragment extends Fragment {
     EditText dato, som1kg, som05kg, som025kg, lyng1kg, lyng05kg, lyng025kg, ingf05kg, ingf025kg, flytende;
     List<EditText> verdier;
 
-    public AddBeholdning() {
+    public AddBeholdningFragment() {
     }
 
-    public static AddBeholdning newInstance() {
-        return new AddBeholdning();
+    public static AddBeholdningFragment newInstance() {
+        return new AddBeholdningFragment();
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
-        View rootView = inflater.inflate(R.layout.fragment_skal_bli_add_beholdning, container, false);
-        // TODO use current date as default
+        View rootView = inflater.inflate(R.layout.fragment_add_beholdning, container, false);
         dato = rootView.findViewById(R.id.Bdato);
         som1kg = rootView.findViewById(R.id.Bsom1kg);
         som05kg = rootView.findViewById(R.id.Bsom05kg);
@@ -39,6 +38,8 @@ public class AddBeholdning extends Fragment {
         ingf025kg = rootView.findViewById(R.id.Binf025kg);
         flytende = rootView.findViewById(R.id.Bflyt);
         verdier = new ArrayList<>(Arrays.asList(som1kg, som05kg, som025kg, lyng1kg, lyng05kg, lyng025kg, ingf05kg, ingf025kg, flytende));
+
+        dato.setText(Beregninger.getDate());
         return rootView;
     }
 

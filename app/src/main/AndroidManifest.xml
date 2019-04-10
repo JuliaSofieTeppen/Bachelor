@@ -6,7 +6,7 @@
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <application
-        android:allowBackup="true"
+        android:allowBackup="false"
         android:icon="@drawable/logo"
         android:roundIcon="@drawable/logo"
         android:supportsRtl="true"
@@ -16,7 +16,7 @@
             android:theme="@style/CompAppTheme">
         </activity>
         <activity
-            android:name=".LoadContent"
+            android:name=".LoadContentActivity"
             android:label="@string/title_activity_main">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -24,13 +24,13 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".SalgItem" />
-        <activity android:name=".SalgAnnet" />
-        <activity android:name=".FakturaSalg" />
-        <activity android:name=".BmSalg" />
-        <activity android:name=".HjemmeSalg" />
+        <activity android:name=".DetailsActivity" />
+        <activity android:name=".AnnetSalgActivity" />
+        <activity android:name=".VideresalgActivity" />
+        <activity android:name=".BmSalgActivity" />
+        <activity android:name=".HjemmesalgActivity" />
         <activity
-            android:name=".Main"
+            android:name=".MainActivity"
             android:label="@string/title_activity_main" />
         <provider
             android:name="android.support.v4.content.FileProvider"

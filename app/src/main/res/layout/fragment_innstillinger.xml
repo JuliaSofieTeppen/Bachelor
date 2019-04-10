@@ -1,17 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".Innstillinger">
+xmlns:app="http://schemas.android.com/apk/res-auto"
+xmlns:tools="http://schemas.android.com/tools"
+android:layout_width="match_parent"
+android:layout_height="match_parent"
+tools:context=".SettingFragment">
 
 
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:layout_editor_absoluteX="16dp"
-        tools:layout_editor_absoluteY="87dp">
+        tools:layout_editor_absoluteY="87dp"
+        tools:ignore="UselessParent">
 
         <android.support.constraint.ConstraintLayout
             android:layout_width="match_parent"
@@ -37,7 +38,7 @@
                     android:layout_marginTop="8dp"
                     android:layout_marginEnd="278dp"
                     android:layout_marginBottom="8dp"
-                    android:text="Endre moms"
+                    android:text="@string/endre_moms"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.0"
@@ -67,7 +68,7 @@
                 android:layout_marginStart="20dp"
                 android:layout_marginTop="32dp"
                 android:layout_marginEnd="8dp"
-                android:text="Innstillinger"
+                android:text="@string/innstillinger"
                 android:textSize="32sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
@@ -95,7 +96,7 @@
                     android:layout_marginTop="8dp"
                     android:layout_marginEnd="8dp"
                     android:layout_marginBottom="8dp"
-                    android:text="Endre Priser"
+                    android:text="@string/endre_priser"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.029"
@@ -109,7 +110,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
-                android:visibility="visible"
+                android:visibility="gone"
                 app:layout_constraintTop_toBottomOf="@+id/endrepris"
                 tools:layout_editor_absoluteX="0dp">
 
@@ -120,7 +121,7 @@
                     android:layout_marginStart="35dp"
                     android:layout_marginTop="36dp"
                     android:layout_marginEnd="324dp"
-                    android:text="Honning"
+                    android:text="@string/honning"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.0"
                     app:layout_constraintStart_toStartOf="parent"
@@ -133,7 +134,7 @@
                     android:layout_marginStart="8dp"
                     android:layout_marginEnd="8dp"
                     android:background="#ffe0a3"
-                    android:visibility="gone"
+                    android:visibility="visible"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/enkg">
@@ -143,10 +144,11 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="8dp"
-                        android:layout_marginTop="44dp"
+                        android:layout_marginTop="36dp"
                         android:layout_marginEnd="110dp"
-                        android:text="Hjemme"
+                        android:text="@string/hjemme"
                         app:layout_constraintEnd_toStartOf="@+id/enkgbm"
+                        app:layout_constraintHorizontal_bias="1.0"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
 
@@ -157,7 +159,7 @@
                         android:layout_marginStart="8dp"
                         android:layout_marginTop="36dp"
                         android:layout_marginEnd="58dp"
-                        android:text="Bondens marked"
+                        android:text="@string/bondens_marked"
                         app:layout_constraintEnd_toStartOf="@+id/enkgbm"
                         app:layout_constraintHorizontal_bias="1.0"
                         app:layout_constraintStart_toStartOf="parent"
@@ -168,11 +170,11 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="8dp"
-                        android:layout_marginTop="32dp"
+                        android:layout_marginTop="40dp"
                         android:layout_marginEnd="116dp"
-                        android:text="Faktura"
+                        android:text="@string/videresalg"
                         app:layout_constraintEnd_toStartOf="@+id/enkgbm"
-                        app:layout_constraintHorizontal_bias="1.0"
+                        app:layout_constraintHorizontal_bias="0.142"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/textView133" />
 
@@ -182,9 +184,11 @@
                         android:layout_height="43dp"
                         android:layout_marginEnd="8dp"
                         android:ems="10"
+                        android:hint="@string/helkg"
                         android:inputType="number"
                         app:layout_constraintBaseline_toBaselineOf="@+id/textView133"
-                        app:layout_constraintEnd_toEndOf="parent" />
+                        app:layout_constraintEnd_toEndOf="parent"
+                        tools:ignore="Autofill" />
 
                     <EditText
                         android:id="@+id/enkgfak"
@@ -192,9 +196,11 @@
                         android:layout_height="43dp"
                         android:layout_marginEnd="8dp"
                         android:ems="10"
+                        android:hint="@string/helkg"
                         android:inputType="number"
                         app:layout_constraintBaseline_toBaselineOf="@+id/textView134"
-                        app:layout_constraintEnd_toEndOf="parent" />
+                        app:layout_constraintEnd_toEndOf="parent"
+                        tools:ignore="Autofill" />
 
                     <EditText
                         android:id="@+id/enkghjemme"
@@ -202,9 +208,11 @@
                         android:layout_height="43dp"
                         android:layout_marginEnd="8dp"
                         android:ems="10"
+                        android:hint="@string/helkg"
                         android:inputType="number"
                         app:layout_constraintBaseline_toBaselineOf="@+id/textView132"
-                        app:layout_constraintEnd_toEndOf="parent" />
+                        app:layout_constraintEnd_toEndOf="parent"
+                        tools:ignore="Autofill" />
                 </android.support.constraint.ConstraintLayout>
 
                 <android.support.constraint.ConstraintLayout
@@ -214,7 +222,7 @@
                     android:layout_marginStart="8dp"
                     android:layout_marginEnd="8dp"
                     android:background="#ffe0a3"
-                    android:visibility="gone"
+                    android:visibility="visible"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/halvkg">
@@ -226,7 +234,7 @@
                         android:layout_marginStart="8dp"
                         android:layout_marginTop="28dp"
                         android:layout_marginEnd="110dp"
-                        android:text="Hjemme"
+                        android:text="@string/hjemme"
                         app:layout_constraintEnd_toStartOf="@+id/halvkghjemme"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
@@ -238,8 +246,9 @@
                         android:layout_marginStart="8dp"
                         android:layout_marginTop="40dp"
                         android:layout_marginEnd="58dp"
-                        android:text="Bondens marked"
+                        android:text="@string/bondens_marked"
                         app:layout_constraintEnd_toStartOf="@+id/halvkgbm"
+                        app:layout_constraintHorizontal_bias="0.666"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/textView14" />
 
@@ -248,10 +257,11 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="8dp"
-                        android:layout_marginTop="28dp"
+                        android:layout_marginTop="36dp"
                         android:layout_marginEnd="116dp"
-                        android:text="Faktura"
+                        android:text="@string/videresalg"
                         app:layout_constraintEnd_toStartOf="@+id/halvkgfak"
+                        app:layout_constraintHorizontal_bias="0.047"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/textView15" />
 
@@ -261,9 +271,11 @@
                         android:layout_height="43dp"
                         android:layout_marginEnd="8dp"
                         android:ems="10"
+                        android:hint="@string/Halvkg"
                         android:inputType="number"
                         app:layout_constraintBaseline_toBaselineOf="@+id/textView47"
-                        app:layout_constraintEnd_toEndOf="parent" />
+                        app:layout_constraintEnd_toEndOf="parent"
+                        tools:ignore="Autofill" />
 
                     <EditText
                         android:id="@+id/halvkgbm"
@@ -271,9 +283,11 @@
                         android:layout_height="43dp"
                         android:layout_marginEnd="8dp"
                         android:ems="10"
+                        android:hint="@string/Halvkg"
                         android:inputType="number"
                         app:layout_constraintBaseline_toBaselineOf="@+id/textView15"
-                        app:layout_constraintEnd_toEndOf="parent" />
+                        app:layout_constraintEnd_toEndOf="parent"
+                        tools:ignore="Autofill" />
 
                     <EditText
                         android:id="@+id/halvkghjemme"
@@ -281,9 +295,11 @@
                         android:layout_height="43dp"
                         android:layout_marginEnd="8dp"
                         android:ems="10"
+                        android:hint="@string/Halvkg"
                         android:inputType="number"
                         app:layout_constraintBaseline_toBaselineOf="@+id/textView14"
-                        app:layout_constraintEnd_toEndOf="parent" />
+                        app:layout_constraintEnd_toEndOf="parent"
+                        tools:ignore="Autofill" />
                 </android.support.constraint.ConstraintLayout>
 
                 <android.support.constraint.ConstraintLayout
@@ -308,7 +324,7 @@
                         android:layout_marginTop="8dp"
                         android:layout_marginEnd="197dp"
                         android:layout_marginBottom="8dp"
-                        android:text="Ingefær 1/2 kg"
+                        android:text="@string/ingeferHalv"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
@@ -336,7 +352,7 @@
                         android:layout_marginTop="8dp"
                         android:layout_marginEnd="248dp"
                         android:layout_marginBottom="8dp"
-                        android:text="1/2 kg"
+                        android:text="@string/Halvkg"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
@@ -351,7 +367,7 @@
                     android:layout_marginStart="8dp"
                     android:layout_marginEnd="8dp"
                     android:background="#ffe0a3"
-                    android:visibility="gone"
+                    android:visibility="visible"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/ingf05kg">
@@ -362,7 +378,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginStart="8dp"
                         android:layout_marginTop="36dp"
-                        android:text="Hjemme"
+                        android:text="@string/hjemme"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
 
@@ -371,8 +387,8 @@
                         android:layout_width="wrap_content"
                         android:layout_height="0dp"
                         android:layout_marginStart="8dp"
-                        android:layout_marginTop="44dp"
-                        android:text="Bondens marked"
+                        android:layout_marginTop="36dp"
+                        android:text="@string/bondens_marked"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/textView114" />
 
@@ -382,7 +398,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginStart="8dp"
                         android:layout_marginTop="36dp"
-                        android:text="Faktura"
+                        android:text="@string/videresalg"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/textView115" />
 
@@ -392,9 +408,11 @@
                         android:layout_height="43dp"
                         android:layout_marginEnd="8dp"
                         android:ems="10"
+                        android:hint="@string/Halvkg"
                         android:inputType="number"
                         app:layout_constraintBaseline_toBaselineOf="@+id/textView116"
-                        app:layout_constraintEnd_toEndOf="parent" />
+                        app:layout_constraintEnd_toEndOf="parent"
+                        tools:ignore="Autofill" />
 
                     <EditText
                         android:id="@+id/ingfhalvkgbm"
@@ -402,9 +420,11 @@
                         android:layout_height="43dp"
                         android:layout_marginEnd="8dp"
                         android:ems="10"
+                        android:hint="@string/Halvkg"
                         android:inputType="number"
                         app:layout_constraintBaseline_toBaselineOf="@+id/textView115"
-                        app:layout_constraintEnd_toEndOf="parent" />
+                        app:layout_constraintEnd_toEndOf="parent"
+                        tools:ignore="Autofill" />
 
                     <EditText
                         android:id="@+id/ingfhalvkghjemme"
@@ -412,9 +432,11 @@
                         android:layout_height="43dp"
                         android:layout_marginEnd="8dp"
                         android:ems="10"
+                        android:hint="@string/Halvkg"
                         android:inputType="number"
                         app:layout_constraintBaseline_toBaselineOf="@+id/textView114"
-                        app:layout_constraintEnd_toEndOf="parent" />
+                        app:layout_constraintEnd_toEndOf="parent"
+                        tools:ignore="Autofill" />
                 </android.support.constraint.ConstraintLayout>
 
                 <android.support.constraint.ConstraintLayout
@@ -424,20 +446,21 @@
                     android:layout_marginStart="8dp"
                     android:layout_marginEnd="8dp"
                     android:background="#ffe0a3"
-                    android:visibility="gone"
+                    android:visibility="visible"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/kvartkg">
 
                     <TextView
                         android:id="@+id/textView11"
-                        android:layout_width="wrap_content"
-                        android:layout_height="15dp"
+                        android:layout_width="60dp"
+                        android:layout_height="20dp"
                         android:layout_marginStart="8dp"
-                        android:layout_marginTop="16dp"
+                        android:layout_marginTop="32dp"
                         android:layout_marginEnd="110dp"
-                        android:text="Hjemme"
+                        android:text="@string/hjemme"
                         app:layout_constraintEnd_toStartOf="@+id/kvartkghjemme"
+                        app:layout_constraintHorizontal_bias="0.0"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
 
@@ -447,7 +470,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginStart="8dp"
                         android:layout_marginTop="36dp"
-                        android:text="Bondens Marked"
+                        android:text="@string/bondens_marked"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/textView11" />
 
@@ -456,8 +479,8 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="8dp"
-                        android:layout_marginTop="44dp"
-                        android:text="Faktura"
+                        android:layout_marginTop="40dp"
+                        android:text="@string/videresalg"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/textView12" />
 
@@ -467,9 +490,11 @@
                         android:layout_height="43dp"
                         android:layout_marginEnd="8dp"
                         android:ems="10"
+                        android:hint="@string/kvartkg"
                         android:inputType="number"
                         app:layout_constraintBaseline_toBaselineOf="@+id/textView13"
-                        app:layout_constraintEnd_toEndOf="parent" />
+                        app:layout_constraintEnd_toEndOf="parent"
+                        tools:ignore="Autofill" />
 
                     <EditText
                         android:id="@+id/kvartkgbm"
@@ -477,9 +502,11 @@
                         android:layout_height="43dp"
                         android:layout_marginEnd="8dp"
                         android:ems="10"
+                        android:hint="@string/kvartkg"
                         android:inputType="number"
                         app:layout_constraintBaseline_toBaselineOf="@+id/textView12"
-                        app:layout_constraintEnd_toEndOf="parent" />
+                        app:layout_constraintEnd_toEndOf="parent"
+                        tools:ignore="Autofill" />
 
                     <EditText
                         android:id="@+id/kvartkghjemme"
@@ -487,9 +514,11 @@
                         android:layout_height="43dp"
                         android:layout_marginEnd="8dp"
                         android:ems="10"
+                        android:hint="@string/kvartkg"
                         android:inputType="number"
                         app:layout_constraintBaseline_toBaselineOf="@+id/textView11"
-                        app:layout_constraintEnd_toEndOf="parent" />
+                        app:layout_constraintEnd_toEndOf="parent"
+                        tools:ignore="Autofill" />
 
                 </android.support.constraint.ConstraintLayout>
 
@@ -515,7 +544,7 @@
                         android:layout_marginTop="8dp"
                         android:layout_marginEnd="262dp"
                         android:layout_marginBottom="8dp"
-                        android:text="1 kg"
+                        android:text="@string/helkg"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
@@ -543,7 +572,7 @@
                         android:layout_marginTop="8dp"
                         android:layout_marginEnd="197dp"
                         android:layout_marginBottom="8dp"
-                        android:text="Ingefær 1/4 kg"
+                        android:text="@string/ingeferKvart"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
@@ -571,7 +600,7 @@
                         android:layout_marginTop="8dp"
                         android:layout_marginEnd="248dp"
                         android:layout_marginBottom="8dp"
-                        android:text="1/4 kg"
+                        android:text="@string/kvartkg"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
@@ -586,7 +615,7 @@
                     android:layout_marginStart="8dp"
                     android:layout_marginTop="40dp"
                     android:layout_marginEnd="8dp"
-                    android:text="Spesialvare"
+                    android:text="@string/spesialvare"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.083"
                     app:layout_constraintStart_toStartOf="parent"
@@ -599,7 +628,7 @@
                     android:layout_marginStart="8dp"
                     android:layout_marginEnd="8dp"
                     android:background="#ffe0a3"
-                    android:visibility="gone"
+                    android:visibility="visible"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/ingf025kg">
@@ -610,7 +639,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginStart="8dp"
                         android:layout_marginTop="36dp"
-                        android:text="Hjemme"
+                        android:text="@string/hjemme"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
 
@@ -620,7 +649,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginStart="8dp"
                         android:layout_marginTop="36dp"
-                        android:text="Bondens marked"
+                        android:text="@string/bondens_marked"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/textView126" />
 
@@ -630,7 +659,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginStart="8dp"
                         android:layout_marginTop="40dp"
-                        android:text="Faktura"
+                        android:text="@string/videresalg"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/textView127" />
 
@@ -640,9 +669,11 @@
                         android:layout_height="43dp"
                         android:layout_marginEnd="8dp"
                         android:ems="10"
+                        android:hint="@string/kvartkg"
                         android:inputType="number"
                         app:layout_constraintBaseline_toBaselineOf="@+id/textView128"
-                        app:layout_constraintEnd_toEndOf="parent" />
+                        app:layout_constraintEnd_toEndOf="parent"
+                        tools:ignore="Autofill" />
 
                     <EditText
                         android:id="@+id/ingfkvartkgbm"
@@ -650,9 +681,11 @@
                         android:layout_height="43dp"
                         android:layout_marginEnd="8dp"
                         android:ems="10"
+                        android:hint="@string/kvartkg"
                         android:inputType="number"
                         app:layout_constraintBaseline_toBaselineOf="@+id/textView127"
-                        app:layout_constraintEnd_toEndOf="parent" />
+                        app:layout_constraintEnd_toEndOf="parent"
+                        tools:ignore="Autofill" />
 
                     <EditText
                         android:id="@+id/ingfkvartkghjemme"
@@ -660,9 +693,11 @@
                         android:layout_height="43dp"
                         android:layout_marginEnd="8dp"
                         android:ems="10"
+                        android:hint="@string/kvartkg"
                         android:inputType="number"
                         app:layout_constraintBaseline_toBaselineOf="@+id/textView126"
-                        app:layout_constraintEnd_toEndOf="parent" />
+                        app:layout_constraintEnd_toEndOf="parent"
+                        tools:ignore="Autofill" />
                 </android.support.constraint.ConstraintLayout>
 
                 <android.support.constraint.ConstraintLayout
@@ -672,7 +707,7 @@
                     android:layout_marginStart="8dp"
                     android:layout_marginEnd="8dp"
                     android:background="#ffe0a3"
-                    android:visibility="gone"
+                    android:visibility="visible"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/flyt">
@@ -682,10 +717,11 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="8dp"
-                        android:layout_marginTop="16dp"
+                        android:layout_marginTop="24dp"
                         android:layout_marginEnd="110dp"
-                        android:text="Hjemme"
+                        android:text="@string/hjemme"
                         app:layout_constraintEnd_toStartOf="@+id/flythjemme"
+                        app:layout_constraintHorizontal_bias="0.0"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
 
@@ -696,7 +732,7 @@
                         android:layout_marginStart="8dp"
                         android:layout_marginTop="36dp"
                         android:layout_marginEnd="58dp"
-                        android:text="Bondens marked"
+                        android:text="@string/bondens_marked"
                         app:layout_constraintEnd_toStartOf="@+id/flytbm"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/textView129" />
@@ -706,10 +742,11 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="8dp"
-                        android:layout_marginTop="40dp"
+                        android:layout_marginTop="36dp"
                         android:layout_marginEnd="116dp"
-                        android:text="Faktura"
+                        android:text="@string/videresalg"
                         app:layout_constraintEnd_toStartOf="@+id/flytfak"
+                        app:layout_constraintHorizontal_bias="0.0"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/textView130" />
 
@@ -719,9 +756,11 @@
                         android:layout_height="43dp"
                         android:layout_marginEnd="8dp"
                         android:ems="10"
+                        android:hint="@string/flytende"
                         android:inputType="number"
                         app:layout_constraintBaseline_toBaselineOf="@+id/textView131"
-                        app:layout_constraintEnd_toEndOf="parent" />
+                        app:layout_constraintEnd_toEndOf="parent"
+                        tools:ignore="Autofill" />
 
                     <EditText
                         android:id="@+id/flytbm"
@@ -729,9 +768,11 @@
                         android:layout_height="43dp"
                         android:layout_marginEnd="8dp"
                         android:ems="10"
+                        android:hint="@string/flytende"
                         android:inputType="number"
                         app:layout_constraintBaseline_toBaselineOf="@+id/textView130"
-                        app:layout_constraintEnd_toEndOf="parent" />
+                        app:layout_constraintEnd_toEndOf="parent"
+                        tools:ignore="Autofill" />
 
                     <EditText
                         android:id="@+id/flythjemme"
@@ -739,9 +780,11 @@
                         android:layout_height="43dp"
                         android:layout_marginEnd="8dp"
                         android:ems="10"
+                        android:hint="@string/flytende"
                         android:inputType="number"
                         app:layout_constraintBaseline_toBaselineOf="@+id/textView129"
-                        app:layout_constraintEnd_toEndOf="parent" />
+                        app:layout_constraintEnd_toEndOf="parent"
+                        tools:ignore="Autofill" />
                 </android.support.constraint.ConstraintLayout>
 
                 <android.support.constraint.ConstraintLayout
@@ -764,7 +807,7 @@
                         android:layout_marginTop="8dp"
                         android:layout_marginEnd="235dp"
                         android:layout_marginBottom="8dp"
-                        android:text="Flytende"
+                        android:text="@string/flytende"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
@@ -780,7 +823,7 @@
                     android:layout_marginTop="64dp"
                     android:layout_marginEnd="8dp"
                     android:background="#f9bb4f"
-                    android:text="Lagre"
+                    android:text="@string/lagre"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.773"
                     app:layout_constraintStart_toStartOf="parent"
@@ -789,11 +832,11 @@
 
             <android.support.constraint.ConstraintLayout
                 android:id="@+id/bigextend2"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="187dp"
-                android:layout_marginStart="8dp"
+                android:layout_marginStart="20dp"
                 android:layout_marginTop="8dp"
-                android:layout_marginEnd="8dp"
+                android:layout_marginEnd="20dp"
                 android:visibility="gone"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -801,11 +844,11 @@
 
                 <android.support.constraint.ConstraintLayout
                     android:id="@+id/constraintLayout10"
-                    android:layout_width="338dp"
+                    android:layout_width="0dp"
                     android:layout_height="51dp"
-                    android:layout_marginStart="8dp"
+                    android:layout_marginStart="10dp"
                     android:layout_marginTop="12dp"
-                    android:layout_marginEnd="8dp"
+                    android:layout_marginEnd="10dp"
                     android:background="@android:color/white"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.0"
@@ -819,7 +862,7 @@
                         android:layout_marginStart="8dp"
                         android:layout_marginTop="8dp"
                         android:layout_marginBottom="8dp"
-                        android:text="Ikke ferdig produkt"
+                        android:text="@string/ikke_ferdig_produkt"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
@@ -830,18 +873,20 @@
                         android:layout_height="wrap_content"
                         android:layout_marginEnd="8dp"
                         android:ems="10"
+                        android:hint="@string/space"
                         android:inputType="number"
                         app:layout_constraintBaseline_toBaselineOf="@+id/textview"
-                        app:layout_constraintEnd_toEndOf="parent" />
+                        app:layout_constraintEnd_toEndOf="parent"
+                        tools:ignore="Autofill" />
                 </android.support.constraint.ConstraintLayout>
 
                 <android.support.constraint.ConstraintLayout
                     android:id="@+id/constraintLayout9"
-                    android:layout_width="338dp"
+                    android:layout_width="0dp"
                     android:layout_height="51dp"
-                    android:layout_marginStart="8dp"
+                    android:layout_marginStart="10dp"
                     android:layout_marginTop="12dp"
-                    android:layout_marginEnd="8dp"
+                    android:layout_marginEnd="10dp"
                     android:background="@android:color/white"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.0"
@@ -855,7 +900,7 @@
                         android:layout_marginStart="8dp"
                         android:layout_marginTop="8dp"
                         android:layout_marginBottom="8dp"
-                        android:text="Ferdig produkt"
+                        android:text="@string/ferdig_produkt"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
@@ -866,9 +911,11 @@
                         android:layout_height="wrap_content"
                         android:layout_marginEnd="8dp"
                         android:ems="10"
+                        android:hint="@string/space"
                         android:inputType="number"
                         app:layout_constraintBaseline_toBaselineOf="@+id/textView135"
-                        app:layout_constraintEnd_toEndOf="parent" />
+                        app:layout_constraintEnd_toEndOf="parent"
+                        tools:ignore="Autofill" />
                 </android.support.constraint.ConstraintLayout>
 
                 <Button
@@ -879,7 +926,7 @@
                     android:layout_marginEnd="16dp"
                     android:layout_marginBottom="8dp"
                     android:background="#f9bb4f"
-                    android:text="Lagre"
+                    android:text="@string/lagre"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/constraintLayout10"
@@ -891,3 +938,4 @@
     </ScrollView>
 
 </FrameLayout>
+

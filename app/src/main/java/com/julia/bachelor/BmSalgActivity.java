@@ -20,7 +20,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 
-public class BmSalg extends Activity {
+public class BmSalgActivity extends Activity {
     private static final String KEY_BUNDLE = "Bundle";
     private static final String KEY_HONNING = "Honning";
     static List<Honning> honningtyper;
@@ -32,7 +32,6 @@ public class BmSalg extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_bm_salg);
         if (getActionBar() != null) getActionBar().setDisplayHomeAsUpEnabled(true);
-        // TODO add current date to dato field by default
         dato = findViewById(R.id.BMSdato);
         som1kg = findViewById(R.id.BMSsom1kg);
         som05kg = findViewById(R.id.BMSsom05kg);
@@ -57,7 +56,7 @@ public class BmSalg extends Activity {
         int tell = 0;
         if (Beregninger.checkDate(dato.getText().toString())) {
             for (EditText verdi : verdier) {
-                if (verdi.getText().toString().equals("")) {
+                if (verdi.getText().toString().equals("") || verdi.getText().toString().equals("0")) {
                     verdi.setText("0");
 
                 } else {
@@ -90,8 +89,8 @@ public class BmSalg extends Activity {
 
     public void goback() {
         if (ValueInField()) {
-            //android.app.AlertDialog.Builder builder = new android.app.AlertDialog.Builder(FakturaSalg.this,R.style.AlertDialog);
-            final AlertDialog.Builder builder = new AlertDialog.Builder(BmSalg.this);
+            //android.app.AlertDialog.Builder builder = new android.app.AlertDialog.Builder(VideresalgActivity.this,R.style.AlertDialog);
+            final AlertDialog.Builder builder = new AlertDialog.Builder(BmSalgActivity.this);
             builder.setMessage("Vil du gå tilbake?");
             builder.setCancelable(true);
             builder.setNegativeButton("Ja", new DialogInterface.OnClickListener() {

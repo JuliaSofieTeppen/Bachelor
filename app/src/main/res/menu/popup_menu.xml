@@ -3,16 +3,16 @@
 
     <item
         android:id="@+id/BondensMarked"
-        android:title="Bondens Marked"/>
+        android:title="@string/bondens_marked"/>
     <item
         android:id="@+id/HjemmeSalg"
-        android:title="Hjemme salg"/>
+        android:title="@string/hjemmesalg"/>
     <item
         android:id="@+id/videresalg"
-        android:title="Videre salg" />
+        android:title="@string/videresalg" />
     <item
         android:id="@+id/annet"
-        android:title="Annet" />
+        android:title="@string/annet" />
 
 
 </menu>

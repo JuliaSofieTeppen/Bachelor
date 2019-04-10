@@ -13,7 +13,7 @@
         android:layout_marginStart="135dp"
         android:layout_marginTop="12dp"
         android:layout_marginEnd="171dp"
-        android:text="Create PDF"
+        android:text="@string/create_pdf"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.333"
         app:layout_constraintStart_toStartOf="parent"
@@ -25,10 +25,11 @@
         android:layout_height="wrap_content"
         android:layout_marginEnd="20dp"
         android:ems="10"
-        android:hint="YYYY.MM.dd"
+        android:hint="@string/date"
         android:inputType="date"
         app:layout_constraintBaseline_toBaselineOf="@+id/textView29"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent"
+        tools:ignore="Autofill"/>
 
     <TextView
         android:id="@+id/textView28"
@@ -36,7 +37,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="36dp"
         android:layout_marginTop="40dp"
-        android:text="Startdato:"
+        android:text="@string/startdato"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView30" />
 
@@ -46,8 +47,8 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="36dp"
         android:layout_marginTop="40dp"
-        android:text="Sluttdato:"
-        android:hint="YYYY.MM.dd"
+        android:text="@string/sluttdato"
+        android:hint="@string/date"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView28" />
 
@@ -56,7 +57,7 @@
         android:layout_width="wrap_content"
         android:layout_height="0dp"
         android:layout_marginStart="36dp"
-        android:text="Lagre som:"
+        android:text="@string/lagre_som"
         app:layout_constraintBaseline_toBaselineOf="@+id/lagresom"
         app:layout_constraintStart_toStartOf="parent" />
 
@@ -67,10 +68,12 @@
         android:layout_marginTop="16dp"
         android:layout_marginEnd="20dp"
         android:ems="10"
+        android:hint="@string/space"
         android:inputType="textPersonName"
-        android:text="FakturaOversikt"
+        android:text="@string/fakturaoversikt"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="Autofill"/>
 
     <EditText
         android:id="@+id/startdato"
@@ -78,8 +81,9 @@
         android:layout_height="wrap_content"
         android:layout_marginEnd="20dp"
         android:ems="10"
-        android:hint="YYYY.MM.dd"
+        android:hint="@string/date"
         android:inputType="date"
         app:layout_constraintBaseline_toBaselineOf="@+id/textView28"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent"
+        tools:ignore="Autofill"/>
 </android.support.constraint.ConstraintLayout>

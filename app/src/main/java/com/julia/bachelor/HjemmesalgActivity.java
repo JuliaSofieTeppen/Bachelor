@@ -23,7 +23,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 
-public class HjemmeSalg extends Activity implements AdapterView.OnItemSelectedListener {
+public class HjemmesalgActivity extends Activity implements AdapterView.OnItemSelectedListener {
     private static final String KEY_BUNDLE = "Bundle";
     private static final String KEY_HONNING = "Honning";
     static ArrayList<Honning> honningtype;
@@ -61,22 +61,14 @@ public class HjemmeSalg extends Activity implements AdapterView.OnItemSelectedLi
     String getVarer() {
         StringBuilder varer = new StringBuilder();
         for (int i = 0; i < honningtype.size(); i++) {
-            if (!telling.get(i).equals(0)) {
-                varer.append(honningtype.get(i).get_ID()).append("-").append(telling.get(i)).append(",");
-            }
+            varer.append(honningtype.get(i).get_ID()).append("-").append(telling.get(i)).append(",");
         }
         return varer.toString();
     }
 
-    String getDate() {
-        DateFormat dateFormat = new SimpleDateFormat("yyyy.MM.dd", Locale.US);
-        Date now = new Date();
-        return dateFormat.format(now);
-    }
-
     void insertValues() {
         Database.executeOnDB("http://www.honningbier.no/PHP/HjemmeIn.php/?Kunde=" + kundenavn.getText().toString() +
-                "&Dato=" + getDate() + "&Varer=" + getVarer() + "&Belop=" + kr + "&Betaling=" + betalingsmetode);
+                "&Dato=" + Beregninger.getDate() + "&Varer=" + getVarer() + "&Belop=" + kr + "&Betaling=" + betalingsmetode);
     }
 
     void setTelling() {
@@ -200,7 +192,7 @@ public class HjemmeSalg extends Activity implements AdapterView.OnItemSelectedLi
 
     public void goback() {
         if (ValueInField()) {
-            final AlertDialog.Builder builder = new AlertDialog.Builder(HjemmeSalg.this);
+            final AlertDialog.Builder builder = new AlertDialog.Builder(HjemmesalgActivity.this);
             builder.setMessage("Vil du gå tilbake?");
             builder.setCancelable(true);
             builder.setNegativeButton("Ja", new DialogInterface.OnClickListener() {

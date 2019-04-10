@@ -30,7 +30,9 @@ import com.itextpdf.text.Paragraph;
 import com.itextpdf.text.pdf.PdfPTable;
 import com.itextpdf.text.pdf.PdfWriter;
 import com.julia.bachelor.helperClass.Annet;
+import com.julia.bachelor.helperClass.BondensMarked;
 import com.julia.bachelor.helperClass.Hjemme;
+import com.julia.bachelor.helperClass.SalgTemplate;
 import com.julia.bachelor.helperClass.Videresalg;
 
 import java.io.File;
@@ -49,7 +51,7 @@ public class PdfCreatorActivity extends AppCompatActivity {
     final private int REQUEST_CODE_ASK_PERMISSIONS = 111;
     private static final String KEY_BUNDLE = "Bundle";
     private static final String KEY_SALG = "AllSalg";
-    private ArrayList<Object> solgt;
+    private ArrayList<SalgTemplate> solgt;
 
     @Override @SuppressWarnings("unchecked")
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,7 +60,7 @@ public class PdfCreatorActivity extends AppCompatActivity {
 
         Intent intent = getIntent();
         Bundle bundle = intent.getBundleExtra(KEY_BUNDLE);
-        solgt = (ArrayList<Object>) bundle.getSerializable(KEY_SALG);
+        solgt = (ArrayList<SalgTemplate>) bundle.getSerializable(KEY_SALG);
 
 
         Startdato = findViewById(R.id.startdato);
@@ -178,13 +180,13 @@ public class PdfCreatorActivity extends AppCompatActivity {
         annettable.addCell("Beløp");
         annettable.addCell("MVA");
 
-        for(Object salg : solgt){
+        for(SalgTemplate salg : solgt){
             if(salg instanceof Hjemme) {
                 Hjemme hjemmeSalg = (Hjemme) salg;
                 if(greaterThan(hjemmeSalg.getDato(), Startdato.getText().toString())&& !greaterThan(hjemmeSalg.getDato(),Sluttdato.getText().toString())){
                     hjemmetable.addCell(hjemmeSalg.getDato());
                     hjemmetable.addCell(Integer.toString(hjemmeSalg.getBelop()));
-                    hjemmetable.addCell(Double.toString(sharedPreferences.getInt("ferdigprodukt",15)));
+                    hjemmetable.addCell(Double.toString(sharedPreferences.getInt("ferdigprodukt",15))); //TODO swap with getMoms
                 }
             }else if(salg instanceof Videresalg) {
                 Videresalg videresalg = (Videresalg) salg;
@@ -195,10 +197,10 @@ public class PdfCreatorActivity extends AppCompatActivity {
                 }
             }else if(salg instanceof Annet) {
                 Annet annet = (Annet) salg;
-                if(greaterThan(annet.getDato(), Startdato.getText().toString())&& !greaterThan(annet.getDato(),Sluttdato.getText().toString())){
+                if(greaterThan(annet.getDato(), Startdato.getText().toString())&& !greaterThan(annet.getDato(),Sluttdato.getText().toString())) {
                     annettable.addCell(annet.getDato());
                     annettable.addCell(Integer.toString(annet.getBelop()));
-                    annettable.addCell(Double.toString(sharedPreferences.getInt("ikkeferdig",25)));
+                    annettable.addCell(Double.toString(sharedPreferences.getInt("ikkeferdig", 25)));
                 }
             }else{
                 Toast.makeText(this, "Noe gikk galt", Toast.LENGTH_SHORT).show();
@@ -234,7 +236,6 @@ public class PdfCreatorActivity extends AppCompatActivity {
     private void previewPdf() {
         File file;
         file = new File(Environment.getExternalStorageDirectory()+"/Documents/"+Lagresom.getText().toString() + ".pdf");
-        Toast.makeText(getApplicationContext(), file.toString() , Toast.LENGTH_LONG).show();
         if(file.exists()) {
             Intent target = new Intent(Intent.ACTION_VIEW);
             target.setDataAndType(FileProvider.getUriForFile(this, this.getApplicationContext().getPackageName() + ".com.julia.bachelor.GenericFileProvider", file), "application/pdf");

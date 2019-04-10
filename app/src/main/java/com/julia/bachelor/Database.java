@@ -4,10 +4,12 @@ import android.os.AsyncTask;
 
 import com.julia.bachelor.helperClass.Annet;
 import com.julia.bachelor.helperClass.Beholdning;
+import com.julia.bachelor.helperClass.BeholdningTemplate;
 import com.julia.bachelor.helperClass.BondensMarked;
 import com.julia.bachelor.helperClass.Hjemme;
 import com.julia.bachelor.helperClass.Honning;
 import com.julia.bachelor.helperClass.Salg;
+import com.julia.bachelor.helperClass.SalgTemplate;
 import com.julia.bachelor.helperClass.Videresalg;
 
 import org.json.JSONArray;
@@ -21,13 +23,13 @@ import java.net.URL;
 import java.util.ArrayList;
 
 class Database {
-    private static ArrayList<Annet> Annet = new ArrayList<>();
-    private static ArrayList<Beholdning> Beholdning = new ArrayList<>();
-    private static ArrayList<Salg> Salg = new ArrayList<>();
-    private static ArrayList<BondensMarked> BM = new ArrayList<>();
-    private static ArrayList<Hjemme> Hjemme = new ArrayList<>();
+    private static ArrayList<SalgTemplate> Annet = new ArrayList<>();
+    private static ArrayList<BeholdningTemplate> Beholdning = new ArrayList<>();
+    private static ArrayList<BeholdningTemplate> Salg = new ArrayList<>();
+    private static ArrayList<SalgTemplate> BM = new ArrayList<>();
+    private static ArrayList<SalgTemplate> Hjemme = new ArrayList<>();
     private static ArrayList<Honning> Honning = new ArrayList<>();
-    private static ArrayList<Videresalg> Videresalg = new ArrayList<>();
+    private static ArrayList<SalgTemplate> Videresalg = new ArrayList<>();
 
     static void executeOnDB(String url) {
         ExecuteOnDB task = new ExecuteOnDB();
@@ -74,15 +76,6 @@ class Database {
         VideresalgTask task = new VideresalgTask();
         task.execute("http://www.honningbier.no/PHP/VideresalgOut.php");
     }
-/*
-    void sortMonth() {
-        CustomObj customObj = new CustomObj();
-        for (Object obj : all) {
-            customObj.add(obj);
-        }
-    }
-
-*/
 
     private static class AnnetTask extends AsyncTask<String, Integer, String> {
         @Override
@@ -135,7 +128,7 @@ class Database {
         @Override
         protected void onPostExecute(String s) {
             super.onPostExecute(s);
-            LoadContent load = new LoadContent();
+            LoadContentActivity load = new LoadContentActivity();
             load.setAnnet(Annet);
         }
     }
@@ -164,7 +157,7 @@ class Database {
                     // Convert string to JSONArray containing JSONObjects.
                     JSONArray jsonArray = new JSONArray(output.toString());
                     for (int i = 0; i < jsonArray.length(); i++) {
-                        Beholdning beholdning = new Beholdning();
+                        BeholdningTemplate beholdning = new Beholdning();
                         JSONObject jsonobject = jsonArray.getJSONObject(i);
                         beholdning.set_ID(jsonobject.getLong("ID"));
                         beholdning.setSommer(jsonobject.getInt("Sommer"));
@@ -191,7 +184,7 @@ class Database {
         @Override
         protected void onPostExecute(String s) {
             super.onPostExecute(s);
-            LoadContent load = new LoadContent();
+            LoadContentActivity load = new LoadContentActivity();
             load.setBeholdning(Beholdning);
         }
     }
@@ -220,7 +213,7 @@ class Database {
                     // Convert string to JSONArray containing JSONObjects.
                     JSONArray jsonArray = new JSONArray(output.toString());
                     for (int i = 0; i < jsonArray.length(); i++) {
-                        Salg salg = new Salg();
+                        BeholdningTemplate salg = new Salg();
                         JSONObject jsonobject = jsonArray.getJSONObject(i);
                         salg.set_ID(jsonobject.getLong("ID"));
                         salg.setSommer(jsonobject.getInt("Sommer"));
@@ -247,7 +240,7 @@ class Database {
         @Override
         protected void onPostExecute(String s) {
             super.onPostExecute(s);
-            LoadContent load = new LoadContent();
+            LoadContentActivity load = new LoadContentActivity();
             load.setBeholdningUt(Salg);
         }
     }
@@ -296,7 +289,7 @@ class Database {
         @Override
         protected void onPostExecute(String s) {
             super.onPostExecute(s);
-            LoadContent load = new LoadContent();
+            LoadContentActivity load = new LoadContentActivity();
             load.setBM(BM);
         }
     }
@@ -347,7 +340,7 @@ class Database {
         @Override
         protected void onPostExecute(String s) {
             super.onPostExecute(s);
-            LoadContent load = new LoadContent();
+            LoadContentActivity load = new LoadContentActivity();
             load.setHjemme(Hjemme);
         }
     }
@@ -380,7 +373,6 @@ class Database {
                         JSONObject jsonobject = jsonArray.getJSONObject(i);
                         honning.set_ID(jsonobject.getLong("ID"));
                         honning.setType(jsonobject.getString("Type"));
-                        honning.setStorrelse(jsonobject.getDouble("Storrelse"));
                         honning.setHjemmePris(jsonobject.getInt("HjemmePris"));
                         honning.setBondensMarkedPris(jsonobject.getInt("BMPris"));
                         honning.setFakturaPris(jsonobject.getInt("FakturaPris"));
@@ -398,7 +390,7 @@ class Database {
         @Override
         protected void onPostExecute(String s) {
             super.onPostExecute(s);
-            LoadContent load = new LoadContent();
+            LoadContentActivity load = new LoadContentActivity();
             load.setHonning(Honning);
         }
     }
@@ -427,7 +419,7 @@ class Database {
                     // Convert string to JSONArray containing JSONObjects.
                     JSONArray jsonArray = new JSONArray(output.toString());
                     for (int i = 0; i < jsonArray.length(); i++) {
-                        Videresalg videresalg = new Videresalg();
+                        SalgTemplate videresalg = new Videresalg();
                         JSONObject jsonobject = jsonArray.getJSONObject(i);
                         videresalg.set_ID(jsonobject.getLong("ID"));
                         videresalg.setKunde(jsonobject.getString("Kunde"));
@@ -450,7 +442,7 @@ class Database {
         @Override
         protected void onPostExecute(String s) {
             super.onPostExecute(s);
-            LoadContent load = new LoadContent();
+            LoadContentActivity load = new LoadContentActivity();
             load.setVideresalg(Videresalg);
         }
     }

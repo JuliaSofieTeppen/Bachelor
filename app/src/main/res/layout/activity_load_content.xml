@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#ffe3a3"
-    tools:context=".LoadContent">
+    tools:context=".LoadContentActivity">
 
     <ImageView
         android:id="@+id/LoadingBeeImage"
@@ -20,5 +20,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        android:contentDescription="@string/bie" />
+
 </android.support.constraint.ConstraintLayout>

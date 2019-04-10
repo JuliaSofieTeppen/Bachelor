@@ -7,17 +7,13 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.widget.ImageView;
 
-import com.julia.bachelor.helperClass.Annet;
-import com.julia.bachelor.helperClass.Beholdning;
-import com.julia.bachelor.helperClass.BondensMarked;
-import com.julia.bachelor.helperClass.Hjemme;
+import com.julia.bachelor.helperClass.BeholdningTemplate;
 import com.julia.bachelor.helperClass.Honning;
-import com.julia.bachelor.helperClass.Salg;
-import com.julia.bachelor.helperClass.Videresalg;
+import com.julia.bachelor.helperClass.SalgTemplate;
 
 import java.util.ArrayList;
 
-public class LoadContent extends Activity {
+public class LoadContentActivity extends Activity {
     private static final String KEY_ANNET = "Annet";
     private static final String KEY_BEHOLDNING = "Beholdning";
     private static final String KEY_BEHOLDNINGUT = "BeholdningUt";
@@ -27,13 +23,13 @@ public class LoadContent extends Activity {
     private static final String KEY_VIDERESALG = "Videresalg";
     private static final String KEY_BUNDLE = "Bundle";
 
-    static ArrayList<com.julia.bachelor.helperClass.Annet> Annet;
-    static ArrayList<com.julia.bachelor.helperClass.Beholdning> Beholdning;
-    static ArrayList<com.julia.bachelor.helperClass.Salg> Salg;
-    static ArrayList<BondensMarked> Bm;
-    static ArrayList<com.julia.bachelor.helperClass.Hjemme> Hjemme;
-    static ArrayList<com.julia.bachelor.helperClass.Honning> Honning;
-    static ArrayList<Videresalg> Videresalg;
+    static ArrayList<SalgTemplate> Annet;
+    static ArrayList<BeholdningTemplate> Beholdning;
+    static ArrayList<BeholdningTemplate> Salg;
+    static ArrayList<SalgTemplate> Bm;
+    static ArrayList<SalgTemplate> Hjemme;
+    static ArrayList<Honning> Honning;
+    static ArrayList<SalgTemplate> Videresalg;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,7 +54,7 @@ public class LoadContent extends Activity {
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-                Intent intent = new Intent(LoadContent.this, Main.class);
+                Intent intent = new Intent(LoadContentActivity.this, MainActivity.class);
                 Bundle bundle = new Bundle();
                 bundle.putSerializable(KEY_HONNING, Honning);
                 bundle.putSerializable(KEY_ANNET, Annet);
@@ -68,30 +64,30 @@ public class LoadContent extends Activity {
                 bundle.putSerializable(KEY_HJEMME, Hjemme);
                 bundle.putSerializable(KEY_VIDERESALG, Videresalg);
                 intent.putExtra(KEY_BUNDLE, bundle);
-                LoadContent.this.startActivity(intent);
+                LoadContentActivity.this.startActivity(intent);
                 finish();
             }
 
-        }, 3000);
+        }, 6000);
     }
 
-    public void setAnnet(ArrayList<Annet> annet) {
+    public void setAnnet(ArrayList<SalgTemplate> annet) {
         Annet = annet;
     }
 
-    public void setBeholdning(ArrayList<Beholdning> beholdnings) {
+    public void setBeholdning(ArrayList<BeholdningTemplate> beholdnings) {
         Beholdning = beholdnings;
     }
 
-    public void setBeholdningUt(ArrayList<Salg> salgs) {
+    public void setBeholdningUt(ArrayList<BeholdningTemplate> salgs) {
         Salg = salgs;
     }
 
-    public void setBM(ArrayList<BondensMarked> bondensMarkeds) {
+    public void setBM(ArrayList<SalgTemplate> bondensMarkeds) {
         Bm = bondensMarkeds;
     }
 
-    public void setHjemme(ArrayList<Hjemme> hjemmes) {
+    public void setHjemme(ArrayList<SalgTemplate> hjemmes) {
         Hjemme = hjemmes;
     }
 
@@ -99,7 +95,7 @@ public class LoadContent extends Activity {
         Honning = honning;
     }
 
-    public void setVideresalg(ArrayList<com.julia.bachelor.helperClass.Videresalg> videresalg) {
+    public void setVideresalg(ArrayList<SalgTemplate> videresalg) {
         Videresalg = videresalg;
     }
 }

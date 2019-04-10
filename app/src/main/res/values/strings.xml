@@ -1,4 +1,4 @@
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
     <string name="app_name">JTR</string>
     <string name="title_activity_main">Zum</string>
     <string name="title_section1">Hovedside</string>
@@ -9,9 +9,7 @@
     <string name="title_section6">Eksporter</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
-    <string name="action_example">Example action</string>
     <string name="action_settings">Innstillinger</string>
-    <string name="toto">10001</string>
     <string-array name="betalingsmetode">
         <item>Kontant</item>
         <item>Kort</item>
@@ -30,7 +28,89 @@
         <item>Annet</item>
     </string-array>
 
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <string name="bondens_marked">Bondens Marked</string>
+    <string name="hjemmesalg">Hjemmesalg</string>
+    <string name="videresalg">Videresalg</string>
+    <string name="annet">Annet</string>
+
+    <string name="hovedside">Hovedside</string>
+    <string name="rapporter">Rapporter</string>
+    <string name="legg_til_beholdning">Legg til beholdning</string>
+    <string name="priser">Priser</string>
+    <string name="verkt_y">Verktøy</string>
+    <string name="innstillinger">Innstillinger</string>
+    <string name="eksporter">Eksporter</string>
+    <string name="error">Problemer med innlasting av\n innhold</string>
+    <string name="plus">+</string>
+    <string name="beholdning">Beholdning</string>
+    <string name="lagre">Lagre</string>
+    <string name="ferdig_produkt">Ferdig produkt</string>
+    <string name="ikke_ferdig_produkt">Ikke ferdig produkt</string>
+    <string name="Halvkg">1/2kg</string>
+    <string name="hjemme">Hjemme</string>
+    <string name="endre_moms">Endre moms</string>
+    <string name="endre_priser">Endre Priser</string>
+    <string name="honning">Honning</string>
+    <string name="helkg">1kg</string>
+    <string name="kvartkg" tools:ignore="TypographyFractions"> 1/4 kg</string>
+    <string name="spesialvare">Spesialvare</string>
+    <string name="flytende">Flytende</string>
+    <string name="ingeferHalv" tools:ignore="TypographyFractions">Ingefær 1/2 kg</string>
+    <string name="ingeferKvart" tools:ignore="TypographyFractions">Ingefær 1/4 kg</string>
+    <string name="moms_ferdig_produkt">Moms ferdig produkt</string>
+    <string name="pris">Pris</string>
+    <string name="moms_ikke_ferdig">Moms ikke ferdig</string>
+    <string name="space"> </string>
+    <string name="nullkr">0kr</string>
+    <string name="priser_oversikt">Pris oversikt hjemme</string>
+    <string name="addbeholdning">Legg inn varebeholdning</string>
+    <string name="sommer">Sommer</string>
+    <string name="lyng">Lyng</string>
+    <string name="med_ingefer">Med ingefær</string>
+    <string name="dato">Dato</string>
+    <string name="date">YYYY.MM.dd</string>
+    <string translatable="false" name="antall">antall</string>
+    <string name="solgte_produkter">Solgte produkter</string>
+    <string name="salg_bondens_marked">Salg Bondens marked</string>
+    <string name="med_ingefærkvartkg">med ingefær 1/4kg</string>
+    <string name="med_ingefærhalvkg">med ingefær 1/2kg</string>
+    <string name="navn">Navn</string>
+    <string name="beløp">Beløp</string>
+    <string name="betaling">Betaling</string>
+    <string name="moms">Moms</string>
+    <string name="selg">Selg</string>
+    <string name="betalingsmetode">Betalingsmetode</string>
+    <string name="slett">Slett</string>
+    <string name="bie">Bie</string>
+    <string name="create_pdf">Create PDF</string>
+
+    <string name="HS_sommerenkg">Sommer \n 1kg</string>
+    <string name="HS_sommerhalvkg">Sommer \n 1/2kg</string>
+    <string name="HS_sommerkvartkg">Sommer \n 1/4kg</string>
+    <string name="HS_lyngenkg">Lyng \n 1kg</string>
+    <string name="HS_lynghalvkg">Lyng \n 1/2kg</string>
+    <string name="HS_lyngkvartkg">Lyng \n 1/4kg</string>
+    <string name="HS_med_Ingefærhalvkg">Med ingefær \n 1/2kg</string>
+    <string name="HS_med_Ingefærkvartkg">Med ingefær \n 1/4kg</string>
+    <string name="startdato">Startdato:</string>
+    <string name="sluttdato">Sluttdato:</string>
+    <string name="lagre_som">Lagre som:</string>
+    <string name="fakturaoversikt">FakturaOversikt</string>
+    <string name="annet_salg">Annet salg</string>
+    <string name="bifolk">Bifolk</string>
+    <string name="voks">Voks</string>
+    <string name="pollenering">Pollenering</string>
+    <string name="dronninger">Dronninger</string>
+    <string name="_0_kr_n_n0_kr">0 kr    0 kr</string>
+    <string name="kunde">Kunde</string>
+    <string name="kontantbetaling_n_nkortbetaling">Kontantbetaling\n\nKortbetaling</string>
+    <string name="_0">0</string>
+    <string name="totalt">TOTALT</string>
+    <string name="SalgItem_VerdierNavn">Sommerhonning 1kg\n\nSommerhonning 1/2kg\n\nSommerhonning 1/4kg\n\nLynghonning 1kg\n\nLynghonning1/2kg\n\nLynghonning 1/4kg\n\nSommer med Ingefær 1/2kg\n\nSommer med ingefær 1/4kg\n\nFlytende</string>
+    <string name="SalgItem_verdier">0\n0\n0\n0\n0\n0\n0\n0\n0</string>
+    <string name="kr">Kr</string>
+    <string name="kundens_navn">Kundens navn</string>
+    <string name="salg">Salg</string>
 
 </resources>

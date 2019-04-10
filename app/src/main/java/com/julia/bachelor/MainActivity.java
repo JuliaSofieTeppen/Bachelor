@@ -68,6 +68,8 @@ public class MainActivity extends Activity implements NavigationDrawerFragment.N
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        Honning = new ArrayList<>();
+        Beholdning = new ArrayList<>();
         /*
          * Fragment managing the behaviors, interactions and presentation of the navigation drawer.
          */
@@ -91,7 +93,7 @@ public class MainActivity extends Activity implements NavigationDrawerFragment.N
         // update the main content by replacing fragments
         FragmentManager fragmentManager = getFragmentManager();
         fragmentManager.beginTransaction()
-                .replace(R.id.container, LoadContentFragment.newInstance(position + 1))
+                .replace(R.id.container, HovedsideFragment.newInstance(position + 1, Beholdning,Honning))
                 .commit();
     }
 

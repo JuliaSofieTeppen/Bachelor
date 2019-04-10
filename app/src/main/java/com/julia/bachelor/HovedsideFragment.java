@@ -15,9 +15,11 @@ import android.widget.PopupMenu;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.julia.bachelor.helperClass.Beholdning;
 import com.julia.bachelor.helperClass.BeholdningTemplate;
 import com.julia.bachelor.helperClass.Honning;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
@@ -48,11 +50,10 @@ public class HovedsideFragment extends Fragment {
      * Returns a new instance of this fragment for the given section
      * number.
      */
-    public static HovedsideFragment newInstance(int sectionNumber, ArrayList<BeholdningTemplate> Beholdning, ArrayList<BeholdningTemplate> Salg, ArrayList<Honning> Honning) {
+    public static HovedsideFragment newInstance(int sectionNumber,ArrayList<BeholdningTemplate> Salg, ArrayList<Honning> Honning) {
         HovedsideFragment fragment = new HovedsideFragment();
         Bundle args = new Bundle();
         args.putInt(ARG_SECTION_NUMBER, sectionNumber);
-        args.putSerializable(KEY_BEHOLDNING, Beholdning);
         args.putSerializable(KEY_BEHOLDNINGUT, Salg);
         args.putSerializable(KEY_HONNING, Honning);
         fragment.setArguments(args);
@@ -73,7 +74,6 @@ public class HovedsideFragment extends Fragment {
 
             @Override
             public void onRefresh() {
-                MainActivity.fetch();
             }
         });
 
@@ -114,12 +114,13 @@ public class HovedsideFragment extends Fragment {
             }
         });
         try {
-            beholdnings = (ArrayList<BeholdningTemplate>) (getArguments().getSerializable(KEY_BEHOLDNING));
-            salg = (ArrayList<BeholdningTemplate>) (getArguments().getSerializable(KEY_BEHOLDNINGUT));
+            ArrayList<BeholdningTemplate> beholdningTemplates = (ArrayList<BeholdningTemplate>) (getArguments().getSerializable(KEY_BEHOLDNINGUT));
+            beholdnings = Beregninger.separateBeholdning(beholdningTemplates);
+            salg = Beregninger.separateSalg(beholdningTemplates);
             honning = (ArrayList<Honning>) (getArguments().getSerializable(KEY_HONNING));
             info.setText(setValueString());
             navn.setText(setNameString());
-        } catch (NullPointerException e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
         return rootView;

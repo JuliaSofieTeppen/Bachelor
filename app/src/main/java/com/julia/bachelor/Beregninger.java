@@ -5,8 +5,10 @@ import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
 
 import com.julia.bachelor.helperClass.Annet;
+import com.julia.bachelor.helperClass.BeholdningTemplate;
 import com.julia.bachelor.helperClass.BondensMarked;
 import com.julia.bachelor.helperClass.Hjemme;
+import com.julia.bachelor.helperClass.Salg;
 import com.julia.bachelor.helperClass.SalgTemplate;
 import com.julia.bachelor.helperClass.Videresalg;
 
@@ -59,6 +61,25 @@ class Beregninger implements Template {
         return hjemme;
     }
 
+   static ArrayList<BeholdningTemplate> separateSalg(ArrayList<BeholdningTemplate> list) {
+        ArrayList<BeholdningTemplate> salg = new ArrayList<>();
+        for (BeholdningTemplate object : list) {
+            if (object instanceof Salg) {
+                salg.add(object);
+            }
+        }
+        return salg;
+    }
+
+   static ArrayList<BeholdningTemplate> separateBeholdning(ArrayList<BeholdningTemplate> list) {
+        ArrayList<BeholdningTemplate> beholdning = new ArrayList<>();
+        for (BeholdningTemplate object : list) {
+            if (object instanceof Salg) {
+                beholdning.add(object);
+            }
+        }
+        return beholdning;
+    }
     ArrayList<SalgTemplate> separateBondensMarked(ArrayList<SalgTemplate> list) {
         ArrayList<SalgTemplate> bondensMarked = new ArrayList<>();
         for (SalgTemplate object : list) {

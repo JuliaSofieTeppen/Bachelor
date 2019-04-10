@@ -70,7 +70,7 @@
     <string name="med_ingefer">Med ingefær</string>
     <string name="dato">Dato</string>
     <string name="date">YYYY.MM.dd</string>
-    <string translatable="false" name="antall">antall</string>
+    <string name="antall" translatable="false">antall</string>
     <string name="solgte_produkter">Solgte produkter</string>
     <string name="salg_bondens_marked">Salg Bondens marked</string>
     <string name="med_ingefærkvartkg">med ingefær 1/4kg</string>
@@ -112,5 +112,8 @@
     <string name="kr">Kr</string>
     <string name="kundens_navn">Kundens navn</string>
     <string name="salg">Salg</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 
 </resources>

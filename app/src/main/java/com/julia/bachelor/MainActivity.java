@@ -79,27 +79,19 @@ public class MainActivity extends Activity implements NavigationDrawerFragment.N
     }
 
     @SuppressWarnings("unchecked")
-    void setArrays() {
-        Intent intent = getIntent();
-        Bundle bundle = intent.getBundleExtra(KEY_BUNDLE);
-        Honning = (ArrayList<Honning>) bundle.getSerializable(KEY_HONNING);
-        Annet = (ArrayList<SalgTemplate>) bundle.getSerializable(KEY_ANNET);
-        Hjemme = (ArrayList<SalgTemplate>) bundle.getSerializable(KEY_HJEMME);
-        Bm = (ArrayList<SalgTemplate>) bundle.getSerializable(KEY_BONDENSMARKED);
-        Videresalg = (ArrayList<SalgTemplate>) bundle.getSerializable(KEY_VIDERESALG);
-        Beholdning = (ArrayList<BeholdningTemplate>) bundle.getSerializable(KEY_BEHOLDNING);
-        Salg = (ArrayList<BeholdningTemplate>) bundle.getSerializable(KEY_BEHOLDNINGUT);
-        if (Videresalg == null || Hjemme == null || Annet == null || Bm == null) return;
-        setSalg();
+    void setArrays(ArrayList<BeholdningTemplate> BeholdningList,ArrayList<SalgTemplate> AllSalg,
+                   ArrayList<Honning> HonningList) {
+        Beholdning = BeholdningList;
+        this.AllSalg = AllSalg;
+        Honning = HonningList;
     }
 
     @Override
     public void onNavigationDrawerItemSelected(int position) {
         // update the main content by replacing fragments
-        setArrays();
         FragmentManager fragmentManager = getFragmentManager();
         fragmentManager.beginTransaction()
-                .replace(R.id.container, HovedsideFragment.newInstance(position + 1, Beholdning, Salg, Honning))
+                .replace(R.id.container, LoadContentFragment.newInstance(position + 1))
                 .commit();
     }
 
@@ -212,8 +204,8 @@ public class MainActivity extends Activity implements NavigationDrawerFragment.N
         AllSalg.addAll(Annet);
     }
 
-    static void fetch() {
-        FetchDataTask task = new FetchDataTask();
+    void fetch() {
+        FetchDataTask task = new FetchDataTask(this);
         String[] urls = {
                 "http://www.honningbier.no/PHP/AnnetOut.php",
                 "http://www.honningbier.no/PHP/BeholdningOut.php",
@@ -228,6 +220,14 @@ public class MainActivity extends Activity implements NavigationDrawerFragment.N
 
     public static class FetchDataTask extends AsyncTask<String, Integer, String> {
         Integer progress;
+        Activity activity;
+        ArrayList<SalgTemplate> AllSalg = new ArrayList<>();
+        ArrayList<BeholdningTemplate> BeholdningList = new ArrayList<>();
+        ArrayList<Honning> HonningList = new ArrayList<>();
+
+        public FetchDataTask(Activity activity){
+            this.activity = activity;
+        }
         @Override
         protected String doInBackground(String... urls) {
             // Get strings from bufferedReader.
@@ -266,7 +266,6 @@ public class MainActivity extends Activity implements NavigationDrawerFragment.N
             try {
                 // Convert string to JSONArray containing JSONObjects.
                 JSONArray jsonArray = new JSONArray(output);
-                ArrayList<SalgTemplate> salg = new ArrayList<>();
                 for (int i = 0; i < jsonArray.length(); i++) {
                     SalgFactory factory = new SalgFactory();
                     SalgTemplate salgObject = factory.getSalgObject(url);
@@ -279,7 +278,7 @@ public class MainActivity extends Activity implements NavigationDrawerFragment.N
                     salgObject.setBetaling(jsonobject.getString("Betaling"));
                     if (salgObject instanceof com.julia.bachelor.helperClass.Videresalg)
                         salgObject.setMoms(jsonobject.getDouble("Moms"));
-                        salg.add(salgObject);
+                        AllSalg.add(salgObject);
                 }
             } catch (JSONException e) {
                 e.printStackTrace();
@@ -290,8 +289,6 @@ public class MainActivity extends Activity implements NavigationDrawerFragment.N
             try {
                 // Convert string to JSONArray containing JSONObjects.
                 JSONArray jsonArray = new JSONArray(output);
-                Beholdning.clear();
-                Salg.clear();
                 for (int i = 0; i < jsonArray.length(); i++) {
                     SalgFactory factory = new SalgFactory();
                     BeholdningTemplate beholdning = factory.getBeholdningObject(url);
@@ -307,10 +304,7 @@ public class MainActivity extends Activity implements NavigationDrawerFragment.N
                     beholdning.setIngeferK(jsonobject.getInt("IngeferKvart"));
                     beholdning.setFlytende(jsonobject.getInt("Flytende"));
                     beholdning.setDato(jsonobject.getString("Dato"));
-                    if (beholdning instanceof com.julia.bachelor.helperClass.Beholdning)
-                        Beholdning.add(beholdning);
-                    else
-                        Salg.add(beholdning);
+                    BeholdningList.add(beholdning);
                 }
             } catch (JSONException e) {
                 e.printStackTrace();
@@ -329,7 +323,7 @@ public class MainActivity extends Activity implements NavigationDrawerFragment.N
                     honning.setHjemmePris(jsonobject.getInt("HjemmePris"));
                     honning.setBondensMarkedPris(jsonobject.getInt("BMPris"));
                     honning.setFakturaPris(jsonobject.getInt("FakturaPris"));
-                    Honning.add(honning);
+                    HonningList.add(honning);
                 }
             } catch (JSONException e) {
                 e.printStackTrace();
@@ -339,15 +333,22 @@ public class MainActivity extends Activity implements NavigationDrawerFragment.N
         @Override
         protected void onPostExecute(String s) {
             super.onPostExecute(s);
-            HovedsideFragment hovedsideFragment = new HovedsideFragment();
-            hovedsideFragment.setValueString();
-            hovedsideFragment.mSwipeRefreshLayout.setRefreshing(false);
+            MainActivity mainActivity = new MainActivity();
+            mainActivity.setArrays(BeholdningList,AllSalg,HonningList);
+            switchFragment();
         }
 
         @Override
         protected void onProgressUpdate(Integer... progress) {
             super.onProgressUpdate();
             this.progress = progress[0];
+        }
+        public void switchFragment(){
+            HovedsideFragment insfragment = HovedsideFragment.newInstance(1,Beholdning,Honning);
+            FragmentTransaction insfragmentt = activity.getFragmentManager().beginTransaction();
+            insfragmentt.replace(R.id.container, insfragment);
+            insfragmentt.addToBackStack(null);
+            insfragmentt.commit();
         }
     }
 }

@@ -14,6 +14,7 @@ import android.widget.Toast;
 
 import com.julia.bachelor.helperClass.Beholdning;
 import com.julia.bachelor.helperClass.BeholdningTemplate;
+import com.julia.bachelor.helperClass.BondensMarked;
 import com.julia.bachelor.helperClass.Honning;
 import com.julia.bachelor.helperClass.SalgFactory;
 import com.julia.bachelor.helperClass.SalgTemplate;
@@ -31,6 +32,7 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.concurrent.ExecutionException;
 
 public class MainActivity extends Activity implements NavigationDrawerFragment.NavigationDrawerCallbacks {
     private static final String KEY_ANNET = "Annet";
@@ -43,14 +45,14 @@ public class MainActivity extends Activity implements NavigationDrawerFragment.N
     private static final String KEY_BUNDLE = "Bundle";
     private static final String KEY_ALLSALG = "AllSalg";
 
-    static ArrayList<Honning> Honning;
-    static ArrayList<SalgTemplate> Annet;
-    static ArrayList<SalgTemplate> Hjemme;
-    static ArrayList<SalgTemplate> Bm;
-    static ArrayList<SalgTemplate> Videresalg;
-    static ArrayList<BeholdningTemplate> Beholdning;
-    static ArrayList<BeholdningTemplate> Salg;
-    static ArrayList<SalgTemplate> AllSalg;
+    static ArrayList<Honning> Honning = new ArrayList<>();
+    static ArrayList<SalgTemplate> Annet = new ArrayList<>();
+    static ArrayList<SalgTemplate> Hjemme = new ArrayList<>();
+    static ArrayList<SalgTemplate> Bm = new ArrayList<>();
+    static ArrayList<SalgTemplate> Videresalg = new ArrayList<>();
+    static ArrayList<BeholdningTemplate> Beholdning = new ArrayList<>();
+    static ArrayList<BeholdningTemplate> Salg = new ArrayList<>();
+    static ArrayList<SalgTemplate> AllSalg = new ArrayList<>();
     private static String[] urls = {
             "http://www.honningbier.no/PHP/AnnetOut.php",
             "http://www.honningbier.no/PHP/BeholdningOut.php",
@@ -68,12 +70,11 @@ public class MainActivity extends Activity implements NavigationDrawerFragment.N
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        Honning = new ArrayList<>();
-        Beholdning = new ArrayList<>();
         /*
          * Fragment managing the behaviors, interactions and presentation of the navigation drawer.
          */
         fetch();
+
         NavigationDrawerFragment mNavigationDrawerFragment = (NavigationDrawerFragment) getFragmentManager().findFragmentById(R.id.navigation_drawer);
         // Set up the drawer.
         mNavigationDrawerFragment.setUp(R.id.navigation_drawer, (DrawerLayout) findViewById(R.id.drawer_layout));
@@ -83,9 +84,9 @@ public class MainActivity extends Activity implements NavigationDrawerFragment.N
     @SuppressWarnings("unchecked")
     void setArrays(ArrayList<BeholdningTemplate> BeholdningList,ArrayList<SalgTemplate> AllSalg,
                    ArrayList<Honning> HonningList) {
-        Beholdning = BeholdningList;
-        this.AllSalg = AllSalg;
-        Honning = HonningList;
+        Beholdning.addAll(BeholdningList);
+        this.AllSalg.addAll(AllSalg);
+        Honning.addAll(HonningList);
     }
 
     @Override
@@ -218,6 +219,13 @@ public class MainActivity extends Activity implements NavigationDrawerFragment.N
                 "http://www.honningbier.no/PHP/VideresalgOut.php"
         };
         task.execute(urls);
+        try {
+            task.get();
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
     }
 
     public static class FetchDataTask extends AsyncTask<String, Integer, String> {
@@ -273,11 +281,13 @@ public class MainActivity extends Activity implements NavigationDrawerFragment.N
                     SalgTemplate salgObject = factory.getSalgObject(url);
                     JSONObject jsonobject = jsonArray.getJSONObject(i);
                     salgObject.set_ID(jsonobject.getLong("ID"));
-                    salgObject.setKunde(jsonobject.getString("Kunde"));
+                    if(!(salgObject instanceof BondensMarked))
+                        salgObject.setKunde(jsonobject.getString("Kunde"));
                     salgObject.setDato(jsonobject.getString("Dato"));
                     salgObject.setVarer(jsonobject.getString("Varer"));
                     salgObject.setBelop(jsonobject.getInt("Belop"));
-                    salgObject.setBetaling(jsonobject.getString("Betaling"));
+                    if(!(salgObject instanceof BondensMarked))
+                        salgObject.setBetaling(jsonobject.getString("Betaling"));
                     if (salgObject instanceof com.julia.bachelor.helperClass.Videresalg)
                         salgObject.setMoms(jsonobject.getDouble("Moms"));
                         AllSalg.add(salgObject);

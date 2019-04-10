@@ -5,6 +5,7 @@ import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
 
 import com.julia.bachelor.helperClass.Annet;
+import com.julia.bachelor.helperClass.Beholdning;
 import com.julia.bachelor.helperClass.BeholdningTemplate;
 import com.julia.bachelor.helperClass.BondensMarked;
 import com.julia.bachelor.helperClass.Hjemme;
@@ -74,7 +75,7 @@ class Beregninger implements Template {
    static ArrayList<BeholdningTemplate> separateBeholdning(ArrayList<BeholdningTemplate> list) {
         ArrayList<BeholdningTemplate> beholdning = new ArrayList<>();
         for (BeholdningTemplate object : list) {
-            if (object instanceof Salg) {
+            if (object instanceof Beholdning) {
                 beholdning.add(object);
             }
         }

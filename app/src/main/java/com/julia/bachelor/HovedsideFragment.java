@@ -120,7 +120,9 @@ public class HovedsideFragment extends Fragment {
             honning = (ArrayList<Honning>) (getArguments().getSerializable(KEY_HONNING));
             info.setText(setValueString());
             navn.setText(setNameString());
-        } catch (Exception e) {
+        } catch (IndexOutOfBoundsException e) {
+            e.printStackTrace();
+        }catch (NullPointerException e){
             e.printStackTrace();
         }
         return rootView;
@@ -171,7 +173,6 @@ public class HovedsideFragment extends Fragment {
             }
             return current;
         } catch (IndexOutOfBoundsException e) {
-            Toast.makeText(this.getContext(), "Internett ikke tilkoblet" + e.toString(), Toast.LENGTH_SHORT).show();
             addbutton.setVisibility(View.GONE);
         }
         if (current == null) throw new NullPointerException("Possible problem with connection");

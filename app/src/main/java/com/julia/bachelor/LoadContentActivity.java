@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.graphics.drawable.AnimationDrawable;
 import android.os.Bundle;
 import android.os.Handler;
+import android.support.v7.app.ActionBar;
 import android.widget.ImageView;
 
 import com.julia.bachelor.helperClass.BeholdningTemplate;
@@ -31,21 +32,15 @@ public class LoadContentActivity extends Activity {
     static ArrayList<Honning> Honning;
     static ArrayList<SalgTemplate> Videresalg;
 
-    public LoadContentActivity(){
+    public LoadContentActivity() {
 
     }
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        Database.getAnnetValues();
-        Database.getBeholdningValues();
-        Database.getBeholdningUtValues();
-        Database.getBMValues();
-        Database.getHjemmeValues();
-        Database.getHonningType();
-        Database.getVideresalgValues();
+        setContentView(R.layout.activity_load_content);
+        getActionBar().hide();
         ImageView bee = findViewById(R.id.LoadingBeeImage);
         bee.setBackgroundResource(R.drawable.animation);
         AnimationDrawable anim = (AnimationDrawable) bee.getBackground();
@@ -54,23 +49,21 @@ public class LoadContentActivity extends Activity {
         //  \ / />/>
         // (^_^)( || ||)>
         //   /// \\\
-        new Handler().postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                Intent intent = new Intent(LoadContentActivity.this, MainActivity.class);
-                Bundle bundle = new Bundle();
-                bundle.putSerializable(KEY_HONNING, Honning);
-                bundle.putSerializable(KEY_ANNET, Annet);
-                bundle.putSerializable(KEY_BEHOLDNING, Beholdning);
-                bundle.putSerializable(KEY_BEHOLDNINGUT, Salg);
-                bundle.putSerializable(KEY_BONDENSMARKED, Bm);
-                bundle.putSerializable(KEY_HJEMME, Hjemme);
-                bundle.putSerializable(KEY_VIDERESALG, Videresalg);
-                intent.putExtra(KEY_BUNDLE, bundle);
-                LoadContentActivity.this.startActivity(intent);
-            }
 
-        }, 6000);
+
+        MainActivity main = new MainActivity();
+        main.fetch();
+        Intent intent = new Intent(LoadContentActivity.this, MainActivity.class);
+        Bundle bundle = new Bundle();
+        bundle.putSerializable(KEY_HONNING, Honning);
+        bundle.putSerializable(KEY_ANNET, Annet);
+        bundle.putSerializable(KEY_BEHOLDNING, Beholdning);
+        bundle.putSerializable(KEY_BEHOLDNINGUT, Salg);
+        bundle.putSerializable(KEY_BONDENSMARKED, Bm);
+        bundle.putSerializable(KEY_HJEMME, Hjemme);
+        bundle.putSerializable(KEY_VIDERESALG, Videresalg);
+        intent.putExtra(KEY_BUNDLE, bundle);
+        LoadContentActivity.this.startActivity(intent);
     }
 
     public void setAnnet(ArrayList<SalgTemplate> annet) {

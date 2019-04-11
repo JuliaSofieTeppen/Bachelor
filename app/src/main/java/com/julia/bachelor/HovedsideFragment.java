@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.app.Fragment;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
@@ -12,6 +13,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.PopupMenu;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.julia.bachelor.helperClass.BeholdningTemplate;
 import com.julia.bachelor.helperClass.Honning;
@@ -62,12 +64,20 @@ public class HovedsideFragment extends Fragment {
         info = rootView.findViewById(R.id.Info);
         navn = rootView.findViewById(R.id.navn);
         dato = rootView.findViewById(R.id.dato);
-
         mSwipeRefreshLayout = rootView.findViewById(R.id.container);
         mSwipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
 
             @Override
             public void onRefresh() {
+               final MainActivity main = new MainActivity();
+                main.fetch();
+                new Handler().postDelayed(new Runnable() {
+                    @Override public void run() {
+                        beholdnings = main.getBeholdning();
+                        setValueString();
+                        mSwipeRefreshLayout.setRefreshing(false);
+                    }
+                }, 8000);
             }
         });
 

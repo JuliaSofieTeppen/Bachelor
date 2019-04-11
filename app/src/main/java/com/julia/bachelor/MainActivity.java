@@ -50,7 +50,6 @@ public class MainActivity extends Activity implements NavigationDrawerFragment.N
          * Fragment managing the behaviors, interactions and presentation of the navigation drawer.
          */
         fetch();
-
         NavigationDrawerFragment mNavigationDrawerFragment = (NavigationDrawerFragment) getFragmentManager().findFragmentById(R.id.navigation_drawer);
         // Set up the drawer.
         mNavigationDrawerFragment.setUp(R.id.navigation_drawer, (DrawerLayout) findViewById(R.id.drawer_layout));
@@ -154,10 +153,10 @@ public class MainActivity extends Activity implements NavigationDrawerFragment.N
 
     void insertIntoDB() {
         Database.executeOnDB("http://www.honningbier.no/PHP/SalgIn.php/?Dato=" + dato.getText().toString());
-        Database.executeOnDB("http://www.honningbier.no/PHP/BeholdningIn.php/?" + getBeholdning() + "&Dato=" + dato.getText().toString());
+        Database.executeOnDB("http://www.honningbier.no/PHP/BeholdningIn.php/?" + getStringBeholdning() + "&Dato=" + dato.getText().toString());
     }
 
-    private String getBeholdning() {
+    private String getStringBeholdning() {
         String[] strings = {"Sommer", "SommerH", "SommerK", "Lyng", "LyngH", "LyngK", "IngeferH", "IngeferK", "Flytende"};
         StringBuilder sb = new StringBuilder();
         for (int i = 0; i < strings.length; i++) {
@@ -168,6 +167,10 @@ public class MainActivity extends Activity implements NavigationDrawerFragment.N
 
     public List<Honning> getHonningTyper() {
         return Honning;
+    }
+
+    public ArrayList<BeholdningTemplate> getBeholdning(){
+        return Beholdning;
     }
 
     void fetch() {

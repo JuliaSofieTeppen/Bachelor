@@ -117,8 +117,11 @@ public class SettingFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 for (int i = 0; i < HjemmeVerdier.size(); i++) {
+                    if(honningtype.get(i+3).equals(4) || honningtype.get(i+3).equals(5) || honningtype.get(i+3).equals(6))
+                        Database.executeOnDB("http://www.honningbier.no/PHP/HonningUpdate.php/?ID=" + honningtype.get(i).get_ID() + "&HjemmePris=" + HjemmeVerdier.get(i).getText().toString() + "&BMPris=" +
+                                BMverdier.get(i).getText().toString() + "&FakturaPris="+ FakturaVerdier.get(i).getText().toString());
                         Database.executeOnDB("http://www.honningbier.no/PHP/HonningUpdate.php/?ID=" + honningtype.get(i + 3).get_ID() + "&HjemmePris=" + HjemmeVerdier.get(i).getText().toString() + "&BMPris=" +
-                                BMverdier.get(i).getText().toString() + "FakturaPris="+ FakturaVerdier.get(i).getText().toString());
+                                BMverdier.get(i).getText().toString() + "&FakturaPris="+ FakturaVerdier.get(i).getText().toString());
                 }
                 Toast.makeText(SettingFragment.this.getContext(), "Endringer lagret", Toast.LENGTH_SHORT).show();
             }

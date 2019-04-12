@@ -12,6 +12,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.julia.bachelor.helperClass.BondensMarked;
 import com.julia.bachelor.helperClass.Honning;
 
 import java.util.ArrayList;
@@ -35,6 +36,7 @@ public class SettingFragment extends Fragment {
     List<EditText> HjemmeVerdier;
     List<EditText> FakturaVerdier;
     Button lagre;
+
 
     public SettingFragment() {
     }
@@ -115,16 +117,8 @@ public class SettingFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 for (int i = 0; i < HjemmeVerdier.size(); i++) {
-                    if (HjemmeVerdier.get(i).getText().toString().equals(Integer.toString(honningtype.get(i + 3).getHjemmePris()))) {
-                        Database.executeOnDB("http://www.honningbier.no/PHP/HonningUpdate.php/?ID=" + honningtype.get(i + 3).get_ID() + "&HjemmePris=" + HjemmeVerdier.get(i).getText().toString());
-                    }
-                    if (BMverdier.get(i).getText().toString().equals(Integer.toString(honningtype.get(i + 3).getBondensMarkedPris()))) {
-                        Database.executeOnDB("http://www.honningbier.no/PHP/HonningUpdate.php/?ID=" + honningtype.get(i + 3).get_ID() + "&BondensMarkedPris=" + BMverdier.get(i).getText().toString());
-                    }
-                    if (FakturaVerdier.get(i).getText().toString().equals(Integer.toString(honningtype.get(i + 3).getFakturaPris()))) {
-                        Database.executeOnDB("http://www.honningbier.no/PHP/HonningUpdate.php/?ID=" + honningtype.get(i + 3).get_ID() + "&FakturaPris=" + FakturaVerdier.get(i).getText().toString());
-
-                    }
+                        Database.executeOnDB("http://www.honningbier.no/PHP/HonningUpdate.php/?ID=" + honningtype.get(i + 3).get_ID() + "&HjemmePris=" + HjemmeVerdier.get(i).getText().toString() + "&BMPris=" +
+                                BMverdier.get(i).getText().toString() + "FakturaPris="+ FakturaVerdier.get(i).getText().toString());
                 }
                 Toast.makeText(SettingFragment.this.getContext(), "Endringer lagret", Toast.LENGTH_SHORT).show();
             }

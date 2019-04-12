@@ -20,7 +20,8 @@
         <activity android:name=".VideresalgActivity" />
         <activity android:name=".BmSalgActivity" />
         <activity android:name=".HjemmesalgActivity" />
-        <activity android:name=".LoadContentActivity">
+        <activity android:name=".LoadContentActivity"
+            android:label="@string/title_activity_main">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <action android:name="android.intent.action.VIEW" />

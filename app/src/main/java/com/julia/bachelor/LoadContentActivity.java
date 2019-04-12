@@ -64,6 +64,7 @@ public class LoadContentActivity extends Activity {
         bundle.putSerializable(KEY_VIDERESALG, Videresalg);
         intent.putExtra(KEY_BUNDLE, bundle);
         LoadContentActivity.this.startActivity(intent);
+        finish();
     }
 
     public void setAnnet(ArrayList<SalgTemplate> annet) {

@@ -12,7 +12,6 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.julia.bachelor.helperClass.BondensMarked;
 import com.julia.bachelor.helperClass.Honning;
 
 import java.util.ArrayList;
@@ -21,8 +20,6 @@ import java.util.List;
 
 public class SettingFragment extends Fragment {
 
-    // TODO: Rename parameter arguments, choose names that match
-    private static final String ARG_SECTION_NUMBER = "section_number";
     ConstraintLayout enkg, halvkg, kvartkg, Ingf05kg, Ingf025kg, flyt, endreverdier, endremoms;
     SharedPreferences sharedPreferences;
     SharedPreferences.Editor editor;
@@ -37,19 +34,12 @@ public class SettingFragment extends Fragment {
     List<EditText> FakturaVerdier;
     Button lagre;
 
-
     public SettingFragment() {
     }
 
-    // TODO: Rename and change types and number of parameters
-    public static SettingFragment newInstance(int sectionNumber) {
-        SettingFragment fragment = new SettingFragment();
-        Bundle args = new Bundle();
-        args.putInt(ARG_SECTION_NUMBER, sectionNumber);
-        fragment.setArguments(args);
-        return fragment;
+    public static SettingFragment newInstance() {
+        return new SettingFragment();
     }
-
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -90,10 +80,8 @@ public class SettingFragment extends Fragment {
         HjemmeVerdier = new ArrayList<>(Arrays.asList(enkghjemme, halvkghjemme, kvartkghjemme, ingfhalvkghjemme, ingfkvartkghjemme, flythjemme));
         FakturaVerdier = new ArrayList<>(Arrays.asList(enkgfak, halvkgfak, kvartkgfak, ingfhalvkgfak, ingfkvartkgfak, flytfak));
 
-
         MainActivity main = new MainActivity();
         honningtype = main.getHonningTyper();
-
         try {
             if (honningtype != null) {
                 String s;
@@ -117,11 +105,11 @@ public class SettingFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 for (int i = 0; i < HjemmeVerdier.size(); i++) {
-                    if(honningtype.get(i).get_ID() < 4 )
+                    if (honningtype.get(i).get_ID() < 4)
                         Database.executeOnDB("http://www.honningbier.no/PHP/HonningUpdate.php/?ID=" + honningtype.get(i).get_ID() + "&HjemmePris=" + HjemmeVerdier.get(i).getText().toString() + "&BMPris=" +
-                                BMverdier.get(i).getText().toString() + "&FakturaPris="+ FakturaVerdier.get(i).getText().toString());
-                        Database.executeOnDB("http://www.honningbier.no/PHP/HonningUpdate.php/?ID=" + honningtype.get(i + 3).get_ID() + "&HjemmePris=" + HjemmeVerdier.get(i).getText().toString() + "&BMPris=" +
-                                BMverdier.get(i).getText().toString() + "&FakturaPris="+ FakturaVerdier.get(i).getText().toString());
+                                BMverdier.get(i).getText().toString() + "&FakturaPris=" + FakturaVerdier.get(i).getText().toString());
+                    Database.executeOnDB("http://www.honningbier.no/PHP/HonningUpdate.php/?ID=" + honningtype.get(i + 3).get_ID() + "&HjemmePris=" + HjemmeVerdier.get(i).getText().toString() + "&BMPris=" +
+                            BMverdier.get(i).getText().toString() + "&FakturaPris=" + FakturaVerdier.get(i).getText().toString());
                 }
                 Toast.makeText(SettingFragment.this.getContext(), "Endringer lagret", Toast.LENGTH_SHORT).show();
             }

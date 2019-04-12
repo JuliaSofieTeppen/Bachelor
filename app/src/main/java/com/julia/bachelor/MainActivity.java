@@ -102,7 +102,7 @@ public class MainActivity extends Activity implements NavigationDrawerFragment.N
                 break;
 
             case 5:
-                SettingFragment insfragment = SettingFragment.newInstance(2);
+                SettingFragment insfragment = SettingFragment.newInstance();
                 FragmentTransaction insfragmentt = getFragmentManager().beginTransaction();
                 insfragmentt.replace(R.id.container, insfragment);
                 insfragmentt.addToBackStack(null);

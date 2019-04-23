@@ -13,7 +13,6 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.PopupMenu;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.julia.bachelor.helperClass.BeholdningTemplate;
 import com.julia.bachelor.helperClass.Honning;

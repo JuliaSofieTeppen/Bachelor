@@ -29,13 +29,10 @@ public class SettingFragment extends Fragment {
             ingfhalvkghjemme, ingfkvartkghjemme, ingfhalvkgbm, ingfkvartkgbm, ingfhalvkgfak, ingfkvartkgfak,
             flythjemme, flytbm, flytfak;
     List<Honning> honningtype;
-    List<EditText> BMverdier;
-    List<EditText> HjemmeVerdier;
-    List<EditText> FakturaVerdier;
+    List<EditText> HjemmeVerdier, BMverdier, FakturaVerdier;
     Button lagre;
 
-    public SettingFragment() {
-    }
+    public SettingFragment(){}
 
     public static SettingFragment newInstance() {
         return new SettingFragment();

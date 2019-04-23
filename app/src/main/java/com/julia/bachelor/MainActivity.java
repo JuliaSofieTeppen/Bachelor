@@ -145,7 +145,6 @@ public class MainActivity extends Activity implements NavigationDrawerFragment.N
                 insertIntoDB();
                 Toast.makeText(this, "Beholdning lagret", Toast.LENGTH_SHORT).show();
             }
-
         } else {
             Toast.makeText(this, "Ugyldig dato", Toast.LENGTH_SHORT).show();
         }

@@ -77,6 +77,9 @@ public class SettingFragment extends Fragment {
         HjemmeVerdier = new ArrayList<>(Arrays.asList(enkghjemme, halvkghjemme, kvartkghjemme, ingfhalvkghjemme, ingfkvartkghjemme, flythjemme));
         FakturaVerdier = new ArrayList<>(Arrays.asList(enkgfak, halvkgfak, kvartkgfak, ingfhalvkgfak, ingfkvartkgfak, flytfak));
 
+        ferdigprodukt.setText(Integer.toString(sharedPreferences.getInt("ferdigprodukt", 15)));
+        ikkeferdig.setText(Integer.toString(sharedPreferences.getInt("ikkeferdig", 25)));
+
         MainActivity main = new MainActivity();
         honningtype = main.getHonningTyper();
         try {

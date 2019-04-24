@@ -87,7 +87,8 @@ public class SettingFragment extends Fragment {
         sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this.getContext());
         editor = sharedPreferences.edit();
         BMverdier = new ArrayList<>(Arrays.asList(enkgbm, halvkgbm, kvartkgbm, ingfhalvkgbm, ingfkvartkgbm, flytbm));
-        HjemmeVerdier = new ArrayList<>(Arrays.asList(enkghjemme, halvkghjemme, kvartkghjemme, ingfhalvkghjemme, ingfkvartkghjemme, flythjemme));
+        HjemmeVerdier = new ArrayList<
+                >(Arrays.asList(enkghjemme, halvkghjemme, kvartkghjemme, ingfhalvkghjemme, ingfkvartkghjemme, flythjemme));
         FakturaVerdier = new ArrayList<>(Arrays.asList(enkgfak, halvkgfak, kvartkgfak, ingfhalvkgfak, ingfkvartkgfak, flytfak));
 
         ferdigprodukt.setText(Integer.toString(sharedPreferences.getInt("ferdigprodukt", 15)));

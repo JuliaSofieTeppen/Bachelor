@@ -33,10 +33,10 @@ public class HovedsideFragment extends Fragment {
     private static final String KEY_BEHOLDNING = "Beholdning";
     private static final String KEY_HONNING = "Honning";
     private static final String KEY_BUNDLE = "Bundle";
-    public SwipeRefreshLayout mSwipeRefreshLayout;
     static ArrayList<BeholdningTemplate> beholdnings;
     static ArrayList<SalgTemplate> AllSalg;
     static ArrayList<Honning> honning;
+    public SwipeRefreshLayout mSwipeRefreshLayout;
     Button addbutton;
     TextView info, navn, dato;
 
@@ -71,16 +71,17 @@ public class HovedsideFragment extends Fragment {
 
             @Override
             public void onRefresh() {
-               final MainActivity main = new MainActivity();
-               AllSalg.clear();
-               main.fetch();
-               new Handler().postDelayed(new Runnable() {
-                   @Override public void run() {
-                       beholdnings = main.getBeholdning();
-                       info.setText(setValueString());
-                       mSwipeRefreshLayout.setRefreshing(false);
-                   }
-                   }, 1000);
+                final MainActivity main = new MainActivity();
+                AllSalg.clear();
+                main.fetch();
+                new Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        beholdnings = main.getBeholdning();
+                        info.setText(setValueString());
+                        mSwipeRefreshLayout.setRefreshing(false);
+                    }
+                }, 1000);
             }
         });
 
@@ -157,7 +158,7 @@ public class HovedsideFragment extends Fragment {
         } catch (NullPointerException e) {
             e.printStackTrace();
         }
-        return beholdning == null  ? "" :
+        return beholdning == null ? "" :
                 beholdning.getSommer() + "\n" +
                         beholdning.getSommerH() + " \n" +
                         beholdning.getSommerK() + " \n" +
@@ -169,22 +170,6 @@ public class HovedsideFragment extends Fragment {
                         beholdning.getFlytende() + " \n";
     }
 
-    private BeholdningTemplate findCurrentBeholdning(ArrayList<BeholdningTemplate> beholdning) {
-        Beholdning current = null;
-        try {
-            current = (Beholdning) beholdning.get(beholdning.size() - 1);
-            for (int i = 0; i < beholdning.size(); i++) {
-                if (greaterThan(current, beholdning.get(i))) {
-                    current = (Beholdning) beholdning.get(i);
-                }
-            }
-            return current;
-        } catch (IndexOutOfBoundsException e) {
-            addbutton.setVisibility(View.GONE);
-        }
-        if (current == null) throw new NullPointerException("Possible problem with connection");
-        return Beholdning.copy(current);
-    }
 
     boolean greaterThan(BeholdningTemplate current, BeholdningTemplate next) {
         ArrayList<String> dates = new ArrayList<>(Arrays.asList(current.getDato(), next.getDato()));
@@ -192,19 +177,7 @@ public class HovedsideFragment extends Fragment {
         return !dates.get(1).equals(current.getDato());
     }
 
-    ArrayList<SalgTemplate> salesInPeriod(String start){
-        String end = Beregninger.getDate();
-        ArrayList<SalgTemplate> period = new ArrayList<>();
-        for(SalgTemplate sale: AllSalg){
-            String dato = sale.getDato();
-            if(start.compareTo(dato)<=0 && end.compareTo(dato)>=0){
-                period.add(sale);
-            }
-        }
-        return period;
-    }
-
-    BeholdningTemplate CalculateBeholdning(){
+    BeholdningTemplate CalculateBeholdning() {
         BeholdningTemplate beholdning = findCurrentBeholdning(Beregninger.separateBeholdning(beholdnings));
         ArrayList<SalgTemplate> period = salesInPeriod(beholdning.getDato());
         int[] amount = new int[9];
@@ -222,14 +195,46 @@ public class HovedsideFragment extends Fragment {
             beholdning.setLyng(beholdning.getLyng() - amount[3]);
             beholdning.setLyngH(beholdning.getLyngH() - amount[4]);
             beholdning.setLyngK(beholdning.getLyngK() - amount[5]);
-            beholdning.setIngeferH(beholdning.getIngeferH()-amount[6]);
-            beholdning.setIngeferK(beholdning.getIngeferK()-amount[7]);
-            beholdning.setFlytende(beholdning.getFlytende()-amount[8]);
-        }catch (ArrayIndexOutOfBoundsException e){ e.printStackTrace(); }
+            beholdning.setIngeferH(beholdning.getIngeferH() - amount[6]);
+            beholdning.setIngeferK(beholdning.getIngeferK() - amount[7]);
+            beholdning.setFlytende(beholdning.getFlytende() - amount[8]);
+        } catch (ArrayIndexOutOfBoundsException e) {
+            e.printStackTrace();
+        }
         return beholdning;
     }
 
-    @Override @SuppressWarnings("deprecation")
+    private BeholdningTemplate findCurrentBeholdning(ArrayList<BeholdningTemplate> beholdning) {
+        Beholdning current = null;
+        try {
+            current = (Beholdning) beholdning.get(beholdning.size() - 1);
+            for (int i = 0; i < beholdning.size(); i++) {
+                if (current.getDato().compareTo(beholdning.get(i).getDato()) <= 0) {
+                    current = (Beholdning) beholdning.get(i);
+                }
+            }
+            return current;
+        } catch (IndexOutOfBoundsException e) {
+            addbutton.setVisibility(View.GONE);
+        }
+        if (current == null) throw new NullPointerException("Possible problem with connection");
+        return Beholdning.copy(current);
+    }
+
+    private ArrayList<SalgTemplate> salesInPeriod(String start) {
+        String end = Beregninger.getDate();
+        ArrayList<SalgTemplate> period = new ArrayList<>();
+        for (SalgTemplate sale : AllSalg) {
+            String dato = sale.getDato();
+            if (start.compareTo(dato) <= 0 && end.compareTo(dato) >= 0) {
+                period.add(sale);
+            }
+        }
+        return period;
+    }
+
+    @Override
+    @SuppressWarnings("deprecation")
     public void onAttach(Activity activity) {
         super.onAttach(activity);
         ((MainActivity) activity).onSectionAttached(

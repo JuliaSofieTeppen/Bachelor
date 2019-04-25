@@ -7,7 +7,7 @@ public class SortedObjects implements SalgTemplate, Serializable {
     private String Varer;
     private String AnnetVarer;
     private int Belop;
-    boolean sortMethod;
+    private boolean sortMethod;
     /**
      * Betaling[0] = Kontant, Betaling[1] = Kort.
      **/

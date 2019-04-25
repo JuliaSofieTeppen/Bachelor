@@ -16,12 +16,8 @@ import android.widget.Toast;
 
 import com.julia.bachelor.helperClass.Honning;
 
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
-import java.util.Locale;
 
 public class HjemmesalgActivity extends Activity implements AdapterView.OnItemSelectedListener {
     private static final String KEY_BUNDLE = "Bundle";
@@ -93,57 +89,84 @@ public class HjemmesalgActivity extends Activity implements AdapterView.OnItemSe
     }
 
     public void add1Sommerkg(View view) {
-        telling.set(0, telling.get(0) + 1);
-        kr = kr + honningtype.get(0).getHjemmePris();
-        setText();
+        if (honningtype != null) {
+            if (honningtype.size() != 9) return;
+            telling.set(0, telling.get(0) + 1);
+            kr = kr + honningtype.get(0).getHjemmePris();
+            setText();
+        }
     }
 
     public void add05sommerkg(View view) {
-        telling.set(1, telling.get(1) + 1);
-        kr = kr + honningtype.get(1).getHjemmePris();
-        setText();
+        if (honningtype != null) {
+            if (honningtype.size() != 9) return;
+            telling.set(1, telling.get(1) + 1);
+            kr = kr + honningtype.get(1).getHjemmePris();
+            setText();
+        }
     }
 
     public void add025sommerkg(View view) {
-        telling.set(2, telling.get(2) + 1);
-        kr = kr + honningtype.get(2).getHjemmePris();
-        setText();
+        if (honningtype != null) {
+            if (honningtype.size() != 9) return;
+            telling.set(2, telling.get(2) + 1);
+            kr = kr + honningtype.get(2).getHjemmePris();
+            setText();
+        }
     }
 
     public void add1lyngkg(View view) {
-        telling.set(3, telling.get(3) + 1);
-        kr = kr + honningtype.get(3).getHjemmePris();
-        setText();
+        if (honningtype != null) {
+            if (honningtype.size() != 9) return;
+            telling.set(3, telling.get(3) + 1);
+            kr = kr + honningtype.get(3).getHjemmePris();
+            setText();
+        }
     }
 
     public void add05lyngkg(View view) {
-        telling.set(4, telling.get(4) + 1);
-        kr = kr + honningtype.get(4).getHjemmePris();
-        setText();
+        if (honningtype != null) {
+            if (honningtype.size() != 9) return;
+            telling.set(4, telling.get(4) + 1);
+            kr = kr + honningtype.get(4).getHjemmePris();
+            setText();
+        }
     }
 
     public void add025lyngkg(View view) {
-        telling.set(5, telling.get(5) + 1);
-        kr = kr + honningtype.get(5).getHjemmePris();
-        setText();
+        if (honningtype != null) {
+            if (honningtype.size() != 9) return;
+            telling.set(5, telling.get(5) + 1);
+            kr = kr + honningtype.get(5).getHjemmePris();
+            setText();
+        }
     }
 
     public void add05ingfkg(View view) {
-        telling.set(6, telling.get(6) + 1);
-        kr = kr + honningtype.get(6).getHjemmePris();
-        setText();
+        if (honningtype != null) {
+            if (honningtype.size() != 9) return;
+            telling.set(6, telling.get(6) + 1);
+            kr = kr + honningtype.get(6).getHjemmePris();
+            setText();
+        }
     }
 
     public void add025ingfkg(View view) {
-        telling.set(7, telling.get(7) + 1);
-        kr = kr + honningtype.get(7).getHjemmePris();
-        setText();
+        if (honningtype != null) {
+            if (honningtype.size() != 9) return;
+            telling.set(7, telling.get(7) + 1);
+            kr = kr + honningtype.get(7).getHjemmePris();
+            setText();
+        }
     }
 
     public void addflytende(View view) {
-        telling.set(8, telling.get(8) + 1);
-        kr = kr + honningtype.get(8).getHjemmePris();
-        setText();
+        if (honningtype != null) {
+            if (honningtype.size() != 9) return;
+            telling.set(8, telling.get(8) + 1);
+            kr = kr + honningtype.get(8).getHjemmePris();
+            setText();
+        }
     }
 
     public void setText() {
@@ -174,7 +197,6 @@ public class HjemmesalgActivity extends Activity implements AdapterView.OnItemSe
             Toast.makeText(this, "Skriv inn navn på kunde", Toast.LENGTH_SHORT).show();
         } else {
             if (!(oversikt.getText().toString().equals(""))) {
-                // TODO update beholdnings
                 insertValues();
                 Toast.makeText(this, "Hjemmesalg lagret", Toast.LENGTH_SHORT).show();
                 finish();

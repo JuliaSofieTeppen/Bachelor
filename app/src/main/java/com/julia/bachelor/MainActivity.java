@@ -49,14 +49,13 @@ public class MainActivity extends Activity implements NavigationDrawerFragment.N
         /*
          * Fragment managing the behaviors, interactions and presentation of the navigation drawer.
          */
-        fetch();
+        //fetch();
         NavigationDrawerFragment mNavigationDrawerFragment = (NavigationDrawerFragment) getFragmentManager().findFragmentById(R.id.navigation_drawer);
         // Set up the drawer.
         mNavigationDrawerFragment.setUp(R.id.navigation_drawer, (DrawerLayout) findViewById(R.id.drawer_layout));
 
     }
 
-    @SuppressWarnings("unchecked")
     void setArrays(ArrayList<BeholdningTemplate> BeholdningList, ArrayList<SalgTemplate> allSalg,
                    ArrayList<Honning> HonningList) {
         Beholdning.addAll(BeholdningList);
@@ -69,7 +68,7 @@ public class MainActivity extends Activity implements NavigationDrawerFragment.N
         // update the main content by replacing fragments
         FragmentManager fragmentManager = getFragmentManager();
         fragmentManager.beginTransaction()
-                .replace(R.id.container, HovedsideFragment.newInstance(position + 1, Beholdning, Honning))
+                .replace(R.id.container, HovedsideFragment.newInstance(position + 1, Beholdning, Honning, AllSalg))
                 .commit();
     }
 
@@ -218,6 +217,7 @@ public class MainActivity extends Activity implements NavigationDrawerFragment.N
                     while ((nextLine = bufferedReader.readLine()) != null) {
                         output.append(nextLine);
                     }
+                    bufferedReader.close();
                     conn.disconnect();
                     if (url1.equalsIgnoreCase(urls[0]) || url1.equalsIgnoreCase(urls[3]) || url1.equalsIgnoreCase(urls[4]) || url1.equalsIgnoreCase(urls[6])) {
                         setSaleValues(output.toString(), url1);

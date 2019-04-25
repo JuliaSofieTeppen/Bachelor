@@ -16,7 +16,7 @@ public class Beholdning implements BeholdningTemplate, Serializable {
     private int Flytende;
     private String Dato;
 
-    public Beholdning() { }
+    Beholdning() { }
 
     public long get_ID() {
         return _ID;
@@ -104,5 +104,21 @@ public class Beholdning implements BeholdningTemplate, Serializable {
 
     public void setDato(String dato) {
         Dato = dato;
+    }
+
+    public static BeholdningTemplate copy(BeholdningTemplate beholdningTemplate){
+        BeholdningTemplate beholdning = new Beholdning();
+        beholdning.set_ID(beholdningTemplate.get_ID());
+        beholdning.setDato(beholdningTemplate.getDato());
+        beholdning.setFlytende(beholdningTemplate.getFlytende());
+        beholdning.setIngeferH(beholdningTemplate.getIngeferH());
+        beholdning.setIngeferK(beholdningTemplate.getIngeferK());
+        beholdning.setLyng(beholdningTemplate.getLyng());
+        beholdning.setLyngH(beholdningTemplate.getLyngH());
+        beholdning.setLyngK(beholdningTemplate.getLyngK());
+        beholdning.setSommer(beholdningTemplate.getSommer());
+        beholdning.setSommerH(beholdningTemplate.getSommerH());
+        beholdning.setSommerK(beholdningTemplate.getSommerK());
+        return beholdning;
     }
 }

@@ -42,7 +42,6 @@ public class VideresalgActivity extends Activity implements AdapterView.OnItemSe
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_faktura_salg);
-        Database.getHonningType();
         if (getActionBar() != null) getActionBar().setDisplayHomeAsUpEnabled(true);
         navn = findViewById(R.id.FSnavn);
         moms = findViewById(R.id.FSmoms);

@@ -112,6 +112,7 @@ public class VideresalgActivity extends Activity implements AdapterView.OnItemSe
     private String getVarer() {
         StringBuilder stringBuilder = new StringBuilder();
         for (int i = 0; i < honningtyper.size(); i++) {
+            if(i == 9) break;
             stringBuilder.append(honningtyper.get(i).get_ID()).append("-").append(verdier.get(i).getText().toString()).append(",");
         }
         return stringBuilder.toString();

@@ -8,8 +8,8 @@
 
     <android.support.v7.widget.GridLayout
         android:id="@+id/gridLayout"
-        android:layout_width="325dp"
-        android:layout_height="337dp"
+        android:layout_width="272dp"
+        android:layout_height="326dp"
         android:layout_marginStart="16dp"
         android:layout_marginBottom="8dp"
         app:columnCount="3"
@@ -23,29 +23,29 @@
         <!--kolonne 1, rad 1 -->
         <Button
             android:id="@+id/button1"
-            android:layout_width="100dp"
-            android:layout_height="100dp"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
             android:layout_marginEnd="12sp"
             android:layout_marginBottom="16dp"
-            android:background="#f4c242"
+            android:background="#ffc477"
             android:onClick="add1Sommerkg"
             android:text="@string/HS_sommerenkg"
             app:layout_gravity="left|top" />
 
         <Button
             android:id="@+id/button5"
-            android:layout_width="100dp"
-            android:layout_height="100dp"
-            android:background="#f4c242"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:background="#ffc477"
             android:onClick="add05sommerkg"
             android:text="@string/HS_sommerhalvkg"
             app:layout_gravity="left|top" />
 
         <Button
             android:id="@+id/FSlagre"
-            android:layout_width="100dp"
-            android:layout_height="100dp"
-            android:background="#f4c242"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:background="#ffc477"
             android:onClick="add025sommerkg"
             android:text="@string/HS_sommerkvartkg"
             app:layout_gravity="left|top" />
@@ -53,57 +53,57 @@
         <!-- kolonne 1, rad 2 -->
         <Button
             android:id="@+id/button4"
-            android:layout_width="100dp"
-            android:layout_height="100dp"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
             android:layout_marginBottom="16dp"
-            android:background="#f4b042"
+            android:background="#ffad5b"
             android:onClick="add1lyngkg"
             android:text="@string/HS_lyngenkg"
             app:layout_gravity="left|top" />
 
         <Button
             android:id="@+id/button6"
-            android:layout_width="100dp"
-            android:layout_height="100dp"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
             android:layout_marginEnd="12sp"
-            android:background="#f4b042"
+            android:background="#ffad5b"
             android:onClick="add05lyngkg"
             android:text="@string/HS_lynghalvkg"
             app:layout_gravity="left|top" />
 
         <Button
             android:id="@+id/button7"
-            android:layout_width="100dp"
-            android:layout_height="100dp"
-            android:background="#f4b042"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:background="#ffad5b"
             android:onClick="add025lyngkg"
             android:text="@string/HS_lyngkvartkg"
             app:layout_gravity="left|top" />
 
         <Button
             android:id="@+id/button8"
-            android:layout_width="100dp"
-            android:layout_height="100dp"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
             android:layout_marginBottom="16dp"
-            android:background="#f4dc41"
+            android:background="#ffe08c"
             android:onClick="add05ingfkg"
             android:text="@string/HS_med_Ingefærhalvkg"
             app:layout_gravity="left|top" />
 
         <Button
             android:id="@+id/button9"
-            android:layout_width="100dp"
-            android:layout_height="100dp"
-            android:background="#f4dc41"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:background="#ffe08c"
             android:onClick="add025ingfkg"
             android:text="@string/HS_med_Ingefærkvartkg"
             app:layout_gravity="left|top" />
 
         <Button
             android:id="@+id/button10"
-            android:layout_width="100dp"
-            android:layout_height="100dp"
-            android:background="#f49441"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:background="#e8d3b7"
             android:onClick="addflytende"
             android:text="@string/flytende"
             app:layout_gravity="left|top" />
@@ -296,6 +296,7 @@
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="20dp"
                 android:layout_marginEnd="8dp"
+                android:text="@string/_0kr"
                 android:textAlignment="viewStart"
                 android:textSize="30sp"
                 app:layout_constraintEnd_toEndOf="parent"

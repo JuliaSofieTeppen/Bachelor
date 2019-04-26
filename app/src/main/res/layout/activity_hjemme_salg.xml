@@ -38,7 +38,7 @@
                     android:layout_height="100dp"
                     android:layout_marginEnd="12sp"
                     android:layout_marginBottom="16dp"
-                    android:background="#f4c242"
+                    android:background="#ffc477"
                     android:text="@string/HS_sommerenkg"
                     android:onClick="add1Sommerkg"
                     app:layout_gravity="left|top" />
@@ -47,7 +47,7 @@
                     android:id="@+id/button5"
                     android:layout_width="100dp"
                     android:layout_height="100dp"
-                    android:background="#f4c242"
+                    android:background="#ffc477"
                     android:text="@string/HS_sommerhalvkg"
                     android:onClick="add05sommerkg"
                     app:layout_gravity="left|top" />
@@ -56,7 +56,7 @@
                     android:id="@+id/FSlagre"
                     android:layout_width="100dp"
                     android:layout_height="100dp"
-                    android:background="#f4c242"
+                    android:background="#ffc477"
                     android:text="@string/HS_sommerkvartkg"
                     android:onClick="add025sommerkg"
                     app:layout_gravity="left|top" />
@@ -67,7 +67,7 @@
                     android:layout_width="100dp"
                     android:layout_height="100dp"
                     android:layout_marginBottom="16dp"
-                    android:background="#f4b042"
+                    android:background="#ffad5b"
                     android:text="@string/HS_lyngenkg"
                     android:onClick="add1lyngkg"
                     app:layout_gravity="left|top" />
@@ -77,7 +77,7 @@
                     android:layout_width="100dp"
                     android:layout_height="100dp"
                     android:layout_marginEnd="12sp"
-                    android:background="#f4b042"
+                    android:background="#ffad5b"
                     android:text="@string/HS_lynghalvkg"
                     android:onClick="add05lyngkg"
                     app:layout_gravity="left|top" />
@@ -86,7 +86,7 @@
                     android:id="@+id/button7"
                     android:layout_width="100dp"
                     android:layout_height="100dp"
-                    android:background="#f4b042"
+                    android:background="#ffad5b"
                     android:text="@string/HS_lyngkvartkg"
                     android:onClick="add025lyngkg"
                     app:layout_gravity="left|top" />
@@ -96,7 +96,7 @@
                     android:layout_width="100dp"
                     android:layout_height="100dp"
                     android:layout_marginBottom="16dp"
-                    android:background="#f4dc41"
+                    android:background="#ffe08c"
                     android:text="@string/HS_med_Ingefærhalvkg"
                     android:onClick="add05ingfkg"
                     app:layout_gravity="left|top" />
@@ -105,7 +105,7 @@
                     android:id="@+id/button9"
                     android:layout_width="100dp"
                     android:layout_height="100dp"
-                    android:background="#f4dc41"
+                    android:background="#ffe08c"
                     android:text="@string/HS_med_Ingefærkvartkg"
                     android:onClick="add025ingfkg"
                     app:layout_gravity="left|top" />
@@ -114,7 +114,7 @@
                     android:id="@+id/button10"
                     android:layout_width="100dp"
                     android:layout_height="100dp"
-                    android:background="#f49441"
+                    android:background="#e8d3b7"
                     android:text="@string/flytende"
                     android:onClick="addflytende"
                     app:layout_gravity="left|top" />
@@ -310,6 +310,7 @@
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="12dp"
                 android:layout_marginEnd="8dp"
+                android:text="0kr"
                 android:textSize="30sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"

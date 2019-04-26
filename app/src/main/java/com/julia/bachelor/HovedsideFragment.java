@@ -14,6 +14,7 @@ import android.widget.Button;
 import android.widget.PopupMenu;
 import android.widget.TextView;
 
+import com.julia.bachelor.helperClass.Annet;
 import com.julia.bachelor.helperClass.Beholdning;
 import com.julia.bachelor.helperClass.BeholdningTemplate;
 import com.julia.bachelor.helperClass.Honning;
@@ -183,6 +184,7 @@ public class HovedsideFragment extends Fragment {
         int[] amount = new int[9];
         try {
             for (SalgTemplate salg : period) {
+                if(salg instanceof Annet) continue;
                 String[] pairs = salg.getVarer().split(",");
                 for (int i = 0; i < amount.length; i++) {
                     String[] value = pairs[i].split("-");

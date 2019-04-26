@@ -74,6 +74,8 @@ public class HovedsideFragment extends Fragment {
             public void onRefresh() {
                 final MainActivity main = new MainActivity();
                 AllSalg.clear();
+                honning.clear();
+                beholdnings.clear();
                 main.fetch();
                 new Handler().postDelayed(new Runnable() {
                     @Override

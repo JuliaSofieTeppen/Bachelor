@@ -184,7 +184,7 @@ public class HovedsideFragment extends Fragment {
         try {
             for (SalgTemplate salg : period) {
                 String[] pairs = salg.getVarer().split(",");
-                for (int i = 0; i < pairs.length; i++) {
+                for (int i = 0; i < amount.length; i++) {
                     String[] value = pairs[i].split("-");
                     amount[i] += Integer.parseInt(value[1]);
                 }
@@ -226,7 +226,7 @@ public class HovedsideFragment extends Fragment {
         ArrayList<SalgTemplate> period = new ArrayList<>();
         for (SalgTemplate sale : AllSalg) {
             String dato = sale.getDato();
-            if (start.compareTo(dato) <= 0 && end.compareTo(dato) >= 0) {
+            if (start.compareTo(dato) < 0 && end.compareTo(dato) >= 0) {
                 period.add(sale);
             }
         }

@@ -12,6 +12,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.julia.bachelor.helperClass.BeholdningTemplate;
+import com.julia.bachelor.helperClass.BondensMarked;
 import com.julia.bachelor.helperClass.Honning;
 import com.julia.bachelor.helperClass.SalgFactory;
 import com.julia.bachelor.helperClass.SalgTemplate;
@@ -27,89 +28,44 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.concurrent.ExecutionException;
 
 public class MainActivity extends Activity implements NavigationDrawerFragment.NavigationDrawerCallbacks {
-    private static final String KEY_ANNET = "Annet";
-    private static final String KEY_BEHOLDNING = "Beholdning";
-    private static final String KEY_BEHOLDNINGUT = "BeholdningUt";
-    private static final String KEY_BONDENSMARKED = "Bondensmarked";
-    private static final String KEY_HJEMME = "Hjemme";
-    private static final String KEY_HONNING = "Honning";
-    private static final String KEY_VIDERESALG = "Videresalg";
+
     private static final String KEY_BUNDLE = "Bundle";
     private static final String KEY_ALLSALG = "AllSalg";
 
-    static ArrayList<Honning> Honning;
-    static ArrayList<SalgTemplate> Annet;
-    static ArrayList<SalgTemplate> Hjemme;
-    static ArrayList<SalgTemplate> Bm;
-    static ArrayList<SalgTemplate> Videresalg;
-    static ArrayList<BeholdningTemplate> Beholdning;
-    static ArrayList<BeholdningTemplate> Salg;
-    static ArrayList<SalgTemplate> AllSalg;
-    private static String[] urls = {
-            "http://www.honningbier.no/PHP/AnnetOut.php",
-            "http://www.honningbier.no/PHP/BeholdningOut.php",
-            "http://www.honningbier.no/PHP/SalgOut.php",
-            "http://www.honningbier.no/PHP/BondensMarkedOut.php",
-            "http://www.honningbier.no/PHP/HjemmeOut.php",
-            "http://www.honningbier.no/PHP/HonningOut.php",
-            "http://www.honningbier.no/PHP/VideresalgOut.php"
-    };
+    static ArrayList<Honning> Honning = new ArrayList<>();
+    static ArrayList<BeholdningTemplate> Beholdning = new ArrayList<>();
+    static ArrayList<SalgTemplate> AllSalg = new ArrayList<>();
 
     EditText dato, som1kg, som05kg, som025kg, lyng1kg, lyng05kg, lyng025kg, ingf05kg, ingf025kg, flytende;
     List<EditText> verdier;
-
-    static void fetch() {
-        FetchDataTask task = new FetchDataTask();
-        String[] urls = {
-                "http://www.honningbier.no/PHP/AnnetOut.php",
-                "http://www.honningbier.no/PHP/BeholdningOut.php",
-                "http://www.honningbier.no/PHP/SalgOut.php",
-                "http://www.honningbier.no/PHP/BondensMarkedOut.php",
-                "http://www.honningbier.no/PHP/HjemmeOut.php",
-                "http://www.honningbier.no/PHP/HonningOut.php",
-                "http://www.honningbier.no/PHP/VideresalgOut.php"
-        };
-        task.execute(urls);
-    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-        fetch();
         /*
          * Fragment managing the behaviors, interactions and presentation of the navigation drawer.
          */
         NavigationDrawerFragment mNavigationDrawerFragment = (NavigationDrawerFragment) getFragmentManager().findFragmentById(R.id.navigation_drawer);
-        // Set up the drawer.
         mNavigationDrawerFragment.setUp(R.id.navigation_drawer, (DrawerLayout) findViewById(R.id.drawer_layout));
     }
 
-    @SuppressWarnings("unchecked")
-    void setArrays() {
-        Intent intent = getIntent();
-        Bundle bundle = intent.getBundleExtra(KEY_BUNDLE);
-        Honning = (ArrayList<Honning>) bundle.getSerializable(KEY_HONNING);
-        Annet = (ArrayList<SalgTemplate>) bundle.getSerializable(KEY_ANNET);
-        Hjemme = (ArrayList<SalgTemplate>) bundle.getSerializable(KEY_HJEMME);
-        Bm = (ArrayList<SalgTemplate>) bundle.getSerializable(KEY_BONDENSMARKED);
-        Videresalg = (ArrayList<SalgTemplate>) bundle.getSerializable(KEY_VIDERESALG);
-        Beholdning = (ArrayList<BeholdningTemplate>) bundle.getSerializable(KEY_BEHOLDNING);
-        Salg = (ArrayList<BeholdningTemplate>) bundle.getSerializable(KEY_BEHOLDNINGUT);
-        if (Videresalg == null || Hjemme == null || Annet == null || Bm == null) return;
-        setSalg();
+    void setArrays(ArrayList<BeholdningTemplate> BeholdningList, ArrayList<SalgTemplate> allSalg,
+                   ArrayList<Honning> HonningList) {
+        Beholdning.addAll(BeholdningList);
+        AllSalg.addAll(allSalg);
+        Honning.addAll(HonningList);
     }
 
     @Override
     public void onNavigationDrawerItemSelected(int position) {
         // update the main content by replacing fragments
-        setArrays();
         FragmentManager fragmentManager = getFragmentManager();
         fragmentManager.beginTransaction()
-                .replace(R.id.container, HovedsideFragment.newInstance(position + 1, Beholdning, Salg, Honning))
+                .replace(R.id.container, HovedsideFragment.newInstance(position + 1, Beholdning, Honning, AllSalg))
                 .commit();
     }
 
@@ -142,7 +98,7 @@ public class MainActivity extends Activity implements NavigationDrawerFragment.N
                 break;
 
             case 5:
-                SettingFragment insfragment = SettingFragment.newInstance(2);
+                SettingFragment insfragment = SettingFragment.newInstance();
                 FragmentTransaction insfragmentt = getFragmentManager().beginTransaction();
                 insfragmentt.replace(R.id.container, insfragment);
                 insfragmentt.addToBackStack(null);
@@ -171,7 +127,7 @@ public class MainActivity extends Activity implements NavigationDrawerFragment.N
         verdier = new ArrayList<>(Arrays.asList(som1kg, som05kg, som025kg, lyng1kg, lyng05kg, lyng025kg, ingf05kg, ingf025kg, flytende));
 
         int tell = 0;
-        if (checkDate(dato.getText().toString())) {
+        if (Beregninger.checkDate(dato.getText().toString())) {
             for (EditText verdi : verdier) {
                 if (verdi.getText().toString().equals("")) {
                     verdi.setText("0");
@@ -185,7 +141,6 @@ public class MainActivity extends Activity implements NavigationDrawerFragment.N
                 insertIntoDB();
                 Toast.makeText(this, "Beholdning lagret", Toast.LENGTH_SHORT).show();
             }
-
         } else {
             Toast.makeText(this, "Ugyldig dato", Toast.LENGTH_SHORT).show();
         }
@@ -193,10 +148,10 @@ public class MainActivity extends Activity implements NavigationDrawerFragment.N
 
     void insertIntoDB() {
         Database.executeOnDB("http://www.honningbier.no/PHP/SalgIn.php/?Dato=" + dato.getText().toString());
-        Database.executeOnDB("http://www.honningbier.no/PHP/BeholdningIn.php/?" + getBeholdning() + "&Dato=" + dato.getText().toString());
+        Database.executeOnDB("http://www.honningbier.no/PHP/BeholdningIn.php/?" + getStringBeholdning() + "&Dato=" + dato.getText().toString());
     }
 
-    private String getBeholdning() {
+    private String getStringBeholdning() {
         String[] strings = {"Sommer", "SommerH", "SommerK", "Lyng", "LyngH", "LyngK", "IngeferH", "IngeferK", "Flytende"};
         StringBuilder sb = new StringBuilder();
         for (int i = 0; i < strings.length; i++) {
@@ -205,25 +160,40 @@ public class MainActivity extends Activity implements NavigationDrawerFragment.N
         return sb.toString();
     }
 
-    public boolean checkDate(String date) {
-        String regex = "^\\d{4}\\.(0?[1-9]|1[012])\\.(0?[1-9]|[12][0-9]|3[01])$";
-        return date.matches(regex);
-    }
-
     public List<Honning> getHonningTyper() {
         return Honning;
     }
 
-    private void setSalg() {
-        AllSalg = new ArrayList<>();
-        AllSalg.addAll(Bm);
-        AllSalg.addAll(Hjemme);
-        AllSalg.addAll(Videresalg);
-        AllSalg.addAll(Annet);
+    public ArrayList<BeholdningTemplate> getBeholdning(){
+        return Beholdning;
+    }
+
+    void fetch() {
+        FetchDataTask task = new FetchDataTask();
+        String[] urls = {
+                "http://www.honningbier.no/PHP/AnnetOut.php",
+                "http://www.honningbier.no/PHP/BeholdningOut.php",
+                "http://www.honningbier.no/PHP/SalgOut.php",
+                "http://www.honningbier.no/PHP/BondensMarkedOut.php",
+                "http://www.honningbier.no/PHP/HjemmeOut.php",
+                "http://www.honningbier.no/PHP/HonningOut.php",
+                "http://www.honningbier.no/PHP/VideresalgOut.php"
+        };
+        task.execute(urls);
+        try {
+            task.get();
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
     }
 
     public static class FetchDataTask extends AsyncTask<String, Integer, String> {
         Integer progress;
+        ArrayList<SalgTemplate> AllSalg = new ArrayList<>();
+        ArrayList<BeholdningTemplate> BeholdningList = new ArrayList<>();
+        ArrayList<Honning> HonningList = new ArrayList<>();
 
         @Override
         protected String doInBackground(String... urls) {
@@ -244,6 +214,7 @@ public class MainActivity extends Activity implements NavigationDrawerFragment.N
                     while ((nextLine = bufferedReader.readLine()) != null) {
                         output.append(nextLine);
                     }
+                    bufferedReader.close();
                     conn.disconnect();
                     if (url1.equalsIgnoreCase(urls[0]) || url1.equalsIgnoreCase(urls[3]) || url1.equalsIgnoreCase(urls[4]) || url1.equalsIgnoreCase(urls[6])) {
                         setSaleValues(output.toString(), url1);
@@ -263,31 +234,31 @@ public class MainActivity extends Activity implements NavigationDrawerFragment.N
             try {
                 // Convert string to JSONArray containing JSONObjects.
                 JSONArray jsonArray = new JSONArray(output);
-                ArrayList<SalgTemplate> salg = new ArrayList<>();
                 for (int i = 0; i < jsonArray.length(); i++) {
                     SalgFactory factory = new SalgFactory();
                     SalgTemplate salgObject = factory.getSalgObject(url);
                     JSONObject jsonobject = jsonArray.getJSONObject(i);
                     salgObject.set_ID(jsonobject.getLong("ID"));
-                    salgObject.setKunde(jsonobject.getString("Kunde"));
+                    if (!(salgObject instanceof BondensMarked))
+                        salgObject.setKunde(jsonobject.getString("Kunde"));
                     salgObject.setDato(jsonobject.getString("Dato"));
                     salgObject.setVarer(jsonobject.getString("Varer"));
                     salgObject.setBelop(jsonobject.getInt("Belop"));
-                    salgObject.setBetaling(jsonobject.getString("Betaling"));
+                    if (!(salgObject instanceof BondensMarked))
+                        salgObject.setBetaling(jsonobject.getString("Betaling"));
                     if (salgObject instanceof com.julia.bachelor.helperClass.Videresalg)
                         salgObject.setMoms(jsonobject.getDouble("Moms"));
-                    salg.add(salgObject);
+                    AllSalg.add(salgObject);
                 }
             } catch (JSONException e) {
                 e.printStackTrace();
-            } // hei 🙂
+            }
         }
 
         void setBeholdnigValues(String output, String url) {
             try {
                 // Convert string to JSONArray containing JSONObjects.
                 JSONArray jsonArray = new JSONArray(output);
-                Beholdning.clear();
                 for (int i = 0; i < jsonArray.length(); i++) {
                     SalgFactory factory = new SalgFactory();
                     BeholdningTemplate beholdning = factory.getBeholdningObject(url);
@@ -303,10 +274,7 @@ public class MainActivity extends Activity implements NavigationDrawerFragment.N
                     beholdning.setIngeferK(jsonobject.getInt("IngeferKvart"));
                     beholdning.setFlytende(jsonobject.getInt("Flytende"));
                     beholdning.setDato(jsonobject.getString("Dato"));
-                    if (beholdning instanceof com.julia.bachelor.helperClass.Beholdning)
-                        Beholdning.add(beholdning);
-                    else
-                        Salg.add(beholdning);
+                    BeholdningList.add(beholdning);
                 }
             } catch (JSONException e) {
                 e.printStackTrace();
@@ -325,7 +293,7 @@ public class MainActivity extends Activity implements NavigationDrawerFragment.N
                     honning.setHjemmePris(jsonobject.getInt("HjemmePris"));
                     honning.setBondensMarkedPris(jsonobject.getInt("BMPris"));
                     honning.setFakturaPris(jsonobject.getInt("FakturaPris"));
-                    Honning.add(honning);
+                    HonningList.add(honning);
                 }
             } catch (JSONException e) {
                 e.printStackTrace();
@@ -335,6 +303,8 @@ public class MainActivity extends Activity implements NavigationDrawerFragment.N
         @Override
         protected void onPostExecute(String s) {
             super.onPostExecute(s);
+            MainActivity mainActivity = new MainActivity();
+            mainActivity.setArrays(BeholdningList, AllSalg, HonningList);
         }
 
         @Override

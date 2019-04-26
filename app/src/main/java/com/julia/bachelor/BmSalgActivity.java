@@ -66,7 +66,6 @@ public class BmSalgActivity extends Activity {
             if (tell == 0) {
                 Toast.makeText(this, "Legg til minst et produkt", Toast.LENGTH_SHORT).show();
             } else {
-                // TODO update beholdnings
                 insertValues();
                 Toast.makeText(this, "Bondens marked salg lagret", Toast.LENGTH_SHORT).show();
                 finish();
@@ -124,6 +123,7 @@ public class BmSalgActivity extends Activity {
     public String getVarer() {
         StringBuilder stringBuilder = new StringBuilder();
         for (int i = 0; i < honningtyper.size(); i++) {
+            if (i == verdier.size()) break;
             stringBuilder.append(honningtyper.get(i).get_ID()).append("-").append(verdier.get(i).getText().toString()).append(",");
         }
         return stringBuilder.toString();

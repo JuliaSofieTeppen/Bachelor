@@ -42,11 +42,9 @@ public class VideresalgActivity extends Activity implements AdapterView.OnItemSe
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_faktura_salg);
-        Database.getHonningType();
         if (getActionBar() != null) getActionBar().setDisplayHomeAsUpEnabled(true);
         navn = findViewById(R.id.FSnavn);
         moms = findViewById(R.id.FSmoms);
-        // TODO add current date to dato field by default
         dato = findViewById(R.id.FSdato);
         som1kg = findViewById(R.id.FSsom1kg);
         som05kg = findViewById(R.id.FSsom05kg);
@@ -91,7 +89,7 @@ public class VideresalgActivity extends Activity implements AdapterView.OnItemSe
 
     public void lagre(View v) {
         int tell = 0;
-        if (checkDate(dato.getText().toString())) {
+        if (Beregninger.checkDate(dato.getText().toString())) {
             for (EditText verdi : verdier) {
                 if (verdi.getText().toString().equals("") || verdi.getText().toString().equals("0")) {
                     verdi.setText("0");
@@ -102,7 +100,6 @@ public class VideresalgActivity extends Activity implements AdapterView.OnItemSe
             if (tell == 0) {
                 Toast.makeText(this, "Legg til minst et produkt", Toast.LENGTH_SHORT).show();
             } else {
-                // TODO update beholdnings
                 insertValues();
                 Toast.makeText(this, "Videre salg lagret", Toast.LENGTH_SHORT).show();
                 finish();
@@ -115,6 +112,7 @@ public class VideresalgActivity extends Activity implements AdapterView.OnItemSe
     private String getVarer() {
         StringBuilder stringBuilder = new StringBuilder();
         for (int i = 0; i < honningtyper.size(); i++) {
+            if(i == 9) break;
             stringBuilder.append(honningtyper.get(i).get_ID()).append("-").append(verdier.get(i).getText().toString()).append(",");
         }
         return stringBuilder.toString();
@@ -161,12 +159,6 @@ public class VideresalgActivity extends Activity implements AdapterView.OnItemSe
         } else {
             finish();
         }
-    }
-
-    // TODO might move it to another class since this method is needed in several classes.
-    public boolean checkDate(String date) {
-        String regex = "^\\d{4}\\.(0?[1-9]|1[012])\\.(0?[1-9]|[12][0-9]|3[01])$";
-        return date.matches(regex);
     }
 
     @Override

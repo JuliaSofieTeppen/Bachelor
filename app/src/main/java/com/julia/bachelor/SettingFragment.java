@@ -20,34 +20,23 @@ import java.util.List;
 
 public class SettingFragment extends Fragment {
 
-    // TODO: Rename parameter arguments, choose names that match
-    private static final String ARG_SECTION_NUMBER = "section_number";
     ConstraintLayout enkg, halvkg, kvartkg, Ingf05kg, Ingf025kg, flyt, endreverdier, endremoms;
     SharedPreferences sharedPreferences;
     SharedPreferences.Editor editor;
     EditText ferdigprodukt, ikkeferdig;
     Button momslagre;
-    EditText enkghjemme,halvkghjemme,kvartkghjemme,enkgbm,halvkgbm,kvartkgbm,enkgfak,halvkgfak,kvartkgfak,
-            ingfhalvkghjemme,ingfkvartkghjemme,ingfhalvkgbm,ingfkvartkgbm,ingfhalvkgfak,ingfkvartkgfak,
-            flythjemme,flytbm,flytfak;
+    EditText enkghjemme, halvkghjemme, kvartkghjemme, enkgbm, halvkgbm, kvartkgbm, enkgfak, halvkgfak, kvartkgfak,
+            ingfhalvkghjemme, ingfkvartkghjemme, ingfhalvkgbm, ingfkvartkgbm, ingfhalvkgfak, ingfkvartkgfak,
+            flythjemme, flytbm, flytfak;
     List<Honning> honningtype;
-    List<EditText> BMverdier;
-    List<EditText> HjemmeVerdier;
-    List<EditText> FakturaVerdier;
+    List<EditText> HjemmeVerdier, BMverdier, FakturaVerdier;
     Button lagre;
 
-    public SettingFragment() {
-    }
+    public SettingFragment(){}
 
-    // TODO: Rename and change types and number of parameters
-    public static SettingFragment newInstance(int sectionNumber) {
-        SettingFragment fragment = new SettingFragment();
-        Bundle args = new Bundle();
-        args.putInt(ARG_SECTION_NUMBER, sectionNumber);
-        fragment.setArguments(args);
-        return fragment;
+    public static SettingFragment newInstance() {
+        return new SettingFragment();
     }
-
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -84,27 +73,29 @@ public class SettingFragment extends Fragment {
         lagre = rootView.findViewById(R.id.lagre);
         sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this.getContext());
         editor = sharedPreferences.edit();
-        BMverdier = new ArrayList<>(Arrays.asList(enkgbm,halvkgbm,kvartkgbm,ingfhalvkgbm,ingfkvartkgbm,flytbm));
-        HjemmeVerdier = new ArrayList<>(Arrays.asList(enkghjemme,halvkghjemme,kvartkghjemme,ingfhalvkghjemme,ingfkvartkghjemme,flythjemme));
-        FakturaVerdier = new ArrayList<>(Arrays.asList(enkgfak,halvkgfak,kvartkgfak,ingfhalvkgfak,ingfkvartkgfak,flytfak));
-
+        BMverdier = new ArrayList<>(Arrays.asList(enkgbm, halvkgbm, kvartkgbm, ingfhalvkgbm, ingfkvartkgbm, flytbm));
+        HjemmeVerdier = new ArrayList<>(Arrays.asList(enkghjemme, halvkghjemme, kvartkghjemme, ingfhalvkghjemme, ingfkvartkghjemme, flythjemme));
+        FakturaVerdier = new ArrayList<>(Arrays.asList(enkgfak, halvkgfak, kvartkgfak, ingfhalvkgfak, ingfkvartkgfak, flytfak));
+        String tmp = Integer.toString(sharedPreferences.getInt("ferdigprodukt", 15));
+        ferdigprodukt.setText(tmp);
+        tmp = Integer.toString(sharedPreferences.getInt("ikkeferdig", 25));
+        ikkeferdig.setText(tmp);
 
         MainActivity main = new MainActivity();
         honningtype = main.getHonningTyper();
-
         try {
             if (honningtype != null) {
                 String s;
                 for (int i = 0; i < BMverdier.size(); i++) {
-                    s = Integer.toString(honningtype.get(i+3).getBondensMarkedPris());
+                    s = Integer.toString(honningtype.get(i + 3).getBondensMarkedPris());
                     BMverdier.get(i).setText(s);
                 }
                 for (int i = 0; i < HjemmeVerdier.size(); i++) {
-                    s= Integer.toString(honningtype.get(i+3).getHjemmePris());
+                    s = Integer.toString(honningtype.get(i + 3).getHjemmePris());
                     HjemmeVerdier.get(i).setText(s);
                 }
                 for (int i = 0; i < FakturaVerdier.size(); i++) {
-                    s = Integer.toString(honningtype.get(i+3).getFakturaPris());
+                    s = Integer.toString(honningtype.get(i + 3).getFakturaPris());
                     FakturaVerdier.get(i).setText(s);
                 }
             }
@@ -115,18 +106,13 @@ public class SettingFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 for (int i = 0; i < HjemmeVerdier.size(); i++) {
-                    if (HjemmeVerdier.get(i).getText().toString().equals(Integer.toString(honningtype.get(i + 3).getHjemmePris()))) {
-                        Database.executeOnDB("http://www.honningbier.no/PHP/HonningUpdate.php/?ID=" + honningtype.get(i+3).get_ID() + "&HjemmePris=" + HjemmeVerdier.get(i).getText().toString());
-                    }
-                    if (BMverdier.get(i).getText().toString().equals(Integer.toString(honningtype.get(i + 3).getBondensMarkedPris()))) {
-                        Database.executeOnDB("http://www.honningbier.no/PHP/HonningUpdate.php/?ID=" + honningtype.get(i+3).get_ID() + "&BondensMarkedPris=" + BMverdier.get(i).getText().toString());
-                    }
-                    if (FakturaVerdier.get(i).getText().toString().equals(Integer.toString(honningtype.get(i + 3).getFakturaPris()))) {
-                        Database.executeOnDB("http://www.honningbier.no/PHP/HonningUpdate.php/?ID=" + honningtype.get(i+3).get_ID() + "&FakturaPris=" + FakturaVerdier.get(i).getText().toString());
-
-                    }
+                    if (honningtype.get(i).get_ID() < 4)
+                        Database.executeOnDB("http://www.honningbier.no/PHP/HonningUpdate.php/?ID=" + honningtype.get(i).get_ID() + "&HjemmePris=" + HjemmeVerdier.get(i).getText().toString() + "&BMPris=" +
+                                BMverdier.get(i).getText().toString() + "&FakturaPris=" + FakturaVerdier.get(i).getText().toString());
+                    Database.executeOnDB("http://www.honningbier.no/PHP/HonningUpdate.php/?ID=" + honningtype.get(i + 3).get_ID() + "&HjemmePris=" + HjemmeVerdier.get(i).getText().toString() + "&BMPris=" +
+                            BMverdier.get(i).getText().toString() + "&FakturaPris=" + FakturaVerdier.get(i).getText().toString());
                 }
-                Toast.makeText(SettingFragment.this.getContext(),"Endringer lagret", Toast.LENGTH_SHORT).show();
+                Toast.makeText(SettingFragment.this.getContext(), "Endringer lagret", Toast.LENGTH_SHORT).show();
             }
         });
         momslagre.setOnClickListener(new View.OnClickListener() {

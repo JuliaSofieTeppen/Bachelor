@@ -15,8 +15,12 @@
             android:name=".PdfCreatorActivity"
             android:theme="@style/CompAppTheme">
         </activity>
-        <activity
-            android:name=".LoadContentActivity"
+        <activity android:name=".DetailsActivity" />
+        <activity android:name=".AnnetSalgActivity" />
+        <activity android:name=".VideresalgActivity" />
+        <activity android:name=".BmSalgActivity" />
+        <activity android:name=".HjemmesalgActivity" />
+        <activity android:name=".LoadContentActivity"
             android:label="@string/title_activity_main">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -24,16 +28,12 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".DetailsActivity" />
-        <activity android:name=".AnnetSalgActivity" />
-        <activity android:name=".VideresalgActivity" />
-        <activity android:name=".BmSalgActivity" />
-        <activity android:name=".HjemmesalgActivity" />
         <activity
             android:name=".MainActivity"
-            android:label="@string/title_activity_main" />
+            android:label="@string/title_activity_main">
+        </activity>
         <provider
-            android:name="android.support.v4.content.FileProvider"
+            android:name="com.julia.bachelor.GenericFileProvider"
             android:authorities="${applicationId}.com.julia.bachelor.GenericFileProvider"
             android:exported="false"
             android:grantUriPermissions="true">

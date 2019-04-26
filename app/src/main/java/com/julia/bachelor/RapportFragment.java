@@ -29,8 +29,7 @@ public class RapportFragment extends Fragment {
     ArrayList<String> salgliste;
     Beregninger beregninger;
 
-    public RapportFragment() {
-    }
+    public RapportFragment() {}
 
     /**
      * Returns a new instance of this fragment for the given section

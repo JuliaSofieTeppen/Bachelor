@@ -5,30 +5,28 @@ import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
 
 import com.julia.bachelor.helperClass.Annet;
+import com.julia.bachelor.helperClass.Beholdning;
+import com.julia.bachelor.helperClass.BeholdningTemplate;
 import com.julia.bachelor.helperClass.BondensMarked;
 import com.julia.bachelor.helperClass.Hjemme;
+import com.julia.bachelor.helperClass.Salg;
 import com.julia.bachelor.helperClass.SalgTemplate;
 import com.julia.bachelor.helperClass.Videresalg;
 
 import java.text.DateFormat;
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collections;
-import java.util.Comparator;
 import java.util.Date;
 import java.util.Iterator;
 import java.util.Locale;
 
-// math class can probably be static.
-class Beregninger implements Template {
+class Beregninger {
 
     private static final SimpleDateFormat DATO_FORMAT = new java.text.SimpleDateFormat("yyyy-mm-dd", Locale.US);
-    private static final double SATS = 0.15;
-    private final double SATSH = 0.25;
-    private final double SATSL = 0.15;
     private Context context;
+
+    Beregninger(){}
 
     Beregninger(Context context) {
         this.context = context;
@@ -59,6 +57,26 @@ class Beregninger implements Template {
         return hjemme;
     }
 
+    static ArrayList<BeholdningTemplate> separateSalg(ArrayList<BeholdningTemplate> list) {
+        ArrayList<BeholdningTemplate> salg = new ArrayList<>();
+        for (BeholdningTemplate object : list) {
+            if (object instanceof Salg) {
+                salg.add(object);
+            }
+        }
+        return salg;
+    }
+
+    static ArrayList<BeholdningTemplate> separateBeholdning(ArrayList<BeholdningTemplate> list) {
+        ArrayList<BeholdningTemplate> beholdning = new ArrayList<>();
+        for (BeholdningTemplate object : list) {
+            if (object instanceof Beholdning) {
+                beholdning.add(object);
+            }
+        }
+        return beholdning;
+    }
+
     ArrayList<SalgTemplate> separateBondensMarked(ArrayList<SalgTemplate> list) {
         ArrayList<SalgTemplate> bondensMarked = new ArrayList<>();
         for (SalgTemplate object : list) {
@@ -79,43 +97,8 @@ class Beregninger implements Template {
         return videresalg;
     }
 
-    public String reverseDate(String date) {
-        String[] strings = date.split("\\.");
-        date = "";
-        for (int i = strings.length - 1; i >= 0; i--) {
-            date += strings[i];
-            date += i >= 1 ? "." : "";
-        }
-        return date;
-    }
-
-    @Override
-    public void sortDate(ArrayList<Object> list) {//ok
-
-        String[] a = new String[list.size()];
-
-        for (int i = 0; i < list.size(); i++) {
-
-            a[i] = list.get(i).toString();
-        }
-        Arrays.sort(a, new Comparator<String>() {
-            @Override
-            public int compare(String objekt_1, String objekt_2) {
-                int resultat = -1;
-
-                try {
-                    resultat = DATO_FORMAT.parse(objekt_2).compareTo(DATO_FORMAT.parse(objekt_1));
-                } catch (ParseException e) {
-                    e.getErrorOffset();
-                }
-                return resultat;
-            }
-        });
-    }
-
-    @Override
-    public double sumAnnet(ArrayList<SalgTemplate> list) {//ok
-        Iterator<SalgTemplate> itererer = list.iterator();
+    public double sumAnnet(ArrayList<Annet> list) {//ok
+        Iterator<Annet> itererer = list.iterator();
         int total = 0;
         while (itererer.hasNext()) {
             int tall = itererer.next().getBelop();
@@ -126,9 +109,9 @@ class Beregninger implements Template {
         return total;
     }
 
-    @Override
-    public double sumHjemme(ArrayList<SalgTemplate> list) {//ok
-        Iterator<SalgTemplate> itererer = list.iterator();
+
+    public double sumHjemme(ArrayList<Hjemme> list) {//ok
+        Iterator<Hjemme> itererer = list.iterator();
         int total = 0;
         while (itererer.hasNext()) {
             int tall = itererer.next().getBelop();
@@ -139,14 +122,14 @@ class Beregninger implements Template {
         return total;
     }
 
-    @Override
+
     public void reverseList(ArrayList<Object> list) {//ok
         Collections.reverse(list);
     }
 
-    @Override
-    public double sumBm(ArrayList<SalgTemplate> list) {//ok
-        Iterator<SalgTemplate> itererer = list.iterator();
+
+    public double sumBm(ArrayList<BondensMarked> list) {//ok
+        Iterator<BondensMarked> itererer = list.iterator();
         int total = 0;
         while (itererer.hasNext()) {
             int tall = itererer.next().getBelop();
@@ -157,9 +140,9 @@ class Beregninger implements Template {
         return total;
     }
 
-    @Override
-    public double sumVideresalg(ArrayList<SalgTemplate> list) {//ok
-        Iterator<SalgTemplate> itererer = list.iterator();//.listIterator();
+
+    public double sumVideresalg(ArrayList<Videresalg> list) {//ok
+        Iterator<Videresalg> itererer = list.iterator();//.listIterator();
         int total = 0;
         while (itererer.hasNext()) {
             int tall = itererer.next().getBelop();
@@ -170,19 +153,19 @@ class Beregninger implements Template {
         return total;
     }
 
-    @Override
+
     public double sumList(ArrayList<SalgTemplate> list) {
         double total = 0;
-
-        total += sumAnnet(separateAnnet(list));
-        total += sumHjemme(separateHjemme(list));
-        total += sumBm(separateBondensMarked(list));
-        total += sumVideresalg(separateVideresalg(list));
-
+        for (SalgTemplate aList : list) {
+            int tall = aList.getBelop();
+            if (tall > 0) {
+                total += tall;
+            }
+        }
         return total;
     }
 
-    @Override
+
     public double mvaHoy(ArrayList<SalgTemplate> list) {
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
         double mva = ((double) sharedPreferences.getInt("ikkeferdig", 25)) / 100.0;
@@ -196,37 +179,12 @@ class Beregninger implements Template {
         return avgift;
     }
 
-    @Override
+
     public double mvaLav(ArrayList<Object> list) {
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
         return ((double) sharedPreferences.getInt("ferdigprodukt", 15)) / 100.0;
     }
 
-
-    /**
-     * 2. versjon som tar i mot String objekter deretter sorterer dem.
-     */
-    public void sortKunde_2(ArrayList<Object> list) {//ok
-
-        String[] a = new String[list.size()];
-
-        for (int i = 0; i < list.size(); i++) {
-
-            a[i] = list.get(i).toString();
-        }
-        for (int i = 1; i < a.length; i++) {
-
-            String verdi = a[i];
-            int j = i - 1;
-
-            for (; j >= 0 && verdi.compareTo(a[j]) < 0; j--) {
-                a[j + 1] = a[j];
-
-            }
-
-            a[j + 1] = verdi;
-        }
-    }
     static String getDate() {
         DateFormat dateFormat = new SimpleDateFormat("yyyy.MM.dd", Locale.US);
         Date now = new Date();

@@ -117,25 +117,23 @@ public class PdfCreatorActivity extends AppCompatActivity {
     }
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
-        switch (requestCode) {
-            case REQUEST_CODE_ASK_PERMISSIONS:
-                if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                    // Permission Granted
-                    try {
-                        createPdfWrapper();
-                    } catch (FileNotFoundException e) {
-                        e.printStackTrace();
-                    } catch (DocumentException e) {
-                        e.printStackTrace();
-                    }
-                } else {
-                    // Permission Denied
-                    Toast.makeText(this, "WRITE_EXTERNAL Permission Denied", Toast.LENGTH_SHORT)
-                            .show();
+        if (requestCode == REQUEST_CODE_ASK_PERMISSIONS) {
+            if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                // Permission Granted
+                try {
+                    createPdfWrapper();
+                } catch (FileNotFoundException e) {
+                    e.printStackTrace();
+                } catch (DocumentException e) {
+                    e.printStackTrace();
                 }
-                break;
-            default:
-                super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+            } else {
+                // Permission Denied
+                Toast.makeText(this, "WRITE_EXTERNAL Permission Denied", Toast.LENGTH_SHORT)
+                        .show();
+            }
+        } else {
+            super.onRequestPermissionsResult(requestCode, permissions, grantResults);
         }
     }
     private void showMessageOKCancel(DialogInterface.OnClickListener okListener) {
@@ -197,10 +195,10 @@ public class PdfCreatorActivity extends AppCompatActivity {
                 }
             }else if(salg instanceof Annet) {
                 Annet annet = (Annet) salg;
-                if(greaterThan(annet.getDato(), Startdato.getText().toString())&& !greaterThan(annet.getDato(),Sluttdato.getText().toString())) {
+                if (greaterThan(annet.getDato(), Startdato.getText().toString()) && !greaterThan(annet.getDato(), Sluttdato.getText().toString())) {
                     annettable.addCell(annet.getDato());
                     annettable.addCell(Integer.toString(annet.getBelop()));
-                    annettable.addCell(Double.toString(sharedPreferences.getInt("ikkeferdig", 25)));
+                    annettable.addCell(Double.toString(sharedPreferences.getInt("ikkeferdig", 25))); //TODO swap with getMoms
                 }
             }else{
                 Toast.makeText(this, "Noe gikk galt", Toast.LENGTH_SHORT).show();

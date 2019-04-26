@@ -172,14 +172,7 @@ public class HovedsideFragment extends Fragment {
                         beholdning.getIngeferK() + " \n" +
                         beholdning.getFlytende() + " \n";
     }
-
-
-    boolean greaterThan(BeholdningTemplate current, BeholdningTemplate next) {
-        ArrayList<String> dates = new ArrayList<>(Arrays.asList(current.getDato(), next.getDato()));
-        Collections.sort(dates);
-        return !dates.get(1).equals(current.getDato());
-    }
-
+    
     BeholdningTemplate CalculateBeholdning() {
         BeholdningTemplate beholdning = findCurrentBeholdning(Beregninger.separateBeholdning(beholdnings));
         ArrayList<SalgTemplate> period = salesInPeriod(beholdning.getDato());

@@ -53,7 +53,7 @@ public class DetailsActivity extends Activity {
                 betalingkroner.setText(text);
             }
             Kundenavn.setText(hm.getKunde());
-            setHjemmesalgVerdier(hm.getVarer());
+            setVerdier(hm.getVarer());
         } else if (object instanceof Videresalg) {
             Videresalg vi = (Videresalg) object;
             text = Integer.toString(vi.getBelop());
@@ -101,20 +101,6 @@ public class DetailsActivity extends Activity {
         for (String aVerdier : verdier) {
             String[] verd = aVerdier.split("-");
             text.append(verd[1]).append("\n\n");
-        }
-        solgteprodukter.setText(text.toString());
-    }
-
-    public void setHjemmesalgVerdier(String verdilinje) {
-        String[] verdier = verdilinje.split(",");
-        int[] a = new int[9];
-        StringBuilder text = new StringBuilder();
-        for (String string : verdier) {
-            String[] s = string.split("-");
-            a[Integer.parseInt(s[0]) - 1] += Integer.parseInt(s[1]);
-        }
-        for (int anA : a) {
-            text.append(Integer.toString(anA)).append("\n\n");
         }
         solgteprodukter.setText(text.toString());
     }

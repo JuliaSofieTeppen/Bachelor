@@ -310,7 +310,7 @@
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="12dp"
                 android:layout_marginEnd="8dp"
-                android:text="0kr"
+                android:text="@string/_0kr"
                 android:textSize="30sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"

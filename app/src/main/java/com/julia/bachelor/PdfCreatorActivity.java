@@ -117,25 +117,23 @@ public class PdfCreatorActivity extends AppCompatActivity {
     }
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
-        switch (requestCode) {
-            case REQUEST_CODE_ASK_PERMISSIONS:
-                if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                    // Permission Granted
-                    try {
-                        createPdfWrapper();
-                    } catch (FileNotFoundException e) {
-                        e.printStackTrace();
-                    } catch (DocumentException e) {
-                        e.printStackTrace();
-                    }
-                } else {
-                    // Permission Denied
-                    Toast.makeText(this, "WRITE_EXTERNAL Permission Denied", Toast.LENGTH_SHORT)
-                            .show();
+        if (requestCode == REQUEST_CODE_ASK_PERMISSIONS) {
+            if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                // Permission Granted
+                try {
+                    createPdfWrapper();
+                } catch (FileNotFoundException e) {
+                    e.printStackTrace();
+                } catch (DocumentException e) {
+                    e.printStackTrace();
                 }
-                break;
-            default:
-                super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+            } else {
+                // Permission Denied
+                Toast.makeText(this, "WRITE_EXTERNAL Permission Denied", Toast.LENGTH_SHORT)
+                        .show();
+            }
+        } else {
+            super.onRequestPermissionsResult(requestCode, permissions, grantResults);
         }
     }
     private void showMessageOKCancel(DialogInterface.OnClickListener okListener) {

@@ -10,6 +10,7 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.julia.bachelor.helperClass.Beholdning;
 import com.julia.bachelor.helperClass.Honning;
 
 import java.text.DateFormat;
@@ -23,7 +24,9 @@ import java.util.Locale;
 public class BmSalgActivity extends Activity {
     private static final String KEY_BUNDLE = "Bundle";
     private static final String KEY_HONNING = "Honning";
+    private static final String KEY_BEHOLD = "Behold";
     static List<Honning> honningtyper;
+    static Beholdning behold;
     EditText dato, som1kg, som05kg, som025kg, lyng1kg, lyng05kg, lyng025kg, ingf05kg, ingf025kg, flytende;
     List<EditText> verdier;
 
@@ -45,6 +48,7 @@ public class BmSalgActivity extends Activity {
         verdier = new ArrayList<>(Arrays.asList(som1kg, som05kg, som025kg, lyng1kg, lyng05kg, lyng025kg, ingf05kg, ingf025kg, flytende));
         Intent intent = getIntent();
         Bundle bundle = intent.getBundleExtra(KEY_BUNDLE);
+        behold = (Beholdning) bundle.getSerializable(KEY_BEHOLD);
         honningtyper = (ArrayList<Honning>) bundle.getSerializable(KEY_HONNING);
 
         DateFormat dateFormat = new SimpleDateFormat("yyyy.MM.dd", Locale.US);
@@ -66,9 +70,12 @@ public class BmSalgActivity extends Activity {
             if (tell == 0) {
                 Toast.makeText(this, "Legg til minst et produkt", Toast.LENGTH_SHORT).show();
             } else {
-                insertValues();
-                Toast.makeText(this, "Bondens marked salg lagret", Toast.LENGTH_SHORT).show();
-                finish();
+                if(!checkbehold()){ addAlert();
+                }else {
+                    insertValues();
+                    Toast.makeText(this, "Bondens marked salg lagret", Toast.LENGTH_SHORT).show();
+                    finish();
+                }
             }
         } else {
             Toast.makeText(this, "Ugyldig dato", Toast.LENGTH_SHORT).show();
@@ -80,6 +87,7 @@ public class BmSalgActivity extends Activity {
         goback();
         return true;
     }
+
 
     @Override
     public void onBackPressed() {
@@ -111,6 +119,28 @@ public class BmSalgActivity extends Activity {
         }
     }
 
+    public void addAlert(){
+        final AlertDialog.Builder builder = new AlertDialog.Builder(BmSalgActivity.this);
+        builder.setMessage("Selger antall honning mer enn resterende beholdning. \n Vil du fortsette?");
+        builder.setCancelable(true);
+        builder.setNegativeButton("Ja", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                insertValues();
+                Toast.makeText(BmSalgActivity.this, "Bondens marked salg lagret", Toast.LENGTH_SHORT).show();
+                finish();
+            }
+        });
+        builder.setPositiveButton("Nei", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.cancel();
+            }
+        });
+        AlertDialog alertDialog = builder.create();
+        alertDialog.show();
+    }
+
     public boolean ValueInField() {
         for (EditText verdi : verdier) {
             if (!(verdi.getText().toString().equals(""))) {
@@ -128,7 +158,27 @@ public class BmSalgActivity extends Activity {
         }
         return stringBuilder.toString();
     }
-
+    public boolean checkbehold(){
+        if (checkValue(behold.getSommer(),Integer.parseInt(verdier.get(0).getText().toString()))) return false;
+        if (checkValue(behold.getSommerH(),Integer.parseInt(verdier.get(1).getText().toString()))) return false;
+        if (checkValue(behold.getSommerK(),Integer.parseInt(verdier.get(2).getText().toString()))) return false;
+        if (checkValue(behold.getLyng(),Integer.parseInt(verdier.get(3).getText().toString()))) return false;
+        if (checkValue(behold.getLyngH(),Integer.parseInt(verdier.get(4).getText().toString()))) return false;
+        if (checkValue(behold.getLyngK(),Integer.parseInt(verdier.get(5).getText().toString()))) return false;
+        if (checkValue(behold.getIngeferH(),Integer.parseInt(verdier.get(6).getText().toString()))) return false;
+        if (checkValue(behold.getIngeferK(),Integer.parseInt(verdier.get(7).getText().toString()))) return false;
+        if (checkValue(behold.getFlytende(),Integer.parseInt(verdier.get(8).getText().toString()))) return false;
+        return true;
+    }
+    public boolean checkValue(int behold, int verdi){
+        if(verdi == 0){
+            return false;
+        }
+        if(behold < verdi){
+            return true;
+        }
+        return false;
+    }
     void insertValues() {
         Database.executeOnDB("http://www.honningbier.no/PHP/BondensMarkedIn.php/?Dato=" + dato.getText().toString() +
                 "&Varer=" + getVarer() + "&Belop=" + getbelop());

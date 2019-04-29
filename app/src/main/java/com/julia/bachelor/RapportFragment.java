@@ -99,17 +99,24 @@ public class RapportFragment extends Fragment {
     private void selectdagmanedar(int position) {
         switch (position) {
             case 0:
+                selectsalgtyper(salgtyper.getSelectedItemPosition());
+                sortDay();
                 Toast.makeText(this.getContext(), "sorter på dag", Toast.LENGTH_SHORT).show();
                 break;
             case 1:
+                selectsalgtyper(salgtyper.getSelectedItemPosition());
                 sortMonth();
                 Toast.makeText(this.getContext(), "sorter på måned", Toast.LENGTH_SHORT).show();
                 break;
             case 2:
+                selectsalgtyper(salgtyper.getSelectedItemPosition());
                 sortYear();
                 Toast.makeText(this.getContext(), "sorter på år", Toast.LENGTH_SHORT).show();
                 break;
         }
+    }
+    public void sortDay(){
+
     }
 
     private void selectsalgtyper(int posisjon) {
@@ -183,19 +190,19 @@ public class RapportFragment extends Fragment {
 
     void sortMonth() {
         HashMap<String, SortedObjects> sorted = new HashMap<>();
-        for (int i = 0; i < Salg.size(); i++) {
+        for (int i = 0; i < dynamicList.size(); i++) {
             String date;
-            SalgTemplate salg = Salg.get(i);
+            SalgTemplate salg = dynamicList.get(i);
             date = getMonth(salg.getDato());
             // sorted is a hash map where i use the date as the key. date is a string
             if (!sorted.containsKey(date)) {
                 SortedObjects sortedObjects = new SortedObjects(true);
-                sortedObjects.add(Salg.get(i));
+                sortedObjects.add(dynamicList.get(i));
                 sortedObjects.setDato(date);
                 sorted.put(date, sortedObjects);
             } else {
                 SortedObjects d = sorted.get(date);
-                if (d != null) d.add(Salg.get(i));
+                if (d != null) d.add(dynamicList.get(i));
             }
         }
         dynamicList.clear();
@@ -207,19 +214,19 @@ public class RapportFragment extends Fragment {
 
     void sortYear() {
         HashMap<String, SortedObjects> sorted = new HashMap<>();
-        for (int i = 0; i < Salg.size(); i++) {
+        for (int i = 0; i < dynamicList.size(); i++) {
             String date;
-            SalgTemplate salg = Salg.get(i);
+            SalgTemplate salg = dynamicList.get(i);
             date = getYear(salg.getDato());
             // sorted is a hash map where i use the date as the key. date is a string
             if (!sorted.containsKey(date)) {
                 SortedObjects sortedObjects = new SortedObjects(false);
-                sortedObjects.add(Salg.get(i));
+                sortedObjects.add(dynamicList.get(i));
                 sortedObjects.setDato(date);
                 sorted.put(date, sortedObjects);
             } else {
                 SortedObjects d = sorted.get(date);
-                if (d != null) d.add(Salg.get(i));
+                if (d != null) d.add(dynamicList.get(i));
             }
         }
         dynamicList.clear();

@@ -16,6 +16,7 @@ import android.widget.ScrollView;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import com.julia.bachelor.helperClass.Beholdning;
 import com.julia.bachelor.helperClass.Honning;
 
 import java.text.DateFormat;
@@ -29,7 +30,9 @@ import java.util.Locale;
 public class VideresalgActivity extends Activity implements AdapterView.OnItemSelectedListener {
     private static final String KEY_BUNDLE = "Bundle";
     private static final String KEY_HONNING = "Honning";
+    private static final String KEY_BEHOLD = "Behold";
     static ArrayList<Honning> honningtyper;
+    static Beholdning behold;
     Spinner betaling;
     String betalingsmetode;
     Spinner moms;
@@ -62,6 +65,7 @@ public class VideresalgActivity extends Activity implements AdapterView.OnItemSe
         Intent intent = getIntent();
         Bundle bundle = intent.getBundleExtra(KEY_BUNDLE);
         honningtyper = (ArrayList<Honning>) bundle.getSerializable(KEY_HONNING);
+        behold = (Beholdning) bundle.getSerializable(KEY_BEHOLD);
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
         setBetalingsmetodespinner();
         setMomsspinner(sharedPreferences);
@@ -100,9 +104,12 @@ public class VideresalgActivity extends Activity implements AdapterView.OnItemSe
             if (tell == 0) {
                 Toast.makeText(this, "Legg til minst et produkt", Toast.LENGTH_SHORT).show();
             } else {
-                insertValues();
-                Toast.makeText(this, "Videre salg lagret", Toast.LENGTH_SHORT).show();
-                finish();
+                if(!checkbehold()){ addAlert();
+                }else {
+                    insertValues();
+                    Toast.makeText(this, "Videre salg lagret", Toast.LENGTH_SHORT).show();
+                    finish();
+                }
             }
         } else {
             Toast.makeText(this, "Ugyldig dato", Toast.LENGTH_SHORT).show();
@@ -122,6 +129,27 @@ public class VideresalgActivity extends Activity implements AdapterView.OnItemSe
         Database.executeOnDB("http://www.honningbier.no/PHP/VideresalgIn.php/?Kunde=" + navn.getText().toString() +
                 "&Dato=" + dato.getText().toString() +
                 "&Varer=" + getVarer() + "&Belop=" + getbelop() + "&Betaling=" + betaling.getSelectedItem().toString() + "&Moms=" + moms.getSelectedItem().toString());
+    }
+    public boolean checkbehold(){
+        if (checkValue(behold.getSommer(),Integer.parseInt(verdier.get(0).getText().toString()))) return false;
+        if (checkValue(behold.getSommerH(),Integer.parseInt(verdier.get(1).getText().toString()))) return false;
+        if (checkValue(behold.getSommerK(),Integer.parseInt(verdier.get(2).getText().toString()))) return false;
+        if (checkValue(behold.getLyng(),Integer.parseInt(verdier.get(3).getText().toString()))) return false;
+        if (checkValue(behold.getLyngH(),Integer.parseInt(verdier.get(4).getText().toString()))) return false;
+        if (checkValue(behold.getLyngK(),Integer.parseInt(verdier.get(5).getText().toString()))) return false;
+        if (checkValue(behold.getIngeferH(),Integer.parseInt(verdier.get(6).getText().toString()))) return false;
+        if (checkValue(behold.getIngeferK(),Integer.parseInt(verdier.get(7).getText().toString()))) return false;
+        if (checkValue(behold.getFlytende(),Integer.parseInt(verdier.get(8).getText().toString()))) return false;
+        return true;
+    }
+    public boolean checkValue(int behold, int verdi){
+        if(verdi == 0){
+            return false;
+        }
+        if(behold < verdi){
+            return true;
+        }
+        return false;
     }
 
     int getbelop() {
@@ -170,6 +198,28 @@ public class VideresalgActivity extends Activity implements AdapterView.OnItemSe
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
         betalingsmetode = parent.getItemAtPosition(position).toString();
+    }
+
+    public void addAlert(){
+        final AlertDialog.Builder builder = new AlertDialog.Builder(VideresalgActivity.this);
+        builder.setMessage("Selger antall honning mer enn resterende beholdning. \n Vil du fortsette?");
+        builder.setCancelable(true);
+        builder.setNegativeButton("Ja", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                insertValues();
+                Toast.makeText(VideresalgActivity.this, "Bondens marked salg lagret", Toast.LENGTH_SHORT).show();
+                finish();
+            }
+        });
+        builder.setPositiveButton("Nei", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.cancel();
+            }
+        });
+        AlertDialog alertDialog = builder.create();
+        alertDialog.show();
     }
 
     @Override

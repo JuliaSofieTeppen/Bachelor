@@ -13,6 +13,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.PopupMenu;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.julia.bachelor.helperClass.Annet;
 import com.julia.bachelor.helperClass.Beholdning;
@@ -34,6 +35,7 @@ public class HovedsideFragment extends Fragment {
     private static final String KEY_BEHOLDNING = "Beholdning";
     private static final String KEY_HONNING = "Honning";
     private static final String KEY_BUNDLE = "Bundle";
+    private static final String KEY_BEHOLD = "Behold";
     static ArrayList<BeholdningTemplate> beholdnings;
     static ArrayList<SalgTemplate> AllSalg;
     static ArrayList<Honning> honning;
@@ -80,8 +82,16 @@ public class HovedsideFragment extends Fragment {
                 new Handler().postDelayed(new Runnable() {
                     @Override
                     public void run() {
-                        beholdnings = main.getBeholdning();
-                        info.setText(setValueString());
+                        try {
+                            beholdnings = main.getBeholdning();
+                            info.setText(setValueString());
+                            navn.setText(setNameString());
+                            addbutton.setVisibility(View.VISIBLE);
+                        }catch (NullPointerException e){
+                            Toast.makeText(getContext(),"Ingen internett tilgang", Toast.LENGTH_SHORT).show();
+                        }catch (IndexOutOfBoundsException e){
+                            Toast.makeText(getContext(),"Ingen internett tilgang", Toast.LENGTH_SHORT).show();
+                        }
                         mSwipeRefreshLayout.setRefreshing(false);
                     }
                 }, 1000);
@@ -98,19 +108,25 @@ public class HovedsideFragment extends Fragment {
                     public boolean onMenuItemClick(MenuItem item) {
                         if (item.getTitle().equals("Bondens Marked")) {
                             Bundle bundle = new Bundle();
+                            BeholdningTemplate beholdningTemplate = CalculateBeholdning();
                             bundle.putSerializable(KEY_HONNING, honning);
+                            bundle.putSerializable(KEY_BEHOLD, (Beholdning) beholdningTemplate);
                             Intent myIntent = new Intent(rootView.getContext(), BmSalgActivity.class);
                             myIntent.putExtra(KEY_BUNDLE, bundle); //Optional parameters
                             rootView.getContext().startActivity(myIntent);
                         } else if (item.getTitle().equals("Hjemmesalg")) {
                             Bundle bundle = new Bundle();
+                            BeholdningTemplate beholdningTemplate = CalculateBeholdning();
                             bundle.putSerializable(KEY_HONNING, honning);
+                            bundle.putSerializable(KEY_BEHOLD, (Beholdning) beholdningTemplate);
                             Intent myIntent = new Intent(rootView.getContext(), HjemmesalgActivity.class);
                             myIntent.putExtra(KEY_BUNDLE, bundle);
                             rootView.getContext().startActivity(myIntent);
                         } else if (item.getTitle().equals("Videresalg")) {
                             Bundle bundle = new Bundle();
+                            BeholdningTemplate beholdningTemplate = CalculateBeholdning();
                             bundle.putSerializable(KEY_HONNING, honning);
+                            bundle.putSerializable(KEY_BEHOLD, (Beholdning) beholdningTemplate);
                             Intent myIntent = new Intent(rootView.getContext(), VideresalgActivity.class);
                             myIntent.putExtra(KEY_BUNDLE, bundle);
                             rootView.getContext().startActivity(myIntent);
@@ -210,8 +226,8 @@ public class HovedsideFragment extends Fragment {
                     current = (Beholdning) beholdning.get(i);
                 }
             }
-            return current;
         } catch (IndexOutOfBoundsException e) {
+            Toast.makeText(getContext(),"Ingen internett tilgang", Toast.LENGTH_SHORT).show();
             addbutton.setVisibility(View.GONE);
         }
         if (current == null) throw new NullPointerException("Possible problem with connection");
@@ -223,7 +239,7 @@ public class HovedsideFragment extends Fragment {
         ArrayList<SalgTemplate> period = new ArrayList<>();
         for (SalgTemplate sale : AllSalg) {
             String dato = sale.getDato();
-            if (start.compareTo(dato) < 0 && end.compareTo(dato) >= 0) {
+            if (start.compareTo(dato) <= 0 && end.compareTo(dato) >= 0) {
                 period.add(sale);
             }
         }

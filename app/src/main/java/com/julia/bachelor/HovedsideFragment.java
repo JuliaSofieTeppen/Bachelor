@@ -13,6 +13,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.PopupMenu;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.julia.bachelor.helperClass.Annet;
 import com.julia.bachelor.helperClass.Beholdning;
@@ -80,8 +81,16 @@ public class HovedsideFragment extends Fragment {
                 new Handler().postDelayed(new Runnable() {
                     @Override
                     public void run() {
-                        beholdnings = main.getBeholdning();
-                        info.setText(setValueString());
+                        try {
+                            beholdnings = main.getBeholdning();
+                            info.setText(setValueString());
+                            navn.setText(setNameString());
+                            addbutton.setVisibility(View.VISIBLE);
+                        }catch (NullPointerException e){
+                            Toast.makeText(getContext(),"Ingen internett tilgang", Toast.LENGTH_SHORT).show();
+                        }catch (IndexOutOfBoundsException e){
+                            Toast.makeText(getContext(),"Ingen internett tilgang", Toast.LENGTH_SHORT).show();
+                        }
                         mSwipeRefreshLayout.setRefreshing(false);
                     }
                 }, 1000);
@@ -212,6 +221,7 @@ public class HovedsideFragment extends Fragment {
             }
             return current;
         } catch (IndexOutOfBoundsException e) {
+            Toast.makeText(getContext(),"Ingen internett tilgang", Toast.LENGTH_SHORT).show();
             addbutton.setVisibility(View.GONE);
         }
         if (current == null) throw new NullPointerException("Possible problem with connection");

@@ -21,8 +21,6 @@ import com.julia.bachelor.helperClass.Honning;
 import com.julia.bachelor.helperClass.SalgTemplate;
 
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
 
 public class HovedsideFragment extends Fragment {
     /**

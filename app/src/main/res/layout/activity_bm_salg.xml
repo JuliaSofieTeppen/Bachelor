@@ -32,7 +32,7 @@
             <android.support.constraint.ConstraintLayout
                 android:id="@+id/Honninglayout"
                 android:layout_width="0dp"
-                android:layout_height="580dp"
+                android:layout_height="630dp"
                 android:layout_marginStart="30dp"
                 android:layout_marginTop="20dp"
                 android:layout_marginEnd="30dp"
@@ -52,14 +52,14 @@
                     android:inputType="number"
                     app:layout_constraintBaseline_toBaselineOf="@+id/textView53"
                     app:layout_constraintEnd_toEndOf="parent"
-                    tools:ignore="Autofill"/>
+                    tools:ignore="Autofill" />
 
                 <TextView
                     android:id="@+id/textView58"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="8dp"
-                    android:layout_marginTop="24dp"
+                    android:layout_marginTop="32dp"
                     android:layout_marginEnd="8dp"
                     android:text="@string/med_ingefærkvartkg"
                     app:layout_constraintEnd_toStartOf="@+id/BMSlyn05kg"
@@ -77,14 +77,14 @@
                     android:inputType="number"
                     app:layout_constraintBaseline_toBaselineOf="@+id/textView52"
                     app:layout_constraintEnd_toEndOf="parent"
-                    tools:ignore="Autofill"/>
+                    tools:ignore="Autofill" />
 
                 <TextView
                     android:id="@+id/textView59"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="8dp"
-                    android:layout_marginTop="28dp"
+                    android:layout_marginTop="32dp"
                     android:layout_marginEnd="8dp"
                     android:text="@string/flytende"
                     app:layout_constraintEnd_toStartOf="@+id/BMSlyn025kg"
@@ -118,7 +118,7 @@
                     app:layout_constraintHorizontal_bias="0.189"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/textView55"
-                    tools:ignore="Autofill"/>
+                    tools:ignore="Autofill" />
 
                 <EditText
                     android:id="@+id/BMSlyn05kg"
@@ -130,7 +130,7 @@
                     android:inputType="number"
                     app:layout_constraintBaseline_toBaselineOf="@+id/textVie"
                     app:layout_constraintEnd_toEndOf="parent"
-                    tools:ignore="Autofill"/>
+                    tools:ignore="Autofill" />
 
                 <TextView
                     android:id="@+id/textView52"
@@ -155,14 +155,14 @@
                     android:inputType="number"
                     app:layout_constraintBaseline_toBaselineOf="@+id/textView58"
                     app:layout_constraintEnd_toEndOf="parent"
-                    tools:ignore="Autofill"/>
+                    tools:ignore="Autofill" />
 
                 <TextView
                     android:id="@+id/textVi"
                     android:layout_width="wrap_content"
                     android:layout_height="0dp"
                     android:layout_marginStart="8dp"
-                    android:layout_marginTop="24dp"
+                    android:layout_marginTop="32dp"
                     android:layout_marginEnd="8dp"
                     android:text="@string/kvartkg"
                     app:layout_constraintEnd_toStartOf="@+id/BMSlyn025kg"
@@ -180,7 +180,7 @@
                     android:inputType="number"
                     app:layout_constraintBaseline_toBaselineOf="@+id/textView57"
                     app:layout_constraintEnd_toEndOf="parent"
-                    tools:ignore="Autofill"/>
+                    tools:ignore="Autofill" />
 
                 <TextView
                     android:id="@+id/textView51"
@@ -206,7 +206,7 @@
                     android:inputType="number"
                     app:layout_constraintBaseline_toBaselineOf="@+id/textView"
                     app:layout_constraintEnd_toEndOf="parent"
-                    tools:ignore="Autofill"/>
+                    tools:ignore="Autofill" />
 
                 <EditText
                     android:id="@+id/BMSflyt"
@@ -218,14 +218,14 @@
                     android:inputType="number"
                     app:layout_constraintBaseline_toBaselineOf="@+id/textView59"
                     app:layout_constraintEnd_toEndOf="parent"
-                    tools:ignore="Autofill"/>
+                    tools:ignore="Autofill" />
 
                 <TextView
                     android:id="@+id/textView54"
                     android:layout_width="wrap_content"
                     android:layout_height="0dp"
                     android:layout_marginStart="8dp"
-                    android:layout_marginTop="28dp"
+                    android:layout_marginTop="32dp"
                     android:layout_marginEnd="8dp"
                     android:text="@string/kvartkg"
                     app:layout_constraintEnd_toStartOf="@+id/BMSsom025kg"
@@ -252,7 +252,7 @@
                     android:layout_width="48dp"
                     android:layout_height="20dp"
                     android:layout_marginStart="8dp"
-                    android:layout_marginTop="28dp"
+                    android:layout_marginTop="32dp"
                     android:layout_marginEnd="8dp"
                     android:text="@string/Halvkg"
                     app:layout_constraintEnd_toStartOf="@+id/BMSlyn05kg"
@@ -270,7 +270,7 @@
                     android:inputType="number"
                     app:layout_constraintBaseline_toBaselineOf="@+id/textVi"
                     app:layout_constraintEnd_toEndOf="parent"
-                    tools:ignore="Autofill"/>
+                    tools:ignore="Autofill" />
 
                 <TextView
                     android:id="@+id/textView57"
@@ -295,14 +295,14 @@
                     android:inputType="number"
                     app:layout_constraintBaseline_toBaselineOf="@+id/textView54"
                     app:layout_constraintEnd_toEndOf="parent"
-                    tools:ignore="Autofill"/>
+                    tools:ignore="Autofill" />
 
                 <TextView
                     android:id="@+id/textView53"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="8dp"
-                    android:layout_marginTop="24dp"
+                    android:layout_marginTop="32dp"
                     android:layout_marginEnd="8dp"
                     android:text="@string/Halvkg"
                     app:layout_constraintEnd_toStartOf="@+id/BMSsom05kg"

@@ -102,7 +102,7 @@
     <string name="voks">Voks</string>
     <string name="pollenering">Pollenering</string>
     <string name="dronninger">Dronninger</string>
-    <string name="_0_kr_n_n0_kr">0 kr    0 kr</string>
+    <string name="_0_kr_n_n0_kr">0 kr\n\n0 kr</string>
     <string name="kunde">Kunde</string>
     <string name="kontantbetaling_n_nkortbetaling">Kontantbetaling\n\nKortbetaling</string>
     <string name="_0">0</string>

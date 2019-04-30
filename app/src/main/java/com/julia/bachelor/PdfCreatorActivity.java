@@ -75,6 +75,7 @@ public class PdfCreatorActivity extends AppCompatActivity {
         Lagresom = findViewById(R.id.lagresom);
         image = BitmapFactory.decodeResource(getResources(),R.drawable.bie);
         Button mCreateButton = findViewById(R.id.button_create);
+        Sluttdato.setText(Beregninger.getDate());
         mCreateButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

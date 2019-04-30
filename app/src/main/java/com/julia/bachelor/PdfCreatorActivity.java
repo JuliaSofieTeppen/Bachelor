@@ -240,7 +240,7 @@ public class PdfCreatorActivity extends AppCompatActivity {
         addtotal(videretable,videreteller);
         addtotal(annettable,annetteller);
 
-        img.scaleToFit(100f, 100f);
+        img.scaleToFit(90f, 90f);
         img.setAlignment(Element.ALIGN_LEFT | Image.TEXTWRAP);
         document.add(Image.getInstance(img));
 
@@ -250,6 +250,7 @@ public class PdfCreatorActivity extends AppCompatActivity {
         document.add(new Paragraph("      Startdato: " + Startdato.getText().toString()));
         document.add(new Paragraph("      Sluttdato: " + Sluttdato.getText().toString()));
 
+        document.add( Chunk.NEWLINE );
         document.add( Chunk.NEWLINE );
         document.add(new Paragraph("Hjemmesalg", new Font(Font.FontFamily.HELVETICA, 12, Font.BOLD)));
         document.add( Chunk.NEWLINE );

@@ -5,39 +5,45 @@ import android.Manifest;
 import android.content.ActivityNotFoundException;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
-import android.preference.PreferenceManager;
 import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.FileProvider;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Toast;
 
+import com.itextpdf.text.BadElementException;
 import com.itextpdf.text.Chunk;
 import com.itextpdf.text.Document;
 import com.itextpdf.text.DocumentException;
+import com.itextpdf.text.Element;
 import com.itextpdf.text.Font;
+import com.itextpdf.text.Image;
 import com.itextpdf.text.Paragraph;
 import com.itextpdf.text.pdf.PdfPTable;
 import com.itextpdf.text.pdf.PdfWriter;
 import com.julia.bachelor.helperClass.Annet;
-import com.julia.bachelor.helperClass.BondensMarked;
 import com.julia.bachelor.helperClass.Hjemme;
 import com.julia.bachelor.helperClass.SalgTemplate;
 import com.julia.bachelor.helperClass.Videresalg;
 
+import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
+import java.io.IOException;
 import java.io.OutputStream;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -52,6 +58,7 @@ public class PdfCreatorActivity extends AppCompatActivity {
     private static final String KEY_BUNDLE = "Bundle";
     private static final String KEY_SALG = "AllSalg";
     private ArrayList<SalgTemplate> solgt;
+    Bitmap image;
 
     @Override @SuppressWarnings("unchecked")
     protected void onCreate(Bundle savedInstanceState) {
@@ -66,6 +73,7 @@ public class PdfCreatorActivity extends AppCompatActivity {
         Startdato = findViewById(R.id.startdato);
         Sluttdato = findViewById(R.id.sluttdato);
         Lagresom = findViewById(R.id.lagresom);
+        image = BitmapFactory.decodeResource(getResources(),R.drawable.bie);
         Button mCreateButton = findViewById(R.id.button_create);
         mCreateButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -117,25 +125,23 @@ public class PdfCreatorActivity extends AppCompatActivity {
     }
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
-        switch (requestCode) {
-            case REQUEST_CODE_ASK_PERMISSIONS:
-                if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                    // Permission Granted
-                    try {
-                        createPdfWrapper();
-                    } catch (FileNotFoundException e) {
-                        e.printStackTrace();
-                    } catch (DocumentException e) {
-                        e.printStackTrace();
-                    }
-                } else {
-                    // Permission Denied
-                    Toast.makeText(this, "WRITE_EXTERNAL Permission Denied", Toast.LENGTH_SHORT)
-                            .show();
+        if (requestCode == REQUEST_CODE_ASK_PERMISSIONS) {
+            if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                // Permission Granted
+                try {
+                    createPdfWrapper();
+                } catch (FileNotFoundException e) {
+                    e.printStackTrace();
+                } catch (DocumentException e) {
+                    e.printStackTrace();
                 }
-                break;
-            default:
-                super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+            } else {
+                // Permission Denied
+                Toast.makeText(this, "WRITE_EXTERNAL Permission Denied", Toast.LENGTH_SHORT)
+                        .show();
+            }
+        } else {
+            super.onRequestPermissionsResult(requestCode, permissions, grantResults);
         }
     }
     private void showMessageOKCancel(DialogInterface.OnClickListener okListener) {
@@ -161,24 +167,44 @@ public class PdfCreatorActivity extends AppCompatActivity {
         OutputStream output = new FileOutputStream(pdfFile);
         Document document = new Document();
         PdfWriter.getInstance(document, output);
-        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
+        //SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
+
+        ByteArrayOutputStream stream = new ByteArrayOutputStream();
+        image.compress(Bitmap.CompressFormat.PNG, 100, stream);
+        Image img = null;
+        byte[] byteArray = stream.toByteArray();
+        try {
+            img = Image.getInstance(byteArray);
+        } catch (BadElementException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
 
         document.open();
 
-        PdfPTable hjemmetable = new PdfPTable(3);
+        PdfPTable hjemmetable = new PdfPTable(4);
         hjemmetable.addCell("Dato");
-        hjemmetable.addCell("Beløp");
+        hjemmetable.addCell("Netto");
         hjemmetable.addCell("MVA");
+        hjemmetable.addCell("Avgift");
 
-        PdfPTable videretable = new PdfPTable(3);
+        PdfPTable videretable = new PdfPTable(4);
         videretable.addCell("Dato");
-        videretable.addCell("Beløp");
+        videretable.addCell("Netto");
         videretable.addCell("MVA");
+        videretable.addCell("Avgift");
 
-        PdfPTable annettable = new PdfPTable(3);
+        PdfPTable annettable = new PdfPTable(4);
         annettable.addCell("Dato");
-        annettable.addCell("Beløp");
+        annettable.addCell("Netto");
         annettable.addCell("MVA");
+        annettable.addCell("Avgift");
+
+        double hjemmeteller = 0;
+        double videreteller = 0;
+        double annetteller = 0;
 
         for(SalgTemplate salg : solgt){
             if(salg instanceof Hjemme) {
@@ -186,7 +212,9 @@ public class PdfCreatorActivity extends AppCompatActivity {
                 if(greaterThan(hjemmeSalg.getDato(), Startdato.getText().toString())&& !greaterThan(hjemmeSalg.getDato(),Sluttdato.getText().toString())){
                     hjemmetable.addCell(hjemmeSalg.getDato());
                     hjemmetable.addCell(Integer.toString(hjemmeSalg.getBelop()));
-                    hjemmetable.addCell(Double.toString(sharedPreferences.getInt("ferdigprodukt",15))); //TODO swap with getMoms
+                    hjemmetable.addCell(Double.toString(hjemmeSalg.getMoms()*100));
+                    hjemmetable.addCell(Double.toString(hjemmeSalg.getBelop()*hjemmeSalg.getMoms()));
+                    hjemmeteller += hjemmeSalg.getBelop()*hjemmeSalg.getMoms();
                 }
             }else if(salg instanceof Videresalg) {
                 Videresalg videresalg = (Videresalg) salg;
@@ -194,24 +222,33 @@ public class PdfCreatorActivity extends AppCompatActivity {
                     videretable.addCell(videresalg.getDato());
                     videretable.addCell(Integer.toString(videresalg.getBelop()));
                     videretable.addCell(Double.toString(videresalg.getMoms()));
+                    videretable.addCell(Double.toString((videresalg.getBelop()*videresalg.getMoms())/100));
+                    videreteller += (videresalg.getBelop()*videresalg.getMoms())/100;
                 }
             }else if(salg instanceof Annet) {
                 Annet annet = (Annet) salg;
                 if (greaterThan(annet.getDato(), Startdato.getText().toString()) && !greaterThan(annet.getDato(), Sluttdato.getText().toString())) {
                     annettable.addCell(annet.getDato());
                     annettable.addCell(Integer.toString(annet.getBelop()));
-                    annettable.addCell(Double.toString(sharedPreferences.getInt("ikkeferdig", 25))); //TODO swap with getMoms
+                    annettable.addCell(Double.toString(annet.getMoms()*100));
+                    annettable.addCell(Double.toString(annet.getBelop()*annet.getMoms()));
+                    annetteller += annet.getBelop()*annet.getMoms();
                 }
-            }else{
-                Toast.makeText(this, "Noe gikk galt", Toast.LENGTH_SHORT).show();
             }
         }
+        addtotal(hjemmetable,hjemmeteller);
+        addtotal(videretable,videreteller);
+        addtotal(annettable,annetteller);
 
-        document.add(new Paragraph("Faktura oversikt", new Font(Font.FontFamily.HELVETICA,18,Font.BOLD)));
+        img.scaleToFit(100f, 100f);
+        img.setAlignment(Element.ALIGN_LEFT | Image.TEXTWRAP);
+        document.add(Image.getInstance(img));
+
+        document.add(new Paragraph("    Faktura oversikt", new Font(Font.FontFamily.HELVETICA,18,Font.BOLD)));
         document.add( Chunk.NEWLINE );
 
-        document.add(new Paragraph("Startdato: " + Startdato.getText().toString()));
-        document.add(new Paragraph("Sluttdato: " + Sluttdato.getText().toString()));
+        document.add(new Paragraph("      Startdato: " + Startdato.getText().toString()));
+        document.add(new Paragraph("      Sluttdato: " + Sluttdato.getText().toString()));
 
         document.add( Chunk.NEWLINE );
         document.add(new Paragraph("Hjemmesalg", new Font(Font.FontFamily.HELVETICA, 12, Font.BOLD)));
@@ -227,6 +264,10 @@ public class PdfCreatorActivity extends AppCompatActivity {
         document.add(new Paragraph("Annet salg", new Font(Font.FontFamily.HELVETICA,12,Font.BOLD)));
         document.add( Chunk.NEWLINE );
         document.add(annettable);
+
+        document.add( Chunk.NEWLINE );
+        document.add( Chunk.NEWLINE );
+        document.add(new Paragraph("Total Avgift:" + (hjemmeteller + videreteller + annetteller), new Font(Font.FontFamily.HELVETICA,14,Font.BOLD)));
 
         document.close();
         Toast.makeText(this, "PDF laget", Toast.LENGTH_SHORT ).show();
@@ -279,6 +320,12 @@ public class PdfCreatorActivity extends AppCompatActivity {
             e.printStackTrace();
         }
         return false;
+    }
+    public void addtotal(PdfPTable table,double teller ){
+        table.addCell("Total:");
+        table.addCell("");
+        table.addCell("");
+        table.addCell(Double.toString(teller));
     }
 
 }

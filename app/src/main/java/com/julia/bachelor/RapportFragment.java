@@ -101,17 +101,14 @@ public class RapportFragment extends Fragment {
             case 0:
                 selectsalgtyper(salgtyper.getSelectedItemPosition());
                 sortDay();
-                Toast.makeText(this.getContext(), "sorter på dag", Toast.LENGTH_SHORT).show();
                 break;
             case 1:
                 selectsalgtyper(salgtyper.getSelectedItemPosition());
                 sortMonth();
-                Toast.makeText(this.getContext(), "sorter på måned", Toast.LENGTH_SHORT).show();
                 break;
             case 2:
                 selectsalgtyper(salgtyper.getSelectedItemPosition());
                 sortYear();
-                Toast.makeText(this.getContext(), "sorter på år", Toast.LENGTH_SHORT).show();
                 break;
         }
     }

@@ -85,7 +85,7 @@ public class DetailsActivity extends Activity {
             text = Integer.toString(sortedObjects.getBelop());
             total.setText(text);
             int[] betaling = sortedObjects.getBetalings();
-            text = Integer.toString(betaling[0]) + "kr\n\n" + Integer.toString(betaling[1]) + "kr";
+            text = betaling[0] + "kr\n\n" + betaling[1] + "kr";
             betalingkroner.setText(text);
             text = "Periode: " + sortedObjects.getDato();
             Kundenavn.setText(text);

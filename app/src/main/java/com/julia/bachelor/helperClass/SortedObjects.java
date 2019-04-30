@@ -5,17 +5,22 @@ import java.io.Serializable;
 public class SortedObjects implements SalgTemplate, Serializable {
     private static final String KONTANT = "Kontant";
     private String Varer;
+    private int[] amount;
     private String AnnetVarer;
     private int Belop;
+    /** if true sorts by month
+     * if false sorts by year **/
     private boolean sortMethod;
-    /**
-     * Betaling[0] = Kontant, Betaling[1] = Kort.
+    /** Variable to see what type of payment was used.
+     * Betaling[0] = Kontant,
+     * Betaling[1] = Kort.
      **/
     private int[] Betaling;
     private String dato;
 
     public SortedObjects(boolean sortMethod) {
         Varer = "1-0,2-0,3-0,4-0,5-0,6-0,7-0,8-0,9-0";
+        amount = new int[9];
         AnnetVarer = "1-0,2-0,3-0,4-0";
         Belop = 0;
         Betaling = new int[2];
@@ -52,7 +57,11 @@ public class SortedObjects implements SalgTemplate, Serializable {
     }
 
     public String getVarer() {
-        return Varer;
+        StringBuilder sb = new StringBuilder();
+        for (int j = 0; j < amount.length; j++) {
+            sb.append(j + 1).append("-").append(amount[j]).append(",");
+        }
+        return sb.toString();
     }
 
     @Override
@@ -86,26 +95,22 @@ public class SortedObjects implements SalgTemplate, Serializable {
     public void setMoms(double moms) {}
 
     // TODO fix this method
-    private String addVarer(String varer) {
+    private void addVarer(String varer) {
         String[] addPair = varer.split(",");
-        String[] OriginalPair = Varer.split(",");
+        //String[] OriginalPair = Varer.split(",");
         int[] newValues = new int[addPair.length];
         for (int i = 0; i < addPair.length; i++) { // {1-2, 2-2, 3-2, 4-2, 5-2, 6-2, 7-2}
             String[] add = addPair[i].split("-"); // {1,2} {2,2}
-            String[] original = OriginalPair[i].split("-"); // {1,2} {2,2}
-            int count = Integer.parseInt(add[1]) + Integer.parseInt(original[1]);
-            newValues[i] = count;
+            amount[i] += Integer.parseInt(add[1]);
+            // String[] original = OriginalPair[i].split("-"); // {1,2} {2,2}
+            // int count = Integer.parseInt(add[1]) + Integer.parseInt(original[1]);
+            // newValues[i] = count;
         }
-        StringBuilder sb = new StringBuilder();
-        for (int j = 0; j < newValues.length; j++) {
-            sb.append(j + 1).append("-").append(newValues[j]).append(",");
-        }
-        return sb.toString();
     }
 
     public void add(SalgTemplate obj) {
         if (!(obj instanceof Annet)) {
-            Varer = obj.getVarer();
+            addVarer(obj.getVarer());
             Belop += obj.getBelop();
             Betaling[obj.getBetaling().equals(KONTANT) ? 0 : 1] += obj.getBelop();
         }

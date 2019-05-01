@@ -100,6 +100,7 @@ public class SortedObjects implements SalgTemplate, Serializable {
         //String[] OriginalPair = Varer.split(",");
         int[] newValues = new int[addPair.length];
         for (int i = 0; i < addPair.length; i++) { // {1-2, 2-2, 3-2, 4-2, 5-2, 6-2, 7-2}
+            if(i == 9) break;
             String[] add = addPair[i].split("-"); // {1,2} {2,2}
             amount[i] += Integer.parseInt(add[1]);
             // String[] original = OriginalPair[i].split("-"); // {1,2} {2,2}

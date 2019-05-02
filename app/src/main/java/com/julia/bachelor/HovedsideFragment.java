@@ -139,10 +139,7 @@ public class HovedsideFragment extends Fragment {
             }
         });
         try {
-            ArrayList<BeholdningTemplate> beholdningTemplates = (ArrayList<BeholdningTemplate>) (getArguments().getSerializable(KEY_BEHOLDNING));
-            if (beholdningTemplates != null) {
-                beholdnings = Beregninger.separateBeholdning(beholdningTemplates);
-            }
+            beholdnings = (ArrayList<BeholdningTemplate>) (getArguments().getSerializable(KEY_BEHOLDNING));
             honning = (ArrayList<Honning>) (getArguments().getSerializable(KEY_HONNING));
             AllSalg = (ArrayList<SalgTemplate>) (getArguments().getSerializable(KEY_ALLSALG));
             info.setText(setValueString());

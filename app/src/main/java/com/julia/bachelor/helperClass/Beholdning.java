@@ -16,7 +16,7 @@ public class Beholdning implements BeholdningTemplate, Serializable {
     private int Flytende;
     private String Dato;
 
-    Beholdning() { }
+    public Beholdning() { }
 
     public long get_ID() {
         return _ID;

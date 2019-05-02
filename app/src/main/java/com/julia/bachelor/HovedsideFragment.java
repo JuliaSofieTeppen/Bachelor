@@ -18,7 +18,7 @@ import android.widget.Toast;
 import com.julia.bachelor.helperClass.Annet;
 import com.julia.bachelor.helperClass.Beholdning;
 import com.julia.bachelor.helperClass.BeholdningTemplate;
-import com.julia.bachelor.helperClass.Honning;
+import com.julia.bachelor.helperClass.Honning
 import com.julia.bachelor.helperClass.SalgTemplate;
 
 import java.util.ArrayList;
@@ -188,11 +188,11 @@ public class HovedsideFragment extends Fragment {
     }
     
     BeholdningTemplate CalculateBeholdning() {
-        BeholdningTemplate beholdning = findCurrentBeholdning(Beregninger.separateBeholdning(beholdnings));
-        ArrayList<SalgTemplate> period = salesInPeriod(beholdning.getDato());
+        BeholdningTemplate beholdning = new Beholdning();
+        beholdning.setDato(findCurrentBeholdning());
         int[] amount = new int[9];
         try {
-            for (SalgTemplate salg : period) {
+            for (SalgTemplate salg : AllSalg) {
                 if(salg instanceof Annet) continue;
                 String[] pairs = salg.getVarer().split(",");
                 for (int i = 0; i < amount.length; i++) {
@@ -200,6 +200,7 @@ public class HovedsideFragment extends Fragment {
                     amount[i] += Integer.parseInt(value[1]);
                 }
             }
+
             beholdning.setSommer(beholdning.getSommer() - amount[0]);
             beholdning.setSommerH(beholdning.getSommerH() - amount[1]);
             beholdning.setSommerK(beholdning.getSommerK() - amount[2]);
@@ -215,13 +216,14 @@ public class HovedsideFragment extends Fragment {
         return beholdning;
     }
 
-    private BeholdningTemplate findCurrentBeholdning(ArrayList<BeholdningTemplate> beholdning) {
+    private String findCurrentBeholdning() {
         Beholdning current = null;
         try {
-            current = (Beholdning) beholdning.get(beholdning.size() - 1);
-            for (int i = 0; i < beholdning.size(); i++) {
-                if (current.getDato().compareTo(beholdning.get(i).getDato()) <= 0) {
-                    current = (Beholdning) beholdning.get(i);
+            ArrayList<BeholdningTemplate> b = Beregninger.separateBeholdning(beholdnings);
+            current = (Beholdning) b.get(b.size() - 1);
+            for (int i = 0; i < b.size(); i++) {
+                if (current.getDato().compareTo(b.get(i).getDato()) <= 0) {
+                    current = (Beholdning) b.get(i);
                 }
             }
         } catch (IndexOutOfBoundsException e) {
@@ -229,7 +231,7 @@ public class HovedsideFragment extends Fragment {
             addbutton.setVisibility(View.GONE);
         }
         if (current == null) throw new NullPointerException("Possible problem with connection");
-        return Beholdning.copy(current);
+        return current.getDato();
     }
 
     private ArrayList<SalgTemplate> salesInPeriod(String start) {
@@ -251,5 +253,9 @@ public class HovedsideFragment extends Fragment {
         ((MainActivity) activity).onSectionAttached(
                 getArguments().getInt(ARG_SECTION_NUMBER));
     }
-
+    public void AddAll(BeholdningTemplate beholdning){
+        for (int i = 0; i < beholdnings.size(); i ++){
+            beholdning
+        }
+    }
 }

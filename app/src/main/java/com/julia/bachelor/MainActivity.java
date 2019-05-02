@@ -173,7 +173,6 @@ public class MainActivity extends Activity implements NavigationDrawerFragment.N
         String[] urls = {
                 "http://www.honningbier.no/PHP/AnnetOut.php",
                 "http://www.honningbier.no/PHP/BeholdningOut.php",
-                "http://www.honningbier.no/PHP/SalgOut.php",
                 "http://www.honningbier.no/PHP/BondensMarkedOut.php",
                 "http://www.honningbier.no/PHP/HjemmeOut.php",
                 "http://www.honningbier.no/PHP/HonningOut.php",

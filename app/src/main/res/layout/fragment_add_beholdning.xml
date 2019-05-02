@@ -25,7 +25,7 @@
                 android:text="@string/addbeholdning"
                 android:textSize="24sp"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.064"
+                app:layout_constraintHorizontal_bias="0.158"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
@@ -50,7 +50,7 @@
                     android:layout_marginEnd="8dp"
                     android:ems="10"
                     android:hint="@string/antall"
-                    android:inputType="number"
+                    android:inputType="numberSigned"
                     app:layout_constraintBaseline_toBaselineOf="@+id/textView93"
                     app:layout_constraintEnd_toEndOf="parent"
                     tools:ignore="Autofill" />
@@ -75,7 +75,7 @@
                     android:layout_marginEnd="8dp"
                     android:ems="10"
                     android:hint="@string/antall"
-                    android:inputType="number"
+                    android:inputType="numberSigned"
                     app:layout_constraintBaseline_toBaselineOf="@+id/textView97"
                     app:layout_constraintEnd_toEndOf="parent"
                     tools:ignore="Autofill" />
@@ -100,7 +100,7 @@
                     android:layout_marginEnd="8dp"
                     android:ems="10"
                     android:hint="@string/antall"
-                    android:inputType="number"
+                    android:inputType="numberSigned"
                     app:layout_constraintBaseline_toBaselineOf="@+id/textView101"
                     app:layout_constraintEnd_toEndOf="parent"
                     tools:ignore="Autofill" />
@@ -138,7 +138,7 @@
                     android:layout_marginEnd="8dp"
                     android:ems="10"
                     android:hint="@string/antall"
-                    android:inputType="number"
+                    android:inputType="numberSigned"
                     app:layout_constraintBaseline_toBaselineOf="@+id/textView92"
                     app:layout_constraintEnd_toEndOf="parent"
                     tools:ignore="Autofill" />
@@ -189,7 +189,7 @@
                     android:layout_marginEnd="8dp"
                     android:ems="10"
                     android:hint="@string/antall"
-                    android:inputType="number"
+                    android:inputType="numberSigned"
                     app:layout_constraintBaseline_toBaselineOf="@+id/textView102"
                     app:layout_constraintEnd_toEndOf="parent"
                     tools:ignore="Autofill" />
@@ -201,7 +201,7 @@
                     android:layout_marginEnd="8dp"
                     android:ems="10"
                     android:hint="@string/antall"
-                    android:inputType="number"
+                    android:inputType="numberSigned"
                     app:layout_constraintBaseline_toBaselineOf="@+id/textView100"
                     app:layout_constraintEnd_toEndOf="parent"
                     tools:ignore="Autofill" />
@@ -239,7 +239,7 @@
                     android:layout_marginEnd="8dp"
                     android:ems="10"
                     android:hint="@string/antall"
-                    android:inputType="number"
+                    android:inputType="numberSigned"
                     app:layout_constraintBaseline_toBaselineOf="@+id/textView94"
                     app:layout_constraintEnd_toEndOf="parent"
                     tools:ignore="Autofill" />
@@ -264,7 +264,7 @@
                     android:layout_marginEnd="8dp"
                     android:ems="10"
                     android:hint="@string/antall"
-                    android:inputType="number"
+                    android:inputType="numberSigned"
                     app:layout_constraintBaseline_toBaselineOf="@+id/textView96"
                     app:layout_constraintEnd_toEndOf="parent"
                     tools:ignore="Autofill" />
@@ -289,7 +289,7 @@
                     android:layout_marginEnd="8dp"
                     android:ems="10"
                     android:hint="@string/antall"
-                    android:inputType="number"
+                    android:inputType="numberSigned"
                     app:layout_constraintBaseline_toBaselineOf="@+id/textView98"
                     app:layout_constraintEnd_toEndOf="parent"
                     tools:ignore="Autofill" />

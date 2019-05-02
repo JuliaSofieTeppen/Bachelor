@@ -8,13 +8,10 @@ public class SortedObjects implements SalgTemplate, Serializable {
     private int[] amount;
     private String AnnetVarer;
     private int Belop;
-    /**
-     * if true sorts by month
-     * if false sorts by year
-     **/
+    /** if true sorts by month
+     * if false sorts by year **/
     private boolean sortMethod;
-    /**
-     * Variable to see what type of payment was used.
+    /** Variable to see what type of payment was used.
      * Betaling[0] = Kontant,
      * Betaling[1] = Kort.
      **/
@@ -41,8 +38,7 @@ public class SortedObjects implements SalgTemplate, Serializable {
     }
 
     @Override
-    public void set_ID(long _ID) {
-    }
+    public void set_ID(long _ID) {}
 
     @Override
     public String getKunde() {
@@ -50,8 +46,7 @@ public class SortedObjects implements SalgTemplate, Serializable {
     }
 
     @Override
-    public void setKunde(String kunde) {
-    }
+    public void setKunde(String kunde) {}
 
     public String getDato() {
         return dato;
@@ -70,16 +65,14 @@ public class SortedObjects implements SalgTemplate, Serializable {
     }
 
     @Override
-    public void setVarer(String varer) {
-    }
+    public void setVarer(String varer) {}
 
     public int getBelop() {
         return Belop;
     }
 
     @Override
-    public void setBelop(int belop) {
-    }
+    public void setBelop(int belop) {}
 
     @Override
     public String getBetaling() {
@@ -87,8 +80,7 @@ public class SortedObjects implements SalgTemplate, Serializable {
     }
 
     @Override
-    public void setBetaling(String betaling) {
-    }
+    public void setBetaling(String betaling) {}
 
     public int[] getBetalings() {
         return Betaling;
@@ -100,8 +92,7 @@ public class SortedObjects implements SalgTemplate, Serializable {
     }
 
     @Override
-    public void setMoms(double moms) {
-    }
+    public void setMoms(double moms) {}
 
     // TODO fix this method
     private void addVarer(String varer) {
@@ -109,7 +100,7 @@ public class SortedObjects implements SalgTemplate, Serializable {
         //String[] OriginalPair = Varer.split(",");
         int[] newValues = new int[addPair.length];
         for (int i = 0; i < addPair.length; i++) { // {1-2, 2-2, 3-2, 4-2, 5-2, 6-2, 7-2}
-            if (i == 9) break;
+            if(i == 9) break;
             String[] add = addPair[i].split("-"); // {1,2} {2,2}
             amount[i] += Integer.parseInt(add[1]);
             // String[] original = OriginalPair[i].split("-"); // {1,2} {2,2}
@@ -119,9 +110,10 @@ public class SortedObjects implements SalgTemplate, Serializable {
     }
 
     public void add(SalgTemplate obj) {
-        if (!(obj instanceof Annet))
+        if (!(obj instanceof Annet)) {
             addVarer(obj.getVarer());
-        Belop += obj.getBelop();
-        Betaling[obj.getBetaling().equals(KONTANT) ? 0 : 1] += obj.getBelop();
+            Belop += obj.getBelop();
+            Betaling[obj.getBetaling().equals(KONTANT) ? 0 : 1] += obj.getBelop();
+        }
     }
 }

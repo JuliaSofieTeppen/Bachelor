@@ -184,21 +184,21 @@ public class PdfCreatorActivity extends AppCompatActivity {
 
         PdfPTable hjemmetable = new PdfPTable(4);
         hjemmetable.addCell("Dato");
-        hjemmetable.addCell("Netto");
-        hjemmetable.addCell("MVA");
-        hjemmetable.addCell("Avgift");
+        hjemmetable.addCell("Beløp/Salg");
+        hjemmetable.addCell("Moms %");
+        hjemmetable.addCell("Moms kr");
 
         PdfPTable videretable = new PdfPTable(4);
         videretable.addCell("Dato");
-        videretable.addCell("Netto");
-        videretable.addCell("MVA");
-        videretable.addCell("Avgift");
+        videretable.addCell("Beløp/Salg");
+        videretable.addCell("Moms %");
+        videretable.addCell("Moms kr");
 
         PdfPTable annettable = new PdfPTable(4);
         annettable.addCell("Dato");
-        annettable.addCell("Netto");
-        annettable.addCell("MVA");
-        annettable.addCell("Avgift");
+        annettable.addCell("Beløp/Salg");
+        annettable.addCell("Moms%");
+        annettable.addCell("Moms kr");
 
         double hjemmeteller = 0;
         double videreteller = 0;
@@ -212,7 +212,7 @@ public class PdfCreatorActivity extends AppCompatActivity {
                     hjemmetable.addCell(Integer.toString(hjemmeSalg.getBelop()));
                     hjemmetable.addCell(Double.toString(hjemmeSalg.getMoms()*100));
                     hjemmetable.addCell(Double.toString(hjemmeSalg.getBelop()*hjemmeSalg.getMoms()));
-                    hjemmeteller += hjemmeSalg.getBelop()*hjemmeSalg.getMoms();
+                    hjemmeteller += hjemmeSalg.getBelop();
                 }
             }else if(salg instanceof Videresalg) {
                 Videresalg videresalg = (Videresalg) salg;
@@ -221,7 +221,7 @@ public class PdfCreatorActivity extends AppCompatActivity {
                     videretable.addCell(Integer.toString(videresalg.getBelop()));
                     videretable.addCell(Double.toString(videresalg.getMoms()));
                     videretable.addCell(Double.toString((videresalg.getBelop()*videresalg.getMoms())/100));
-                    videreteller += (videresalg.getBelop()*videresalg.getMoms())/100;
+                    videreteller += videresalg.getBelop();
                 }
             }else if(salg instanceof Annet) {
                 Annet annet = (Annet) salg;
@@ -230,7 +230,7 @@ public class PdfCreatorActivity extends AppCompatActivity {
                     annettable.addCell(Integer.toString(annet.getBelop()));
                     annettable.addCell(Double.toString(annet.getMoms()*100));
                     annettable.addCell(Double.toString(annet.getBelop()*annet.getMoms()));
-                    annetteller += annet.getBelop()*annet.getMoms();
+                    annetteller += annet.getBelop();
                 }
             }
         }
@@ -242,7 +242,7 @@ public class PdfCreatorActivity extends AppCompatActivity {
         img.setAlignment(Element.ALIGN_LEFT | Image.TEXTWRAP);
         document.add(Image.getInstance(img));
 
-        document.add(new Paragraph("    Faktura oversikt", new Font(Font.FontFamily.HELVETICA,18,Font.BOLD)));
+        document.add(new Paragraph("    Salgsoversikt", new Font(Font.FontFamily.HELVETICA,18,Font.BOLD)));
         document.add( Chunk.NEWLINE );
 
         document.add(new Paragraph("      Startdato: " + Startdato.getText().toString()));
@@ -266,7 +266,7 @@ public class PdfCreatorActivity extends AppCompatActivity {
 
         document.add( Chunk.NEWLINE );
         document.add( Chunk.NEWLINE );
-        document.add(new Paragraph("Total Avgift:" + (hjemmeteller + videreteller + annetteller), new Font(Font.FontFamily.HELVETICA,14,Font.BOLD)));
+        document.add(new Paragraph("Total: " + (hjemmeteller + videreteller + annetteller), new Font(Font.FontFamily.HELVETICA,14,Font.BOLD)));
 
         document.close();
         Toast.makeText(this, "PDF laget", Toast.LENGTH_SHORT ).show();
@@ -322,9 +322,9 @@ public class PdfCreatorActivity extends AppCompatActivity {
     }
     public void addtotal(PdfPTable table,double teller ){
         table.addCell("Total:");
-        table.addCell("");
-        table.addCell("");
         table.addCell(Double.toString(teller));
+        table.addCell("");
+        table.addCell("");
     }
 
 }

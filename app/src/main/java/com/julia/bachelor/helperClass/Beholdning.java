@@ -2,7 +2,7 @@ package com.julia.bachelor.helperClass;
 
 import java.io.Serializable;
 
-public class Beholdning implements BeholdningTemplate, Serializable {
+public class Beholdning implements Serializable {
 
     private long _ID;
     private int Sommer;
@@ -106,23 +106,23 @@ public class Beholdning implements BeholdningTemplate, Serializable {
         Dato = dato;
     }
 
-    public static BeholdningTemplate copy(BeholdningTemplate beholdningTemplate){
-        BeholdningTemplate beholdning = new Beholdning();
-        beholdning.set_ID(beholdningTemplate.get_ID());
-        beholdning.setDato(beholdningTemplate.getDato());
-        beholdning.setFlytende(beholdningTemplate.getFlytende());
-        beholdning.setIngeferH(beholdningTemplate.getIngeferH());
-        beholdning.setIngeferK(beholdningTemplate.getIngeferK());
-        beholdning.setLyng(beholdningTemplate.getLyng());
-        beholdning.setLyngH(beholdningTemplate.getLyngH());
-        beholdning.setLyngK(beholdningTemplate.getLyngK());
-        beholdning.setSommer(beholdningTemplate.getSommer());
-        beholdning.setSommerH(beholdningTemplate.getSommerH());
-        beholdning.setSommerK(beholdningTemplate.getSommerK());
-        return beholdning;
+    public static Beholdning copy(Beholdning beholdning){
+        Beholdning beholdningCopy = new Beholdning();
+        beholdningCopy.set_ID(beholdning.get_ID());
+        beholdningCopy.setDato(beholdning.getDato());
+        beholdningCopy.setFlytende(beholdning.getFlytende());
+        beholdningCopy.setIngeferH(beholdning.getIngeferH());
+        beholdningCopy.setIngeferK(beholdning.getIngeferK());
+        beholdningCopy.setLyng(beholdning.getLyng());
+        beholdningCopy.setLyngH(beholdning.getLyngH());
+        beholdningCopy.setLyngK(beholdning.getLyngK());
+        beholdningCopy.setSommer(beholdning.getSommer());
+        beholdningCopy.setSommerH(beholdning.getSommerH());
+        beholdningCopy.setSommerK(beholdning.getSommerK());
+        return beholdningCopy;
     }
 
-    public void add(BeholdningTemplate beholdning){
+    public void add(Beholdning beholdning){
         this.Sommer = beholdning.getSommer();
         this.SommerH = beholdning.getSommerH();
         this.SommerK = beholdning.getSommerK();

@@ -11,6 +11,7 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.julia.bachelor.helperClass.Beholdning;
 import com.julia.bachelor.helperClass.BeholdningTemplate;
 import com.julia.bachelor.helperClass.BondensMarked;
 import com.julia.bachelor.helperClass.Honning;
@@ -36,7 +37,7 @@ public class MainActivity extends Activity implements NavigationDrawerFragment.N
     private static final String KEY_ALLSALG = "AllSalg";
 
     static ArrayList<Honning> Honning = new ArrayList<>();
-    static ArrayList<BeholdningTemplate> Beholdning = new ArrayList<>();
+    static ArrayList<Beholdning> Beholdning = new ArrayList<>();
     static ArrayList<SalgTemplate> AllSalg = new ArrayList<>();
 
     EditText dato, som1kg, som05kg, som025kg, lyng1kg, lyng05kg, lyng025kg, ingf05kg, ingf025kg, flytende;
@@ -53,7 +54,7 @@ public class MainActivity extends Activity implements NavigationDrawerFragment.N
         mNavigationDrawerFragment.setUp(R.id.navigation_drawer, (DrawerLayout) findViewById(R.id.drawer_layout));
     }
 
-    void setArrays(ArrayList<BeholdningTemplate> BeholdningList, ArrayList<SalgTemplate> allSalg,
+    void setArrays(ArrayList<Beholdning> BeholdningList, ArrayList<SalgTemplate> allSalg,
                    ArrayList<Honning> HonningList) {
         Beholdning.addAll(BeholdningList);
         AllSalg.addAll(allSalg);

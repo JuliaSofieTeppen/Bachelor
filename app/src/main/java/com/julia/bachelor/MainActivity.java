@@ -11,7 +11,7 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.julia.bachelor.helperClass.BeholdningTemplate;
+import com.julia.bachelor.helperClass.Beholdning;
 import com.julia.bachelor.helperClass.BondensMarked;
 import com.julia.bachelor.helperClass.Honning;
 import com.julia.bachelor.helperClass.SalgFactory;
@@ -36,7 +36,7 @@ public class MainActivity extends Activity implements NavigationDrawerFragment.N
     private static final String KEY_ALLSALG = "AllSalg";
 
     static ArrayList<Honning> Honning = new ArrayList<>();
-    static ArrayList<BeholdningTemplate> Beholdning = new ArrayList<>();
+    static ArrayList<Beholdning> Beholdning = new ArrayList<>();
     static ArrayList<SalgTemplate> AllSalg = new ArrayList<>();
 
     EditText dato, som1kg, som05kg, som025kg, lyng1kg, lyng05kg, lyng025kg, ingf05kg, ingf025kg, flytende;
@@ -53,7 +53,7 @@ public class MainActivity extends Activity implements NavigationDrawerFragment.N
         mNavigationDrawerFragment.setUp(R.id.navigation_drawer, (DrawerLayout) findViewById(R.id.drawer_layout));
     }
 
-    void setArrays(ArrayList<BeholdningTemplate> BeholdningList, ArrayList<SalgTemplate> allSalg,
+    void setArrays(ArrayList<Beholdning> BeholdningList, ArrayList<SalgTemplate> allSalg,
                    ArrayList<Honning> HonningList) {
         Beholdning.addAll(BeholdningList);
         AllSalg.addAll(allSalg);
@@ -164,7 +164,7 @@ public class MainActivity extends Activity implements NavigationDrawerFragment.N
         return Honning;
     }
 
-    public ArrayList<BeholdningTemplate> getBeholdning(){
+    public ArrayList<Beholdning> getBeholdning(){
         return Beholdning;
     }
 
@@ -173,7 +173,6 @@ public class MainActivity extends Activity implements NavigationDrawerFragment.N
         String[] urls = {
                 "http://www.honningbier.no/PHP/AnnetOut.php",
                 "http://www.honningbier.no/PHP/BeholdningOut.php",
-                "http://www.honningbier.no/PHP/SalgOut.php",
                 "http://www.honningbier.no/PHP/BondensMarkedOut.php",
                 "http://www.honningbier.no/PHP/HjemmeOut.php",
                 "http://www.honningbier.no/PHP/HonningOut.php",
@@ -192,7 +191,7 @@ public class MainActivity extends Activity implements NavigationDrawerFragment.N
     public static class FetchDataTask extends AsyncTask<String, Integer, String> {
         Integer progress;
         ArrayList<SalgTemplate> AllSalg = new ArrayList<>();
-        ArrayList<BeholdningTemplate> BeholdningList = new ArrayList<>();
+        ArrayList<Beholdning> BeholdningList = new ArrayList<>();
         ArrayList<Honning> HonningList = new ArrayList<>();
 
         @Override
@@ -216,10 +215,10 @@ public class MainActivity extends Activity implements NavigationDrawerFragment.N
                     }
                     bufferedReader.close();
                     conn.disconnect();
-                    if (url1.equalsIgnoreCase(urls[0]) || url1.equalsIgnoreCase(urls[3]) || url1.equalsIgnoreCase(urls[4]) || url1.equalsIgnoreCase(urls[6])) {
+                    if (url1.equalsIgnoreCase(urls[0]) || url1.equalsIgnoreCase(urls[2]) || url1.equalsIgnoreCase(urls[3]) || url1.equalsIgnoreCase(urls[5])) {
                         setSaleValues(output.toString(), url1);
-                    } else if (url1.equalsIgnoreCase(urls[1]) || url1.equalsIgnoreCase(urls[2])) {
-                        setBeholdnigValues(output.toString(), url1);
+                    } else if (url1.equalsIgnoreCase(urls[1]) ) {
+                        setBeholdnigValues(output.toString());
                     } else {
                         setHoneyValues(output.toString());
                     }
@@ -255,13 +254,12 @@ public class MainActivity extends Activity implements NavigationDrawerFragment.N
             }
         }
 
-        void setBeholdnigValues(String output, String url) {
+        void setBeholdnigValues(String output) {
             try {
                 // Convert string to JSONArray containing JSONObjects.
                 JSONArray jsonArray = new JSONArray(output);
                 for (int i = 0; i < jsonArray.length(); i++) {
-                    SalgFactory factory = new SalgFactory();
-                    BeholdningTemplate beholdning = factory.getBeholdningObject(url);
+                    Beholdning beholdning = new Beholdning();
                     JSONObject jsonobject = jsonArray.getJSONObject(i);
                     beholdning.set_ID(jsonobject.getLong("ID"));
                     beholdning.setSommer(jsonobject.getInt("Sommer"));

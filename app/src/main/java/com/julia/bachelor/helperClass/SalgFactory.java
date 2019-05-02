@@ -18,10 +18,4 @@ public class SalgFactory {
         if (type.equalsIgnoreCase(urls[0])) return new Annet();
         return null;
     }
-
-    public BeholdningTemplate getBeholdningObject(String type) {
-        if (type.equalsIgnoreCase(urls[1])) return new Beholdning();
-        if (type.equalsIgnoreCase(urls[2])) return new Salg();
-        return null;
-    }
 }

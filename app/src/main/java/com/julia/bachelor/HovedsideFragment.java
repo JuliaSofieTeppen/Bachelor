@@ -17,7 +17,6 @@ import android.widget.Toast;
 
 import com.julia.bachelor.helperClass.Annet;
 import com.julia.bachelor.helperClass.Beholdning;
-import com.julia.bachelor.helperClass.BeholdningTemplate;
 import com.julia.bachelor.helperClass.Honning;
 import com.julia.bachelor.helperClass.SalgTemplate;
 
@@ -34,7 +33,7 @@ public class HovedsideFragment extends Fragment {
     private static final String KEY_HONNING = "Honning";
     private static final String KEY_BUNDLE = "Bundle";
     private static final String KEY_BEHOLD = "Behold";
-    static ArrayList<BeholdningTemplate> beholdnings;
+    static ArrayList<Beholdning> beholdnings;
     static ArrayList<SalgTemplate> AllSalg;
     static ArrayList<Honning> honning;
     public SwipeRefreshLayout mSwipeRefreshLayout;
@@ -48,7 +47,7 @@ public class HovedsideFragment extends Fragment {
      * Returns a new instance of this fragment for the given section
      * number.
      */
-    public static HovedsideFragment newInstance(int sectionNumber, ArrayList<BeholdningTemplate> Salg, ArrayList<Honning> Honning, ArrayList<SalgTemplate> AllSalg) {
+    public static HovedsideFragment newInstance(int sectionNumber, ArrayList<Beholdning> Salg, ArrayList<Honning> Honning, ArrayList<SalgTemplate> AllSalg) {
         HovedsideFragment fragment = new HovedsideFragment();
         Bundle args = new Bundle();
         args.putInt(ARG_SECTION_NUMBER, sectionNumber);
@@ -106,25 +105,25 @@ public class HovedsideFragment extends Fragment {
                     public boolean onMenuItemClick(MenuItem item) {
                         if (item.getTitle().equals("Bondens Marked")) {
                             Bundle bundle = new Bundle();
-                            BeholdningTemplate beholdningTemplate = CalculateBeholdning();
+                            Beholdning beholdning = CalculateBeholdning();
                             bundle.putSerializable(KEY_HONNING, honning);
-                            bundle.putSerializable(KEY_BEHOLD, (Beholdning) beholdningTemplate);
+                            bundle.putSerializable(KEY_BEHOLD, beholdning);
                             Intent myIntent = new Intent(rootView.getContext(), BmSalgActivity.class);
                             myIntent.putExtra(KEY_BUNDLE, bundle); //Optional parameters
                             rootView.getContext().startActivity(myIntent);
                         } else if (item.getTitle().equals("Hjemmesalg")) {
                             Bundle bundle = new Bundle();
-                            BeholdningTemplate beholdningTemplate = CalculateBeholdning();
+                            Beholdning beholdning = CalculateBeholdning();
                             bundle.putSerializable(KEY_HONNING, honning);
-                            bundle.putSerializable(KEY_BEHOLD, (Beholdning) beholdningTemplate);
+                            bundle.putSerializable(KEY_BEHOLD, beholdning);
                             Intent myIntent = new Intent(rootView.getContext(), HjemmesalgActivity.class);
                             myIntent.putExtra(KEY_BUNDLE, bundle);
                             rootView.getContext().startActivity(myIntent);
                         } else if (item.getTitle().equals("Videresalg")) {
                             Bundle bundle = new Bundle();
-                            BeholdningTemplate beholdningTemplate = CalculateBeholdning();
+                            Beholdning beholdning = CalculateBeholdning();
                             bundle.putSerializable(KEY_HONNING, honning);
-                            bundle.putSerializable(KEY_BEHOLD, (Beholdning) beholdningTemplate);
+                            bundle.putSerializable(KEY_BEHOLD, beholdning);
                             Intent myIntent = new Intent(rootView.getContext(), VideresalgActivity.class);
                             myIntent.putExtra(KEY_BUNDLE, bundle);
                             rootView.getContext().startActivity(myIntent);
@@ -139,7 +138,7 @@ public class HovedsideFragment extends Fragment {
             }
         });
         try {
-            beholdnings = (ArrayList<BeholdningTemplate>) (getArguments().getSerializable(KEY_BEHOLDNING));
+            beholdnings = (ArrayList<Beholdning>) (getArguments().getSerializable(KEY_BEHOLDNING));
             honning = (ArrayList<Honning>) (getArguments().getSerializable(KEY_HONNING));
             AllSalg = (ArrayList<SalgTemplate>) (getArguments().getSerializable(KEY_ALLSALG));
             info.setText(setValueString());
@@ -165,7 +164,7 @@ public class HovedsideFragment extends Fragment {
     }
 
     private String setValueString() {
-        BeholdningTemplate beholdning = null;
+        Beholdning beholdning = null;
         try {
             beholdning = CalculateBeholdning();
             dato.setText(beholdning.getDato());
@@ -184,8 +183,8 @@ public class HovedsideFragment extends Fragment {
                         beholdning.getFlytende() + " \n";
     }
     
-    BeholdningTemplate CalculateBeholdning() {
-        BeholdningTemplate beholdning = new Beholdning();
+    Beholdning CalculateBeholdning() {
+        Beholdning beholdning = new Beholdning();
         beholdning.setDato(findCurrentBeholdning());
         int[] amount = new int[9];
         try {
@@ -198,7 +197,7 @@ public class HovedsideFragment extends Fragment {
                 }
             }
             for(int i = 0; i < beholdnings.size(); i++){
-                ((Beholdning) beholdning).add(beholdnings.get(i));
+                beholdning.add(beholdnings.get(i));
             }
             beholdning.setSommer(beholdning.getSommer() - amount[0]);
             beholdning.setSommerH(beholdning.getSommerH() - amount[1]);
@@ -218,11 +217,10 @@ public class HovedsideFragment extends Fragment {
     private String findCurrentBeholdning() {
         Beholdning current = null;
         try {
-            ArrayList<BeholdningTemplate> b = Beregninger.separateBeholdning(beholdnings);
-            current = (Beholdning) b.get(b.size() - 1);
-            for (int i = 0; i < b.size(); i++) {
-                if (current.getDato().compareTo(b.get(i).getDato()) <= 0) {
-                    current = (Beholdning) b.get(i);
+            current = beholdnings.get(beholdnings.size() - 1);
+            for (int i = 0; i < beholdnings.size(); i++) {
+                if (current.getDato().compareTo(beholdnings.get(i).getDato()) <= 0) {
+                    current = beholdnings.get(i);
                 }
             }
         } catch (IndexOutOfBoundsException e) {
@@ -231,18 +229,6 @@ public class HovedsideFragment extends Fragment {
         }
         if (current == null) throw new NullPointerException("Possible problem with connection");
         return current.getDato();
-    }
-
-    private ArrayList<SalgTemplate> salesInPeriod(String start) {
-        String end = Beregninger.getDate();
-        ArrayList<SalgTemplate> period = new ArrayList<>();
-        for (SalgTemplate sale : AllSalg) {
-            String dato = sale.getDato();
-            if (start.compareTo(dato) <= 0 && end.compareTo(dato) >= 0) {
-                period.add(sale);
-            }
-        }
-        return period;
     }
 
     @Override

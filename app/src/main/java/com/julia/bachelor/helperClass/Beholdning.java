@@ -16,7 +16,7 @@ public class Beholdning implements Serializable {
     private int Flytende;
     private String Dato;
 
-    Beholdning() { }
+    public Beholdning() { }
 
     public long get_ID() {
         return _ID;
@@ -123,14 +123,14 @@ public class Beholdning implements Serializable {
     }
 
     public void add(Beholdning beholdning){
-        this.Sommer = beholdning.getSommer();
-        this.SommerH = beholdning.getSommerH();
-        this.SommerK = beholdning.getSommerK();
-        this.Lyng = beholdning.getLyng();
-        this.LyngH = beholdning.getLyngH();
-        this.LyngK = beholdning.getLyngK();
-        this.IngeferH = beholdning.getIngeferH();
-        this.IngeferK = beholdning.getIngeferK();
-        this.Flytende = beholdning.getFlytende();
+        this.Sommer += beholdning.getSommer();
+        this.SommerH += beholdning.getSommerH();
+        this.SommerK += beholdning.getSommerK();
+        this.Lyng += beholdning.getLyng();
+        this.LyngH += beholdning.getLyngH();
+        this.LyngK += beholdning.getLyngK();
+        this.IngeferH += beholdning.getIngeferH();
+        this.IngeferK += beholdning.getIngeferK();
+        this.Flytende += beholdning.getFlytende();
     }
 }

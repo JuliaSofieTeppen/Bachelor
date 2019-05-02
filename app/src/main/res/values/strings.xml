@@ -3,7 +3,7 @@
     <string name="title_activity_main">Zum</string>
     <string name="title_section1">Hovedside</string>
     <string name="title_section2">Rapporter</string>
-    <string name="title_section3">Legg til Beholdning</string>
+    <string name="title_section3">Endre Beholdning</string>
     <string name="title_section4">Priser</string>
     <string name="title_section5">Innstillinger</string>
     <string name="title_section6">Eksporter</string>
@@ -36,7 +36,7 @@
 
     <string name="hovedside">Hovedside</string>
     <string name="rapporter">Rapporter</string>
-    <string name="legg_til_beholdning">Legg til beholdning</string>
+    <string name="legg_til_beholdning">Endre beholdning</string>
     <string name="priser">Priser</string>
     <string name="verkt_y">Verktøy</string>
     <string name="innstillinger">Innstillinger</string>
@@ -64,7 +64,7 @@
     <string name="space"> </string>
     <string name="nullkr">0kr</string>
     <string name="priser_oversikt">Pris oversikt hjemme</string>
-    <string name="addbeholdning">Legg inn varebeholdning</string>
+    <string name="addbeholdning">Endre varebeholdning</string>
     <string name="sommer">Sommer</string>
     <string name="lyng">Lyng</string>
     <string name="med_ingefer">Med ingefær</string>

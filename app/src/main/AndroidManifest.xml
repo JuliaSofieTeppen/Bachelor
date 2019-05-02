@@ -1,48 +1,51 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.julia.bachelor">
+
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
     <application
-        android:usesCleartextTraffic="true"
         android:allowBackup="false"
         android:icon="@drawable/logo"
         android:roundIcon="@drawable/logo"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme">
-
+        android:theme="@style/AppTheme"
+        android:usesCleartextTraffic="true">
+        <activity android:name=".RapportBeholdning"></activity>
         <activity
             android:name=".PdfCreatorActivity"
-            android:theme="@style/CompAppTheme">
-        </activity>
+            android:theme="@style/CompAppTheme" />
         <activity android:name=".DetailsActivity" />
         <activity android:name=".AnnetSalgActivity" />
         <activity android:name=".VideresalgActivity" />
         <activity android:name=".BmSalgActivity" />
         <activity android:name=".HjemmesalgActivity" />
-        <activity android:name=".LoadContentActivity"
+        <activity
+            android:name=".LoadContentActivity"
             android:label="@string/title_activity_main">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <action android:name="android.intent.action.VIEW" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
         <activity
             android:name=".MainActivity"
-            android:label="@string/title_activity_main">
-        </activity>
+            android:label="@string/title_activity_main" />
+
         <provider
-            android:name="com.julia.bachelor.GenericFileProvider"
+            android:name=".GenericFileProvider"
             android:authorities="${applicationId}.com.julia.bachelor.GenericFileProvider"
             android:exported="false"
             android:grantUriPermissions="true">
             <meta-data
                 android:name="android.support.FILE_PROVIDER_PATHS"
-                android:resource="@xml/provider_paths"/>
-        </provider><!-- hello this is a comment :) -->
+                android:resource="@xml/provider_paths" />
+        </provider>
     </application>
+
 </manifest>

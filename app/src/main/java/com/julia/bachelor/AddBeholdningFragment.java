@@ -74,7 +74,6 @@ public class AddBeholdningFragment extends Fragment {
     }
 
     void insertIntoDB() {
-        Database.executeOnDB("http://www.honningbier.no/PHP/SalgIn.php/?Dato=" + dato.getText().toString());
         Database.executeOnDB("http://www.honningbier.no/PHP/BeholdningIn.php/?" + getBeholdning() + "&Dato=" + dato.getText().toString());
     }
 }

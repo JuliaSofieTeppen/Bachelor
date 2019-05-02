@@ -121,4 +121,16 @@ public class Beholdning implements BeholdningTemplate, Serializable {
         beholdning.setSommerK(beholdningTemplate.getSommerK());
         return beholdning;
     }
+
+    public void add(BeholdningTemplate beholdning){
+        this.Sommer += beholdning.getSommer();
+        this.SommerH += beholdning.getSommerH();
+        this.SommerK += beholdning.getSommerK();
+        this.Lyng += beholdning.getLyng();
+        this.LyngH += beholdning.getLyngH();
+        this.LyngK += beholdning.getLyngK();
+        this.IngeferH += beholdning.getIngeferH();
+        this.IngeferK += beholdning.getIngeferK();
+        this.Flytende += beholdning.getFlytende();
+    }
 }

@@ -18,7 +18,7 @@ import android.widget.Toast;
 import com.julia.bachelor.helperClass.Annet;
 import com.julia.bachelor.helperClass.Beholdning;
 import com.julia.bachelor.helperClass.BeholdningTemplate;
-import com.julia.bachelor.helperClass.Honning
+import com.julia.bachelor.helperClass.Honning;
 import com.julia.bachelor.helperClass.SalgTemplate;
 
 import java.util.ArrayList;
@@ -200,7 +200,9 @@ public class HovedsideFragment extends Fragment {
                     amount[i] += Integer.parseInt(value[1]);
                 }
             }
-
+            for(int i = 0; i < beholdnings.size(); i++){
+                ((Beholdning) beholdning).add(beholdnings.get(i));
+            }
             beholdning.setSommer(beholdning.getSommer() - amount[0]);
             beholdning.setSommerH(beholdning.getSommerH() - amount[1]);
             beholdning.setSommerK(beholdning.getSommerK() - amount[2]);
@@ -252,10 +254,5 @@ public class HovedsideFragment extends Fragment {
         super.onAttach(activity);
         ((MainActivity) activity).onSectionAttached(
                 getArguments().getInt(ARG_SECTION_NUMBER));
-    }
-    public void AddAll(BeholdningTemplate beholdning){
-        for (int i = 0; i < beholdnings.size(); i ++){
-            beholdning
-        }
     }
 }

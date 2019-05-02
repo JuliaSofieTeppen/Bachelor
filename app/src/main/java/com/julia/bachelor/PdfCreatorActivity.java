@@ -64,17 +64,15 @@ public class PdfCreatorActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pdfcreator);
-
         Intent intent = getIntent();
         Bundle bundle = intent.getBundleExtra(KEY_BUNDLE);
         solgt = (ArrayList<SalgTemplate>) bundle.getSerializable(KEY_SALG);
-
-
         Startdato = findViewById(R.id.startdato);
         Sluttdato = findViewById(R.id.sluttdato);
         Lagresom = findViewById(R.id.lagresom);
         image = BitmapFactory.decodeResource(getResources(),R.drawable.bie);
         Button mCreateButton = findViewById(R.id.button_create);
+        Sluttdato.setText(Beregninger.getDate());
         mCreateButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

@@ -139,10 +139,7 @@ public class HovedsideFragment extends Fragment {
             }
         });
         try {
-            ArrayList<BeholdningTemplate> beholdningTemplates = (ArrayList<BeholdningTemplate>) (getArguments().getSerializable(KEY_BEHOLDNING));
-            if (beholdningTemplates != null) {
-                beholdnings = Beregninger.separateBeholdning(beholdningTemplates);
-            }
+            beholdnings = (ArrayList<BeholdningTemplate>) (getArguments().getSerializable(KEY_BEHOLDNING));
             honning = (ArrayList<Honning>) (getArguments().getSerializable(KEY_HONNING));
             AllSalg = (ArrayList<SalgTemplate>) (getArguments().getSerializable(KEY_ALLSALG));
             info.setText(setValueString());
@@ -188,7 +185,7 @@ public class HovedsideFragment extends Fragment {
     }
     
     BeholdningTemplate CalculateBeholdning() {
-        BeholdningTemplate beholdning = findCurrentBeholdning(Beregninger.separateBeholdning(beholdnings));
+        BeholdningTemplate beholdning = findCurrentBeholdning(beholdnings);
         ArrayList<SalgTemplate> period = salesInPeriod(beholdning.getDato());
         int[] amount = new int[9];
         try {

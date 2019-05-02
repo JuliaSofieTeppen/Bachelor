@@ -65,14 +65,20 @@ public class ExampleUnitTest {
             amounts[i]=Integer.parseInt(amount[1]);
         }
         long end = System.nanoTime();
-        assertEquals(expected, amounts);
+        for(int j =0; j<9;j++) {
+            assertEquals(expected[j], amounts[j]);
+        }
         long elapsed = end-start;
         System.out.println("Time elapsed: " + elapsed);
     }
 
     @Test(timeout=1000)
     public void timeTest(){
+        long start = System.nanoTime();
         MainActivity main = new MainActivity();
         main.fetch();
+        long end = System.nanoTime();
+        long elapsed = end-start;
+        System.out.println("Time elapsed: " + elapsed);
     }
 }

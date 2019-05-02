@@ -64,12 +64,9 @@ public class PdfCreatorActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pdfcreator);
-
         Intent intent = getIntent();
         Bundle bundle = intent.getBundleExtra(KEY_BUNDLE);
         solgt = (ArrayList<SalgTemplate>) bundle.getSerializable(KEY_SALG);
-
-
         Startdato = findViewById(R.id.startdato);
         Sluttdato = findViewById(R.id.sluttdato);
         Lagresom = findViewById(R.id.lagresom);

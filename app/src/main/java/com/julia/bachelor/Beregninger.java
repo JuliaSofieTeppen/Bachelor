@@ -5,8 +5,6 @@ import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
 
 import com.julia.bachelor.helperClass.Annet;
-import com.julia.bachelor.helperClass.Beholdning;
-import com.julia.bachelor.helperClass.BeholdningTemplate;
 import com.julia.bachelor.helperClass.BondensMarked;
 import com.julia.bachelor.helperClass.Hjemme;
 import com.julia.bachelor.helperClass.SalgTemplate;
@@ -15,20 +13,21 @@ import com.julia.bachelor.helperClass.Videresalg;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.Date;
-import java.util.Iterator;
 import java.util.Locale;
 
 class Beregninger {
 
-    private static final SimpleDateFormat DATO_FORMAT = new java.text.SimpleDateFormat("yyyy-mm-dd", Locale.US);
     private Context context;
-
-    Beregninger(){}
 
     Beregninger(Context context) {
         this.context = context;
+    }
+
+    static String getDate() {
+        DateFormat dateFormat = new SimpleDateFormat("yyyy.MM.dd", Locale.US);
+        Date now = new Date();
+        return dateFormat.format(now);
     }
 
     static boolean checkDate(String date) {
@@ -36,7 +35,7 @@ class Beregninger {
         return date.matches(regex);
     }
 
-    ArrayList<SalgTemplate> separateAnnet(ArrayList<SalgTemplate> list) {
+    static ArrayList<SalgTemplate> separateAnnet(ArrayList<SalgTemplate> list) {
         ArrayList<SalgTemplate> annet = new ArrayList<>();
         for (SalgTemplate object : list) {
             if (object instanceof Annet) {
@@ -46,7 +45,7 @@ class Beregninger {
         return annet;
     }
 
-    ArrayList<SalgTemplate> separateHjemme(ArrayList<SalgTemplate> list) {
+    static ArrayList<SalgTemplate> separateHjemme(ArrayList<SalgTemplate> list) {
         ArrayList<SalgTemplate> hjemme = new ArrayList<>();
         for (SalgTemplate object : list) {
             if (object instanceof Hjemme) {
@@ -56,7 +55,7 @@ class Beregninger {
         return hjemme;
     }
 
-    ArrayList<SalgTemplate> separateBondensMarked(ArrayList<SalgTemplate> list) {
+    static ArrayList<SalgTemplate> separateBondensMarked(ArrayList<SalgTemplate> list) {
         ArrayList<SalgTemplate> bondensMarked = new ArrayList<>();
         for (SalgTemplate object : list) {
             if (object instanceof BondensMarked) {
@@ -66,7 +65,7 @@ class Beregninger {
         return bondensMarked;
     }
 
-    ArrayList<SalgTemplate> separateVideresalg(ArrayList<SalgTemplate> list) {
+    static ArrayList<SalgTemplate> separateVideresalg(ArrayList<SalgTemplate> list) {
         ArrayList<SalgTemplate> videresalg = new ArrayList<>();
         for (SalgTemplate object : list) {
             if (object instanceof Videresalg) {
@@ -76,64 +75,7 @@ class Beregninger {
         return videresalg;
     }
 
-    public double sumAnnet(ArrayList<Annet> list) {//ok
-        Iterator<Annet> itererer = list.iterator();
-        int total = 0;
-        while (itererer.hasNext()) {
-            int tall = itererer.next().getBelop();
-            if (tall > 0) {
-                total += tall;
-            }
-        }
-        return total;
-    }
-
-
-    public double sumHjemme(ArrayList<Hjemme> list) {//ok
-        Iterator<Hjemme> itererer = list.iterator();
-        int total = 0;
-        while (itererer.hasNext()) {
-            int tall = itererer.next().getBelop();
-            if (tall > 0) {
-                total += tall;
-            }
-        }
-        return total;
-    }
-
-
-    public void reverseList(ArrayList<Object> list) {//ok
-        Collections.reverse(list);
-    }
-
-
-    public double sumBm(ArrayList<BondensMarked> list) {//ok
-        Iterator<BondensMarked> itererer = list.iterator();
-        int total = 0;
-        while (itererer.hasNext()) {
-            int tall = itererer.next().getBelop();
-            if (tall > 0) {
-                total += tall;
-            }
-        }
-        return total;
-    }
-
-
-    public double sumVideresalg(ArrayList<Videresalg> list) {//ok
-        Iterator<Videresalg> itererer = list.iterator();//.listIterator();
-        int total = 0;
-        while (itererer.hasNext()) {
-            int tall = itererer.next().getBelop();
-            if (tall > 0) {
-                total += tall;
-            }
-        }
-        return total;
-    }
-
-
-    public double sumList(ArrayList<SalgTemplate> list) {
+    static double sumList(ArrayList<SalgTemplate> list) {
         double total = 0;
         for (SalgTemplate aList : list) {
             int tall = aList.getBelop();
@@ -143,7 +85,6 @@ class Beregninger {
         }
         return total;
     }
-
 
     public double mvaHoy(ArrayList<SalgTemplate> list) {
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
@@ -158,16 +99,9 @@ class Beregninger {
         return avgift;
     }
 
-
     public double mvaLav(ArrayList<Object> list) {
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
         return ((double) sharedPreferences.getInt("ferdigprodukt", 15)) / 100.0;
-    }
-
-    static String getDate() {
-        DateFormat dateFormat = new SimpleDateFormat("yyyy.MM.dd", Locale.US);
-        Date now = new Date();
-        return dateFormat.format(now);
     }
 }
 

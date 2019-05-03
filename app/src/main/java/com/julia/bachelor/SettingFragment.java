@@ -32,7 +32,8 @@ public class SettingFragment extends Fragment {
     List<EditText> HjemmeVerdier, BMverdier, FakturaVerdier;
     Button lagre;
 
-    public SettingFragment(){}
+    public SettingFragment() {
+    }
 
     public static SettingFragment newInstance() {
         return new SettingFragment();
@@ -85,18 +86,20 @@ public class SettingFragment extends Fragment {
         honningtype = main.getHonningTyper();
         try {
             if (honningtype != null) {
-                String s;
-                for (int i = 0; i < BMverdier.size(); i++) {
-                    s = Integer.toString(honningtype.get(i + 3).getBondensMarkedPris());
-                    BMverdier.get(i).setText(s);
-                }
-                for (int i = 0; i < HjemmeVerdier.size(); i++) {
-                    s = Integer.toString(honningtype.get(i + 3).getHjemmePris());
-                    HjemmeVerdier.get(i).setText(s);
-                }
-                for (int i = 0; i < FakturaVerdier.size(); i++) {
-                    s = Integer.toString(honningtype.get(i + 3).getFakturaPris());
-                    FakturaVerdier.get(i).setText(s);
+                if (!honningtype.isEmpty()) {
+                    String s;
+                    for (int i = 0; i < BMverdier.size(); i++) {
+                        s = Integer.toString(honningtype.get(i + 3).getBondensMarkedPris());
+                        BMverdier.get(i).setText(s);
+                    }
+                    for (int i = 0; i < HjemmeVerdier.size(); i++) {
+                        s = Integer.toString(honningtype.get(i + 3).getHjemmePris());
+                        HjemmeVerdier.get(i).setText(s);
+                    }
+                    for (int i = 0; i < FakturaVerdier.size(); i++) {
+                        s = Integer.toString(honningtype.get(i + 3).getFakturaPris());
+                        FakturaVerdier.get(i).setText(s);
+                    }
                 }
             }
         } catch (NullPointerException e) {

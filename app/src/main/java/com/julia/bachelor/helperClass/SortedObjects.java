@@ -27,7 +27,7 @@ public class SortedObjects implements SalgTemplate, Serializable {
         this.sortMethod = sortMethod;
     }
 
-    // should be called from DetailsActivity
+    // TODO should be called from DetailsActivity
     public String getAnnetVarer() {
         return AnnetVarer;
     }
@@ -42,7 +42,7 @@ public class SortedObjects implements SalgTemplate, Serializable {
 
     @Override
     public String getKunde() {
-        return sortMethod ? "Month" : "Year";
+        return sortMethod ? "Måned" : "År";
     }
 
     @Override
@@ -94,26 +94,20 @@ public class SortedObjects implements SalgTemplate, Serializable {
     @Override
     public void setMoms(double moms) {}
 
-    // TODO fix this method
     private void addVarer(String varer) {
         String[] addPair = varer.split(",");
-        //String[] OriginalPair = Varer.split(",");
-        int[] newValues = new int[addPair.length];
-        for (int i = 0; i < addPair.length; i++) { // {1-2, 2-2, 3-2, 4-2, 5-2, 6-2, 7-2}
+        for (int i = 0; i < addPair.length; i++) {
             if(i == 9) break;
-            String[] add = addPair[i].split("-"); // {1,2} {2,2}
+            String[] add = addPair[i].split("-");
             amount[i] += Integer.parseInt(add[1]);
-            // String[] original = OriginalPair[i].split("-"); // {1,2} {2,2}
-            // int count = Integer.parseInt(add[1]) + Integer.parseInt(original[1]);
-            // newValues[i] = count;
         }
     }
 
     public void add(SalgTemplate obj) {
         if (!(obj instanceof Annet)) {
             addVarer(obj.getVarer());
-            Belop += obj.getBelop();
-            Betaling[obj.getBetaling().equals(KONTANT) ? 0 : 1] += obj.getBelop();
         }
+        Belop += obj.getBelop();
+        Betaling[obj.getBetaling().equals(KONTANT) ? 0 : 1] += obj.getBelop();
     }
 }

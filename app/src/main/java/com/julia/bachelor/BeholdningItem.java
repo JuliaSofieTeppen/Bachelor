@@ -64,7 +64,6 @@ public class BeholdningItem extends Activity {
                 MainActivity main = new MainActivity();
                 Database database = new Database();
                 database.executeOnDB("http://www.honningbier.no/PHP/BeholdningDelete.php/?ID=" + beholdning.get_ID());
-                main.fetch();
                 finish();
             }
         });

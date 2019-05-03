@@ -94,26 +94,29 @@ public class VideresalgActivity extends Activity implements AdapterView.OnItemSe
     public void lagre(View v) {
         int tell = 0;
         if (Beregninger.checkDate(dato.getText().toString())) {
-            for (EditText verdi : verdier) {
-                if (verdi.getText().toString().equals("") || verdi.getText().toString().equals("0")) {
-                    verdi.setText("0");
+            if(!navn.getText().toString().equals("")) {
+                for (EditText verdi : verdier) {
+                    if (verdi.getText().toString().equals("") || verdi.getText().toString().equals("0")) {
+                        verdi.setText("0");
+                    } else {
+                        tell++;
+                    }
+                }
+                if (tell == 0) {
+                    Toast.makeText(this, "Legg til minst et produkt", Toast.LENGTH_SHORT).show();
                 } else {
-                    tell++;
+                    if (!checkbehold()) {
+                        addAlert();
+                    } else {
+                        insertValues();
+                        Toast.makeText(this, "Videre salg lagret", Toast.LENGTH_SHORT).show();
+                        finish();
+                    }
                 }
-            }
-            if (tell == 0) {
-                Toast.makeText(this, "Legg til minst et produkt", Toast.LENGTH_SHORT).show();
-            } else {
-                if(!checkbehold()){ addAlert();
-                }else {
-                    insertValues();
-                    Toast.makeText(this, "Videre salg lagret", Toast.LENGTH_SHORT).show();
-                    finish();
-                }
-            }
-        } else {
+            }else
+                Toast.makeText(this, "Skriv inn navn", Toast.LENGTH_SHORT).show();
+        } else
             Toast.makeText(this, "Ugyldig dato", Toast.LENGTH_SHORT).show();
-        }
     }
 
     private String getVarer() {

@@ -17,11 +17,9 @@ import android.support.v4.content.FileProvider;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
-import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.itextpdf.text.BadElementException;
@@ -60,7 +58,8 @@ public class PdfCreatorActivity extends AppCompatActivity {
     private ArrayList<SalgTemplate> solgt;
     Bitmap image;
 
-    @Override @SuppressWarnings("unchecked")
+    @Override
+    @SuppressWarnings("unchecked")
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pdfcreator);
@@ -70,18 +69,18 @@ public class PdfCreatorActivity extends AppCompatActivity {
         Startdato = findViewById(R.id.startdato);
         Sluttdato = findViewById(R.id.sluttdato);
         Lagresom = findViewById(R.id.lagresom);
-        image = BitmapFactory.decodeResource(getResources(),R.drawable.bie);
+        image = BitmapFactory.decodeResource(getResources(), R.drawable.bie);
         Button mCreateButton = findViewById(R.id.button_create);
         Sluttdato.setText(Beregninger.getDate());
         mCreateButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (!Beregninger.checkDate(Startdato.getText().toString())|| !Beregninger.checkDate(Sluttdato.getText().toString())){
-                    Toast.makeText(PdfCreatorActivity.this,"Ugyldig dato", Toast.LENGTH_SHORT).show();
+                if (!Beregninger.checkDate(Startdato.getText().toString()) || !Beregninger.checkDate(Sluttdato.getText().toString())) {
+                    Toast.makeText(PdfCreatorActivity.this, "Ugyldig dato", Toast.LENGTH_SHORT).show();
                     return;
                 }
-                if(!datehigherthan()){
-                    Toast.makeText(PdfCreatorActivity.this,"Sluttdato er tidligere enn Startdato", Toast.LENGTH_SHORT).show();
+                if (!datehigherthan()) {
+                    Toast.makeText(PdfCreatorActivity.this, "Sluttdato er tidligere enn Startdato", Toast.LENGTH_SHORT).show();
                     return;
                 }
                 try {
@@ -95,7 +94,8 @@ public class PdfCreatorActivity extends AppCompatActivity {
         });
 
     }
-    private void createPdfWrapper() throws FileNotFoundException,DocumentException{
+
+    private void createPdfWrapper() throws FileNotFoundException, DocumentException {
 
 
         int hasWriteStoragePermission = ActivityCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE);
@@ -117,10 +117,11 @@ public class PdfCreatorActivity extends AppCompatActivity {
                 requestPermissions(new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE},
                         REQUEST_CODE_ASK_PERMISSIONS);
             }
-        }else {
+        } else {
             createPdf();
         }
     }
+
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         if (requestCode == REQUEST_CODE_ASK_PERMISSIONS) {
@@ -142,6 +143,7 @@ public class PdfCreatorActivity extends AppCompatActivity {
             super.onRequestPermissionsResult(requestCode, permissions, grantResults);
         }
     }
+
     private void showMessageOKCancel(DialogInterface.OnClickListener okListener) {
         new AlertDialog.Builder(this)
                 .setMessage("You need to allow access to Storage")
@@ -156,7 +158,7 @@ public class PdfCreatorActivity extends AppCompatActivity {
         File docsFolder = new File(Environment.getExternalStorageDirectory() + "/Documents");
         if (!docsFolder.exists()) {
             boolean created = docsFolder.mkdir();
-            if(created) {
+            if (created) {
                 Log.i(TAG, "Created a new directory for PDF");
             }
         }
@@ -200,83 +202,80 @@ public class PdfCreatorActivity extends AppCompatActivity {
         annettable.addCell("Moms%");
         annettable.addCell("Moms kr");
 
-        double hjemmeteller = 0;
-        double videreteller = 0;
-        double annetteller = 0;
-
-        for(SalgTemplate salg : solgt){
-            if(salg instanceof Hjemme) {
+        for (SalgTemplate salg : solgt) {
+            if (salg instanceof Hjemme) {
                 Hjemme hjemmeSalg = (Hjemme) salg;
-                if(greaterThan(hjemmeSalg.getDato(), Startdato.getText().toString())&& !greaterThan(hjemmeSalg.getDato(),Sluttdato.getText().toString())){
+                if (greaterThan(hjemmeSalg.getDato(), Startdato.getText().toString()) && !greaterThan(hjemmeSalg.getDato(), Sluttdato.getText().toString())) {
                     hjemmetable.addCell(hjemmeSalg.getDato());
                     hjemmetable.addCell(Integer.toString(hjemmeSalg.getBelop()));
-                    hjemmetable.addCell(Double.toString(hjemmeSalg.getMoms()*100));
-                    hjemmetable.addCell(Double.toString(hjemmeSalg.getBelop()*hjemmeSalg.getMoms()));
-                    hjemmeteller += hjemmeSalg.getBelop();
+                    hjemmetable.addCell(Double.toString(hjemmeSalg.getMoms() * 100));
+                    hjemmetable.addCell(Double.toString(hjemmeSalg.getBelop() * hjemmeSalg.getMoms()));
                 }
-            }else if(salg instanceof Videresalg) {
+            } else if (salg instanceof Videresalg) {
                 Videresalg videresalg = (Videresalg) salg;
-                if(greaterThan(videresalg.getDato(), Startdato.getText().toString())&& !greaterThan(videresalg.getDato(),Sluttdato.getText().toString())){
+                if (greaterThan(videresalg.getDato(), Startdato.getText().toString()) && !greaterThan(videresalg.getDato(), Sluttdato.getText().toString())) {
                     videretable.addCell(videresalg.getDato());
                     videretable.addCell(Integer.toString(videresalg.getBelop()));
                     videretable.addCell(Double.toString(videresalg.getMoms()));
-                    videretable.addCell(Double.toString((videresalg.getBelop()*videresalg.getMoms())/100));
-                    videreteller += videresalg.getBelop();
+                    videretable.addCell(Double.toString((videresalg.getBelop() * videresalg.getMoms()) / 100));
                 }
-            }else if(salg instanceof Annet) {
+            } else if (salg instanceof Annet) {
                 Annet annet = (Annet) salg;
                 if (greaterThan(annet.getDato(), Startdato.getText().toString()) && !greaterThan(annet.getDato(), Sluttdato.getText().toString())) {
                     annettable.addCell(annet.getDato());
                     annettable.addCell(Integer.toString(annet.getBelop()));
-                    annettable.addCell(Double.toString(annet.getMoms()*100));
-                    annettable.addCell(Double.toString(annet.getBelop()*annet.getMoms()));
-                    annetteller += annet.getBelop();
+                    annettable.addCell(Double.toString(annet.getMoms() * 100));
+                    annettable.addCell(Double.toString(annet.getBelop() * annet.getMoms()));
                 }
             }
         }
-        addtotal(hjemmetable,hjemmeteller);
-        addtotal(videretable,videreteller);
-        addtotal(annettable,annetteller);
-
-        img.scaleToFit(90f, 90f);
-        img.setAlignment(Element.ALIGN_LEFT | Image.TEXTWRAP);
+        ArrayList<SalgTemplate> tmp = Beregninger.separateHjemme(solgt);
+        addtotal(hjemmetable, Beregninger.sumList(tmp));
+        tmp = Beregninger.separateVideresalg(solgt);
+        addtotal(videretable, Beregninger.sumList(tmp));
+        tmp = Beregninger.separateAnnet(solgt);
+        addtotal(annettable, Beregninger.sumList(tmp));
+        if (img != null) {
+            img.scaleToFit(90f, 90f);
+            img.setAlignment(Element.ALIGN_LEFT | Image.TEXTWRAP);
+        }
         document.add(Image.getInstance(img));
 
-        document.add(new Paragraph("    Salgsoversikt", new Font(Font.FontFamily.HELVETICA,18,Font.BOLD)));
-        document.add( Chunk.NEWLINE );
+        document.add(new Paragraph("    Salgsoversikt", new Font(Font.FontFamily.HELVETICA, 18, Font.BOLD)));
+        document.add(Chunk.NEWLINE);
 
         document.add(new Paragraph("      Startdato: " + Startdato.getText().toString()));
         document.add(new Paragraph("      Sluttdato: " + Sluttdato.getText().toString()));
 
-        document.add( Chunk.NEWLINE );
-        document.add( Chunk.NEWLINE );
+        document.add(Chunk.NEWLINE);
+        document.add(Chunk.NEWLINE);
         document.add(new Paragraph("Hjemmesalg", new Font(Font.FontFamily.HELVETICA, 12, Font.BOLD)));
-        document.add( Chunk.NEWLINE );
+        document.add(Chunk.NEWLINE);
         document.add(hjemmetable);
 
-        document.add( Chunk.NEWLINE );
-        document.add(new Paragraph("Videresalg", new Font(Font.FontFamily.HELVETICA,12,Font.BOLD)));
-        document.add( Chunk.NEWLINE );
+        document.add(Chunk.NEWLINE);
+        document.add(new Paragraph("Videresalg", new Font(Font.FontFamily.HELVETICA, 12, Font.BOLD)));
+        document.add(Chunk.NEWLINE);
         document.add(videretable);
 
-        document.add( Chunk.NEWLINE );
-        document.add(new Paragraph("Annet salg", new Font(Font.FontFamily.HELVETICA,12,Font.BOLD)));
-        document.add( Chunk.NEWLINE );
+        document.add(Chunk.NEWLINE);
+        document.add(new Paragraph("Annet salg", new Font(Font.FontFamily.HELVETICA, 12, Font.BOLD)));
+        document.add(Chunk.NEWLINE);
         document.add(annettable);
 
-        document.add( Chunk.NEWLINE );
-        document.add( Chunk.NEWLINE );
-        document.add(new Paragraph("Total: " + (hjemmeteller + videreteller + annetteller), new Font(Font.FontFamily.HELVETICA,14,Font.BOLD)));
+        document.add(Chunk.NEWLINE);
+        document.add(Chunk.NEWLINE);
+        document.add(new Paragraph("Total: " + (Beregninger.sumList(solgt)), new Font(Font.FontFamily.HELVETICA, 14, Font.BOLD)));
 
         document.close();
-        Toast.makeText(this, "PDF laget", Toast.LENGTH_SHORT ).show();
+        Toast.makeText(this, "PDF laget", Toast.LENGTH_SHORT).show();
         previewPdf();
-
     }
+
     private void previewPdf() {
         File file;
-        file = new File(Environment.getExternalStorageDirectory()+"/Documents/"+Lagresom.getText().toString() + ".pdf");
-        if(file.exists()) {
+        file = new File(Environment.getExternalStorageDirectory() + "/Documents/" + Lagresom.getText().toString() + ".pdf");
+        if (file.exists()) {
             Intent target = new Intent(Intent.ACTION_VIEW);
             target.setDataAndType(FileProvider.getUriForFile(this, this.getApplicationContext().getPackageName() + ".com.julia.bachelor.GenericFileProvider", file), "application/pdf");
             target.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
@@ -286,19 +285,18 @@ public class PdfCreatorActivity extends AppCompatActivity {
             try {
                 startActivity(intent);
             } catch (ActivityNotFoundException e) {
-                Toast.makeText(getApplicationContext(), "Installer en PDF-leser." , Toast.LENGTH_LONG).show();
+                Toast.makeText(getApplicationContext(), "Installer en PDF-leser.", Toast.LENGTH_LONG).show();
             }
-        }
-        else
-            Toast.makeText(getApplicationContext(), "File path is incorrect." , Toast.LENGTH_LONG).show();
+        } else
+            Toast.makeText(getApplicationContext(), "File path is incorrect.", Toast.LENGTH_LONG).show();
     }
 
-    public boolean datehigherthan(){
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy.MM.dd",Locale.US);
+    public boolean datehigherthan() {
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy.MM.dd", Locale.US);
         try {
             Date date1 = sdf.parse(Startdato.getText().toString());
             Date date2 = sdf.parse(Sluttdato.getText().toString());
-            if(date2.after(date1)){
+            if (date2.after(date1)) {
                 return true;
             }
         } catch (ParseException e) {
@@ -306,13 +304,14 @@ public class PdfCreatorActivity extends AppCompatActivity {
         }
         return false;
     }
-    boolean greaterThan(String current, String next){
+
+    boolean greaterThan(String current, String next) {
         SimpleDateFormat punktum = new SimpleDateFormat("yyyy.MM.dd", Locale.US);
-        SimpleDateFormat bindestrek = new SimpleDateFormat("yyyy-MM-dd",Locale.US);
+        SimpleDateFormat bindestrek = new SimpleDateFormat("yyyy-MM-dd", Locale.US);
         try {
             Date date1 = bindestrek.parse(current);
             Date date2 = punktum.parse(next);
-            if(date1.after(date2)){
+            if (date1.after(date2)) {
                 return true;
             }
         } catch (ParseException e) {
@@ -320,7 +319,8 @@ public class PdfCreatorActivity extends AppCompatActivity {
         }
         return false;
     }
-    public void addtotal(PdfPTable table,double teller ){
+
+    public void addtotal(PdfPTable table, double teller) {
         table.addCell("Total:");
         table.addCell(Double.toString(teller));
         table.addCell("");

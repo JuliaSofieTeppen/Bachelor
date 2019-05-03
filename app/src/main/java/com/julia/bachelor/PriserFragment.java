@@ -49,9 +49,11 @@ public class PriserFragment extends Fragment {
         honningtype = main.getHonningTyper();
         try {
             if (honningtype != null) {
-                for (int i = 0; i < verdier.size(); i++) {
-                    String text = "" + honningtype.get(i + 3).getHjemmePris() + "kr";
-                    verdier.get(i).setText(text);
+                if(!honningtype.isEmpty()) {
+                    for (int i = 0; i < verdier.size(); i++) {
+                        String text = "" + honningtype.get(i + 3).getHjemmePris() + "kr";
+                        verdier.get(i).setText(text);
+                    }
                 }
             }
         } catch (NullPointerException e) {

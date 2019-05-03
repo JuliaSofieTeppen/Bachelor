@@ -16,7 +16,8 @@ public class AddBeholdningFragment extends Fragment {
     EditText dato, som1kg, som05kg, som025kg, lyng1kg, lyng05kg, lyng025kg, ingf05kg, ingf025kg, flytende;
     List<EditText> verdier;
 
-    public AddBeholdningFragment() {}
+    public AddBeholdningFragment() {
+    }
 
     public static AddBeholdningFragment newInstance() {
         return new AddBeholdningFragment();
@@ -74,7 +75,6 @@ public class AddBeholdningFragment extends Fragment {
     }
 
     void insertIntoDB() {
-        Database.executeOnDB("http://www.honningbier.no/PHP/SalgIn.php/?Dato=" + dato.getText().toString());
         Database.executeOnDB("http://www.honningbier.no/PHP/BeholdningIn.php/?" + getBeholdning() + "&Dato=" + dato.getText().toString());
     }
 }

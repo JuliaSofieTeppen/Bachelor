@@ -1,9 +1,12 @@
 package com.julia.bachelor;
 
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -109,5 +112,37 @@ public class DetailsActivity extends Activity {
     public boolean onOptionsItemSelected(MenuItem item) {
         this.finish();
         return true;
+    }
+    public void delete(View view){
+        final AlertDialog.Builder builder = new AlertDialog.Builder(DetailsActivity.this);
+        builder.setMessage("Vil virkelig slette dette salget?");
+        builder.setCancelable(true);
+        builder.setNegativeButton("Ja", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                MainActivity main = new MainActivity();
+                Database database = new Database();
+                if(object instanceof SortedObjects)
+                    Toast.makeText(DetailsActivity.this, "Kan ikke slette sortert Salg", Toast.LENGTH_SHORT).show();
+                if(object instanceof Hjemme)
+                    database.executeOnDB("http://www.honningbier.no/PHP/HjemmeDelete.php/?ID=" + object.get_ID());
+                else if(object instanceof Videresalg)
+                    database.executeOnDB("http://www.honningbier.no/PHP/VideresalgDelete.php/?ID=" + object.get_ID());
+                else if(object instanceof BondensMarked)
+                    database.executeOnDB("http://www.honningbier.no/PHP/BondensMarkedDelete.php/?ID=" + object.get_ID());
+                else if(object instanceof Annet)
+                    database.executeOnDB("http://www.honningbier.no/PHP/AnnetDelete.php/?ID=" + object.get_ID());
+                main.fetch();
+                finish();
+            }
+        });
+        builder.setPositiveButton("Nei", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.cancel();
+            }
+        });
+        AlertDialog alertDialog = builder.create();
+        alertDialog.show();
     }
 }

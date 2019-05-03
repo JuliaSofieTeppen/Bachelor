@@ -55,4 +55,18 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <Button
+        android:id="@+id/beholdningbutton"
+        android:layout_width="119dp"
+        android:layout_height="42dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
+        android:background="#dddddd"
+        android:text="@string/beholdning"
+        app:layout_constraintBottom_toTopOf="@+id/salgtyper"
+        app:layout_constraintEnd_toEndOf="@+id/salgitems"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.888" />
+
 </android.support.constraint.ConstraintLayout>

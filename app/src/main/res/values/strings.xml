@@ -109,6 +109,7 @@
     <string name="totalt">TOTALT</string>
     <string name="SalgItem_VerdierNavn">Sommerhonning 1kg\n\nSommerhonning 1/2kg\n\nSommerhonning 1/4kg\n\nLynghonning 1kg\n\nLynghonning1/2kg\n\nLynghonning 1/4kg\n\nSommer med Ingefær 1/2kg\n\nSommer med ingefær 1/4kg\n\nFlytende</string>
     <string name="SalgItem_verdier">0\n0\n0\n0\n0\n0\n0\n0\n0</string>
+    <string name="verdiernull">0\n\n0\n\n0\n\n0\n\n0\n\n0\n\n0\n\n0\n\n0</string>
     <string name="kr">Kr</string>
     <string name="kundens_navn">Kundens navn</string>
     <string name="salg">Salg</string>

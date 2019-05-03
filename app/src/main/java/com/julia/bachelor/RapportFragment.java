@@ -8,10 +8,12 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import com.julia.bachelor.helperClass.Beholdning;
 import com.julia.bachelor.helperClass.SalgTemplate;
 import com.julia.bachelor.helperClass.SortedObjects;
 
@@ -23,11 +25,13 @@ public class RapportFragment extends Fragment {
     private static final String KEY_ALLSALG = "AllSalg";
     private static final String KEY_OBJECT = "Object";
     private static final String KEY_BUNDLE = "Bundle";
+    private static final String KEY_BEHOLD = "Behold";
     ListView listView;
     Spinner datoer, salgtyper;
     ArrayList<SalgTemplate> Salg, dynamicList;
     ArrayList<String> salgliste;
     Beregninger beregninger;
+    Button beholdningButton;
 
     public RapportFragment() {}
 
@@ -54,6 +58,7 @@ public class RapportFragment extends Fragment {
         beregninger = new Beregninger(this.getContext());
         dynamicList = new ArrayList<>();
         salgliste = new ArrayList<>();
+        beholdningButton = rootView.findViewById(R.id.beholdningbutton);
 
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this.getContext(), R.array.datoer, android.R.layout.simple_spinner_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -91,6 +96,17 @@ public class RapportFragment extends Fragment {
                 Intent myIntent = new Intent(RapportFragment.this.getContext(), DetailsActivity.class);
                 myIntent.putExtra(KEY_BUNDLE, bundle);
                 startActivity(myIntent);
+            }
+        });
+        beholdningButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                MainActivity main = new MainActivity();
+                Bundle bundle = new Bundle();
+                bundle.putSerializable(KEY_BEHOLD, main.getBeholdning());
+                Intent myIntent = new Intent(getContext(), RapportBeholdning.class);
+                myIntent.putExtra(KEY_BUNDLE, bundle);
+                getContext().startActivity(myIntent);
             }
         });
         return rootView;
@@ -244,4 +260,5 @@ public class RapportFragment extends Fragment {
         String[] dates = date.split("-");
         return dates[0];
     }
+
 }

@@ -114,4 +114,5 @@
     <string name="kundens_navn">Kundens navn</string>
     <string name="salg">Salg</string>
     <string name="_0kr">0kr</string>
+    <string name="rapport_beholdning">Rapport Beholdning</string>
 </resources>

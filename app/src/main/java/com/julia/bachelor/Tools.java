@@ -1,9 +1,5 @@
 package com.julia.bachelor;
 
-import android.content.Context;
-import android.content.SharedPreferences;
-import android.preference.PreferenceManager;
-
 import com.julia.bachelor.helperClass.Annet;
 import com.julia.bachelor.helperClass.BondensMarked;
 import com.julia.bachelor.helperClass.Hjemme;
@@ -16,13 +12,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.Locale;
 
-class Beregninger {
-
-    private Context context;
-
-    Beregninger(Context context) {
-        this.context = context;
-    }
+class Tools {
 
     static String getDate() {
         DateFormat dateFormat = new SimpleDateFormat("yyyy.MM.dd", Locale.US);
@@ -84,24 +74,6 @@ class Beregninger {
             }
         }
         return total;
-    }
-
-    public double mvaHoy(ArrayList<SalgTemplate> list) {
-        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
-        double mva = ((double) sharedPreferences.getInt("ikkeferdig", 25)) / 100.0;
-        ArrayList<SalgTemplate> videresalgs = separateVideresalg(list);
-        double avgift = 0;
-        for (Object videresalg : videresalgs) {
-            Videresalg v = (Videresalg) videresalg;
-            avgift += v.getMoms() * v.getBelop();
-        }
-        //avgift += sumAnnet(separateAnnet(list));
-        return avgift;
-    }
-
-    public double mvaLav(ArrayList<Object> list) {
-        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
-        return ((double) sharedPreferences.getInt("ferdigprodukt", 15)) / 100.0;
     }
 }
 

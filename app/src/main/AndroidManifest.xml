@@ -14,8 +14,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".BeholdningItem"></activity>
-        <activity android:name=".RapportBeholdning" />
+        <activity android:name=".BeholdningItemActivity"/>
+        <activity android:name=".RapportBeholdningActivity" />
         <activity
             android:name=".PdfCreatorActivity"
             android:theme="@style/CompAppTheme" />

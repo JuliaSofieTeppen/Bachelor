@@ -3,6 +3,7 @@ package com.julia.bachelor;
 import android.app.Activity;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
+import android.content.Context;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -51,6 +52,10 @@ public class MainActivity extends Activity implements NavigationDrawerFragment.N
          */
         NavigationDrawerFragment mNavigationDrawerFragment = (NavigationDrawerFragment) getFragmentManager().findFragmentById(R.id.navigation_drawer);
         mNavigationDrawerFragment.setUp(R.id.navigation_drawer, (DrawerLayout) findViewById(R.id.drawer_layout));
+    }
+
+    public Context shareContext(){
+        return this;
     }
 
     void setArrays(ArrayList<Beholdning> BeholdningList, ArrayList<SalgTemplate> allSalg,
@@ -127,7 +132,7 @@ public class MainActivity extends Activity implements NavigationDrawerFragment.N
         verdier = new ArrayList<>(Arrays.asList(som1kg, som05kg, som025kg, lyng1kg, lyng05kg, lyng025kg, ingf05kg, ingf025kg, flytende));
 
         int tell = 0;
-        if (Beregninger.checkDate(dato.getText().toString())) {
+        if (Tools.checkDate(dato.getText().toString())) {
             for (EditText verdi : verdier) {
                 if (verdi.getText().toString().equals("")) {
                     verdi.setText("0");

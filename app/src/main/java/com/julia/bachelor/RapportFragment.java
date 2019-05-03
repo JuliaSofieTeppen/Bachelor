@@ -11,9 +11,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.Spinner;
-import android.widget.Toast;
 
-import com.julia.bachelor.helperClass.Beholdning;
 import com.julia.bachelor.helperClass.SalgTemplate;
 import com.julia.bachelor.helperClass.SortedObjects;
 
@@ -30,7 +28,6 @@ public class RapportFragment extends Fragment {
     Spinner datoer, salgtyper;
     ArrayList<SalgTemplate> Salg, dynamicList;
     ArrayList<String> salgliste;
-    Beregninger beregninger;
     Button beholdningButton;
 
     public RapportFragment() {}
@@ -55,7 +52,6 @@ public class RapportFragment extends Fragment {
         datoer = rootView.findViewById(R.id.dagmånedår);
         salgtyper = rootView.findViewById(R.id.salgtyper);
         Salg = (ArrayList<SalgTemplate>) getArguments().getSerializable(KEY_ALLSALG);
-        beregninger = new Beregninger(this.getContext());
         dynamicList = new ArrayList<>();
         salgliste = new ArrayList<>();
         beholdningButton = rootView.findViewById(R.id.beholdningbutton);
@@ -104,7 +100,7 @@ public class RapportFragment extends Fragment {
                 MainActivity main = new MainActivity();
                 Bundle bundle = new Bundle();
                 bundle.putSerializable(KEY_BEHOLD, main.getBeholdning());
-                Intent myIntent = new Intent(getContext(), RapportBeholdning.class);
+                Intent myIntent = new Intent(getContext(), RapportBeholdningActivity.class);
                 myIntent.putExtra(KEY_BUNDLE, bundle);
                 getContext().startActivity(myIntent);
             }
@@ -171,25 +167,25 @@ public class RapportFragment extends Fragment {
     }
 
     public void sorterpaBondensMarked() {
-        dynamicList = beregninger.separateBondensMarked(Salg);
+        dynamicList = Tools.separateBondensMarked(Salg);
         updateSalgliste();
         updateListView();
     }
 
     public void sorterpaHjemme() {
-        dynamicList = beregninger.separateHjemme(Salg);
+        dynamicList = Tools.separateHjemme(Salg);
         updateSalgliste();
         updateListView();
     }
 
     public void sorterpavideresalg() {
-        dynamicList = beregninger.separateVideresalg(Salg);
+        dynamicList = Tools.separateVideresalg(Salg);
         updateSalgliste();
         updateListView();
     }
 
     public void sorterpaAnnet() {
-        dynamicList = beregninger.separateAnnet(Salg);
+        dynamicList = Tools.separateAnnet(Salg);
         updateSalgliste();
         updateListView();
     }

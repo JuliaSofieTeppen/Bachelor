@@ -26,7 +26,7 @@ public class ExampleUnitTest {
     @Before
     public void setVariables(){
         String products = "1-1,2-3,3-0,4-5,5-0,6-0,7-0,8-0,9-0,";
-        String date = Beregninger.getDate();
+        String date = Tools.getDate();
         String payment = "Kort";
         String customer = "Sam Knight";
         sale = new ArrayList<>();

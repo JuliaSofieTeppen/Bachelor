@@ -93,7 +93,7 @@ public class VideresalgActivity extends Activity implements AdapterView.OnItemSe
 
     public void lagre(View v) {
         int tell = 0;
-        if (Beregninger.checkDate(dato.getText().toString())) {
+        if (Tools.checkDate(dato.getText().toString())) {
             for (EditText verdi : verdier) {
                 if (verdi.getText().toString().equals("") || verdi.getText().toString().equals("0")) {
                     verdi.setText("0");
@@ -139,17 +139,13 @@ public class VideresalgActivity extends Activity implements AdapterView.OnItemSe
         if (checkValue(behold.getLyngK(),Integer.parseInt(verdier.get(5).getText().toString()))) return false;
         if (checkValue(behold.getIngeferH(),Integer.parseInt(verdier.get(6).getText().toString()))) return false;
         if (checkValue(behold.getIngeferK(),Integer.parseInt(verdier.get(7).getText().toString()))) return false;
-        if (checkValue(behold.getFlytende(),Integer.parseInt(verdier.get(8).getText().toString()))) return false;
-        return true;
+        return !checkValue(behold.getFlytende(), Integer.parseInt(verdier.get(8).getText().toString()));
     }
     public boolean checkValue(int behold, int verdi){
         if(verdi == 0){
             return false;
         }
-        if(behold < verdi){
-            return true;
-        }
-        return false;
+        return behold < verdi;
     }
 
     int getbelop() {

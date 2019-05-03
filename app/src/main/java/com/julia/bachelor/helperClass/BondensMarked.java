@@ -1,5 +1,11 @@
 package com.julia.bachelor.helperClass;
 
+import android.content.Context;
+import android.content.SharedPreferences;
+import android.preference.PreferenceManager;
+
+import com.julia.bachelor.MainActivity;
+
 import java.io.Serializable;
 
 public class BondensMarked implements SalgTemplate, Serializable {
@@ -29,7 +35,6 @@ public class BondensMarked implements SalgTemplate, Serializable {
 
     @Override
     public void setKunde(String kunde) {
-
     }
 
     @Override
@@ -79,6 +84,9 @@ public class BondensMarked implements SalgTemplate, Serializable {
 
     @Override
     public double getMoms() {
-        return 0.15;
+        MainActivity main = new MainActivity();
+        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(main.shareContext());
+        double moms = sharedPreferences.getInt("ferdigprodukt", 15);
+        return moms/100;
     }
 }

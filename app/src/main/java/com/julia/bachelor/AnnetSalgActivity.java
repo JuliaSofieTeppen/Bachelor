@@ -55,7 +55,7 @@ public class AnnetSalgActivity extends Activity implements AdapterView.OnItemSel
      **/
     public void SAlagre(View view) {
         int tell = 0;
-        if (Beregninger.checkDate(Dato.getText().toString())) {
+        if (Tools.checkDate(Dato.getText().toString())) {
             if (!(Pris.getText().toString().equals("") || KundeNavn.getText().toString().equals(""))) {
                 for (EditText verdi : verdier) {
                     if (verdi.getText().toString().equals("") || verdi.getText().toString().equals("0")) {

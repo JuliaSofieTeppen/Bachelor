@@ -71,11 +71,11 @@ public class PdfCreatorActivity extends AppCompatActivity {
         Lagresom = findViewById(R.id.lagresom);
         image = BitmapFactory.decodeResource(getResources(), R.drawable.bie);
         Button mCreateButton = findViewById(R.id.button_create);
-        Sluttdato.setText(Beregninger.getDate());
+        Sluttdato.setText(Tools.getDate());
         mCreateButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (!Beregninger.checkDate(Startdato.getText().toString()) || !Beregninger.checkDate(Sluttdato.getText().toString())) {
+                if (!Tools.checkDate(Startdato.getText().toString()) || !Tools.checkDate(Sluttdato.getText().toString())) {
                     Toast.makeText(PdfCreatorActivity.this, "Ugyldig dato", Toast.LENGTH_SHORT).show();
                     return;
                 }
@@ -229,12 +229,12 @@ public class PdfCreatorActivity extends AppCompatActivity {
                 }
             }
         }
-        ArrayList<SalgTemplate> tmp = Beregninger.separateHjemme(solgt);
-        addtotal(hjemmetable, Beregninger.sumList(tmp));
-        tmp = Beregninger.separateVideresalg(solgt);
-        addtotal(videretable, Beregninger.sumList(tmp));
-        tmp = Beregninger.separateAnnet(solgt);
-        addtotal(annettable, Beregninger.sumList(tmp));
+        ArrayList<SalgTemplate> tmp = Tools.separateHjemme(solgt);
+        addtotal(hjemmetable, Tools.sumList(tmp));
+        tmp = Tools.separateVideresalg(solgt);
+        addtotal(videretable, Tools.sumList(tmp));
+        tmp = Tools.separateAnnet(solgt);
+        addtotal(annettable, Tools.sumList(tmp));
         if (img != null) {
             img.scaleToFit(90f, 90f);
             img.setAlignment(Element.ALIGN_LEFT | Image.TEXTWRAP);
@@ -265,7 +265,7 @@ public class PdfCreatorActivity extends AppCompatActivity {
 
         document.add(Chunk.NEWLINE);
         document.add(Chunk.NEWLINE);
-        document.add(new Paragraph("Total: " + (Beregninger.sumList(solgt)), new Font(Font.FontFamily.HELVETICA, 14, Font.BOLD)));
+        document.add(new Paragraph("Total: " + (Tools.sumList(solgt)), new Font(Font.FontFamily.HELVETICA, 14, Font.BOLD)));
 
         document.close();
         Toast.makeText(this, "PDF laget", Toast.LENGTH_SHORT).show();

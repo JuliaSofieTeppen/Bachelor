@@ -71,14 +71,4 @@ public class ExampleUnitTest {
         long elapsed = end-start;
         System.out.println("Time elapsed: " + elapsed);
     }
-
-    @Test(timeout=1000)
-    public void timeTest(){
-        long start = System.nanoTime();
-        MainActivity main = new MainActivity();
-        main.fetch();
-        long end = System.nanoTime();
-        long elapsed = end-start;
-        System.out.println("Time elapsed: " + elapsed);
-    }
 }

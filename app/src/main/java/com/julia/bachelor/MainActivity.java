@@ -15,7 +15,7 @@ import android.widget.Toast;
 import com.julia.bachelor.helperClass.Beholdning;
 import com.julia.bachelor.helperClass.BondensMarked;
 import com.julia.bachelor.helperClass.Honning;
-import com.julia.bachelor.helperClass.SalgFactory;
+import com.julia.bachelor.helperClass.SaleFactory;
 import com.julia.bachelor.helperClass.SalgTemplate;
 
 import org.json.JSONArray;
@@ -239,8 +239,8 @@ public class MainActivity extends Activity implements NavigationDrawerFragment.N
                 // Convert string to JSONArray containing JSONObjects.
                 JSONArray jsonArray = new JSONArray(output);
                 for (int i = 0; i < jsonArray.length(); i++) {
-                    SalgFactory factory = new SalgFactory();
-                    SalgTemplate salgObject = factory.getSalgObject(url);
+                    SaleFactory factory = new SaleFactory();
+                    SalgTemplate salgObject = factory.getSaleObject(url);
                     JSONObject jsonobject = jsonArray.getJSONObject(i);
                     salgObject.set_ID(jsonobject.getLong("ID"));
                     if (!(salgObject instanceof BondensMarked))

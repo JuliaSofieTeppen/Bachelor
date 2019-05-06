@@ -13,13 +13,9 @@ import android.widget.Toast;
 import com.julia.bachelor.helperClass.Beholdning;
 import com.julia.bachelor.helperClass.Honning;
 
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Date;
 import java.util.List;
-import java.util.Locale;
 
 public class BmSalgActivity extends Activity {
     private static final String KEY_BUNDLE = "Bundle";
@@ -48,12 +44,13 @@ public class BmSalgActivity extends Activity {
         verdier = new ArrayList<>(Arrays.asList(som1kg, som05kg, som025kg, lyng1kg, lyng05kg, lyng025kg, ingf05kg, ingf025kg, flytende));
         Intent intent = getIntent();
         Bundle bundle = intent.getBundleExtra(KEY_BUNDLE);
-        behold = (Beholdning) bundle.getSerializable(KEY_BEHOLD);
-        honningtyper = (ArrayList<Honning>) bundle.getSerializable(KEY_HONNING);
-
-        DateFormat dateFormat = new SimpleDateFormat("yyyy.MM.dd", Locale.US);
-        Date date = new Date();
-        dato.setText(dateFormat.format(date));
+        try {
+            behold = (Beholdning) bundle.getSerializable(KEY_BEHOLD);
+            honningtyper = (ArrayList<Honning>) bundle.getSerializable(KEY_HONNING);
+        }catch (ClassCastException e){
+            e.printStackTrace();
+        }
+        dato.setText(Tools.getDate());
     }
 
     public void lagre(View v) {
@@ -88,7 +85,6 @@ public class BmSalgActivity extends Activity {
         return true;
     }
 
-
     @Override
     public void onBackPressed() {
         goback();
@@ -121,7 +117,7 @@ public class BmSalgActivity extends Activity {
 
     public void addAlert(){
         final AlertDialog.Builder builder = new AlertDialog.Builder(BmSalgActivity.this);
-        builder.setMessage("Selger antall honning mer enn resterende beholdning. \n Vil du fortsette?");
+        builder.setMessage("Du prøver å selge ett større antall honning enn antall resterende i beholdningen. \n Vil du fortsette?");
         builder.setCancelable(true);
         builder.setNegativeButton("Ja", new DialogInterface.OnClickListener() {
             @Override

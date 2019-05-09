@@ -198,7 +198,7 @@ public class VideresalgActivity extends Activity implements AdapterView.OnItemSe
 
     public void addAlert(){
         final AlertDialog.Builder builder = new AlertDialog.Builder(VideresalgActivity.this);
-        builder.setMessage("Selger antall honning mer enn resterende beholdning. \n Vil du fortsette?");
+        builder.setMessage("Du prøver å selge ett større antall honning enn antall resterende i beholdningen. \n Vil du fortsette?");
         builder.setCancelable(true);
         builder.setNegativeButton("Ja", new DialogInterface.OnClickListener() {
             @Override

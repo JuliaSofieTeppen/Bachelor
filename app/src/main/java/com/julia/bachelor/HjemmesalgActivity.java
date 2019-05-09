@@ -24,7 +24,7 @@ public class HjemmesalgActivity extends Activity implements AdapterView.OnItemSe
     private static final String KEY_BUNDLE = "Bundle";
     private static final String KEY_HONNING = "Honning";
     private static final String KEY_BEHOLD = "Behold";
-    private static final String LavBeholdningWarning = "Selger antall honning mer enn resterende beholdning";
+    private static final String LavBeholdningWarning = "Du prøver å selge ett større antall honning enn antall resterende i beholdningen.";
     static ArrayList<Honning> honningtype;
     static Beholdning behold;
     String betalingsmetode;
@@ -97,7 +97,7 @@ public class HjemmesalgActivity extends Activity implements AdapterView.OnItemSe
         if (honningtype != null) {
             if (honningtype.size() != 9) return;
             if(behold.getSommer() <= telling.get(0))
-                Toast.makeText(this,LavBeholdningWarning, Toast.LENGTH_SHORT ).show();
+                Toast.makeText(this,LavBeholdningWarning, Toast.LENGTH_LONG ).show();
             telling.set(0, telling.get(0) + 1);
             kr = kr + honningtype.get(0).getHjemmePris();
             setText();
@@ -108,7 +108,7 @@ public class HjemmesalgActivity extends Activity implements AdapterView.OnItemSe
         if (honningtype != null) {
             if (honningtype.size() != 9) return;
             if(behold.getSommerH() <= telling.get(1))
-                Toast.makeText(this,LavBeholdningWarning, Toast.LENGTH_SHORT ).show();
+                Toast.makeText(this,LavBeholdningWarning, Toast.LENGTH_LONG ).show();
             telling.set(1, telling.get(1) + 1);
             kr = kr + honningtype.get(1).getHjemmePris();
             setText();
@@ -119,7 +119,7 @@ public class HjemmesalgActivity extends Activity implements AdapterView.OnItemSe
         if (honningtype != null) {
             if (honningtype.size() != 9) return;
             if(behold.getSommerK() <= telling.get(2))
-                Toast.makeText(this,LavBeholdningWarning, Toast.LENGTH_SHORT ).show();
+                Toast.makeText(this,LavBeholdningWarning, Toast.LENGTH_LONG ).show();
             telling.set(2, telling.get(2) + 1);
             kr = kr + honningtype.get(2).getHjemmePris();
             setText();
@@ -130,7 +130,7 @@ public class HjemmesalgActivity extends Activity implements AdapterView.OnItemSe
         if (honningtype != null) {
             if (honningtype.size() != 9) return;
             if(behold.getLyng() <= telling.get(3))
-                Toast.makeText(this,LavBeholdningWarning, Toast.LENGTH_SHORT ).show();
+                Toast.makeText(this,LavBeholdningWarning, Toast.LENGTH_LONG ).show();
             telling.set(3, telling.get(3) + 1);
             kr = kr + honningtype.get(3).getHjemmePris();
             setText();
@@ -141,7 +141,7 @@ public class HjemmesalgActivity extends Activity implements AdapterView.OnItemSe
         if (honningtype != null) {
             if (honningtype.size() != 9) return;
             if(behold.getLyngH() <= telling.get(4))
-                Toast.makeText(this,LavBeholdningWarning, Toast.LENGTH_SHORT ).show();
+                Toast.makeText(this,LavBeholdningWarning, Toast.LENGTH_LONG ).show();
             telling.set(4, telling.get(4) + 1);
             kr = kr + honningtype.get(4).getHjemmePris();
             setText();
@@ -152,7 +152,7 @@ public class HjemmesalgActivity extends Activity implements AdapterView.OnItemSe
         if (honningtype != null) {
             if (honningtype.size() != 9) return;
             if(behold.getLyngK() <= telling.get(5))
-                Toast.makeText(this,LavBeholdningWarning, Toast.LENGTH_SHORT ).show();
+                Toast.makeText(this,LavBeholdningWarning, Toast.LENGTH_LONG ).show();
             telling.set(5, telling.get(5) + 1);
             kr = kr + honningtype.get(5).getHjemmePris();
             setText();
@@ -163,7 +163,7 @@ public class HjemmesalgActivity extends Activity implements AdapterView.OnItemSe
         if (honningtype != null) {
             if (honningtype.size() != 9) return;
             if(behold.getIngeferH() <= telling.get(6))
-                Toast.makeText(this,LavBeholdningWarning, Toast.LENGTH_SHORT ).show();
+                Toast.makeText(this,LavBeholdningWarning, Toast.LENGTH_LONG ).show();
             telling.set(6, telling.get(6) + 1);
             kr = kr + honningtype.get(6).getHjemmePris();
             setText();
@@ -174,7 +174,7 @@ public class HjemmesalgActivity extends Activity implements AdapterView.OnItemSe
         if (honningtype != null) {
             if (honningtype.size() != 9) return;
             if(behold.getIngeferK() <= telling.get(7))
-                Toast.makeText(this,LavBeholdningWarning, Toast.LENGTH_SHORT ).show();
+                Toast.makeText(this,LavBeholdningWarning, Toast.LENGTH_LONG ).show();
             telling.set(7, telling.get(7) + 1);
             kr = kr + honningtype.get(7).getHjemmePris();
             setText();
@@ -185,7 +185,7 @@ public class HjemmesalgActivity extends Activity implements AdapterView.OnItemSe
         if (honningtype != null) {
             if (honningtype.size() != 9) return;
             if(behold.getFlytende() <= telling.get(8))
-                Toast.makeText(this,LavBeholdningWarning, Toast.LENGTH_SHORT ).show();
+                Toast.makeText(this,LavBeholdningWarning, Toast.LENGTH_LONG ).show();
             telling.set(8, telling.get(8) + 1);
             kr = kr + honningtype.get(8).getHjemmePris();
             setText();

@@ -81,9 +81,10 @@ public class HovedsideFragment extends Fragment {
                     public void run() {
                         try {
                             beholdnings = main.getBeholdning();
+                            addbutton.setVisibility(View.VISIBLE);
                             info.setText(setValueString());
                             navn.setText(setNameString());
-                            addbutton.setVisibility(View.VISIBLE);
+
                         }catch (NullPointerException e){
                             Toast.makeText(getContext(),"Ingen internett tilgang", Toast.LENGTH_SHORT).show();
                         }catch (IndexOutOfBoundsException e){
@@ -171,6 +172,8 @@ public class HovedsideFragment extends Fragment {
         } catch (NullPointerException e) {
             e.printStackTrace();
         }
+        if(honning != null && !honning.isEmpty() && beholdnings.isEmpty())
+            return "0\n0\n0\n0\n0\n0\n0\n0\n0";
         return beholdning == null ? "" :
                 beholdning.getSommer() + "\n" +
                         beholdning.getSommerH() + " \n" +

@@ -37,6 +37,28 @@ public class DetailsActivity extends Activity {
         Bundle bundle = intent.getBundleExtra(KEY_BUNDLE);
         object = (SalgTemplate) bundle.getSerializable(KEY_OBJECT);
         String text;
+
+        if(object != null) {
+
+            text = Integer.toString(object.getBelop());
+            total.setText(text);
+            setVerdier(object.getVarer());
+            if(object instanceof SortedObjects){
+                SortedObjects sortedObjects = (SortedObjects) object;
+                text = "Periode: " + sortedObjects.getDato();
+                Kundenavn.setText(text);
+                text = sortedObjects.getBetalings()[0] + "kr\n\n" + sortedObjects.getBetalings()[1] + "kr";
+                betalingkroner.setText(text);
+
+            }else {
+                text = object.getKunde();
+                Kundenavn.setText(text);
+                text = object.getBetaling().equals("Kort") ? "0 kr \n \n" + object.getBelop() + " kr" : object.getBelop() + " kr \n \n0 kr";
+                betalingkroner.setText(text);
+            }
+        }
+
+        /*
         if (object instanceof BondensMarked) {
             BondensMarked bm = (BondensMarked) object;
             text = Integer.toString(bm.getBelop());
@@ -96,6 +118,7 @@ public class DetailsActivity extends Activity {
         } else {
             Toast.makeText(this, "Noe gikk galt", Toast.LENGTH_SHORT).show();
         }
+        */
     }
 
     public void setVerdier(String verdilinje) {
@@ -113,6 +136,7 @@ public class DetailsActivity extends Activity {
         this.finish();
         return true;
     }
+
     public void delete(View view){
         final AlertDialog.Builder builder = new AlertDialog.Builder(DetailsActivity.this);
         builder.setMessage("Vil virkelig slette dette salget?");
@@ -121,17 +145,16 @@ public class DetailsActivity extends Activity {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 MainActivity main = new MainActivity();
-                Database database = new Database();
                 if(object instanceof SortedObjects)
                     Toast.makeText(DetailsActivity.this, "Kan ikke slette sortert Salg", Toast.LENGTH_SHORT).show();
-                if(object instanceof Hjemme)
-                    database.executeOnDB("http://www.honningbier.no/PHP/HjemmeDelete.php/?ID=" + object.get_ID());
-                else if(object instanceof Videresalg)
-                    database.executeOnDB("http://www.honningbier.no/PHP/VideresalgDelete.php/?ID=" + object.get_ID());
+                if(object instanceof Hjemme) {
+                    Database.executeOnDB("http://www.honningbier.no/PHP/HjemmeDelete.php/?ID=" + object.get_ID());
+                } else if(object instanceof Videresalg)
+                    Database.executeOnDB("http://www.honningbier.no/PHP/VideresalgDelete.php/?ID=" + object.get_ID());
                 else if(object instanceof BondensMarked)
-                    database.executeOnDB("http://www.honningbier.no/PHP/BondensMarkedDelete.php/?ID=" + object.get_ID());
+                    Database.executeOnDB("http://www.honningbier.no/PHP/BondensMarkedDelete.php/?ID=" + object.get_ID());
                 else if(object instanceof Annet)
-                    database.executeOnDB("http://www.honningbier.no/PHP/AnnetDelete.php/?ID=" + object.get_ID());
+                    Database.executeOnDB("http://www.honningbier.no/PHP/AnnetDelete.php/?ID=" + object.get_ID());
                 main.fetch();
                 finish();
             }

@@ -22,7 +22,7 @@ import static org.junit.Assert.*;
  */
 public class ExampleUnitTest {
     private ArrayList<SalgTemplate> sale;
-
+    private SortedObjects sorted = new SortedObjects(true);
     @Before
     public void setVariables(){
         String products = "1-1,2-3,3-0,4-5,5-0,6-0,7-0,8-0,9-0,";
@@ -44,17 +44,21 @@ public class ExampleUnitTest {
             sale.setVarer(products);
         }
         other.setVarer("Bifolk-12,Voks-0,Pollinering-0,Dronninger-0,");
+
+        for(SalgTemplate sale : sale){
+            sorted.add(sale);
+        }
     }
 
     @Test
     public void add_isCorrect() {
-        SortedObjects sorted = new SortedObjects(true);
-        for(SalgTemplate sale : sale){
-            sorted.add(sale);
-        }
         assertEquals(400, sorted.getBelop());
         assertEquals(400 , sorted.getBetalings()[1]);
         assertEquals(0, sorted.getBetalings()[0]);
+    }
+
+    @Test
+    public void addVarer_isCorrect() {
         int[] amounts = new int[9];
         int[] expected = {3,3*3,0,5*3,0,0,0,0,0};
         long start = System.nanoTime();

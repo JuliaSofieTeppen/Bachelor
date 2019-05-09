@@ -60,7 +60,6 @@ public class BeholdningItemActivity extends Activity {
             public void onClick(DialogInterface dialog, int which) {
                 MainActivity main = new MainActivity();
                 Database.executeOnDB("http://www.honningbier.no/PHP/BeholdningDelete.php/?ID=" + beholdning.get_ID());
-                main.fetch();
                 finish();
             }
         });

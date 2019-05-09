@@ -4,8 +4,6 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.provider.ContactsContract;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
@@ -13,7 +11,7 @@ import android.widget.TextView;
 
 import com.julia.bachelor.helperClass.Beholdning;
 
-public class BeholdningItem extends Activity {
+public class BeholdningItemActivity extends Activity {
     private static final String KEY_BUNDLE = "Bundle";
     private static final String KEY_BEHOLDOBJECT = "BeholdObject";
     Beholdning beholdning;
@@ -32,12 +30,11 @@ public class BeholdningItem extends Activity {
         Bundle bundle = intent.getBundleExtra(KEY_BUNDLE);
         beholdning = (Beholdning) bundle.getSerializable(KEY_BEHOLDOBJECT);
 
-        dato.setText(beholdning.getDato());
+        if (beholdning != null) dato.setText(beholdning.getDato());
         verdier.setText(addVerdier());
-
     }
 
-    public String addVerdier(){
+    public String addVerdier() {
         return beholdning.getSommer() + "\n\n" + beholdning.getSommerH() + "\n\n" + beholdning.getSommerK() + "\n\n"
                 + beholdning.getLyng() + "\n\n" + beholdning.getLyngH() + "\n\n" + beholdning.getLyngK() + "\n\n" +
                 beholdning.getIngeferH() + "\n\n" + beholdning.getIngeferK() + "\n\n" + beholdning.getFlytende();
@@ -54,16 +51,15 @@ public class BeholdningItem extends Activity {
         return true;
     }
 
-    public void delete(View view){
-        final AlertDialog.Builder builder = new AlertDialog.Builder(BeholdningItem.this);
+    public void delete(View view) {
+        final AlertDialog.Builder builder = new AlertDialog.Builder(BeholdningItemActivity.this);
         builder.setMessage("Vil virkelig slette denne beholdningen?");
         builder.setCancelable(true);
         builder.setNegativeButton("Ja", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 MainActivity main = new MainActivity();
-                Database database = new Database();
-                database.executeOnDB("http://www.honningbier.no/PHP/BeholdningDelete.php/?ID=" + beholdning.get_ID());
+                Database.executeOnDB("http://www.honningbier.no/PHP/BeholdningDelete.php/?ID=" + beholdning.get_ID());
                 finish();
             }
         });

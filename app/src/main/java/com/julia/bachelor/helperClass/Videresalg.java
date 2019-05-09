@@ -64,7 +64,7 @@ public class Videresalg implements SalgTemplate, Serializable {
     }
 
     public double getMoms() {
-        return Moms;
+        return Moms / 100;
     }
 
     public void setMoms(double moms) {

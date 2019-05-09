@@ -39,13 +39,13 @@ public class AddBeholdningFragment extends Fragment {
         flytende = rootView.findViewById(R.id.Bflyt);
         verdier = new ArrayList<>(Arrays.asList(som1kg, som05kg, som025kg, lyng1kg, lyng05kg, lyng025kg, ingf05kg, ingf025kg, flytende));
 
-        dato.setText(Beregninger.getDate());
+        dato.setText(Tools.getDate());
         return rootView;
     }
 
     public void lagre(View v) {
         int tell = 0;
-        if (Beregninger.checkDate(dato.getText().toString())) {
+        if (Tools.checkDate(dato.getText().toString())) {
             for (EditText verdi : verdier) {
                 if (verdi.getText().toString().equals("")) {
                     verdi.setText("0");

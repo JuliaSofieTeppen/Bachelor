@@ -26,7 +26,7 @@ public class ExampleUnitTest {
     @Before
     public void setVariables(){
         String products = "1-1,2-3,3-0,4-5,5-0,6-0,7-0,8-0,9-0,";
-        String date = Beregninger.getDate();
+        String date = Tools.getDate();
         String payment = "Kort";
         String customer = "Sam Knight";
         sale = new ArrayList<>();
@@ -68,16 +68,6 @@ public class ExampleUnitTest {
         for(int j =0; j<9;j++) {
             assertEquals(expected[j], amounts[j]);
         }
-        long elapsed = end-start;
-        System.out.println("Time elapsed: " + elapsed);
-    }
-
-    @Test(timeout=1000)
-    public void timeTest(){
-        long start = System.nanoTime();
-        MainActivity main = new MainActivity();
-        main.fetch();
-        long end = System.nanoTime();
         long elapsed = end-start;
         System.out.println("Time elapsed: " + elapsed);
     }

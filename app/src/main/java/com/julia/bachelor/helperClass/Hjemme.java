@@ -1,5 +1,10 @@
 package com.julia.bachelor.helperClass;
 
+import android.content.SharedPreferences;
+import android.preference.PreferenceManager;
+
+import com.julia.bachelor.MainActivity;
+
 import java.io.Serializable;
 
 public class Hjemme implements SalgTemplate, Serializable {
@@ -14,61 +19,76 @@ public class Hjemme implements SalgTemplate, Serializable {
     public Hjemme() {
     }
 
+    @Override
     public long get_ID() {
         return _ID;
     }
 
+    @Override
     public void set_ID(long _ID) {
         this._ID = _ID;
     }
 
+    @Override
     public String getKunde() {
         return Kunde;
     }
 
+    @Override
     public void setKunde(String kunde) {
         Kunde = kunde;
     }
 
+    @Override
     public String getDato() {
         return Dato;
     }
 
+    @Override
     public void setDato(String dato) {
         Dato = dato;
     }
 
+    @Override
     public String getVarer() {
         return Varer;
     }
 
+    @Override
     public void setVarer(String varer) {
         Varer = varer;
     }
 
+    @Override
     public int getBelop() {
         return Belop;
     }
 
+    @Override
     public void setBelop(int belop) {
         Belop = belop;
     }
 
+    @Override
     public String getBetaling() {
         return Betaling;
     }
 
+    @Override
     public void setBetaling(String betaling) {
         Betaling = betaling;
     }
 
     @Override
-    public void setMoms(double moms) {
-
+    public double getMoms() {
+        MainActivity main = new MainActivity();
+        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(main.shareContext());
+        double moms = sharedPreferences.getInt("ferdigprodukt", 15);
+        return moms / 100;
     }
 
     @Override
-    public double getMoms() {
-        return 0.15;
+    public void setMoms(double moms) {
+
     }
 }

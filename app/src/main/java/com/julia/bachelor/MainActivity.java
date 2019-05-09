@@ -3,6 +3,7 @@ package com.julia.bachelor;
 import android.app.Activity;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
+import android.content.Context;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -14,7 +15,7 @@ import android.widget.Toast;
 import com.julia.bachelor.helperClass.Beholdning;
 import com.julia.bachelor.helperClass.BondensMarked;
 import com.julia.bachelor.helperClass.Honning;
-import com.julia.bachelor.helperClass.SalgFactory;
+import com.julia.bachelor.helperClass.SaleFactory;
 import com.julia.bachelor.helperClass.SalgTemplate;
 
 import org.json.JSONArray;
@@ -51,6 +52,10 @@ public class MainActivity extends Activity implements NavigationDrawerFragment.N
          */
         NavigationDrawerFragment mNavigationDrawerFragment = (NavigationDrawerFragment) getFragmentManager().findFragmentById(R.id.navigation_drawer);
         mNavigationDrawerFragment.setUp(R.id.navigation_drawer, (DrawerLayout) findViewById(R.id.drawer_layout));
+    }
+
+    public Context shareContext(){
+        return this;
     }
 
     void setArrays(ArrayList<Beholdning> BeholdningList, ArrayList<SalgTemplate> allSalg,
@@ -127,7 +132,7 @@ public class MainActivity extends Activity implements NavigationDrawerFragment.N
         verdier = new ArrayList<>(Arrays.asList(som1kg, som05kg, som025kg, lyng1kg, lyng05kg, lyng025kg, ingf05kg, ingf025kg, flytende));
 
         int tell = 0;
-        if (Beregninger.checkDate(dato.getText().toString())) {
+        if (Tools.checkDate(dato.getText().toString())) {
             for (EditText verdi : verdier) {
                 if (verdi.getText().toString().equals("")) {
                     verdi.setText("0");
@@ -234,8 +239,8 @@ public class MainActivity extends Activity implements NavigationDrawerFragment.N
                 // Convert string to JSONArray containing JSONObjects.
                 JSONArray jsonArray = new JSONArray(output);
                 for (int i = 0; i < jsonArray.length(); i++) {
-                    SalgFactory factory = new SalgFactory();
-                    SalgTemplate salgObject = factory.getSalgObject(url);
+                    SaleFactory factory = new SaleFactory();
+                    SalgTemplate salgObject = factory.getSaleObject(url);
                     JSONObject jsonobject = jsonArray.getJSONObject(i);
                     salgObject.set_ID(jsonobject.getLong("ID"));
                     if (!(salgObject instanceof BondensMarked))

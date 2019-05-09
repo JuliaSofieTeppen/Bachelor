@@ -2,6 +2,10 @@ package com.julia.bachelor.helperClass;
 
 import java.io.Serializable;
 
+/**
+ * This class is used to store information from the database
+ * Stores info about current stock of honey
+ * **/
 public class Beholdning implements Serializable {
 
     private long _ID;
@@ -104,22 +108,6 @@ public class Beholdning implements Serializable {
 
     public void setDato(String dato) {
         Dato = dato;
-    }
-
-    public static Beholdning copy(Beholdning beholdning){
-        Beholdning beholdningCopy = new Beholdning();
-        beholdningCopy.set_ID(beholdning.get_ID());
-        beholdningCopy.setDato(beholdning.getDato());
-        beholdningCopy.setFlytende(beholdning.getFlytende());
-        beholdningCopy.setIngeferH(beholdning.getIngeferH());
-        beholdningCopy.setIngeferK(beholdning.getIngeferK());
-        beholdningCopy.setLyng(beholdning.getLyng());
-        beholdningCopy.setLyngH(beholdning.getLyngH());
-        beholdningCopy.setLyngK(beholdning.getLyngK());
-        beholdningCopy.setSommer(beholdning.getSommer());
-        beholdningCopy.setSommerH(beholdning.getSommerH());
-        beholdningCopy.setSommerK(beholdning.getSommerK());
-        return beholdningCopy;
     }
 
     public void add(Beholdning beholdning){

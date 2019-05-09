@@ -93,30 +93,27 @@ public class VideresalgActivity extends Activity implements AdapterView.OnItemSe
 
     public void lagre(View v) {
         int tell = 0;
-        if (Beregninger.checkDate(dato.getText().toString())) {
-            if(!navn.getText().toString().equals("")) {
-                for (EditText verdi : verdier) {
-                    if (verdi.getText().toString().equals("") || verdi.getText().toString().equals("0")) {
-                        verdi.setText("0");
-                    } else {
-                        tell++;
-                    }
-                }
-                if (tell == 0) {
-                    Toast.makeText(this, "Legg til minst et produkt", Toast.LENGTH_SHORT).show();
+        if (Tools.checkDate(dato.getText().toString())) {
+            for (EditText verdi : verdier) {
+                if (verdi.getText().toString().equals("") || verdi.getText().toString().equals("0")) {
+                    verdi.setText("0");
                 } else {
-                    if (!checkbehold()) {
-                        addAlert();
-                    } else {
-                        insertValues();
-                        Toast.makeText(this, "Videre salg lagret", Toast.LENGTH_SHORT).show();
-                        finish();
-                    }
+                    tell++;
                 }
-            }else
-                Toast.makeText(this, "Skriv inn navn", Toast.LENGTH_SHORT).show();
-        } else
+            }
+            if (tell == 0) {
+                Toast.makeText(this, "Legg til minst et produkt", Toast.LENGTH_SHORT).show();
+            } else {
+                if(!checkbehold()){ addAlert();
+                }else {
+                    insertValues();
+                    Toast.makeText(this, "Videre salg lagret", Toast.LENGTH_SHORT).show();
+                    finish();
+                }
+            }
+        } else {
             Toast.makeText(this, "Ugyldig dato", Toast.LENGTH_SHORT).show();
+        }
     }
 
     private String getVarer() {
@@ -142,17 +139,13 @@ public class VideresalgActivity extends Activity implements AdapterView.OnItemSe
         if (checkValue(behold.getLyngK(),Integer.parseInt(verdier.get(5).getText().toString()))) return false;
         if (checkValue(behold.getIngeferH(),Integer.parseInt(verdier.get(6).getText().toString()))) return false;
         if (checkValue(behold.getIngeferK(),Integer.parseInt(verdier.get(7).getText().toString()))) return false;
-        if (checkValue(behold.getFlytende(),Integer.parseInt(verdier.get(8).getText().toString()))) return false;
-        return true;
+        return !checkValue(behold.getFlytende(), Integer.parseInt(verdier.get(8).getText().toString()));
     }
     public boolean checkValue(int behold, int verdi){
         if(verdi == 0){
             return false;
         }
-        if(behold < verdi){
-            return true;
-        }
-        return false;
+        return behold < verdi;
     }
 
     int getbelop() {

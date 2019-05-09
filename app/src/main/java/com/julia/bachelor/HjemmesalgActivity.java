@@ -68,7 +68,7 @@ public class HjemmesalgActivity extends Activity implements AdapterView.OnItemSe
 
     void insertValues() {
         Database.executeOnDB("http://www.honningbier.no/PHP/HjemmeIn.php/?Kunde=" + kundenavn.getText().toString() +
-                "&Dato=" + Beregninger.getDate() + "&Varer=" + getVarer() + "&Belop=" + kr + "&Betaling=" + betalingsmetode);
+                "&Dato=" + Tools.getDate() + "&Varer=" + getVarer() + "&Belop=" + kr + "&Betaling=" + betalingsmetode);
     }
 
     void setTelling() {

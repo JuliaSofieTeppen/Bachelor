@@ -40,7 +40,9 @@ public class HjemmesalgActivity extends Activity implements AdapterView.OnItemSe
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_hjemme_salg);
         kr = 0;
+        //sets topbar
         if (getActionBar() != null) getActionBar().setDisplayHomeAsUpEnabled(true);
+
         oversikt = findViewById(R.id.oversikt);
         oversikttall = findViewById(R.id.oversikttall);
         betaling = findViewById(R.id.betalingsmetode);
@@ -58,6 +60,7 @@ public class HjemmesalgActivity extends Activity implements AdapterView.OnItemSe
         setTelling();
     }
 
+    //builds a string from inserted values
     String getVarer() {
         StringBuilder varer = new StringBuilder();
         for (int i = 0; i < honningtype.size(); i++) {
@@ -66,17 +69,22 @@ public class HjemmesalgActivity extends Activity implements AdapterView.OnItemSe
         return varer.toString();
     }
 
+    //insert values into database
     void insertValues() {
         Database.executeOnDB("http://www.honningbier.no/PHP/HjemmeIn.php/?Kunde=" + kundenavn.getText().toString() +
                 "&Dato=" + Tools.getDate() + "&Varer=" + getVarer() + "&Belop=" + kr + "&Betaling=" + betalingsmetode);
     }
 
+    //sets count to zero.
+    // is used when trashcan is clicked
+    // also when initializing telling
     void setTelling() {
         for (int c = 0; c < honningtype.size(); c++) {
             telling.add(0);
         }
     }
 
+    //gets value from spinner
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
         betalingsmetode = parent.getItemAtPosition(position).toString();
@@ -87,11 +95,17 @@ public class HjemmesalgActivity extends Activity implements AdapterView.OnItemSe
 
     }
 
+
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         goback();
         return true;
     }
+
+    //adds honey sold values
+    // when honey is clicked, telling increases
+    // also the value of the shopping cart increases (Kr)
+    //if beholdning does not have enough honey, a toast with notify the user
 
     public void add1Sommerkg(View view) {
         if (honningtype != null) {
@@ -192,6 +206,7 @@ public class HjemmesalgActivity extends Activity implements AdapterView.OnItemSe
         }
     }
 
+    //show number of sold items selected.
     public void setText() {
         StringBuilder sb = new StringBuilder();
         StringBuilder sbtall = new StringBuilder();

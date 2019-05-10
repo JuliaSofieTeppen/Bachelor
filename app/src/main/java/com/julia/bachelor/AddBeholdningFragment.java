@@ -39,18 +39,18 @@ public class AddBeholdningFragment extends Fragment {
         flytende = rootView.findViewById(R.id.Bflyt);
         verdier = new ArrayList<>(Arrays.asList(som1kg, som05kg, som025kg, lyng1kg, lyng05kg, lyng025kg, ingf05kg, ingf025kg, flytende));
 
-        dato.setText(Tools.getDate());
+        dato.setText(Tools.getDate()); //Inserts current date into "dato"
         return rootView;
     }
 
     public void lagre(View v) {
         int tell = 0;
-        if (Tools.checkDate(dato.getText().toString())) {
+        if (Tools.checkDate(dato.getText().toString())) { //checks if valid date format
             for (EditText verdi : verdier) {
                 if (verdi.getText().toString().equals("")) {
-                    verdi.setText("0");
+                    verdi.setText("0"); //fills remaining edittext with zeros
                 } else {
-                    tell++;
+                    tell++; //counts how many values inserted
                 }
             }
             if (tell == 0) {
@@ -58,7 +58,6 @@ public class AddBeholdningFragment extends Fragment {
             } else {
                 insertIntoDB();
                 Toast.makeText(getActivity(), "Beholdning lagret", Toast.LENGTH_SHORT).show();
-                //this.finish();
             }
         } else {
             Toast.makeText(getActivity(), "Ugyldig dato", Toast.LENGTH_SHORT).show();
@@ -69,12 +68,14 @@ public class AddBeholdningFragment extends Fragment {
         String[] strings = {"Sommer", "SommerH", "SommerK", "Lyng", "LyngH", "LyngK", "IngeferH", "IngeferK", "Flytende"};
         StringBuilder sb = new StringBuilder();
         for (int i = 0; i < strings.length; i++) {
+            //makes a string of all the beholdning values inserted from the application
             sb.append(strings[i]).append("=").append(verdier.get(i).getText().toString()).append("&");
         }
         return sb.toString();
     }
 
     void insertIntoDB() {
+        // insert values into the Database
         Database.executeOnDB("http://www.honningbier.no/PHP/BeholdningIn.php/?" + getBeholdning() + "&Dato=" + dato.getText().toString());
     }
 }

@@ -84,6 +84,8 @@ public class RapportFragment extends Fragment {
             public void onNothingSelected(AdapterView<?> parent) {
             }
         });
+
+        //when item in listview clicked, start new activity
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -94,6 +96,7 @@ public class RapportFragment extends Fragment {
                 startActivity(myIntent);
             }
         });
+        //starts rapportbeholdning activity
         beholdningButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -108,6 +111,7 @@ public class RapportFragment extends Fragment {
         return rootView;
     }
 
+    // spinner for day month and year
     private void selectdagmanedar(int position) {
         switch (position) {
             case 0:
@@ -128,6 +132,7 @@ public class RapportFragment extends Fragment {
 
     }
 
+    // spinner for honey sale types
     private void selectsalgtyper(int posisjon) {
         switch (posisjon) {
             case 0:

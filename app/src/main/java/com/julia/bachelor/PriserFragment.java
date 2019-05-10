@@ -47,6 +47,8 @@ public class PriserFragment extends Fragment {
 
         MainActivity main = new MainActivity();
         honningtype = main.getHonningTyper();
+
+        //gets values from honningtype and place it into textview.
         try {
             if (honningtype != null) {
                 if(!honningtype.isEmpty()) {

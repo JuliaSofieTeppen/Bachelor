@@ -42,6 +42,8 @@ public class BmSalgActivity extends Activity {
         ingf025kg = findViewById(R.id.BMSingf025kg);
         flytende = findViewById(R.id.BMSflyt);
         verdier = new ArrayList<>(Arrays.asList(som1kg, som05kg, som025kg, lyng1kg, lyng05kg, lyng025kg, ingf05kg, ingf025kg, flytende));
+
+        //get values from previous activity
         Intent intent = getIntent();
         Bundle bundle = intent.getBundleExtra(KEY_BUNDLE);
         try {
@@ -90,6 +92,7 @@ public class BmSalgActivity extends Activity {
         goback();
     }
 
+    //makes popup if user wants to go back and some values is inserted.
     public void goback() {
         if (ValueInField()) {
             //android.app.AlertDialog.Builder builder = new android.app.AlertDialog.Builder(VideresalgActivity.this,R.style.AlertDialog);

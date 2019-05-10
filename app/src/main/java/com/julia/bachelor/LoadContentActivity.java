@@ -22,6 +22,8 @@ public class LoadContentActivity extends Activity {
         // (^_^)( || ||)>
         //   /// \\\
 
+        //creates a object.
+        // deletes objects in arraylist to make sure they are empty.
         MainActivity main = new MainActivity();
         if (!MainActivity.AllSalg.isEmpty()) {
             MainActivity.AllSalg.clear();

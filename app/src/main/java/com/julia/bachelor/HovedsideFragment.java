@@ -66,6 +66,11 @@ public class HovedsideFragment extends Fragment {
         info = rootView.findViewById(R.id.Info);
         navn = rootView.findViewById(R.id.navn);
         dato = rootView.findViewById(R.id.dato);
+
+        //when user tries to refresh every array is cleared, and fetch is called.
+        //fetch() gets new values from the database.
+        //the new values gets inserted into textview
+
         mSwipeRefreshLayout = rootView.findViewById(R.id.container);
         mSwipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
 
@@ -96,6 +101,9 @@ public class HovedsideFragment extends Fragment {
             }
         });
 
+        //button that lets you choose between different sales
+        //when type of sale is clicked, this method will send you to a new activity with
+        //a bundle so the user can transfer values from this activity to the next.
         addbutton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -152,6 +160,7 @@ public class HovedsideFragment extends Fragment {
         return rootView;
     }
 
+    //set names from beholdning
     private String setNameString() {
         return honning.get(0).getType() + "\n" +
                 honning.get(1).getType() + "\n" +
@@ -164,6 +173,7 @@ public class HovedsideFragment extends Fragment {
                 honning.get(8).getType() + "\n";
     }
 
+    //set values from beholdning
     private String setValueString() {
         Beholdning beholdning = null;
         try {
@@ -185,7 +195,9 @@ public class HovedsideFragment extends Fragment {
                         beholdning.getIngeferK() + " \n" +
                         beholdning.getFlytende() + " \n";
     }
-    
+
+    //takes all beholdning, and all Salg
+    //takes beholdning minus salg.
     Beholdning CalculateBeholdning() {
         Beholdning beholdning = new Beholdning();
         beholdning.setDato(findCurrentBeholdning());
@@ -217,6 +229,7 @@ public class HovedsideFragment extends Fragment {
         return beholdning;
     }
 
+    //find current beholdning to get date.
     private String findCurrentBeholdning() {
         Beholdning current = null;
         try {

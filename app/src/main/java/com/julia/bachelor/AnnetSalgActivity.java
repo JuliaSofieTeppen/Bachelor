@@ -45,6 +45,7 @@ public class AnnetSalgActivity extends Activity implements AdapterView.OnItemSel
         betaling.setAdapter(adapter);
         betaling.setOnItemSelectedListener(this);
 
+        //inserts current date into dato
         DateFormat dateFormat = new SimpleDateFormat("yyyy.MM.dd", Locale.US);
         Date date = new Date();
         Dato.setText(dateFormat.format(date));
@@ -59,14 +60,15 @@ public class AnnetSalgActivity extends Activity implements AdapterView.OnItemSel
             if (!(Pris.getText().toString().equals("") || KundeNavn.getText().toString().equals(""))) {
                 for (EditText verdi : verdier) {
                     if (verdi.getText().toString().equals("") || verdi.getText().toString().equals("0")) {
-                        verdi.setText("0");
+                        verdi.setText("0"); // fills the remaning text with zeros
                     } else {
-                        tell++;
+                        tell++; //counts how many values inserted
                     }
                 }
                 if (tell == 0) {
                     Toast.makeText(this, "Legg til minst et produkt", Toast.LENGTH_SHORT).show();
                 } else {
+                    //inserts values into database
                     Database.executeOnDB("http://www.honningbier.no/PHP/AnnetIn.php/?Kunde=" + KundeNavn.getText().toString() +
                             "&Dato=" + Dato.getText().toString() + "&Varer=" + getVarer() + "&Belop=" + Pris.getText().toString() +
                             "&Betaling=" + betaling.getSelectedItem().toString());
@@ -86,6 +88,7 @@ public class AnnetSalgActivity extends Activity implements AdapterView.OnItemSel
         StringBuilder stringBuilder = new StringBuilder();
         for (int i = 0; i < verdier.size(); i++) {
             if (!verdier.get(i).getText().toString().equals("")) {
+                //makes a string of all Annetsalg values inserted from the application
                 stringBuilder.append(names[i]).append("-").append(verdier.get(i).getText().toString()).append(",");
             }
         }

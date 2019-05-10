@@ -38,6 +38,7 @@ public class RapportBeholdningActivity extends Activity {
             ArrayAdapter<String> arrayAdapter = new ArrayAdapter(this, android.R.layout.simple_list_item_1, beholdninglist);
             listView.setAdapter(arrayAdapter);
 
+            //when clicked on an item in the listener, open new activity
             listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                 @Override
                 public void onItemClick(AdapterView<?> parent, View view, int position, long id) {

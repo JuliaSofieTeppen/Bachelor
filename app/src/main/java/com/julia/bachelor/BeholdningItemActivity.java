@@ -21,19 +21,23 @@ public class BeholdningItemActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_beholdning_item);
+        //makes return button in application
         if (getActionBar() != null) getActionBar().setDisplayHomeAsUpEnabled(true);
 
         dato = findViewById(R.id.beholddato);
         verdier = findViewById(R.id.beholdverdier);
 
+        //gets values from previous activity
         Intent intent = getIntent();
         Bundle bundle = intent.getBundleExtra(KEY_BUNDLE);
         beholdning = (Beholdning) bundle.getSerializable(KEY_BEHOLDOBJECT);
 
+        //inserts values and date into Textview
         if (beholdning != null) dato.setText(beholdning.getDato());
         verdier.setText(addVerdier());
     }
 
+    //returns all honey values from beholdning
     public String addVerdier() {
         return beholdning.getSommer() + "\n\n" + beholdning.getSommerH() + "\n\n" + beholdning.getSommerK() + "\n\n"
                 + beholdning.getLyng() + "\n\n" + beholdning.getLyngH() + "\n\n" + beholdning.getLyngK() + "\n\n" +
@@ -51,6 +55,7 @@ public class BeholdningItemActivity extends Activity {
         return true;
     }
 
+    //makes popup when click on delete button
     public void delete(View view) {
         final AlertDialog.Builder builder = new AlertDialog.Builder(BeholdningItemActivity.this);
         builder.setMessage("Vil virkelig slette denne beholdningen?");
@@ -58,11 +63,12 @@ public class BeholdningItemActivity extends Activity {
         builder.setNegativeButton("Ja", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                MainActivity main = new MainActivity();
+                //when clicked "ja" on popup, value is deleted from database
                 Database.executeOnDB("http://www.honningbier.no/PHP/BeholdningDelete.php/?ID=" + beholdning.get_ID());
                 finish();
             }
         });
+        //when clicked "nei" return back to previous screen
         builder.setPositiveButton("Nei", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {

@@ -69,9 +69,13 @@ public class PdfCreatorActivity extends AppCompatActivity {
         Startdato = findViewById(R.id.startdato);
         Sluttdato = findViewById(R.id.sluttdato);
         Lagresom = findViewById(R.id.lagresom);
+
+        //get image from resources.
         image = BitmapFactory.decodeResource(getResources(), R.drawable.bie);
         Button mCreateButton = findViewById(R.id.button_create);
         Sluttdato.setText(Tools.getDate());
+
+        //checks date. if date is correct, mcreateButton calls on createPdfWrapper()
         mCreateButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -95,8 +99,9 @@ public class PdfCreatorActivity extends AppCompatActivity {
 
     }
 
+    //checks permissions for internal storage.
+    //ask for permission if permission not granted.
     private void createPdfWrapper() throws FileNotFoundException, DocumentException {
-
 
         int hasWriteStoragePermission = ActivityCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE);
         if (hasWriteStoragePermission != PackageManager.PERMISSION_GRANTED) {
@@ -153,6 +158,7 @@ public class PdfCreatorActivity extends AppCompatActivity {
                 .show();
     }
 
+    //creates directory.
     private void createPdf() throws FileNotFoundException, DocumentException {
 
         File docsFolder = new File(Environment.getExternalStorageDirectory() + "/Documents");
@@ -163,11 +169,12 @@ public class PdfCreatorActivity extends AppCompatActivity {
             }
         }
 
+        //makes pdf file and insert values into the file.
+
         File pdfFile = new File(docsFolder.getAbsolutePath(), Lagresom.getText().toString() + ".pdf");
         OutputStream output = new FileOutputStream(pdfFile);
         Document document = new Document();
         PdfWriter.getInstance(document, output);
-        //SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
 
         ByteArrayOutputStream stream = new ByteArrayOutputStream();
         image.compress(Bitmap.CompressFormat.PNG, 100, stream);
@@ -184,6 +191,7 @@ public class PdfCreatorActivity extends AppCompatActivity {
 
         document.open();
 
+        //makes table
         PdfPTable hjemmetable = new PdfPTable(4);
         hjemmetable.addCell("Dato");
         hjemmetable.addCell("Beløp/Salg");
@@ -202,6 +210,7 @@ public class PdfCreatorActivity extends AppCompatActivity {
         annettable.addCell("Moms%");
         annettable.addCell("Moms kr");
 
+        //insert values into table
         for (SalgTemplate salg : solgt) {
             if (salg instanceof Hjemme) {
                 Hjemme hjemmeSalg = (Hjemme) salg;
@@ -239,6 +248,8 @@ public class PdfCreatorActivity extends AppCompatActivity {
             img.scaleToFit(90f, 90f);
             img.setAlignment(Element.ALIGN_LEFT | Image.TEXTWRAP);
         }
+
+        //add values to document
         document.add(Image.getInstance(img));
 
         document.add(new Paragraph("    Salgsoversikt", new Font(Font.FontFamily.HELVETICA, 18, Font.BOLD)));
@@ -291,6 +302,7 @@ public class PdfCreatorActivity extends AppCompatActivity {
             Toast.makeText(getApplicationContext(), "File path is incorrect.", Toast.LENGTH_LONG).show();
     }
 
+    //checks if start date is before end date.
     public boolean datehigherthan() {
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy.MM.dd", Locale.US);
         try {

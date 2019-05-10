@@ -75,7 +75,7 @@ public class VideresalgActivity extends Activity implements AdapterView.OnItemSe
         dato.setText(dateFormat.format(date));
 
     }
-
+    //set spinner for betalingsmetode
     private void setBetalingsmetodespinner() {
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.betalingsmetode, android.R.layout.simple_spinner_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -83,6 +83,7 @@ public class VideresalgActivity extends Activity implements AdapterView.OnItemSe
         betaling.setOnItemSelectedListener(this);
     }
 
+    //has moms from shared prefrences and inserts the values into spinner
     private void setMomsspinner(SharedPreferences sh) {
         Integer[] momsarray = {sh.getInt("ferdigprodukt", 15), sh.getInt("ikkeferdig", 25)};
         ArrayAdapter<Integer> adapter = new ArrayAdapter<>(getApplicationContext(), android.R.layout.simple_spinner_dropdown_item, momsarray);
@@ -125,6 +126,7 @@ public class VideresalgActivity extends Activity implements AdapterView.OnItemSe
         return stringBuilder.toString();
     }
 
+    //insert values into database
     void insertValues() {
         Database.executeOnDB("http://www.honningbier.no/PHP/VideresalgIn.php/?Kunde=" + navn.getText().toString() +
                 "&Dato=" + dato.getText().toString() +
@@ -196,6 +198,7 @@ public class VideresalgActivity extends Activity implements AdapterView.OnItemSe
         betalingsmetode = parent.getItemAtPosition(position).toString();
     }
 
+    //if beholdning has less honey than the shopping cart, a popup will appear
     public void addAlert(){
         final AlertDialog.Builder builder = new AlertDialog.Builder(VideresalgActivity.this);
         builder.setMessage("Du prøver å selge ett større antall honning enn antall resterende i beholdningen. \n Vil du fortsette?");

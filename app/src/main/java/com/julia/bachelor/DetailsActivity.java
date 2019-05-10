@@ -27,6 +27,8 @@ public class DetailsActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_salg_item);
+
+        //sets topbar with backbutton
         if (getActionBar() != null) getActionBar().setDisplayHomeAsUpEnabled(true);
         total = findViewById(R.id.total);
         Kundenavn = findViewById(R.id.kundenavn);
@@ -38,8 +40,8 @@ public class DetailsActivity extends Activity {
         object = (SalgTemplate) bundle.getSerializable(KEY_OBJECT);
         String text;
 
+        //set text
         if(object != null) {
-
             text = Integer.toString(object.getBelop());
             total.setText(text);
             setVerdier(object.getVarer());
@@ -49,7 +51,6 @@ public class DetailsActivity extends Activity {
                 Kundenavn.setText(text);
                 text = sortedObjects.getBetalings()[0] + "kr\n\n" + sortedObjects.getBetalings()[1] + "kr";
                 betalingkroner.setText(text);
-
             }else {
                 text = object.getKunde();
                 Kundenavn.setText(text);
@@ -57,70 +58,9 @@ public class DetailsActivity extends Activity {
                 betalingkroner.setText(text);
             }
         }
-
-        /*
-        if (object instanceof BondensMarked) {
-            BondensMarked bm = (BondensMarked) object;
-            text = Integer.toString(bm.getBelop());
-            total.setText(text);
-            text = "Bondens Marked";
-            Kundenavn.setText(text);
-            setVerdier(bm.getVarer());
-        } else if (object instanceof Hjemme) {
-            Hjemme hm = (Hjemme) object;
-            text = Integer.toString(hm.getBelop());
-            total.setText(text);
-            if (hm.getBetaling().equals("Kort")) {
-                text = "0 kr \n \n" + hm.getBelop() + " kr";
-                betalingkroner.setText(text);
-            } else {
-                text = hm.getBelop() + " kr \n \n0 kr";
-                betalingkroner.setText(text);
-            }
-            Kundenavn.setText(hm.getKunde());
-            setVerdier(hm.getVarer());
-        } else if (object instanceof Videresalg) {
-            Videresalg vi = (Videresalg) object;
-            text = Integer.toString(vi.getBelop());
-            total.setText(text);
-            if (vi.getBetaling().equals("Kontant")) {
-                text = vi.getBelop() + " kr \n \n0 kr";
-                betalingkroner.setText(text);
-            } else {
-                text = "0 kr \n \n" + vi.getBelop() + " kr";
-                betalingkroner.setText(text);
-            }
-            Kundenavn.setText(vi.getKunde());
-            setVerdier(vi.getVarer());
-        } else if (object instanceof Annet) {
-            Annet an = (Annet) object;
-            text = Integer.toString(an.getBelop());
-            total.setText(text);
-            if (an.getBetaling().equals("Kontant")) {
-                text = an.getBelop() + " kr \n \n0 kr";
-                betalingkroner.setText(text);
-            } else {
-                text = "0 kr \n \n" + an.getBelop() + " kr";
-                betalingkroner.setText(text);
-            }
-            navnetext.setText("Bifolk\n\nVoks\n\nPollinering\n\nDronninger");
-            setVerdier(an.getVarer());
-        } else if (object instanceof SortedObjects) {
-            SortedObjects sortedObjects = (SortedObjects) object;
-            text = Integer.toString(sortedObjects.getBelop());
-            total.setText(text);
-            int[] betaling = sortedObjects.getBetalings();
-            text = betaling[0] + "kr\n\n" + betaling[1] + "kr";
-            betalingkroner.setText(text);
-            text = "Periode: " + sortedObjects.getDato();
-            Kundenavn.setText(text);
-            setVerdier(sortedObjects.getVarer());
-        } else {
-            Toast.makeText(this, "Noe gikk galt", Toast.LENGTH_SHORT).show();
-        }
-        */
     }
 
+    //splits string and sets values
     public void setVerdier(String verdilinje) {
         StringBuilder text = new StringBuilder();
         String[] verdier = verdilinje.split(",");
@@ -137,6 +77,8 @@ public class DetailsActivity extends Activity {
         return true;
     }
 
+    //makes popup when delete is clicked
+    // if "ja" delete, if "nei" return.
     public void delete(View view){
         final AlertDialog.Builder builder = new AlertDialog.Builder(DetailsActivity.this);
         builder.setMessage("Vil virkelig slette dette salget?");

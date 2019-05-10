@@ -12,6 +12,7 @@ class Database {
         task.execute(url);
     }
 
+    //opens http connection to honningbier.no
     private static class ExecuteOnDB extends AsyncTask<String, Void, String> {
         @Override
         protected String doInBackground(String... urls) {

@@ -82,6 +82,7 @@ public class SettingFragment extends Fragment {
         tmp = Integer.toString(sharedPreferences.getInt("ikkeferdig", 25));
         ikkeferdig.setText(tmp);
 
+        //set current values into Edittexts
         MainActivity main = new MainActivity();
         honningtype = main.getHonningTyper();
         try {
@@ -105,6 +106,7 @@ public class SettingFragment extends Fragment {
         } catch (NullPointerException e) {
             e.printStackTrace();
         }
+        //updates honey prices in the database.
         lagre.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -118,6 +120,7 @@ public class SettingFragment extends Fragment {
                 Toast.makeText(SettingFragment.this.getContext(), "Endringer lagret", Toast.LENGTH_SHORT).show();
             }
         });
+        //updates moms in sharedpreferences
         momslagre.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -145,6 +148,8 @@ public class SettingFragment extends Fragment {
                 extend(exe);
             }
         });
+
+        //constraint layouts that extends when clicked on
         enkg.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

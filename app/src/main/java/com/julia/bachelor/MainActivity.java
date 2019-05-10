@@ -118,6 +118,7 @@ public class MainActivity extends Activity implements NavigationDrawerFragment.N
         }
     }
 
+    //lagre (save) used in beholdning
     public void lagre(View v) {
         dato = findViewById(R.id.Bdato);
         som1kg = findViewById(R.id.Bsom1kg);
@@ -156,6 +157,7 @@ public class MainActivity extends Activity implements NavigationDrawerFragment.N
         Database.executeOnDB("http://www.honningbier.no/PHP/BeholdningIn.php/?" + getStringBeholdning() + "&Dato=" + dato.getText().toString());
     }
 
+    //makes string out of values from beholdning
     private String getStringBeholdning() {
         String[] strings = {"Sommer", "SommerH", "SommerK", "Lyng", "LyngH", "LyngK", "IngeferH", "IngeferK", "Flytende"};
         StringBuilder sb = new StringBuilder();
@@ -173,6 +175,7 @@ public class MainActivity extends Activity implements NavigationDrawerFragment.N
         return Beholdning;
     }
 
+    //Calls asynctask to execute background program
     void fetch() {
         FetchDataTask task = new FetchDataTask();
         String[] urls = {
@@ -192,6 +195,7 @@ public class MainActivity extends Activity implements NavigationDrawerFragment.N
             e.printStackTrace();
         }
     }
+
 
     public static class FetchDataTask extends AsyncTask<String, Integer, String> {
         Integer progress;
